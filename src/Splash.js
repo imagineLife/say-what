@@ -22,7 +22,7 @@ export default function App(props) {
 			},
 			{
 				title: 'Check it out!',
-				form : true
+				includeBeginForm: true
 			}
 		];
 		
@@ -30,6 +30,10 @@ export default function App(props) {
 			//figure out if theres an img in the sectionsArray
 			//the image will either equal itself, or set it to an empty string
 			sec.img = (sec.img)? sec.img : '';
+
+	      	//figure out if theres an wordList in the sectionsArray
+			//the wordList will either equal itself, or set it to an empty string
+			sec.WordList = (sec.WordList)? sec.WordList : '';
 	      	return <Section key={ind} {...sec}/>;
 		})
 
@@ -45,20 +49,6 @@ export default function App(props) {
 	      
 	      {sections} 
 
-	      <section>
-	       	<p>Handwritten inside a new section</p>
-	        <form className='signup-form'>
-	            <div>
-	              <label htmlFor="getStarted">See the details of <em>[a random speech]</em></label>
-	              <button type='button' id="getStarted">Here!</button>
-	            </div>
-	            <div>
-	              <label htmlFor="pickFromList">Choose a speech from a variety of options</label>
-	              <button type='button' id ="pickFromList">Here!</button>
-	            </div>
-	        </form>
-	     
-	      </section>
 	    </main>
     );
 }
