@@ -4,9 +4,11 @@ import './ResizingSection.css';
 import Title from './Title';
 import Para from './Para';
 import Li from './li';
+import BeginForm from './BeginForm';
 
 export default function ResizingSection(props) {
-	//If the component contains a word-list,
+	
+	//If the section contains a word-list,
 	//render that component with the word-list
 		if(props.WordList){
 		//build the looping word-list to output a list item
@@ -26,12 +28,25 @@ export default function ResizingSection(props) {
 		    );
 		}
 
+	//If the section contains a form
+	//render that component with form
+		else if(props.includeBeginForm){
+		    return (
+				<section className="col-6">
+					<Title title={props.title}/>
+			        {props.img}
+			        <Para text={props.text}/>
+			        <BeginForm />
+			    </section>
+		    );			
+		}
+
+	//plane-Jane section
 	    return (
 			<section className="col-6">
 				<Title title={props.title}/>
 		        {props.img}
 		        <Para text={props.text}/>
-		        {props.form}
 		    </section>
 	    );
 }
