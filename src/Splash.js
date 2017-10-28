@@ -21,7 +21,8 @@ export default function App(props) {
 				img: 'IMAGE OF SPEAKER'
 			},
 			{
-				title: 'Check it out!'
+				title: 'Check it out!',
+				form : true
 			}
 		];
 		
