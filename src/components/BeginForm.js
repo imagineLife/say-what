@@ -6,11 +6,11 @@ export default function BeginForm(props) {
     return (
 		<form className='begin-form'>
             <div>
-              <label htmlFor="getStarted">See the details of <em>[a random speech]</em></label>
+              <label htmlFor="getStarted">See the details of <em>a random speech </em></label>
               <button type='button' id="getStarted">Here!</button>
             </div>
             <div>
-              <label htmlFor="pickFromList">Choose a speech from a variety of options</label>
+              <label htmlFor="pickFromList">Choose a speech from a variety of options </label>
               <button type='button' id ="pickFromList">Here!</button>
             </div>
         </form>
