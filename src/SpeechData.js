@@ -4,7 +4,6 @@ import './Splash.css';
 import ResizingSection from './components/ResizingSection';
 
 export default function App(props) {
-		console.log(props);
 
 		const pageHeader = {
 			title: `Speech Title`,
@@ -16,7 +15,7 @@ export default function App(props) {
 		// 	Date : `Sometime`,
 		// 	Audience : `People`,
 		// 	eventOverview : `Twas the night before (politically-correct-celebratory-event)`
-		// }
+		// }3
 
 		const sectionsArray =[
 			{
@@ -35,7 +34,8 @@ export default function App(props) {
 				Get insight into the words of a variety of speeches.`,
 				img: 'IMAGE OF SPEAKER'
 			},			{
-				title: 'Check it out!'
+				title: 'Check it out!',
+				includeBeginForm: true
 			}
 		];
 		
@@ -62,20 +62,6 @@ export default function App(props) {
 	      
 	      {sections} 
 
-	      <section>
-	       	<p>Handwritten inside a new section</p>
-	        <form className='signup-form'>
-	            <div>
-	              <label htmlFor="getStarted">See the details of <em>[a random speech]</em></label>
-	              <button type='button' id="getStarted">Here!</button>
-	            </div>
-	            <div>
-	              <label htmlFor="pickFromList">Choose a speech from a variety of options</label>
-	              <button type='button' id ="pickFromList">Here!</button>
-	            </div>
-	        </form>
-	     
-	      </section>
 	    </main>
     );
 }
