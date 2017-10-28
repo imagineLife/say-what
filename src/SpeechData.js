@@ -1,7 +1,7 @@
 import React from 'react';
 import './float-grid.css';
 import './Splash.css';
-import Section from './components/Section';
+import ResizingSection from './components/ResizingSection';
 
 export default function App(props) {
 		console.log(props);
@@ -43,7 +43,11 @@ export default function App(props) {
 			//figure out if theres an img in the sectionsArray
 			//the image will either equal itself, or set it to an empty string
 			sec.img = (sec.img)? sec.img : '';
-	      	return <Section key={ind} {...sec}/>;
+
+			//figure out if theres an wordList in the sectionsArray
+			//the wordList will either equal itself, or set it to an empty string
+			sec.WordList = (sec.WordList)? sec.WordList : '';
+	      	return <ResizingSection key={ind} {...sec}/>;
 		})
 
 
