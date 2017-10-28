@@ -1,10 +1,10 @@
 import React from 'react';
-import './Para.css';
+import './BeginForm.css';
 
-export default function Para(props) {
+export default function BeginForm(props) {
 
     return (
-		<form className='signup-form'>
+		<form className='begin-form'>
             <div>
               <label htmlFor="getStarted">See the details of <em>[a random speech]</em></label>
               <button type='button' id="getStarted">Here!</button>
