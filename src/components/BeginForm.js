@@ -1,5 +1,6 @@
 import React from 'react';
 import './BeginForm.css';
+import {Link} from 'react-router-dom';
 
 export default function BeginForm(props) {
 
@@ -7,7 +8,11 @@ export default function BeginForm(props) {
 		<form className='begin-form'>
             <div>
               <label htmlFor="getStarted">See the details of <em>a random speech </em></label>
-              <button type='button' id="getStarted">Here!</button>
+              <button type='button' id="getStarted">
+                <Link to={`/speechData`}>
+                    Here!
+                </Link>
+              </button>
             </div>
             <div>
               <label htmlFor="pickFromList">Choose a speech from a variety of options </label>
