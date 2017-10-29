@@ -1,5 +1,6 @@
 import React from 'react';
 import './Splash.css';
+import Header from './components/Header';
 import Section from './components/Section';
 
 export default function SpeechPicker(props) {
@@ -17,15 +18,15 @@ export default function SpeechPicker(props) {
 				speechesArray : [
 					{
 						Orator : 'theMouth',
-						title : 'Speech Title 1'
+						title : 'Wordy Speech Title'
 					},
 					{
 						Orator : 'theHeart',
-						title : 'Speech Title 2'
+						title : 'Heartfelt compassionate speech title'
 					},
 					{
 						Orator : 'theSoul',
-						title : 'Speech Title 3'
+						title : 'Deep, convicting, and moving speech title'
 					}
 				]
 			}
@@ -40,10 +41,7 @@ export default function SpeechPicker(props) {
 
     return (
 		<main role="main">
-	      <header role="banner">
-	        <h1>{pageHeader.title}</h1>
-	        <h2>{pageHeader.text}</h2>
-	      </header>
+		  <Header title={pageHeader.title}/>
 	      
 	      {sections}
 

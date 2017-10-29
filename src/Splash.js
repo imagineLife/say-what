@@ -1,5 +1,6 @@
 import React from 'react';
 import './Splash.css';
+import Header from './components/Header';
 import Section from './components/Section';
 
 export default function App(props) {
@@ -28,24 +29,17 @@ export default function App(props) {
 		
 		const sections = sectionsArray.map((sec,ind) => {
 			//figure out if theres an img in the sectionsArray
-			//the image will either equal itself, or set it to an empty string
 			sec.img = (sec.img)? sec.img : '';
 
 	      	//figure out if theres an wordList in the sectionsArray
-			//the wordList will either equal itself, or set it to an empty string
 			sec.WordList = (sec.WordList)? sec.WordList : '';
 	      	return <Section key={ind} {...sec}/>;
 		})
 
 
-
-
     return (
 		<main role="main">
-	      <header role="banner">
-	        <h1>{pageHeader.title}</h1>
-	        <h2>{pageHeader.text}</h2>
-	      </header>
+		  <Header title={pageHeader.title} subTitle={pageHeader.text} />
 	      
 	      {sections} 
 
