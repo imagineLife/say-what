@@ -5,7 +5,7 @@ import {
     // Redirect,
     Switch
 } from 'react-router-dom';
-import Nav from './Nav';
+import Nav from './components/Nav';
 import Splash from './Splash';
 import SpeechData from './SpeechData';
 import './App.css';
