@@ -16,7 +16,11 @@ export default function BeginForm(props) {
             </div>
             <div>
               <label htmlFor="pickFromList">Choose a speech from a variety of options </label>
-              <button type='button' id ="pickFromList">Here!</button>
+              <button type='button' id ="pickFromList">
+                <Link to={`/speechPicker`}>
+                    Here!
+                </Link>
+              </button>
             </div>
         </form>
     );

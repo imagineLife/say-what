@@ -8,6 +8,7 @@ import {
 import Nav from './components/Nav';
 import Splash from './Splash';
 import SpeechData from './SpeechData';
+import SpeechPicker from './SpeechPicker';
 import './App.css';
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
 		        <Switch>
 			        <Route exact path="/" component={Splash} />
 			        <Route exact path="/speechData" component={SpeechData} />
+			        <Route exact path="/speechPicker" component={SpeechPicker} />
 			    </Switch>
 		      </div>
 		</Router>
