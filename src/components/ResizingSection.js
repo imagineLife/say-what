@@ -27,10 +27,9 @@ export default function ResizingSection(props) {
 		    );
 		}
 
-	{/*If the section contains the quick-stats,
-	render that component with the word-list*/}
 		if(props.qStats){
-		//build the looping word-list to output a list item
+{/* If the section contains the quick-stats,
+render that component with the word-list */}
 			const singleStat = Object.keys(props.qStats).map(key => {
 				return <Li key={key} word={props.qStats[key]} boldWord={key} />
 			})
@@ -46,15 +45,14 @@ export default function ResizingSection(props) {
 			);
 		}
 
-	{/*If the section contains a form
-	render that component with form*/}
-
 		else if(props.includeBeginForm){
-		    return (
+{/*If the section contains a form
+render that component with form*/}
+
+			return (
 				<section className="col-6">
 					<Title title={props.title}/>
 			        {props.img}
-			        // <Para text={props.text}/>
 			        <BeginForm />
 			    </section>
 		    );			
