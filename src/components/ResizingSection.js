@@ -20,12 +20,30 @@ export default function ResizingSection(props) {
 				<section className="col-6">
 					<Title title={props.title}/>
 			        {props.img}
-			        <Para text={props.text}/>
 			        <ul>
 			        	{listOWords}
 			        </ul>
 			    </section>
 		    );
+		}
+
+	//If the section contains the quick-stats,
+	//render that component with the word-list
+		if(props.qStats){
+		//build the looping word-list to output a list item
+			const singleStat = Object.keys(props.qStats).map(key => {
+				return <Li key={key} word={props.qStats[key]} boldWord={key} />
+			})
+
+			return (
+				<section className="col-6">
+					<Title title={props.title}/>
+				    {props.img}
+				    <ul>
+				    	{singleStat}
+				    </ul>
+				</section>
+			);
 		}
 
 	//If the section contains a form
@@ -35,7 +53,7 @@ export default function ResizingSection(props) {
 				<section className="col-6">
 					<Title title={props.title}/>
 			        {props.img}
-			        <Para text={props.text}/>
+			        // <Para text={props.text}/>
 			        <BeginForm />
 			    </section>
 		    );			
