@@ -2,6 +2,7 @@ import React from 'react';
 import './Section.css';
 import Title from './Title';
 import Para from './Para';
+import Ul from './ul';
 import BeginForm from './BeginForm';
 
 export default function Section(props) {
@@ -19,12 +20,23 @@ export default function Section(props) {
 	    );			
 	}
 
-    return (
-		<section>
-			<Title title={props.title}/>
-	        {props.img}
-	        <Para text={props.text}/>
-	        {props.form}
-	    </section>
-    );
+	else if(props.speechPicker){
+	    return (
+			<section>
+				<Title title={props.title} />
+				<Ul list={props.speechesArray}/>
+		    </section>
+	    );			
+	}
+
+	else {
+		return (
+			<section>
+				<Title title={props.title}/>
+		        {props.img}
+		        <Para text={props.text}/>
+		        {props.form}
+		    </section>
+    	);
+    }
 }
