@@ -5,7 +5,7 @@ export default function Li(props) {
 	let objSize = Object.keys(props).length;
 	
 	switch(objSize) {
-		case (objSize = 2) :
+		case 2 :
 		    return (
 				<li><span className="boldWord">{props.boldWord} : </span> {props.word}</li>
 			);
