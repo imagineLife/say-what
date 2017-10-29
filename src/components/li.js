@@ -3,13 +3,14 @@ import './li.css';
 
 export default function Li(props) {
 	let objSize = Object.keys(props).length;
+	console.log(objSize);
 	switch(objSize) {
-		case (objSize === 2) :
+		case (objSize = 2) :
 		    return (
-				<li><span className="boldWord">{props.boldWord} :</span> {props.word}</li>
-		    );
+				<li><span className="boldWord">{props.boldWord} : </span> {props.word}</li>
+			);
 
-		default:
+		default :
 		    return (
 				<li>{props.word}</li>
 		    );
