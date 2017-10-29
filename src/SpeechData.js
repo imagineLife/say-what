@@ -10,13 +10,6 @@ export default function App(props) {
 			text: `[ Image of Orator behind Title ]`
 		}
 
-		// const quickStats = {
-		// 	Orator : `Someone`,
-		// 	Date : `Sometime`,
-		// 	Audience : `People`,
-		// 	eventOverview : `Twas the night before (politically-correct-celebratory-event)`
-		// }3
-
 		const sectionsArray =[
 			{
 				title: `Quick Stats`,
