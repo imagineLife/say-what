@@ -19,6 +19,15 @@ export default function App(props) {
 
 		const sectionsArray =[
 			{
+				title: `Quick Stats`,
+				qStats : {
+					Orator : 'someone',
+					Date : 'someTime',
+					Audience : 'Humans, potentially',
+					'Event Overview' : 'once upon a galaxy far far away & over the rainbow, over the river and through the dark and stormy night'
+				}
+			},
+			{
 				title: `Common Words`,
 				WordList: [`Bigly`, `'Merica`,`Yeudge`]
 			},
@@ -33,9 +42,6 @@ export default function App(props) {
 				text: `Interested in the details of what Trump said? Maybe Hillary? MLK Jr? Perhaps JFK or Abraham Lincoln?
 				Get insight into the words of a variety of speeches.`,
 				img: 'IMAGE OF SPEAKER'
-			},			{
-				title: 'Check it out!',
-				includeBeginForm: true
 			}
 		];
 		
