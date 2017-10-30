@@ -3,7 +3,7 @@ import './li.css';
 
 export default function Li(props) {
 	let objSize = Object.keys(props).length;
-	
+
 	switch(objSize) {
 		case 2 :
 		    return (
