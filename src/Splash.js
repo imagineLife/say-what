@@ -30,9 +30,6 @@ export default function App(props) {
 		const sections = sectionsArray.map((sec,ind) => {
 			//figure out if theres an img in the sectionsArray
 			sec.img = (sec.img)? sec.img : '';
-
-	      	//figure out if theres an wordList in the sectionsArray
-			sec.WordList = (sec.WordList)? sec.WordList : '';
 	      	return <Section key={ind} {...sec}/>;
 		})
 
