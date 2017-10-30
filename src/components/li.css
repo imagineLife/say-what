@@ -3,6 +3,11 @@ li {
   margin: 0 auto;
 }
 
+section li{
+	float:none;
+	display:block;
+}
+
 .boldWord{
 	font-weight: bold;
 	font-size: 1.2em;
