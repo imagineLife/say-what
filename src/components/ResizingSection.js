@@ -7,62 +7,35 @@ import Li from './li';
 import BeginForm from './BeginForm';
 
 export default function ResizingSection(props) {
-	
+
 	//WORD LIST SECTION
-	//If the section contains a word-list,
-	//render that component with the word-list
+	let listOWords;
+	let singleStat;
+
 	if(props.WordList){
 	//build the looping word-list to output a list item
-		const listOWords = props.WordList.map((word, ind) =>
+		listOWords = props.WordList.map((word, ind) =>
 			<Li key={ind} word={word} />
 		)
-
-		return (
-			<section className="col-6">
-				<Title title={props.title}/>
-		        {props.img}
-		        <ul>
-		        	{listOWords}
-		        </ul>
-		    </section>
-	    );
 	}
 
 	//QUICK-STATS SECTION
 	// If the section contains the quick-stats, render that component with the word-list
-	else if(props.qStats){
-		const singleStat = Object.keys(props.qStats).map(key => {
+	if(props.qStats){
+		singleStat = Object.keys(props.qStats).map(key => {
 			return <Li key={key} word={props.qStats[key]} boldWord={key} />
 		})
-
-		return (
-			<section className="col-6">
-				<Title title={props.title}/>
-			    {props.img}
-			    <ul>
-			    	{singleStat}
-			    </ul>
-			</section>
-		);
 	}
 
-	//BEGIN-FORM SECTION
-	//If the section contains a form render that component with form
-	else if(props.includeBeginForm){ 
-		return (
-			<section className="col-6">
-				<Title title={props.title}/>
-		        {props.img}
-		        <BeginForm />
-		    </section>
-	    );			
-	}
 
-	//Plain-Jane section
+	//Plain-Jane section return
 	return (
 		<section className="col-6">
 			<Title title={props.title}/>
-	        {props.img}
+	        {props.img ? props.img : ''}
+	        {listOWords ? listOWords : ''}
+	        {singleStat ? singleStat : ''}
+	        {props.includeBeginForm ? <BeginForm /> : ''}
 	        <Para text={props.text}/>
 	    </section>
 	);
