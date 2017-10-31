@@ -6,9 +6,9 @@ import {
     Switch
 } from 'react-router-dom';
 import Nav from './components/Nav';
-import Splash from './Splash';
-import SpeechData from './SpeechData';
-import SpeechPicker from './SpeechPicker';
+import Splash from './containers/Splash';
+import SpeechData from './containers/SpeechData';
+import SpeechPicker from './containers/SpeechPicker';
 import './App.css';
 
 class App extends Component {

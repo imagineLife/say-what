@@ -1,7 +1,7 @@
 import React from 'react';
 import './Nav.css';
 
-export default function App() {
+export default function Nav() {
 	// const navItems = ['Home', 'See Some Data', 'Sign Up'];
 
     return (

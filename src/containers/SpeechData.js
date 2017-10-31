@@ -1,7 +1,7 @@
 import React from 'react';
-import './float-grid.css';
+import '../float-grid.css';
 import './Splash.css';
-import ResizingSection from './components/ResizingSection';
+import ResizingSection from '../components/ResizingSection';
 
 export default function App(props) {
 
