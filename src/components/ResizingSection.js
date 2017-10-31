@@ -27,7 +27,7 @@ export default function ResizingSection(props) {
 	}
 
 
-	//Plain-Jane section return
+	//Plain-Jane section
 	return (
 		<section className="col-6">
 			<Title title={props.title}/>

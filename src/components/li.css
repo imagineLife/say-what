@@ -12,3 +12,8 @@ section li{
 	font-weight: bold;
 	font-size: 1.2em;
 }
+
+nav li{
+	margin-left: 10px;
+	margin-right: 10px;
+}
