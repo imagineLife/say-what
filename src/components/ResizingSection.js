@@ -8,10 +8,10 @@ import BeginForm from './BeginForm';
 
 export default function ResizingSection(props) {
 
-	//WORD LIST SECTION
 	let listOWords;
 	let singleStat;
 
+	//WORD LIST SECTION
 	if(props.WordList){
 	//build the looping word-list to output a list item
 		listOWords = props.WordList.map((word, ind) =>
@@ -20,7 +20,6 @@ export default function ResizingSection(props) {
 	}
 
 	//QUICK-STATS SECTION
-	// If the section contains the quick-stats, render that component with the word-list
 	if(props.qStats){
 		singleStat = Object.keys(props.qStats).map(key => {
 			return <Li key={key} word={props.qStats[key]} boldWord={key} />
