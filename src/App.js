@@ -9,7 +9,7 @@ import Nav from './components/Nav';
 import Splash from './containers/Splash';
 import SpeechData from './containers/SpeechData';
 import SpeechPicker from './containers/SpeechPicker';
-// import Login from './containers/Login';
+import Login from './containers/Login';
 import './App.css';
 
 class App extends Component {
@@ -22,7 +22,7 @@ class App extends Component {
 			        <Route exact path="/" component={Splash} />
 			        <Route exact path="/speechData" component={SpeechData} />
 			        <Route exact path="/speechPicker" component={SpeechPicker} />
-			        {/*<Route exact path="/login" component={Login} />*/}
+			        <Route exact path="/login" component={Login} />
 			    </Switch>
 		      </div>
 		</Router>
