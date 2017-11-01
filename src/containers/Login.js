@@ -3,32 +3,21 @@ import './Splash.css';
 import Header from '../components/Header';
 import Section from '../components/Section';
 
-export default function SpeechPicker(props) {
+export default function Login(props) {
 
 		const pageHeader = {
-			title: `Pick a Speech`,
-			text: ``
+			title: `Sign In`,
+			text: `or Sign Up!`
 		}
 
 		const sectionsArray =[
 			{
-				title: `Choose from a list of options`,
-				text: ``,
-				speechPicker: true,
-				speechesArray : [
-					{
-						Orator : 'theMouth',
-						title : 'Wordy Speech Title'
-					},
-					{
-						Orator : 'theHeart',
-						title : 'Heartfelt compassionate speech title'
-					},
-					{
-						Orator : 'theSoul',
-						title : 'Deep, convicting, and moving speech title'
-					}
-				]
+				title: `Login`,
+				includesForm: true
+			},
+			{
+				title: `Register`,
+				includesForm:true
 			}
 		];
 
@@ -41,7 +30,7 @@ export default function SpeechPicker(props) {
 
     return (
 		<main role="main">
-		  <Header title={pageHeader.title}/>
+		  <Header title={pageHeader.title} subTitle={pageHeader.text}/>
 	      
 	      {sections}
 
