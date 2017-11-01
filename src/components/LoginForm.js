@@ -5,7 +5,7 @@ import './LoginForm.css';
 export default function BeginForm(props) {
   // componentDidMount(){
   //   this.userName.focus();
-  // } 
+  // }
 
   return (
   	<form className='login-form'>
@@ -16,7 +16,7 @@ export default function BeginForm(props) {
       </fieldset>
           <input type="submit" name="submit" value="Log in" />
           <label htmlFor="register">Don't have an account?</label>
-          <input type="submit" name="register" id="register" value="Sign up"/>
+          <input type="button" name="register" id="register" value="Sign up" onClick={props.toggleForm}/>
     </form>
   );
 }
