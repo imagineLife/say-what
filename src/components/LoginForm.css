@@ -1,0 +1,36 @@
+.login-form fieldset{
+	border: 0;
+	margin: 0; 
+	padding:0;
+}
+
+.login-form fieldset legend{
+	display: none;
+}
+
+.login-form input{
+	width: 100%;
+	height:40px;
+	font-size:14px;
+	line-height:18px;	
+}
+
+input[type='text']:nth-of-type(2) {
+	margin-top: 10px;
+}
+
+.login-form input[type='submit']{
+	background-color: #43F4F4;
+	margin-top: 10px;
+	border-style: solid;
+}
+
+.login-form label{
+	font-size: 14px;
+}
+
+#register{
+	width:auto;
+	background-color: transparent;
+	text-decoration: underline;
+}

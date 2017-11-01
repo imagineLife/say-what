@@ -13,11 +13,11 @@ export default function Login(props) {
 		const sectionsArray =[
 			{
 				title: `Login`,
-				includesForm: true
+				includesLoginForm: true
 			},
 			{
 				title: `Register`,
-				includesForm:true
+				includesRegisterForm:true
 			}
 		];
 
