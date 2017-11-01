@@ -18,7 +18,7 @@ export default function Nav() {
 					</a>
 				</li>
 				<li className='liWithIcon'>
-					<a href="/register">
+					<a href="/login">
 						<img src='../imgs/user.png' className="icon" alt='Sign Up' />
 					</a>
 				</li>
