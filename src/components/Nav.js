@@ -13,7 +13,7 @@ export default function Nav() {
 					</a>
 				</li>
 				<li className='liWithIcon'>
-					<a href='/speechData'>
+					<a href='/speechData/alpha'>
 						<img src={process.env.PUBLIC_URL+'/imgs/search.png'} className="icon" alt='View A Speech' />
 					</a>
 				</li>
