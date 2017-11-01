@@ -1,27 +1,22 @@
 import React from 'react';
-import './BeginForm.css';
-import {Link} from 'react-router-dom';
+import './RegisterForm.css';
+// import {Link} from 'react-router-dom';
 
-export default function BeginForm(props) {
+export default function Register(props) {
+  // componentDidMount(){
+  //   this.userName.focus();
+  // } 
 
-    return (
-		<form className='begin-form'>
-            <div>
-              <label htmlFor="getStarted">See <em>a random speech </em></label>
-              <button type='button' id="getStarted">
-                <Link to={`/speechData`}>
-                    Here!
-                </Link>
-              </button>
-            </div>
-            <div>
-              <label htmlFor="pickFromList">Choose a speech </label>
-              <button type='button' id ="pickFromList">
-                <Link to={`/speechPicker`}>
-                    Here!
-                </Link>
-              </button>
-            </div>
-        </form>
-    );
+  return (
+    <form className='register-form'>
+      <fieldset>
+        <legend>Register</legend>
+          <input id="userName" type="text" name="userName" placeholder="Register" required/>
+          <input id="passWord" type="text" name="passWord"  placeholder="PassWord" required/>
+      </fieldset>
+          <input type="submit" name="submit" value="Register" />
+          <label htmlFor="register">Don't have an account?</label>
+          <input type="button" name="register" id="register" value="Register" onClick={props.toggleForm}/>
+    </form>
+  );
 }
