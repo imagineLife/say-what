@@ -6,7 +6,6 @@ import Ul from './ul';
 import BeginForm from './BeginForm';
 
 export default function Section(props) {
-
 	return (
 		<section>
 			<Title title={props.title}/>
