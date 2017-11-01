@@ -14,10 +14,6 @@ export default function Login(props) {
 			{
 				title: `Login`,
 				includesLoginForm: true
-			},
-			{
-				title: `Register`,
-				includesRegisterForm:true
 			}
 		];
 
