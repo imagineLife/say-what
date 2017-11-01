@@ -12,13 +12,25 @@ nav {
   z-index: 10;
 }
 
-ul{
+nav ul{
 	list-style-type: none;
     margin: 0;
     padding: 0;
     display:inline;
 }
 
-li{
+nav li{
 	display: inline;
+}
+
+ul li.liWithIcon{
+  list-style-type: none;
+  margin-left:0px;
+  padding-left:0px;
+  display:inline-block;
+}
+
+.icon{
+  width:50px;
+  height:auto;
 }

@@ -7,9 +7,21 @@ export default function Nav() {
     return (
 		<nav>
 			<ul>
-				<li>Home</li>
-				<li>See Some Data</li>
-				<li>Sign Up</li>
+				<li className='liWithIcon'>
+					<a href='/'>
+						<img src='../../../imgs/home.png' className="icon" alt='home' width="50" height="auto"/>
+					</a>
+				</li>
+				<li className='liWithIcon'>
+					<a href='/speechData'>
+						<img src='../imgs/search.png' className="icon" alt='View A Speech' />
+					</a>
+				</li>
+				<li className='liWithIcon'>
+					<a href="/register">
+						<img src='../imgs/user.png' className="icon" alt='Sign Up' />
+					</a>
+				</li>
 			</ul>
 		</nav> 
     );
