@@ -11,7 +11,9 @@ export default function Register(props) {
     <form className='register-form'>
       <fieldset>
         <legend>Register</legend>
-          <input id="userName" type="text" name="userName" placeholder="Register" required/>
+          <input id="firstName" type="text" name="firstName" placeholder="firstName" required/>
+          <input id="lastName" type="text" name="lastName" placeholder="lastName" required/>
+          <input id="userName" type="text" name="userName" placeholder="userName" required/>
           <input id="passWord" type="text" name="passWord"  placeholder="PassWord" required/>
       </fieldset>
           <input type="submit" name="submit" value="Register" />
