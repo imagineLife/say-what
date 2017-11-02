@@ -1,7 +1,7 @@
 import React from 'react';
 import './Splash.css';
 import Header from '../components/Header';
-import Section from '../components/Section';
+import LoginSection from '../components/LoginSection';
 
 export default function Login(props) {
 
@@ -18,7 +18,7 @@ export default function Login(props) {
 		];
 
 		const sections = sectionsArray.map((sec,ind) => {
-	      	return <Section key={ind} {...sec}/>;
+	      	return <LoginSection key={ind} {...sec}/>;
 		})
 
 
