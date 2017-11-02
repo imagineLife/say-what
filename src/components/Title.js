@@ -1,7 +1,7 @@
 import React from 'react';
 import './Header.css';
 
-export default function Section(props) {
+export default function Title(props) {
 
     return (
         <header>
