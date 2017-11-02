@@ -94,4 +94,8 @@ section:nth-child(even) {
     padding:10px;
   }
 
+  .bottomSpacer{
+    display:none;
+  }
+
 }
