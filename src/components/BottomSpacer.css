@@ -4,6 +4,7 @@ ul{
     padding: 0;
 }
 
-nav ul {
-
+.bottomSpacer{
+	min-height: 0px;
+	height:50px;
 }

@@ -5,7 +5,7 @@ export default function BottomSpacer(props) {
 	console.log(props.list);
 
     return (
-    	<section/>
+    	<section className='bottomSpacer'/>
     );
 
 }
