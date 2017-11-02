@@ -9,17 +9,17 @@ export default function Nav() {
 			<ul>
 				<li className='liWithIcon'>
 					<a href='/'>
-						<img src={process.env.PUBLIC_URL+'/imgs/home.png'} className="icon" alt='home' width="50" height="auto"/>
+						<img src={process.env.PUBLIC_URL+'/imgs/home.ico'} className="icon" alt='home' width="50" height="auto"/>
 					</a>
 				</li>
 				<li className='liWithIcon'>
 					<a href='/speechData/alpha'>
-						<img src={process.env.PUBLIC_URL+'/imgs/search.png'} className="icon" alt='View A Speech' />
+						<img src={process.env.PUBLIC_URL+'/imgs/search.ico'} className="icon" alt='View A Speech' />
 					</a>
 				</li>
 				<li className='liWithIcon'>
 					<a href="/login">
-						<img src={process.env.PUBLIC_URL+'/imgs/user.png'} className="icon" alt='Sign Up' />
+						<img src={process.env.PUBLIC_URL+'/imgs/user.ico'} className="icon" alt='Sign Up' />
 					</a>
 				</li>
 			</ul>
