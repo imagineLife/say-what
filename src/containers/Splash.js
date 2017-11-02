@@ -23,7 +23,8 @@ export default function App(props) {
 			},
 			{
 				title: 'Check it out!',
-				includeBeginForm: true
+				includeBeginForm: true,
+				includeBottomSpace:true
 			}
 		];
 		
