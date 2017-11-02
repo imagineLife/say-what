@@ -34,7 +34,8 @@ export default function App(props) {
 				title: `Words Per Minute`,
 				text: `Interested in the details of what Trump said? Maybe Hillary? MLK Jr? Perhaps JFK or Abraham Lincoln?
 				Get insight into the words of a variety of speeches.`,
-				img: 'IMAGE OF SPEAKER'
+				img: 'IMAGE OF SPEAKER',
+				includeBottomSpace:true
 			}
 		];
 		

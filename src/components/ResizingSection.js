@@ -4,6 +4,7 @@ import './ResizingSection.css';
 import Title from './Title';
 import Para from './Para';
 import Li from './li';
+import BottomSpacer from './BottomSpacer';
 import BeginForm from './BeginForm';
 
 export default function ResizingSection(props) {
@@ -36,6 +37,7 @@ export default function ResizingSection(props) {
 	        {singleStat ? singleStat : ''}
 	        {props.includeBeginForm ? <BeginForm /> : ''}
 	        <Para text={props.text}/>
+	        {props.includeBottomSpace ? <BottomSpacer /> : null}
 	    </section>
 	);
 }
