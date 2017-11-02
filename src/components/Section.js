@@ -20,7 +20,7 @@ export default class Section extends React.Component {
 	
 	render(){
 		let toggleForm = () => {
-			let loginOrRegister = (this.state.loginOrRegister == 'login') ? 'register' : 'login';
+			let loginOrRegister = (this.state.loginOrRegister === 'login') ? 'register' : 'login';
 			this.title = loginOrRegister.charAt(0).toUpperCase() + loginOrRegister.slice(1);
 			this.setState({loginOrRegister});
 		}
@@ -30,9 +30,9 @@ export default class Section extends React.Component {
 		        <Para text={this.props.text}/>
 		        {this.props.img}
 		        {this.props.speechPicker ? <Ul list={this.props.speechesArray} /> : ''}
-		        {this.props.form}
+		        {this.props.form ? this.props.form : ''}
 		        {this.props.includeBeginForm ? <BeginForm /> : ''}
-		        {this.state.loginOrRegister == 'login' ? <LoginForm toggleForm={toggleForm} /> : <RegisterForm toggleForm={toggleForm} />}
+		        {this.state.loginOrRegister === 'login' ? <LoginForm toggleForm={toggleForm} /> : <RegisterForm toggleForm={toggleForm} />}
 		    </section>
 		)
 	};
