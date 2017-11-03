@@ -5,6 +5,7 @@ import Para from './Para';
 import Ul from './ul';
 import BeginForm from './BeginForm';
 import LoginForm from './LoginForm';
+import BottomSpacer from './BottomSpacer';
 import RegisterForm from './RegisterForm';
 
 export default class Section extends React.Component {
@@ -29,10 +30,11 @@ export default class Section extends React.Component {
 				<Title title={this.title}/>
 		        <Para text={this.props.text}/>
 		        {this.props.img}
-		        {this.props.speechPicker ? <Ul list={this.props.speechesArray} /> : ''}
-		        {this.props.form ? this.props.form : ''}
-		        {this.props.includeBeginForm ? <BeginForm /> : ''}
+		        {this.props.speechPicker ? <Ul list={this.props.speechesArray} /> : null}
+		        {this.props.form ? this.props.form : null}
+		        {this.props.includeBeginForm ? <BeginForm /> : null}
 		        {this.state.loginOrRegister === 'login' ? <LoginForm toggleForm={toggleForm} /> : <RegisterForm toggleForm={toggleForm} />}
+	        	{this.props.includeBottomSpace ? <BottomSpacer /> : null}
 		    </section>
 		)
 	};
