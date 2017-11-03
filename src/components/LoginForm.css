@@ -19,8 +19,8 @@ input[type='text']:nth-of-type(2) {
 	margin-top: 10px;
 }
 
-.login-form input[type='submit']{
-	background-color: #43F4F4;
+.login-form input[type='button']{
+	background-color: #7591AA;
 	margin-top: 10px;
 	border-style: solid;
 }
