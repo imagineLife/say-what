@@ -1,11 +1,7 @@
 import React from 'react';
 import './RegisterForm.css';
-// import {Link} from 'react-router-dom';
 
 export default function Register(props) {
-  // componentDidMount(){
-  //   this.userName.focus();
-  // } 
 
   return (
     <form className='register-form'>
