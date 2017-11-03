@@ -1,6 +1,7 @@
 import React from 'react';
 import '../float-grid.css';
 import './Splash.css';
+import Header from '../components/Header';
 import ResizingSection from '../components/ResizingSection';
 import {Link} from 'react-router-dom';
 
@@ -54,11 +55,9 @@ export default function App(props) {
 
     return (
 		<main role="main">
-	      <header role="banner">
-	        <h1>{pageHeader.title}</h1>
-	        <p>{pageHeader.text}</p>
-			<Link to={`/speechData/:id/text`}>Read the full Speech Text here</Link>
-	      </header>
+
+	      <Header title={pageHeader.title} subTitle={pageHeader.text}/>
+
 	      
 	      {sections} 
 
