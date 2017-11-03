@@ -1,12 +1,7 @@
 import React from 'react';
 import './LoginForm.css';
-// import {Link} from 'react-router-dom';
 
 export default function BeginForm(props) {
-  // componentDidMount(){
-  //   this.userName.focus();
-  // }
-
   return (
   	<form className='login-form'>
       <fieldset>
