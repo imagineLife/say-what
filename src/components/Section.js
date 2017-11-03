@@ -11,8 +11,8 @@ export default function Section (props) {
 	return (
 		<section>
 			<Title title={props.title}/>
-	        <Para text={props.text}/>
 	        {props.img ? props.img : null}
+	        <Para text={props.text}/>
 	        {props.speechPicker ? <Ul list={props.speechesArray} /> : null}
 	        {props.form ? props.form : null}
 	        {props.includeBeginForm ? <BeginForm /> : null}
