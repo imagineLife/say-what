@@ -17,16 +17,8 @@ export default function SpeechPicker(props) {
 				speechPicker: true,
 				speechesArray : [
 					{
-						Orator : 'theMouth',
-						title : 'Wordy Speech Title'
-					},
-					{
-						Orator : 'theHeart',
-						title : 'Heartfelt compassionate speech title'
-					},
-					{
-						Orator : 'theSoul',
-						title : 'Deep, convicting, and moving speech title'
+						Orator : 'Donald Trump',
+						title : 'Inauguration'
 					}
 				]
 			}
