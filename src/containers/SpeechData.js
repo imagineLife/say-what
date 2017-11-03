@@ -57,7 +57,6 @@ export default function App(props) {
 		<main role="main">
 
 	      <Header title={pageHeader.title} subTitle={pageHeader.text}/>
-
 	      
 	      {sections} 
 
