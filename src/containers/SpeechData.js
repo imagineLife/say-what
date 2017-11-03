@@ -55,7 +55,7 @@ export default function App(props) {
 		<main role="main">
 	      <header role="banner">
 	        <h1>{pageHeader.title}</h1>
-	        <h2>{pageHeader.subTitle}</h2>
+	        <p>{pageHeader.text}</p>
 	      </header>
 	      
 	      {sections} 
