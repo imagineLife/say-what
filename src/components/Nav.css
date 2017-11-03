@@ -1,6 +1,5 @@
-nav,
-footer {
-  padding: 1% 0;
+nav, footer {
+  padding-top:1%;
   background-color: #aaa;
 }
 
@@ -9,7 +8,6 @@ nav {
   bottom: 0;
   left: 0;
   right: 0;
-  /*height:80px;*/
   line-height: 40px;
   z-index: 10;
 }
@@ -21,15 +19,18 @@ nav ul{
     display:inline;
 }
 
-nav li{
-	display: inline;
-}
-
 ul li.liWithIcon{
+  margin: 0 auto;
   list-style-type: none;
-  margin-left:0px;
   padding-left:0px;
   display:inline-block;
+  width:33%;
+
+}
+
+.liWithIcon a {
+  height:55px;
+  margin: auto 25%;
 }
 
 .icon{
