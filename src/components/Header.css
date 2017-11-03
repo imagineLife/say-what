@@ -10,3 +10,7 @@ h3{
 	margin:5px;
 	font-size: .85em;
 }
+
+header a {
+	font-size: 14px;
+}

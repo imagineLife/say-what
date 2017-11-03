@@ -2,6 +2,7 @@ import React from 'react';
 import '../float-grid.css';
 import './Splash.css';
 import ResizingSection from '../components/ResizingSection';
+import {Link} from 'react-router-dom';
 
 export default function App(props) {
 
@@ -56,6 +57,7 @@ export default function App(props) {
 	      <header role="banner">
 	        <h1>{pageHeader.title}</h1>
 	        <p>{pageHeader.text}</p>
+			<Link to={`/`}>Read the full Speech Text here</Link>
 	      </header>
 	      
 	      {sections} 
