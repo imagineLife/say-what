@@ -21,7 +21,7 @@ input[type='text']:nth-child(n+2) {
 }
 
 .register-form input[type='submit']{
-	background-color: #43F4F4;
+	background-color: #7591AA;
 	margin-top: 10px;
 	border-style: solid;
 }
