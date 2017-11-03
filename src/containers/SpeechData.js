@@ -3,7 +3,6 @@ import '../float-grid.css';
 import './Splash.css';
 import Header from '../components/Header';
 import ResizingSection from '../components/ResizingSection';
-import {Link} from 'react-router-dom';
 
 export default function App(props) {
 
