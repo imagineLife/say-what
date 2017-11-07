@@ -13,8 +13,6 @@ export default function Register(props) {
           <input id="passWord" type="text" name="passWord"  placeholder="PassWord" required/>
       </fieldset>
           <input type="submit" name="submit" value="Register" />
-          <label htmlFor="register">Don't have an account?</label>
-          <input type="button" name="register" id="register" value="Register" onClick={props.toggleForm}/>
     </form>
   );
 }
