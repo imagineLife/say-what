@@ -19,10 +19,15 @@ input[type='text']:nth-of-type(2) {
 	margin-top: 10px;
 }
 
-.login-form input[type='button']{
+input[type='submit']{
 	background-color: #7591AA;
 	margin-top: 10px;
 	border-style: solid;
+}
+
+input[type='button']{
+	background-color: #transparent;
+	border-style: none;
 }
 
 .login-form label{

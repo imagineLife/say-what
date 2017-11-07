@@ -15,7 +15,6 @@
 	line-height:18px;	
 }
 
-
 input[type='text']:nth-child(n+2) {
 	margin-top: 10px;
 }
