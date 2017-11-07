@@ -32,6 +32,10 @@
   clear: both;
 }
 
+nav ul li a .menuLabel{
+  display:none;
+}
+
 .col-3, .col-4, .col-6, .col-12 {
   float: left;
 
@@ -98,4 +102,16 @@ section:nth-child(even) {
     display:none;
   }
 
+  nav ul li a .menuLabel{
+    display: inline;
+  }
+
+  nav ul li a .icon{
+    display: none;
+  }
+
+  nav{
+    top: 0;
+    bottom: auto;
+  }
 }

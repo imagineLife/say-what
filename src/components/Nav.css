@@ -22,18 +22,21 @@ nav ul{
 ul li.liWithIcon{
   margin: 0 auto;
   list-style-type: none;
-  padding-left:0px;
   display:inline-block;
   width:33%;
-
+  text-align: center;
 }
 
 .liWithIcon a {
   height:55px;
-  margin: auto 25%;
 }
 
 .icon{
   width:50px;
   height:auto;
+}
+
+a{
+  text-decoration: none;
+  color:#444;
 }
