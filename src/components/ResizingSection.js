@@ -4,8 +4,9 @@ import './ResizingSection.css';
 import Title from './Title';
 import Para from './Para';
 import Li from './li';
-import BottomSpacer from './BottomSpacer';
 import BeginForm from './BeginForm';
+// import HorizontalBarChart from './d3/horzBarChar';
+import BottomSpacer from './BottomSpacer';
 
 export default function ResizingSection(props) {
 
@@ -37,6 +38,7 @@ export default function ResizingSection(props) {
 	        {singleStat ? singleStat : ''}
 	        {props.includeBeginForm ? <BeginForm /> : ''}
 	        <Para text={props.text}/>
+	        {/*props.includeHorizontalBarChart ? <HorizontalBarChart /> : null*/}
 	        {props.includeBottomSpace ? <BottomSpacer /> : null}
 	    </section>
 	);
