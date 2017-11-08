@@ -42,27 +42,21 @@ export default function App(props) {
 				title: `Largest Words`,
 				text: `Interested in the details of what Trump said? Maybe Hillary? MLK Jr? Perhaps JFK or Abraham Lincoln?
 				Get insight into the words of a variety of speeches.`,
-				img: 'IMAGE OF SPEAKER'
 			},
 			{
 				title: `Words Per Minute`,
 				text: `Interested in the details of what Trump said? Maybe Hillary? MLK Jr? Perhaps JFK or Abraham Lincoln?
 				Get insight into the words of a variety of speeches.`,
-				img: 'IMAGE OF SPEAKER',
 				includeBottomSpace:true
 			}
 		];
 		
 		const sections = sectionsArray.map((sec,ind) => {
-			//figure out if theres an img in the sectionsArray
-			sec.img = (sec.img)? sec.img : '';
 
 			//figure out if theres an wordList in the sectionsArray
 			sec.mostUsedWords = (sec.mostUsedWords)? sec.mostUsedWords : '';
-	      	return <ResizingSection key={ind} {...sec}/>;
+	      	return <ResizingSection key={ind} attach={this} {...sec}/>;
 		})
-
-		console.log('mostUsedWords in SPeechData is ...',sectionsArray[1].mostUsedWords);
 
     return (
 		<main role="main">
