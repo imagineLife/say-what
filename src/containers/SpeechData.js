@@ -3,6 +3,7 @@ import '../float-grid.css';
 import './Splash.css';
 import Header from '../components/Header';
 import ResizingSection from '../components/ResizingSection';
+import HorizontalBarChart from '../components/d3/horzBarChar';
 
 export default function App(props) {
 
@@ -23,7 +24,19 @@ export default function App(props) {
 			},
 			{
 				title: `Common Words`,
-				WordList: [`Bigly`, `'Merica`,`Yeudge`]
+				WordList: [`Bigly`, `'Merica`,`Yeudge`],
+				mostUsedWords: [
+					{'our' : 49},
+					{'we': 48},
+					{'will': 43},
+					{'America': 19},
+					{'you': 15},
+					{'all': 14},
+					{'but': 13},
+					{'are': 12},
+					{'their': 11},
+					{'American': 11}
+				]
 			},
 			{
 				title: `Largest Words`,
@@ -57,7 +70,9 @@ export default function App(props) {
 
 	      <Header title={pageHeader.title} subTitle={pageHeader.text}/>
 	      
-	      {sections} 
+	      {sections}
+
+	      <HorizontalBarChart dataKey={sectionsArray[1].mostUsedWords}/>
 
 	    </main>
     );
