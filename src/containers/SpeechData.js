@@ -36,7 +36,8 @@ export default function App(props) {
 					{'are': 12},
 					{'their': 11},
 					{'American': 11}
-				]
+				],
+				includeHorizontalChart:true
 			},
 			{
 				title: `Largest Words`,
@@ -58,7 +59,7 @@ export default function App(props) {
 			sec.img = (sec.img)? sec.img : '';
 
 			//figure out if theres an wordList in the sectionsArray
-			sec.WordList = (sec.WordList)? sec.WordList : '';
+			sec.mostUsedWords = (sec.mostUsedWords)? sec.mostUsedWords : '';
 	      	return <ResizingSection key={ind} {...sec}/>;
 		})
 
@@ -70,8 +71,6 @@ export default function App(props) {
 	      <Header title={pageHeader.title} subTitle={pageHeader.text}/>
 	      
 	      {sections}
-
-	      <HorizontalBarChart dataKey={sectionsArray[1].mostUsedWords}/>
 
 	    </main>
     );
