@@ -1,6 +1,6 @@
 import React from 'react';
 import '../float-grid.css';
-import './Splash.css';
+import './SpeechData.css';
 import Header from '../components/Header';
 import ResizingSection from '../components/ResizingSection';
 import HorizontalBarChart from '../components/d3/horzBarChar';
@@ -62,8 +62,7 @@ export default function App(props) {
 	      	return <ResizingSection key={ind} {...sec}/>;
 		})
 
-
-
+		console.log('mostUsedWords in SPeechData is ...',sectionsArray[1].mostUsedWords);
 
     return (
 		<main role="main">
