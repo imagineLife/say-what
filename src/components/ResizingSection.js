@@ -15,7 +15,9 @@ export default function ResizingSection(props) {
 
 	//WORD LIST SECTION
 	if(props.WordList){
-	//build the looping word-list to output a list item
+	// build the looping word-list to output a list item,
+	// a single Li compoent for each word in the wordList
+		
 		listOWords = props.WordList.map((word, ind) =>
 			<Li key={ind} word={word} />
 		)
