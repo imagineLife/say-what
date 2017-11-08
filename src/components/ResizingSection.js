@@ -5,7 +5,7 @@ import Title from './Title';
 import Para from './Para';
 import Li from './li';
 import BeginForm from './BeginForm';
-// import HorizontalBarChart from './d3/horzBarChar';
+import HorizontalBarChart from './d3/horzBarChar';
 import BottomSpacer from './BottomSpacer';
 
 export default function ResizingSection(props) {
@@ -29,7 +29,6 @@ export default function ResizingSection(props) {
 	}
 
 
-	//Plain-Jane section
 	return (
 		<section className="col-6">
 			<Title title={props.title}/>
@@ -38,7 +37,7 @@ export default function ResizingSection(props) {
 	        {singleStat ? singleStat : ''}
 	        {props.includeBeginForm ? <BeginForm /> : ''}
 	        <Para text={props.text}/>
-	        {/*props.includeHorizontalBarChart ? <HorizontalBarChart /> : null*/}
+	        {props.includeHorizontalChart ? <HorizontalBarChart attach={this} dataKey={props.mostUsedWords}/> : null}
 	        {props.includeBottomSpace ? <BottomSpacer /> : null}
 	    </section>
 	);
