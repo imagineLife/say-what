@@ -3,7 +3,6 @@ import '../float-grid.css';
 import './SpeechData.css';
 import Header from '../components/Header';
 import ResizingSection from '../components/ResizingSection';
-import HorizontalBarChart from '../components/d3/horzBarChar';
 
 export default function App(props) {
 
