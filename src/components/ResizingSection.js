@@ -9,6 +9,7 @@ import HorizontalBarChart from './d3/horzBarChar';
 import BottomSpacer from './BottomSpacer';
 
 export default function ResizingSection(props) {
+	console.log(props);
 
 	let listOWords;
 	let singleStat;
@@ -24,9 +25,9 @@ export default function ResizingSection(props) {
 	}
 
 	//QUICK-STATS SECTION
-	if(props.qStats){
-		singleStat = Object.keys(props.qStats).map(key => {
-			return <Li key={key} word={props.qStats[key]} boldWord={key} />
+	if(props.introInfo){
+		singleStat = Object.keys(props.introInfo).map(key => {
+			return <Li key={key} word={props.introInfo[key]} boldWord={key} />
 		})
 	}
 
