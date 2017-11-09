@@ -4,6 +4,7 @@ import './ResizingSection.css';
 import Title from './Title';
 import Para from './Para';
 import Li from './li';
+import LiCentered from './liCentered';
 import BeginForm from './BeginForm';
 import HorizontalBarChart from './d3/horzBarChar';
 import BottomSpacer from './BottomSpacer';
@@ -28,7 +29,7 @@ export default function ResizingSection(props) {
 
 			default:
 				listOWords = props.bigWords.map((word, ind) =>
-					<Li key={ind} word={word} />
+					<LiCentered key={ind} word={(word.charAt(0).toUpperCase() + word.slice(1))} />
 				);
 				break;
 		}
