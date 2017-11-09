@@ -9,16 +9,16 @@ import HorizontalBarChart from './d3/horzBarChar';
 import BottomSpacer from './BottomSpacer';
 
 export default function ResizingSection(props) {
-	console.log(props);
+	// console.log(props);
 
 	let listOWords;
 	let singleStat;
 
 	//WORD LIST SECTION
 	if(props.WordList){
-	// build the looping word-list to output a list item,
-	// a single Li compoent for each word in the wordList
-		
+
+	// build a looping word-list,
+	// outputting a single Li compoent for each word in the wordList
 		listOWords = props.WordList.map((word, ind) =>
 			<Li key={ind} word={word} />
 		)
@@ -27,7 +27,7 @@ export default function ResizingSection(props) {
 	//QUICK-STATS SECTION
 	if(props.introInfo){
 		singleStat = Object.keys(props.introInfo).map(key => {
-			if(key != 'Title'){
+			if(key !== 'Title'){
 				return <Li key={key} boldWord={key} word={props.introInfo[key]} />
 			}
 		})
