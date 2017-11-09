@@ -1,9 +1,9 @@
-li {
+.li {
   text-align: left;
   margin: 0 auto;
 }
 
-section li{
+section .li{
 	float:none;
 	display:block;
 }
