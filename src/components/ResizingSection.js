@@ -15,6 +15,7 @@ export default function ResizingSection(props) {
 	let singleStat;
 	let wordsBySizeList;
 
+
 	//WORD LIST SECTION
 	if(props.WordList || props.bigWords){
 
@@ -53,6 +54,20 @@ export default function ResizingSection(props) {
 			let valToStr = Object.values(obj).toString();			
 			return <Li key={keyToStr} boldWord={keyToStr} word={valToStr} />
 		});
+	}
+
+	if(props.numberOfWords){
+		singleStat = Object.keys(props.numberOfWords).map(key => {
+			if(key !== 'Title'){
+				if(key === 'wordCount'){
+					return <Li key={key} boldWord='Total' word={props.numberOfWords[key]} />
+				}
+				if(key === 'uniqueWords'){
+					return <Li key={key} boldWord='Unique Words' word={props.numberOfWords[key]} />
+				}
+			}
+			return null;
+		})
 	}
 
 	return (
