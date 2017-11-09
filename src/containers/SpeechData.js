@@ -7,23 +7,22 @@ import ResizingSection from '../components/ResizingSection';
 export default function App(props) {
 
 		const pageHeader = {
-			title: `Speech Title`,
+			Title: `Trump 2017 Inaugural Address`,
 			text: `[ Image of Orator behind Title ]`
 		}
 
 		const sectionsArray =[
 			{
-				title: `Quick Stats`,
-				qStats : {
-					Orator : 'someone',
-					Date : 'someTime',
-					Audience : 'Humans, potentially',
-					'Event Overview' : 'once upon a galaxy far far away & over the rainbow, over the river and through the dark and stormy night'
+				introInfo:{
+					Title : 'Quick Stats',
+					Orator : 'Donald J. Trump',
+					Date : 'Friday January 20, 2017',
+					Audience : 'Public, at the Capitol Building in Washington D.C.',
+					'Event Overview' : 'Donald Trump marks the commencement of a new four-year term as the President of the United States'
 				}
 			},
 			{
-				title: `Common Words`,
-				WordList: [`Bigly`, `'Merica`,`Yeudge`],
+				Title: `Common Words`,
 				mostUsedWords: [
 					{'our' : 49},
 					{'we': 48},
@@ -39,12 +38,12 @@ export default function App(props) {
 				includeHorizontalChart:true
 			},
 			{
-				title: `Largest Words`,
+				Title: `Largest Words`,
 				text: `Interested in the details of what Trump said? Maybe Hillary? MLK Jr? Perhaps JFK or Abraham Lincoln?
 				Get insight into the words of a variety of speeches.`,
 			},
 			{
-				title: `Words Per Minute`,
+				Title: `Words Per Minute`,
 				text: `Interested in the details of what Trump said? Maybe Hillary? MLK Jr? Perhaps JFK or Abraham Lincoln?
 				Get insight into the words of a variety of speeches.`,
 				includeBottomSpace:true
@@ -53,15 +52,15 @@ export default function App(props) {
 		
 		const sections = sectionsArray.map((sec,ind) => {
 
-			//figure out if theres an wordList in the sectionsArray
+			//figure out if mostUsedWords is in the section
 			sec.mostUsedWords = (sec.mostUsedWords)? sec.mostUsedWords : '';
-	      	return <ResizingSection key={ind} attach={this} {...sec}/>;
+	      	return <ResizingSection key={ind} {...sec}/>;
 		})
 
     return (
 		<main role="main">
 
-	      <Header title={pageHeader.title} subTitle={pageHeader.text}/>
+	      <Header title={pageHeader.Title} subTitle={pageHeader.text}/>
 	      
 	      {sections}
 

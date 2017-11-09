@@ -27,14 +27,16 @@ export default function ResizingSection(props) {
 	//QUICK-STATS SECTION
 	if(props.introInfo){
 		singleStat = Object.keys(props.introInfo).map(key => {
-			return <Li key={key} word={props.introInfo[key]} boldWord={key} />
+			if(key != 'Title'){
+				return <Li key={key} boldWord={key} word={props.introInfo[key]} />
+			}
 		})
 	}
 
 
 	return (
 		<section className="col-6">
-			<Title title={props.title}/>
+			<Title title={(props.Title || props.introInfo.Title)}/>
 	        {props.img ? props.img : ''}
 	        {listOWords ? listOWords : ''}
 	        {singleStat ? singleStat : ''}
