@@ -59,7 +59,7 @@ export default function App(props) {
 				]
 			},
 			{
-				Title: `Top 12 largest words`,
+				Title: `Top 12 Largest Words`,
 				bigWords: [
 					"infrastructure",
 					"administration",
@@ -70,7 +70,9 @@ export default function App(props) {
 					"neighborhoods",
 					"transferring",
 					"technologies",
-					"importantly"
+					"importantly",
+					"immigration",
+					"magnificent"
 				]
 			}
 		];
