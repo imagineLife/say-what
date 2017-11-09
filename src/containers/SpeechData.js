@@ -47,6 +47,31 @@ export default function App(props) {
 				text: `Interested in the details of what Trump said? Maybe Hillary? MLK Jr? Perhaps JFK or Abraham Lincoln?
 				Get insight into the words of a variety of speeches.`,
 				includeBottomSpace:true
+			},
+			{
+				Title: `Words By Size`,
+				wordsBySize :[
+					{3 : 351},
+					{4: 242},
+					{2: 235},
+					{5: 187},
+					{7: 118}
+				]
+			},
+			{
+				Title: `Top 12 largest words`,
+				bigWords: [
+					"infrastructure",
+					"administration",
+					"understanding",
+					"disagreements",
+					"establishment",
+					"redistributed",
+					"neighborhoods",
+					"transferring",
+					"technologies",
+					"importantly"
+				]
 			}
 		];
 		
