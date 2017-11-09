@@ -22,6 +22,13 @@ export default function App(props) {
 				}
 			},
 			{
+				Title: 'How Many Words',
+				numberOfWords:{
+					wordCount : 1463,
+					uniqueWords : 538					
+				}
+			},
+			{
 				Title: `Common Words`,
 				mostUsedWords: [
 					{'our' : 49},
@@ -36,11 +43,6 @@ export default function App(props) {
 					{'American': 11}
 				],
 				includeHorizontalChart:true
-			},
-			{
-				Title: `Largest Words`,
-				text: `Interested in the details of what Trump said? Maybe Hillary? MLK Jr? Perhaps JFK or Abraham Lincoln?
-				Get insight into the words of a variety of speeches.`,
 			},
 			{
 				Title: `Words Per Minute`,
