@@ -3,12 +3,13 @@ import '../float-grid.css';
 import './SpeechData.css';
 import Header from '../components/Header';
 import ResizingSection from '../components/ResizingSection';
+import Image from '../imgs/trump.jpg';
 
 export default function App(props) {
 
 		const pageHeader = {
 			Title: `Trump 2017 Inaugural Address`,
-			text: `[ Image of Orator behind Title ]`
+			image: Image
 		}
 
 		const sectionsArray =[
@@ -89,7 +90,7 @@ export default function App(props) {
     return (
 		<main role="main">
 
-	      <Header title={pageHeader.Title} subTitle={pageHeader.text}/>
+	      <Header title={pageHeader.Title} subTitle={pageHeader.text} imagePr={pageHeader.image}/>
 	      
 	      {sections}
 
