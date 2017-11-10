@@ -6,8 +6,8 @@ import Section from '../components/Section';
 export default function App(props) {
 
 		const pageHeader = {
-			title: `Say What?!`,
-			text: `See data within speeches`
+			Title: `Say What?!`,
+			subTitle: `See data within speeches`
 		}
 
 		const sectionsArray =[
@@ -35,7 +35,7 @@ export default function App(props) {
 
     return (
 		<main role="main">
-		  <Header title={pageHeader.title} subTitle={pageHeader.text} />
+		  <Header title={pageHeader.Title} subTitle={pageHeader.subTitle} />
 	      
 	      {sections} 
 
