@@ -1,9 +1,5 @@
 header {
-  padding: 25px 15px;
-}
-
-h1{
-	margin-bottom: 0px;
+  padding: 25px 15px 0 15px;
 }
 
 h3{
@@ -13,4 +9,9 @@ h3{
 
 header a {
 	font-size: 14px;
+}
+
+
+.titleH1{
+	margin-bottom:0px;
 }
