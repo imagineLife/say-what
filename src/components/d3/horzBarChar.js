@@ -45,7 +45,11 @@ export default class HorizontalBarChart extends React.Component {
 		// append the svg object to the body of the page
 		// append a 'group' element to 'svg'
 		// moves the 'group' element to the top left margin
-		var svg = d3.select('body').append("svg")
+		/*
+		NOTE:
+			KEY (this.props.key) must be unique per section component
+		*/
+		var svg = d3.select(`#hbcSVG${this.props.sectionKey}`)
 		    .attrs({
 		    	"width" : width + margin.left + margin.right,
 		    	"height" : height + margin.top + margin.bottom
@@ -59,7 +63,6 @@ export default class HorizontalBarChart extends React.Component {
 			let obj = {word: Object.keys(item), frequency: Object.values(item)};		
 			return data.push(obj);
 		});
-
 
 
 		// Scale the range of the data in the domains
@@ -95,7 +98,9 @@ export default class HorizontalBarChart extends React.Component {
 	
 	render(){    
     	return (
-    		<div id='horizontalBarChart'>acdef</div>
+    		<div id='horizontalBarChart'>
+    			<svg id={ `hbcSVG${this.props.sectionKey}` }></svg>
+    		</div>
     	);
     }
 }

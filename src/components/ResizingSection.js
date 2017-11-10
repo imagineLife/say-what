@@ -79,7 +79,7 @@ export default function ResizingSection(props) {
 	        {props.includeBeginForm ? <BeginForm /> : ''}
 	        <Para text={props.text}/>
 	        {props.wordsBySize ? wordsBySizeList : null}
-	        {props.includeHorizontalChart ? <HorizontalBarChart attach={this} dataKey={props.mostUsedWords}/> : null}
+	        {props.includeHorizontalChart ? <HorizontalBarChart sectionKey='mostUsedWords' dataKey={props.mostUsedWords}/> : null}
 	        {props.includeBottomSpace ? <BottomSpacer /> : null}
 	    </section>
 	);
