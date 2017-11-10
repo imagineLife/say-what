@@ -7,6 +7,7 @@ import Li from './li';
 import LiCentered from './liCentered';
 import BeginForm from './BeginForm';
 import HorizontalBarChart from './d3/horzBarChar';
+import GaugeChart from './d3/gauge';
 import BottomSpacer from './BottomSpacer';
 
 export default function ResizingSection(props) {
@@ -75,6 +76,9 @@ export default function ResizingSection(props) {
 			<Title title={(props.Title || props.introInfo.Title)}/>
 	        {props.img ? props.img : ''}
 	        {listOWords ? listOWords : ''}
+
+	       	{props.numberOfWords ? <GaugeChart sectionKey='numberOfWords' dataKey={props.numberOfWords}/> : null}
+	        
 	        {singleStat ? singleStat : ''}
 	        {props.includeBeginForm ? <BeginForm /> : ''}
 	        <Para text={props.text}/>
