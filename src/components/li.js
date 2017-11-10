@@ -2,7 +2,6 @@ import React from 'react';
 import './li.css';
 
 export default function Li(props) {
-	console.log('LI props =>',props);
 	let objSize = Object.keys(props).length;
 
 	switch(objSize) {
