@@ -26,6 +26,17 @@ export default class HorizontalBarChart extends React.Component {
 	buildChart = () => {
 		let data = [];
 
+	//add the props data to the data array
+		this.props.dataKey.forEach(item => {
+			let obj = {word: Object.keys(item), frequency: Object.values(item)};		
+			return data.push(obj);
+		});
+
+		data.sort(function(a, b) {
+			console.log('a=>',a,'b=>',b);
+			return d3.descending(b.frequency, a.frequency)
+		})
+
 	// set the dimensions and margins of the graph
 		var margin = {top: 10, right: 100, bottom: 30, left: 60},
 		    width = 480 - margin.left - margin.right,
@@ -56,13 +67,6 @@ export default class HorizontalBarChart extends React.Component {
 		  .append("g")
 		    .attr("transform", 
 		          "translate(" + margin.left + "," + margin.top + ")");
-
-	//add the props data to the data array
-		this.props.dataKey.forEach(item => {
-			let obj = {word: Object.keys(item), frequency: Object.values(item)};		
-			return data.push(obj);
-		});
-
 
 	// Scale the range of the data in the domains
 		x.domain([0, d3.max(data, function(d){ return d.frequency; })])
