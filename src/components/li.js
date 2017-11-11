@@ -7,7 +7,7 @@ export default function Li(props) {
 	switch(objSize) {
 		case 2 :
 		    return (
-				<li className="li"><span className="boldWord">{props.boldWord} : </span> {props.word}</li>
+				<li className="li"><span className="boldWord">{props.boldWord}-Letter Words : </span> {props.word}</li>
 			);
 
 		default :
