@@ -24,17 +24,16 @@ export default class HorizontalBarChart extends React.Component {
 	}
 
 	buildChart = () => {
-		console.log(this.props);
 		let data = [];
 
-		// set the dimensions and margins of the graph
-		var margin = {top: 20, right: 20, bottom: 30, left: 40},
+	// set the dimensions and margins of the graph
+		var margin = {top: 10, right: 100, bottom: 30, left: 60},
 		    width = 480 - margin.left - margin.right,
 		    height = 250 - margin.top - margin.bottom;
 		    // width = document.querySelector("div").clientWidth,
 		    // height = document.querySelector("div").clientHeight;
 
-		// set the ranges
+	// set the ranges
 		var y = d3.scaleBand()
 		          .range([height, 0])
 		          .padding(0.1);
@@ -42,7 +41,7 @@ export default class HorizontalBarChart extends React.Component {
 		var x = d3.scaleLinear()
 		          .range([0, width]);
 	          
-		// append the svg object to the body of the page
+	// append the svg object to the svg element
 		// append a 'group' element to 'svg'
 		// moves the 'group' element to the top left margin
 		/*
@@ -58,22 +57,22 @@ export default class HorizontalBarChart extends React.Component {
 		    .attr("transform", 
 		          "translate(" + margin.left + "," + margin.top + ")");
 
-
+	//add the props data to the data array
 		this.props.dataKey.forEach(item => {
 			let obj = {word: Object.keys(item), frequency: Object.values(item)};		
 			return data.push(obj);
 		});
 
 
-		// Scale the range of the data in the domains
+	// Scale the range of the data in the domains
 		x.domain([0, d3.max(data, function(d){ return d.frequency; })])
 		y.domain(data.map(function(d) { return d.word; }));
 
-		// append the rectangles for the bar chart
+	// Create BARS
 		svg.selectAll(".bar")
-			//data needs to be an array in our case (of objects)
+	//add DATA to the bars via the data array
 			.data(data)
-			//all chains & callbacks reference data array 
+	//add rectangles to the bar elements
 			.enter().append("rect")
 			  .attrs({
 			  	"class" : "bar",
@@ -84,12 +83,12 @@ export default class HorizontalBarChart extends React.Component {
 
 
 
-		// add the x Axis
+	// add the x Axis
 		svg.append("g")
 		  .attr("transform", "translate(0," + height + ")")
 		  .call(d3.axisBottom(x));
 
-		// add the y Axis
+	// add the y Axis
 		svg.append("g")
 		  .call(d3.axisLeft(y));
 	}
