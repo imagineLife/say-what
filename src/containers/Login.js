@@ -21,9 +21,6 @@ export default function Login(props) {
 	      	return <LoginSection key={ind} {...sec}/>;
 		})
 
-
-
-
     return (
 		<main role="main">
 		  <Header title={pageHeader.title} subTitle={pageHeader.text}/>
