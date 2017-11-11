@@ -2,7 +2,6 @@ import React from 'react';
 import './Section.css';
 import Title from './Title';
 import Para from './Para';
-import Ul from './ul';
 import BeginForm from './BeginForm';
 import LoginForm from './LoginForm';
 import BottomSpacer from './BottomSpacer';
