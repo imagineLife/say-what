@@ -17,7 +17,7 @@ export default class GaugeChart extends React.Component {
 				clipHeight: 300,
 				ringWidth: 60,
 				maxValue: props.dataKey.wordCount,
-				transitionMs: 2000,
+				transitionMs: 4000,
 			})
 		}
 	}
@@ -135,15 +135,19 @@ export default class GaugeChart extends React.Component {
 			function render(newValue) {
 				svg = d3.select(container)
 					.append('svg:svg')
-						.attr('class', 'gauge')
-						.attr('width', config.clipWidth)
-						.attr('height', config.clipHeight);
+						.attrs({
+							'class' : 'gauge',
+							'width' : config.clipWidth,
+							'height' : config.clipHeight
+						});
 				
 				var centerTx = centerTranslation();
 				
 				var arcs = svg.append('g')
-						.attr('class', 'arc')
-						.attr('transform', centerTx);
+						.attrs({
+							'class': 'arc',
+							'transform': centerTx
+							});
 				
 				arcs.selectAll('path')
 						.data(tickData)
