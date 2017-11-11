@@ -99,8 +99,8 @@ export default class HorizontalBarChart extends React.Component {
 
 	shouldComponentUpdate() { return false }
 	
-	render(){    
-    	return (
+	render(){
+	    return (
     		<div id='horizontalBarChart'>
     			<svg id={ `hbcSVG${this.props.sectionKey}` }></svg>
     		</div>
