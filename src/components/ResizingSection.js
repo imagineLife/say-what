@@ -7,6 +7,7 @@ import Li from './li';
 import LiCentered from './liCentered';
 import BeginForm from './BeginForm';
 import HorizontalBarChart from './d3/horzBarChar';
+// import BubbleChart from './d3/bubble';
 import GaugeChart from './d3/gauge';
 import BottomSpacer from './BottomSpacer';
 
@@ -17,7 +18,7 @@ export default function ResizingSection(props) {
 	let wordsBySizeList;
 
 
-	//WORD LIST SECTION
+//WORD LIST SECTION
 	if(props.WordList || props.bigWords){
 
 		switch(props){
@@ -38,7 +39,7 @@ export default function ResizingSection(props) {
 
 	}
 
-	//QUICK-STATS SECTION
+//QUICK-STATS SECTION
 	if(props.introInfo){
 		singleStat = Object.keys(props.introInfo).map(key => {
 			if(key !== 'Title'){
@@ -48,7 +49,7 @@ export default function ResizingSection(props) {
 		})
 	}
 
-	//Words-By-Size section
+//Words-By-Size section
 	if(props.wordsBySize){		
 		wordsBySizeList = props.wordsBySize.map(function(obj) { 
 			let keyToStr = Object.keys(obj).toString();
@@ -57,6 +58,7 @@ export default function ResizingSection(props) {
 		});
 	}
 
+//Unique-Words section
 	if(props.numberOfWords){
 		singleStat = Object.keys(props.numberOfWords).map(key => {
 			if(key !== 'Title'){
@@ -76,13 +78,12 @@ export default function ResizingSection(props) {
 			<Title title={(props.Title || props.introInfo.Title)}/>
 	        {props.img ? props.img : ''}
 	        {listOWords ? listOWords : ''}
-
 	       	{props.numberOfWords ? <GaugeChart sectionKey='numberOfWords' dataKey={props.numberOfWords}/> : null}
-	        
 	        {singleStat ? singleStat : ''}
 	        {props.includeBeginForm ? <BeginForm /> : ''}
 	        <Para text={props.text}/>
 	        {props.wordsBySize ? wordsBySizeList : null}
+	        {/*props.wordsBySize ? <BubbleChart sectionKey='wordsBySize' dataKey={props.wordsBySize} /> : null*/}	        
 	        {props.includeHorizontalChart ? <HorizontalBarChart sectionKey='mostUsedWords' dataKey={props.mostUsedWords}/> : null}
 	        {props.includeBottomSpace ? <BottomSpacer /> : null}
 	    </section>
