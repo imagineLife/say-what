@@ -17,7 +17,6 @@ export default function ResizingSection(props) {
 	let singleStat;
 	let wordsBySizeList;
 
-
 //WORD LIST SECTION
 	if(props.WordList || props.bigWords){
 
@@ -76,11 +75,11 @@ export default function ResizingSection(props) {
 	return (
 		<section className="col-6">
 			<Title title={(props.Title || props.introInfo.Title)}/>
-	        {props.img ? props.img : ''}
-	        {listOWords ? listOWords : ''}
+	        {props.img ? props.img : null}
+	        {listOWords ? listOWords : null}
 	       	{props.numberOfWords ? <GaugeChart sectionKey='numberOfWords' dataKey={props.numberOfWords}/> : null}
 	        {singleStat ? singleStat : ''}
-	        {props.includeBeginForm ? <BeginForm /> : ''}
+	        {props.includeBeginForm ? <BeginForm /> : null}
 	        <Para text={props.text}/>
 	        {props.wordsBySize ? wordsBySizeList : null}
 	        {/*props.wordsBySize ? <BubbleChart sectionKey='wordsBySize' dataKey={props.wordsBySize} /> : null*/}	        
