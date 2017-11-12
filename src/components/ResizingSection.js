@@ -4,7 +4,7 @@ import './ResizingSection.css';
 import Title from './Title';
 import Para from './Para';
 import Li from './li';
-import LiCentered from './liCentered';
+import LiNoBold from './liNoBold';
 import BeginForm from './BeginForm';
 import HorizontalBarChart from './d3/horzBarChar';
 // import BubbleChart from './d3/bubble';
@@ -31,7 +31,7 @@ export default function ResizingSection(props) {
 
 			default:
 				listOWords = props.bigWords.map((word, ind) =>
-					<LiCentered key={ind} word={(word.charAt(0).toUpperCase() + word.slice(1))} />
+					<LiNoBold key={ind} word={(word.charAt(0).toUpperCase() + word.slice(1))} />
 				);
 				break;
 		}
