@@ -39,8 +39,9 @@ export default class HorizontalBarChart extends React.Component {
 
 	// set the dimensions and margins of the graph
 		var margin = {top: 10, right: 100, bottom: 30, left: 60},
-		    width = 480 - margin.left - margin.right,
-		    height = 250 - margin.top - margin.bottom;
+		    width = 440 - margin.left - margin.right,
+		    height = 350 - margin.top - margin.bottom;
+		    console.log('margin-left ->',margin.left);
 		    // width = document.querySelector("div").clientWidth,
 		    // height = document.querySelector("div").clientHeight;
 
