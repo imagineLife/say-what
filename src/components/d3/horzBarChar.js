@@ -20,7 +20,7 @@ export default class HorizontalBarChart extends React.Component {
 	}
 
 	componentDidCatch(err, info){
-		console.log('CompDidCatch err...',err,info);
+		// console.log('CompDidCatch err...',err,info);
 	}
 
 	buildChart = () => {
@@ -33,7 +33,7 @@ export default class HorizontalBarChart extends React.Component {
 		});
 
 		data.sort(function(a, b) {
-			console.log('a=>',a,'b=>',b);
+			// console.log('a=>',a,'b=>',b);
 			return d3.descending(b.frequency, a.frequency)
 		})
 
