@@ -48,8 +48,9 @@ nav ul li a .menuLabel{
    */
 /*  padding-left: 1.04166666%;
   padding-right: 1.04166666%;*/
-  padding-left: 2.5%;
-  padding-right: 2.5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  height:auto;
 }
 
 /* Mobile defaults */
@@ -75,8 +76,10 @@ section:nth-child(even) {
 
   /* 6 columns */
   .col-6 {
+    padding-left: 2.5%;
+    padding-right: 2.5%;
     width: 50%;
-    height:550px;
+    height:600px;
     background-color: #ddd;
   }
 
