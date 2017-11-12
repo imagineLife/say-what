@@ -214,7 +214,7 @@ export default class GaugeChart extends React.Component {
 			let newAngle = config.minAngle + (ratio * range);
 			// pointer.transition()
 			// 	.duration(config.transitionMs)
-			// 	.ease(d3.easeElastic)
+			// 	.ease(d3.bounceOut)
 			// 	.attr('transform', 'rotate(' +newAngle +')');
 		}
 		
