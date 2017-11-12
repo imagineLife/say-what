@@ -3,7 +3,7 @@ import './li.css';
 
 export default function Li(props) {
 	let objSize = Object.keys(props.boldWord).length;
-	console.log('li props =>',props,'objSize =>',objSize);
+	// console.log('li props =>',props,'objSize =>',objSize);
 	switch(objSize) {
 		case 1 :
 		    return (
