@@ -17,7 +17,7 @@ export default ChartComponent => (
     componentDidMount() {
 //4. AFTER component mounts
 //   run fitParentContainer, written below AND/OR referenced above... ? 
-      console.log('compDidMount');
+      // console.log('compDidMount');
       this.fitParentContainer()
 //5.JQ-like event-listener?!
       window.addEventListener('resize', this.fitParentContainer)
@@ -29,7 +29,7 @@ export default ChartComponent => (
 
     fitParentContainer() {
 //6.Fitting the parent container 
-      console.log('1.inside fitParentContainer');
+      // console.log('1.inside fitParentContainer');
 
 //7.pull containerWidth out of state as reference
       const { containerWidth } = this.state
@@ -41,7 +41,7 @@ export default ChartComponent => (
       const shouldResize = containerWidth !== currentContainerWidth
 
       if (shouldResize) {
-        console.log('3.SHOULD resize!');
+        // console.log('3.SHOULD resize!');
         this.setState({
           containerWidth: currentContainerWidth,
         })
