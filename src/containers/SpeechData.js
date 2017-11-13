@@ -46,12 +46,6 @@ export default function App(props) {
 				includeHorizontalChart:true
 			},
 			{
-				Title: `Words Per Minute`,
-				text: `Interested in the details of what Trump said? Maybe Hillary? MLK Jr? Perhaps JFK or Abraham Lincoln?
-				Get insight into the words of a variety of speeches.`,
-				includeBottomSpace:true
-			},
-			{
 				Title: `Words By Size`,
 				wordsBySize :[
 					{3 : 351},
@@ -77,13 +71,21 @@ export default function App(props) {
 					"immigration",
 					"magnificent"
 				]
+			},
+			{
+				// Title: `Words Per Minute`,
+				// text: `Interested in the details of what Trump said? Maybe Hillary? MLK Jr? Perhaps JFK or Abraham Lincoln?
+				// Get insight into the words of a variety of speeches.`,
+				// includeBottomSpace:true
+				Title: `Read the Speech Text`,
+				includeSpeechTextForm: true,
+
 			}
 		];
-		
-		const sections = sectionsArray.map((sec,ind) => {
 
-			//figure out if mostUsedWords is in the section
-			sec.mostUsedWords = (sec.mostUsedWords)? sec.mostUsedWords : '';
+	//set each resizing section to the 'section' variable,
+	// looping through each section in the above array		
+		const sections = sectionsArray.map((sec,ind) => {
 	      	return <ResizingSection key={ind} {...sec}/>;
 		})
 
