@@ -34,14 +34,14 @@ export default class GaugeChart extends React.Component {
 
   	container = d3.select(`#gcSVG${this.props.sectionKey}`);
 
-  	getChartSize = (el) => {
-  		console.log('getChartSize el =>',el);
-        let width = .9*parseInt(el.style('width'));
-        let height = .7*parseInt(width*7/9);
+  	// getChartSize = (el) => {
+  	// 	console.log('getChartSize el =>',el);
+   //      let width = .9*parseInt(el.style('width'));
+   //      let height = .7*parseInt(width*7/9);
 
-        console.log('getChartSize Running');
-        return  [width,height];
-    }
+   //      console.log('getChartSize Running');
+   //      return  [width,height];
+   //  }
 
     componentDidMount(){
 
