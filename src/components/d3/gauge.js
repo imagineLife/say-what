@@ -1,5 +1,5 @@
 import React from 'react';
-import './horzBarChar.css';
+import './gauge.css';
 import * as d3 from 'd3';
 import 'd3-selection-multi';
 
@@ -11,21 +11,46 @@ export default class GaugeChart extends React.Component {
 	//Spread props makes extensibility!!
 		this.state = {...props,
 			powerGauge : this.gauge(`#gcSVG${props.sectionKey}`, {
-				totalRadius: 300,
-				arcTotalWidth: 300,
-				arcTotalHeight: 300,
+				totalRadius: 310,
+				arcTotalWidth: 320,
+				arcTotalHeight: 275,
 				ringThickness: 60,
 				maxRingValue: props.dataKey.wordCount,
-				transitionMs: 4000,
+				transitionMs: 2000,
 			})
 		}
 	}
 
-	componentDidMount(){
+	// resize = (e) => {
+ //        const container = this.state.container;
+ //        let chartWidth = this.getChartSize(container)[0];
+ //        let chartHeight = this.getChartSize(container)[1];
+        
+ //        this.setState({
+ //          chartWidth: chartWidth,
+ //          chartHeight: chartHeight
+ //        });
+ //  	};
+
+  	container = d3.select(`#gcSVG${this.props.sectionKey}`);
+
+  	getChartSize = (el) => {
+  		console.log('getChartSize el =>',el);
+        let width = .9*parseInt(el.style('width'));
+        let height = .7*parseInt(width*7/9);
+
+        console.log('getChartSize Running');
+        return  [width,height];
+    }
+
+    componentDidMount(){
 
 		this.state.powerGauge.render();
 		this.state.powerGauge.setNeedleVal(this.props.dataKey.uniqueWords)
+		// window.addEventListener('resize', this.resize);
 
+		const graph = d3.select("#chart");
+        const container = d3.select("#graphic");
 		// this.buildChart();
 	}
 
@@ -39,7 +64,8 @@ export default class GaugeChart extends React.Component {
 	}
 
 /*
-	set var that is a fn on a container & configuration
+	set gauge var
+		its a fn on a container & configuration
 		- in this case, container is 
 			<svg id={ `gcSVG${this.props.sectionKey}` }></svg>
 		- configuration  is the setup of the chart
@@ -48,6 +74,7 @@ export default class GaugeChart extends React.Component {
 */
 	gauge = (container, configuration) =>  {
 		let that = {};
+	//DEFAULT config, i think
 		let config = {
 			totalRadius						: 710,
 			arcTotalWidth					: 200,
@@ -122,10 +149,11 @@ export default class GaugeChart extends React.Component {
 				});
 		}
 
+//WHAT THE HELL IS THIS 'THAT'?!
 		that.configure = configure;
 
 		function centerTranslation() {
-			return 'translate('+ radius +','+ radius +')';
+			return 'translate('+ radius * 1.025 +','+ radius * 1.2 +')';
 		}
 		
 		function isRendered() {
@@ -139,10 +167,9 @@ export default class GaugeChart extends React.Component {
 			svg = d3.select(container)
 				.append('svg:svg')
 					.attrs({
-						'class' : 'gauge',
-						'width' : config.arcTotalWidth,
-						'height' : config.arcTotalHeight
-
+						'class' : 'actualGauge',
+						// 'width' : config.arcTotalWidth,
+						// 'height' : config.arcTotalHeight
 					});
 			
 			let centerTransTxt = centerTranslation();
@@ -160,23 +187,25 @@ export default class GaugeChart extends React.Component {
 						'fill': (d, i) => { return config.arcColorFn(d * i); },
 						'd' : arc
 					});
-			
-			// let lg = svg.append('g')
-			// 		.attrs({
-			// 			'class': 'label',
-			// 			'transform': centerTx,
-			// 			'border': '1px solid green'
-			// 		});
+	//Numeric labels
+			let lg = svg.append('g')
+					.attrs({
+						'class': 'gaugeLabel',
+						'transform': centerTransTxt
+					});
 
-			// lg.selectAll('text')
-			// 		.data(ticks)
-			// 	.enter().append('text')
-			// 		.attr('transform', function(d) {
-			// 			let ratio = scale(d);
-			// 			let newAngle = config.minAngle + (ratio * range);
-			// 			return 'rotate(' +newAngle +') translate(0,' +(config.labelInset - r) +')';
-			// 		})
-			// 		.text(config.labelFormat);
+			lg.selectAll('text')
+					.data(ticks)
+				.enter().append('text')
+					.attrs({
+						'transform' : (d) => {
+							let ratio = scale(d);
+							let newAngle = config.minAngle + (ratio * range);
+							return 'rotate(' +newAngle +') translate(0,' +(config.labelInset - radius) +')'; },
+						'class': 'gaugeLabel'
+					
+					})
+					.text(config.labelFormat);
 
 			let lineData = [ [config.pointerWidth / 2, 0], 
 							[0, -pointerHeadLength],
@@ -193,29 +222,29 @@ export default class GaugeChart extends React.Component {
 						'class': 'pointer',
 						'transform' : centerTransTxt
 					});
-					
-			// pointer = pointerG.append('path')
-			// 	.attrs({
-			// 		'd': pointerLine,
-			// 		'transform': 'rotate(' +config.minAngle +')'
-			// 	});
+	
+	//declare pointer
+			pointer = pointerG.append('path')
+				.attrs({
+					'd': pointerLine,
+					'transform': 'rotate(' +config.minAngle +')'
+				});
 				
-			// setNeedleVal(newValue === undefined ? 0 : newValue);
+			setNeedleVal(newValue === undefined ? 0 : newValue);
 		}
 		
 		that.render = render;
 		
 		function setNeedleVal(newValue, newConfiguration) {
-			// console.log('setting NeedleVal, newVal =>',newValue,'newConfig =>',newConfiguration);
 			if ( newConfiguration  !== undefined) {
 				configure(newConfiguration);
 			}
 			let ratio = scale(newValue);
 			let newAngle = config.minAngle + (ratio * range);
-			// pointer.transition()
-			// 	.duration(config.transitionMs)
-			// 	.ease(d3.bounceOut)
-			// 	.attr('transform', 'rotate(' +newAngle +')');
+			pointer.transition()
+				.duration(config.transitionMs)
+				.ease(d3.easeBounceOut)
+				.attr('transform', 'rotate(' +newAngle +')');
 		}
 		
 		that.setNeedleVal = setNeedleVal;
@@ -233,10 +262,14 @@ export default class GaugeChart extends React.Component {
 	shouldComponentUpdate() { return false }
 	
 	render(){
-			console.log('STATE =>',this.state);
+		  var width = this.state.chartWidth;
+          var height = this.state.chartHeight;
+          var margin = this.state.margin;
+          var data = this.state.data;
+		console.log('STATE =>',this.state);
 
     	return (
-    			<svg id={ `gcSVG${this.props.sectionKey}` }></svg>
+    			<svg id={ `gcSVG${this.props.sectionKey}` } height={height} width={width} ></svg>
     	);
     }
 }
