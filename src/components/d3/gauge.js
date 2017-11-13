@@ -21,37 +21,12 @@ export default class GaugeChart extends React.Component {
 		}
 	}
 
-	// resize = (e) => {
- //        const container = this.state.container;
- //        let chartWidth = this.getChartSize(container)[0];
- //        let chartHeight = this.getChartSize(container)[1];
-        
- //        this.setState({
- //          chartWidth: chartWidth,
- //          chartHeight: chartHeight
- //        });
- //  	};
-
   	container = d3.select(`#gcSVG${this.props.sectionKey}`);
-
-  	// getChartSize = (el) => {
-  	// 	console.log('getChartSize el =>',el);
-   //      let width = .9*parseInt(el.style('width'));
-   //      let height = .7*parseInt(width*7/9);
-
-   //      console.log('getChartSize Running');
-   //      return  [width,height];
-   //  }
 
     componentDidMount(){
 
 		this.state.powerGauge.render();
 		this.state.powerGauge.setNeedleVal(this.props.dataKey.uniqueWords)
-		// window.addEventListener('resize', this.resize);
-
-		const graph = d3.select("#chart");
-        const container = d3.select("#graphic");
-		// this.buildChart();
 	}
 
 	componentDidUpdate(){
@@ -167,9 +142,7 @@ export default class GaugeChart extends React.Component {
 			svg = d3.select(container)
 				.append('svg:svg')
 					.attrs({
-						'class' : 'actualGauge',
-						// 'width' : config.arcTotalWidth,
-						// 'height' : config.arcTotalHeight
+						'class' : 'actualGauge'
 					});
 			
 			let centerTransTxt = centerTranslation();
@@ -262,10 +235,8 @@ export default class GaugeChart extends React.Component {
 	shouldComponentUpdate() { return false }
 	
 	render(){
-		  var width = this.state.chartWidth;
-          var height = this.state.chartHeight;
-          var margin = this.state.margin;
-          var data = this.state.data;
+		var width = this.state.chartWidth;
+		var height = this.state.chartHeight;
 		console.log('STATE =>',this.state);
 
     	return (
