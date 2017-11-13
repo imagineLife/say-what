@@ -6,7 +6,6 @@ import ResponsiveWrapper from '../ResponsiveWrapper'
 
 class HorizontalBarChart extends React.Component {
 	
-	//THROWS WARNING
 	constructor(props){
 		super(props);
 	    this.xScale = d3.scaleBand();
@@ -23,7 +22,7 @@ class HorizontalBarChart extends React.Component {
 	}
 
 	componentDidCatch(err, info){
-		// console.log('CompDidCatch err...',err,info);
+		console.log('CompDidCatch err...',err,info);
 	}
 
 	buildChart = () => {
