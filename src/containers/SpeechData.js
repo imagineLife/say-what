@@ -79,6 +79,7 @@ export default function App(props) {
 				// includeBottomSpace:true
 				Title: `Read the Speech Text`,
 				includeSpeechTextForm: true,
+				includeBottomSpace:true
 
 			}
 		];
