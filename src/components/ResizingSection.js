@@ -51,9 +51,9 @@ export default function ResizingSection(props) {
 //Words-By-Size section
 	if(props.wordsBySize){		
 		wordsBySizeList = props.wordsBySize.map(function(obj) { 
-			let keyToStr = Object.keys(obj).toString();
-			let valToStr = Object.values(obj).toString();			
-			return <Li key={keyToStr} boldWord={keyToStr} word={valToStr} />
+			let keyStr = Object.keys(obj).toString();
+			let valStr = Object.values(obj).toString();			
+			return <Li key={keyStr} boldWord={keyStr} word={valStr} />
 		});
 	}
 
