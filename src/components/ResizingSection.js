@@ -6,6 +6,7 @@ import Para from './Para';
 import Li from './li';
 import LiNoBold from './liNoBold';
 import BeginForm from './BeginForm';
+import SpeechTextForm from './SpeechTextForm';
 import HorizontalBarChart from './d3/horzBarChar';
 // import BubbleChart from './d3/bubble';
 import GaugeChart from './d3/gauge';
@@ -80,6 +81,7 @@ export default function ResizingSection(props) {
 	       	{props.numberOfWords ? <GaugeChart sectionKey='numberOfWords' dataKey={props.numberOfWords}/> : null}
 	        {singleStat ? singleStat : ''}
 	        {props.includeBeginForm ? <BeginForm /> : null}
+	        {props.includeSpeechTextForm ? <SpeechTextForm /> : null}
 	        <Para text={props.text}/>
 	        {props.wordsBySize ? wordsBySizeList : null}
 	        {/*props.wordsBySize ? <BubbleChart sectionKey='wordsBySize' dataKey={props.wordsBySize} /> : null*/}	        
