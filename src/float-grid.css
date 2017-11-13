@@ -87,13 +87,17 @@ section:nth-child(even) {
   .col-12 {
   }
 
+  section header{
+    padding:0;
+  }
+
   h1{
     margin:125px;
     font-size: 3em;
   }
 
   h3{
-    margin:45px;
+    margin:30px;
     font-size: 1.8em;
   }
 
