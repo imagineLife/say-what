@@ -2,13 +2,16 @@ import React from 'react';
 import './horzBarChar.css';
 import * as d3 from 'd3';
 import 'd3-selection-multi';
+import ResponsiveWrapper from '../ResponsiveWrapper'
 
-export default class HorizontalBarChart extends React.Component {
+class HorizontalBarChart extends React.Component {
 	
 	//THROWS WARNING
-	// constructor(props){
-	// 	super(props);
-	// }
+	constructor(props){
+		super(props);
+	    this.xScale = d3.scaleBand();
+    	this.yScale = d3.scaleLinear();
+	}
 
 	//react sort-of-like document.ready
 	componentDidMount(){
@@ -108,3 +111,5 @@ export default class HorizontalBarChart extends React.Component {
     	);
     }
 }
+
+export default ResponsiveWrapper(HorizontalBarChart)
