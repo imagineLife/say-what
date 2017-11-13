@@ -22,7 +22,7 @@ class App extends Component {
 		        <Switch>
 			        <Route exact path="/" component={Splash} />
 			        <Route exact path="/speechData/:id" component={SpeechData} />
-			        <Route exact path="/speechData/:id/text" component={SpeechText} />
+			        <Route exact path="/speechText/:id" component={SpeechText} />
 			        <Route exact path="/speechPicker" component={SpeechPicker} />
 			        <Route exact path="/login" component={Login} />
 			    </Switch>
