@@ -13,7 +13,9 @@ export default function Login(props) {
 		const sectionsArray =[
 			{
 				title: `Login`,
-				includesLoginForm: true
+				text: 'With an account you can see stats on many speeches & request a speech to be added! You can also receive emails when speeches & data gets updated!',
+				includesLoginForm: true,
+				includeBottomSpacer: true
 			}
 		];
 
