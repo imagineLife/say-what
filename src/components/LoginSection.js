@@ -27,12 +27,12 @@ export default class Section extends React.Component {
 		return (
 			<section>
 				<Title title={this.title}/>
-		        <Para text={this.props.text}/>
-		        {this.props.img}
+		        {this.state.loginOrRegister === 'register' ? <Para text={this.props.text}/> : null}
+		        {this.props.img ? this.props.img : null}
 		        {this.props.form ? this.props.form : null}
 		        {this.props.includeBeginForm ? <BeginForm /> : null}
 		        {this.state.loginOrRegister === 'login' ? <LoginForm toggleForm={toggleForm} /> : <RegisterForm toggleForm={toggleForm} />}
-	        	{this.props.includeBottomSpace ? <BottomSpacer /> : null}
+	        	{this.props.includeBottomSpacer ? <BottomSpacer /> : null}
 		    </section>
 		)
 	};
