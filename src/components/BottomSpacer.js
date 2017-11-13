@@ -3,6 +3,6 @@ import './BottomSpacer.css';
 
 export default function BottomSpacer(props) {
     return (
-    	<section className='bottomSpacer'/>
+    	<p className='bottomSpacer'/>
     );
 }
