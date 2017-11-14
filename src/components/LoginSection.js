@@ -27,7 +27,7 @@ export default class Section extends React.Component {
 		return (
 			<section>
 				<Title title={this.title}/>
-		        {this.state.loginOrRegister === 'register' ? <Para text={this.props.text}/> : null}
+		        {this.state.loginOrRegister === 'register' ? <Para text={this.props.text} compClass="registerText"/> : null}
 		        {this.props.img ? this.props.img : null}
 		        {this.props.form ? this.props.form : null}
 		        {this.props.includeBeginForm ? <BeginForm /> : null}
