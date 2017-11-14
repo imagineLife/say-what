@@ -6,3 +6,7 @@ p {
 p + p {
   margin-top: 15px;
 }
+
+.registerText{
+	margin-bottom:25px;
+}
