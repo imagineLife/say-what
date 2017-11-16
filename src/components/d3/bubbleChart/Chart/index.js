@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3';
 import 'd3-selection-multi';
-// import Axes from '../Axes'
-// import Bars from '../Bars'
+import Bubbles from '../Bubbles'
 import ResponsiveWrapper from '../../../ResponsiveWrapper'
 import './Chart.css'
 
@@ -15,8 +14,6 @@ class Chart extends Component {
   }
 
   render() {
-  	console.log('C1. inside CHART render');
-
 //chart margins / offset
     const margins = { top: 5, right: 20, bottom: 60, left: 30 }
 
@@ -30,6 +27,10 @@ class Chart extends Component {
 
     return (
       <svg className='bubbleSVG' width={svgDimensions.width} height={svgDimensions.height}>
+        <Bubbles
+          margins={margins}
+          svgDimensions={svgDimensions}
+        />
       </svg>
     )
   }
