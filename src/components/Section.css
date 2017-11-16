@@ -11,3 +11,8 @@ section:nth-child(even) {
 section header {
 	padding :15px;
 }
+
+.loginRegisterWrapper{
+	max-width: 350px;
+	margin: 0 auto;
+}
