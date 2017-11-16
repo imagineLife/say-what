@@ -82,7 +82,7 @@ export default function ResizingSection(props) {
 	        {singleStat ? singleStat : ''}
 	        {props.includeBeginForm ? <BeginForm /> : null}
 	        {props.includeSpeechTextForm ? <SpeechTextForm /> : null}
-	        <Para text={props.text}/>
+	        {props.text ? <Para text={props.text} /> : null }
 	        {/*props.wordsBySize ? wordsBySizeList : null*/}
 	        {props.wordsBySize ? <BubbleChart sectionKey='wordsBySize' dataKey={props.wordsBySize} /> : null}	        
 	        {props.includeHorizontalChart ? <HorizontalBarChart sectionKey='mostUsedWords' dataKey={props.mostUsedWords}/> : null}
