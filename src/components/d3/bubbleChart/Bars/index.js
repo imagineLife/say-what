@@ -20,7 +20,7 @@ export default class Bars extends Component {
 
     const bars = (
       data.map(data =>
-        <g key={Object.keys(data)}>
+        <g key={Object.keys(data)} className='barWrapper'>
           <rect
             key={Object.keys(data)}
             x={xScale(Object.keys(data))}
