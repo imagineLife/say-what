@@ -53,7 +53,8 @@ export default function App(props) {
 					{2: 235},
 					{5: 187},
 					{7: 118}
-				]
+				],
+				includeWordBubble: true
 			},
 			{
 				Title: `Top 12 Largest Words`,
