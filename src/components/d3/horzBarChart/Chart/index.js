@@ -15,8 +15,6 @@ class Chart extends Component {
   }
 
   render() {
-  	console.log('C1. inside CHART render');
-
 //chart margins / offset
     const margins = { top: 5, right: 20, bottom: 60, left: 30 }
 

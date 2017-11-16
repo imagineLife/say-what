@@ -186,8 +186,6 @@ export default class GaugeChart extends React.Component {
 							[0, config.pointerTailLength],
 							[config.pointerWidth / 2, 0] ];
 
-			// console.log('lineData =>',lineData);
-
 			let pointerLine = d3.line().curve(d3.curveLinear);
 
 			let pointerG = svg.append('g').data([lineData])
@@ -224,9 +222,6 @@ export default class GaugeChart extends React.Component {
 
 		configure(configuration);
 
-		console.log('state is',this.state);
-
-
 		return that;
 	};
 	
@@ -237,7 +232,6 @@ export default class GaugeChart extends React.Component {
 	render(){
 		var width = this.state.chartWidth;
 		var height = this.state.chartHeight;
-		console.log('STATE =>',this.state);
 
     	return (
     			<svg id={ `gcSVG${this.props.sectionKey}` } height={height} width={width} ></svg>
