@@ -8,7 +8,7 @@ import LiNoBold from './liNoBold';
 import BeginForm from './BeginForm';
 import SpeechTextForm from './SpeechTextForm';
 import HorizontalBarChart from './d3/horzBarChart/Chart';
-// import BubbleChart from './d3/bubble';
+import BubbleChart from './d3/bubbleChart/Chart';
 import GaugeChart from './d3/gauge';
 import BottomSpacer from './BottomSpacer';
 
@@ -16,7 +16,7 @@ export default function ResizingSection(props) {
 
 	let listOWords;
 	let singleStat;
-	let wordsBySizeList;
+	// let wordsBySizeList;
 
 //WORD LIST SECTION
 	if(props.WordList || props.bigWords){
@@ -50,13 +50,13 @@ export default function ResizingSection(props) {
 	}
 
 //Words-By-Size section
-	if(props.wordsBySize){		
-		wordsBySizeList = props.wordsBySize.map(function(obj) { 
-			let keyStr = Object.keys(obj).toString();
-			let valStr = Object.values(obj).toString();			
-			return <Li key={keyStr} boldWord={keyStr} word={valStr} />
-		});
-	}
+	// if(props.wordsBySize){		
+	// 	wordsBySizeList = props.wordsBySize.map(function(obj) { 
+	// 		let keyStr = Object.keys(obj).toString();
+	// 		let valStr = Object.values(obj).toString();			
+	// 		return <Li key={keyStr} boldWord={keyStr} word={valStr} />
+	// 	});
+	// }
 
 //Unique-Words section
 	if(props.numberOfWords){
@@ -83,8 +83,8 @@ export default function ResizingSection(props) {
 	        {props.includeBeginForm ? <BeginForm /> : null}
 	        {props.includeSpeechTextForm ? <SpeechTextForm /> : null}
 	        <Para text={props.text}/>
-	        {props.wordsBySize ? wordsBySizeList : null}
-	        {/*props.wordsBySize ? <BubbleChart sectionKey='wordsBySize' dataKey={props.wordsBySize} /> : null*/}	        
+	        {/*props.wordsBySize ? wordsBySizeList : null*/}
+	        {props.wordsBySize ? <BubbleChart sectionKey='wordsBySize' dataKey={props.wordsBySize} /> : null}	        
 	        {props.includeHorizontalChart ? <HorizontalBarChart sectionKey='mostUsedWords' dataKey={props.mostUsedWords}/> : null}
 	        {props.includeBottomSpace ? <BottomSpacer /> : null}
 	    </section>
