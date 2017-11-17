@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3';
-import 'd3-selection-multi';
 import Axes from '../Axes'
 import Bars from '../Bars'
 import ResponsiveWrapper from '../../../ResponsiveWrapper'
