@@ -20,7 +20,6 @@ class Chart extends Component {
   }
 
   buildChart = () => {
-    console.log(this.props.dataKey);
 
     let d = {};
     let classes;
@@ -28,7 +27,7 @@ class Chart extends Component {
 
     var container = d3.select(".Responsive-wrapper");
 
-    //Declare SVG
+  //Declare SVG
     var svgElm = d3.select(".bubbleSVG"),
         svgWidth = +container.style("width").replace('px',''),
         svgHeight = +container.style("height").replace('px','');
@@ -43,22 +42,24 @@ class Chart extends Component {
 
     var color = d3.scaleOrdinal(d3.schemeCategory20c);
 
+  //PACK
     var pack = d3.pack()
         .size([svgWidth, svgHeight])
         .padding(1.5);
 
+  //begin the loop through data
     this.props.dataKey.forEach((obj) =>{
       d.value = Object.values(obj);
       let objKey = Object.keys(obj);
       let objVal = Object.values(obj);
 
-    //declare ROOT?!
+  //declare ROOT
       var root = d3.hierarchy({children: classes})
           .sum(function(d) {
             return Object.values(d); 
           });
 
-    //declare the bubble element
+  //declare the bubble element
     //give it a class
     //make it transform
       var bubble = svgElm.selectAll(".bubble")
@@ -71,6 +72,7 @@ class Chart extends Component {
             }
           });
 
+  //declare the circle
       bubble.append("circle")
           .attrs({
             "id" : function(d) { return d.id; },
@@ -78,13 +80,13 @@ class Chart extends Component {
           })
           .style("fill", function(d) { return color(d.package); });
 
-
+  //declare a clipPath
       bubble.append("clipPath")
           .attr("id", function(d) { return "clip-",Object.keys(d.data)})
         .append("use")
           .attr("xlink:href", function(d) { return "#" + Object.keys(d.data) });
 
-
+  //declare the text
       bubble.append("text")
           .attr("clip-path", function(d) { return "url(#clip-"+Object.keys(d.data)+")"; })
         .selectAll("tspan")
@@ -97,8 +99,9 @@ class Chart extends Component {
             },
             "text-anchor" : "middle"
           })
-          .text(function(d) { return d+'-Letter Words: '+objVal; });
+          .text(function(d) { return d+'-Letter-Words: '+objVal; });
 
+  //declare the title, hidden from view, but exists in HTML
       bubble.append("title")
           .text(function(d) { return Object.keys(d.data)[0] + ":\n" + format(d.value); });
     
@@ -112,7 +115,6 @@ class Chart extends Component {
     function setContainerHeight() {
       var w = parseInt( container.style("width"), 10); // computed width
       var a = svgWidth / svgHeight; // = aspect ratio to be applied to the container
-      console.log(a, w);
       svgElm.attr('height', w / a  + 'px');
     }
 
