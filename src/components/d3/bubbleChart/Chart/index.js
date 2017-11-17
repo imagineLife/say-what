@@ -1,26 +1,30 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3';
+import 'd3-selection-multi';
 import Bubbles from '../Bubbles'
 import ResponsiveWrapper from '../../../ResponsiveWrapper'
 import './Chart.css'
 
 
 class Chart extends Component {
-  // constructor(props) {
-  //   super(props)
-  // }
+  constructor(props) {
+    super(props)
+  }
 
-  render() {
+  componentDidMount(){
+    this.buildChart();
+  }
 
-    let myData = [
-      {'pickles':25},
-      {"cucumbers": 14},
-      {"iceCubes": 7}
-    ];
+  componentDidUpdate(){
+    this.buildChart();
+  }
+
+  buildChart = () => {
+    console.log(this.props.dataKey);
 
     let d = {};
     let classes;
-    classes = myData;
+    classes = this.props.dataKey;
 
     var container = d3.select(".Responsive-wrapper");
 
@@ -29,8 +33,11 @@ class Chart extends Component {
         svgWidth = +container.style("width").replace('px',''),
         svgHeight = +container.style("height").replace('px','');
 
-        svgElm.attr('viewBox', "0, 0, " + svgWidth + ", " + svgHeight)  // min-x, min-y, width, height
-        .attr('preserveAspectRatio', "xMinYMid");
+        svgElm
+          .attrs({
+            'viewBox' : "0, 0, " + svgWidth + ", " + svgHeight,  // min-x, min-y, width, height
+            'preserveAspectRatio' :"xMinYMid"
+          });
 
     var format = d3.format(",d");
 
@@ -40,7 +47,7 @@ class Chart extends Component {
         .size([svgWidth, svgHeight])
         .padding(1.5);
 
-    myData.forEach((obj) =>{
+    this.props.dataKey.forEach((obj) =>{
       d.value = Object.values(obj);
       let objKey = Object.keys(obj);
       let objVal = Object.values(obj);
@@ -57,14 +64,18 @@ class Chart extends Component {
       var bubble = svgElm.selectAll(".bubble")
         .data(pack(root).leaves())
         .enter().append("g")
-          .attr("class", "bubble")
-          .attr("transform", function(d) { 
-            return "translate(" + d.x + "," + d.y + ")"; 
+          .attrs({
+            "class": "bubble",
+            "transform": function(d) { 
+              return "translate(" + d.x + "," + d.y + ")"; 
+            }
           });
 
       bubble.append("circle")
-          .attr("id", function(d) { return d.id; })
-          .attr("r", function(d) { return d.r; })
+          .attrs({
+            "id" : function(d) { return d.id; },
+            "r" : function(d) { return d.r; }
+          })
           .style("fill", function(d) { return color(d.package); });
 
 
@@ -79,15 +90,20 @@ class Chart extends Component {
         .selectAll("tspan")
         .data(function(d) { return Object.keys(d.data); })
         .enter().append("tspan")
-          .attr("x", 0)
-          .attr("y", function(d,i,letters) {
-            // console.log(d, i, letters);
-           return 13 + (i - letters.length / 2 - 0.5) * 10; })
-          .text(function(d) { return d+'\n'+objVal; });
+          .attrs({
+            "x" : 0,
+            "y" : function(d,i,letters) {
+              return 13 + (i - letters.length / 2 - 0.5) * 10;
+            },
+            "text-anchor" : "middle"
+          })
+          .text(function(d) { return d+'-Letter Words: '+objVal; });
 
       bubble.append("title")
-          .text(function(d) { return Object.keys(d.data)[0] + "\n" + format(d.value); });
+          .text(function(d) { return Object.keys(d.data)[0] + ":\n" + format(d.value); });
+    
     });
+
 
     setContainerHeight();
 
@@ -100,6 +116,12 @@ class Chart extends Component {
       svgElm.attr('height', w / a  + 'px');
     }
 
+  }
+
+  shouldComponentUpdate() { return false }
+
+
+  render() {
     return (
       <svg className='bubbleSVG'>
       </svg>
