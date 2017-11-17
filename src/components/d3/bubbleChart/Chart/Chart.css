@@ -1,3 +1,7 @@
 .bubbleSVG{
 	outline: 1px solid purple;
 }
+
+.bubbleText{
+	font-size: 16px;
+}
