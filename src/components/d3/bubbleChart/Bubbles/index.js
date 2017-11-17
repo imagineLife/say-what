@@ -12,16 +12,15 @@ export default class Bubbles extends Component {
     const { scales, margins, data, svgDimensions } = this.props
     const { height, width } = svgDimensions
 
+    console.log('1st Val =>',data);
     const bubbles = (
-      data.map(data =>
-        <g key={Object.keys(data)} className="bubbleWrapper">
-         <p>Bubbles go here</p>
-        </g>,
+      data.map(dataElement =>
+        <circle key={Object.keys(dataElement)} className="bubble" r={Object.values(dataElement)}></circle>,
       )
     )
 
     return (
-      <g>{bubbles}</g>
+      <g className="bubbleWrapper">{bubbles}</g>
     )
   }
 }
