@@ -6,7 +6,7 @@ export default ChartComponent => (
     constructor(props) {
       super(props)
 
-//3. HERE containerWidth is set to null to start 
+//  3. HERE containerWidth is set to null to start 
       this.state = {
         containerWidth: null,
       }
@@ -15,11 +15,11 @@ export default ChartComponent => (
     }
 
     componentDidMount() {
-//4. AFTER component mounts
-//   run fitParentContainer, written below AND/OR referenced above... ? 
-      // console.log('compDidMount');
+/*  4. AFTER component mounts
+    run fitParentContainer, written below AND/OR referenced above... ? 
+*/
       this.fitParentContainer()
-//5.JQ-like event-listener?!
+//  5.JQ-like event-listener?!
       window.addEventListener('resize', this.fitParentContainer)
     }
 
@@ -28,20 +28,19 @@ export default ChartComponent => (
     }
 
     fitParentContainer() {
-//6.Fitting the parent container 
-      // console.log('1.inside fitParentContainer');
+//  6.Fitting the parent container 
 
-//7.pull containerWidth out of state as reference
+//  7.pull containerWidth out of state as reference
       const { containerWidth } = this.state
-//Q
-//8.WHERE is 'chartContainer'?!
-  //WAY down in a div ref?!
+
+/*  8.WHERE is 'chartContainer'?!
+    WAY down in a div ref?!
+*/
       const currentContainerWidth = this.chartContainer.getBoundingClientRect().width
 
       const shouldResize = containerWidth !== currentContainerWidth
 
       if (shouldResize) {
-        // console.log('3.SHOULD resize!');
         this.setState({
           containerWidth: currentContainerWidth,
         })
