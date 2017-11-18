@@ -15,14 +15,14 @@ class Chart extends Component {
 
   render() {
 //chart margins / offset
-    const margins = { top: 5, right: 20, bottom: 60, left: 30 }
+    const margins = { top: 0, right: 20, bottom: 70, left: 30 }
 
 //svgDimensions gets its withd from this.props.parentWidth
   // which SEEMS to come from the responsiveWrapper fn
   //  which wraps around the <Chart /> 
     const svgDimensions = {
       width: Math.max(this.props.parentWidth, 300),
-      height: 450
+      height: 440
     }
 
 //max data-value
