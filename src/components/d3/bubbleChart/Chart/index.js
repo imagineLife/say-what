@@ -39,7 +39,7 @@ class Chart extends Component {
 
         svgElm
           .attrs({
-            'viewBox' : '0, 0, ' + bubbleSVGWidth + ', ' + bubbleSVGHeight,  // min-x, min-y, width, height
+            'viewBox' : '0, 0, ' + bubbleSVGWidth + ', ' + bubbleSVGHeight,  // meaning => min-x, min-y, width, height
             // 'preserveAspectRatio' :'xMinYMid'
           });
 
@@ -83,9 +83,11 @@ class Chart extends Component {
 
   //declare a clipPath
       bubble.append('clipPath')
-          .attr('id', function(d) { return 'clip-' + Object.keys(d)})
+          .attr('id', function(d) { 
+            console.log(d)
+            return Object.keys(d.data)})
         .append('use')
-          .attr('xlink:href', function(d) { return '#' + Object.keys(d.data) });
+          .attr('xlink:href', function(d) { return '#' + Object.keys(d.data).toString() });
 
   //declare the text
       bubble.append('text')
@@ -101,8 +103,7 @@ class Chart extends Component {
             'text-anchor' : 'middle',
             'class' : 'bubbleText'
           })
-          .text(function(d) {
-          return d+'-Letter-Words: '+objVal; });
+          .text(function(d) { return d+'-Letter Words: '+objVal; });
 
 
   //declare the title, hidden from view, but exists in HTML
@@ -137,6 +138,31 @@ class Chart extends Component {
 
 
   //   }
+
+    function wrap(text, width) {
+      console.log('wrapping', text,'to width',width);
+      text.each(function() {
+        var text = d3.select(this),
+            words = text.text().split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.1, // ems
+            y = text.attr("y"),
+            dy = parseFloat(text.attr("dy")),
+            tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+        while (word = words.pop()) {
+          line.push(word);
+          tspan.text(line.join(" "));
+          if (tspan.node().getComputedTextLength() > width) {
+            line.pop();
+            tspan.text(line.join(" "));
+            line = [word];
+            tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+          }
+        }
+      });
+    }
 
   }
 
