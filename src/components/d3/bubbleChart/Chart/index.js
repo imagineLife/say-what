@@ -25,28 +25,28 @@ class Chart extends Component {
     let classes;
     classes = this.props.dataKey;
 
+    var format = d3.format(',d');
+
+    var color = d3.scaleOrdinal(d3.schemeCategory20);
+
     var container = d3.select('.Responsive-wrapper');
-    console.log('responsive wrapper ->',container);
-  //Declare SVG
-    var svgElm = d3.select('.bubbleSVG'),
-        svgWidth = +container.style('width').replace('px',''),
-        svgHeight = +container.style('height').replace('px','');
-        // console.log('EARLY svg dimensions =>',svgWidth,svgHeight);
+    console.log('Responsive-wrapper dimensions ->',container.style('height'),'x',container.style('width'));
+  
+  //Declare & set props of SVG
+    var svgElm = d3.select('.bubbleSVGWrapper'),
+        bubbleSVGWidth = +container.style('width').replace('px',''),
+        bubbleSVGHeight = +container.style('height').replace('px','');
 
         svgElm
           .attrs({
-            'viewBox' : '0, 0, ' + svgWidth + ', ' + svgHeight,  // min-x, min-y, width, height
-            'preserveAspectRatio' :'xMinYMid'
+            'viewBox' : '0, 0, ' + bubbleSVGWidth + ', ' + bubbleSVGHeight,  // min-x, min-y, width, height
+            // 'preserveAspectRatio' :'xMinYMid'
           });
-
-    var format = d3.format(',d');
-
-    var color = d3.scaleOrdinal(d3.schemeCategory20c);
 
   //PACK
     var pack = d3.pack()
-        .size([svgWidth, svgHeight])
-        .padding(.25);
+        .size([bubbleSVGWidth, bubbleSVGHeight])
+        .padding(0);
 
   //begin the loop through data
     this.props.dataKey.forEach((obj) =>{
@@ -79,7 +79,7 @@ class Chart extends Component {
             'id' : function(d) { return d.id; },
             'r' : function(d) { return d.r; }
           })
-          .style('fill', function(d) { return color(d.package); });
+          .style('fill', function(d,i) { return color(i); });
 
   //declare a clipPath
       bubble.append('clipPath')
@@ -112,44 +112,31 @@ class Chart extends Component {
     });
 
 
-    setContainerHeight();
+    // resizeChart();
 
-    d3.select(window).on('resize', setContainerHeight);
+    // d3.select(window).on('resize', resizeChart);
 
-    function setContainerHeight() {
-      var w = parseInt( container.style('width'), 10); // computed width
-      var a = svgWidth / svgHeight; // = aspect ratio to be applied to the container
-      svgElm.attr('height', w / a  + 'px');
-      console.log('svg dimensions are =>',svgWidth,svgHeight)
-      // console.log('container dimensions are WIDTH:'+w+', aspect:'+a);
-    }
+  //   function resizeChart() {
+  //     console.log('resizeChart!');
+  // //Declare & set props of SVG
+  //       bubbleSVGWidth = +container.style('width').replace('px',''),
+  //       bubbleSVGHeight = +container.style('height').replace('px','');
+  //       // console.log('svg dimensions =>',bubbleSVGWidth,bubbleSVGHeight);
 
-  
-    // function wrap(text, width) {
-    //   console.log(text,width);
-    //   text.each(function() {
-    //     var text = d3.select(this),
-    //         words = text.text().split(/\s+/).reverse(),
-    //         word,
-    //         line = [],
-    //         lineNumber = 0,
-    //         lineHeight = 1.1, // ems
-    //         y = text.attr("y"),
-    //         dy = parseFloat(text.attr("dy")),
-    //         tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
-    //     while (word = words.pop()) {
-    //       line.push(word);
-    //       tspan.text(line.join(" "));
-    //       if (tspan.node().getComputedTextLength() > width) {
-    //         line.pop();
-    //         tspan.text(line.join(" "));
-    //         line = [word];
-    //         tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-    //       }
-    //     }
-    //   });
-    // }
+  //       svgElm
+  //         .attrs({
+  //           'viewBox' : '0, 0, ' + bubbleSVGWidth + ', ' + bubbleSVGHeight,  // min-x, min-y, width, height
+  //           // 'preserveAspectRatio' :'xMinYMid'
+  //         });
 
+  //     var w = parseInt( bubbleSVGWidth, 10); // computed width
+  //     var a = bubbleSVGWidth / bubbleSVGHeight; // = aspect ratio to be applied to the container
+  //     svgElm.attr('height', w / a  + 'px');
+  //     console.log('RespWrap dimensions are =>',bubbleSVGWidth,'x',bubbleSVGHeight)
+  //     // console.log('container dimensions are WIDTH:'+w+', aspect:'+a);
+
+
+  //   }
 
   }
 
@@ -158,7 +145,7 @@ class Chart extends Component {
 
   render() {
     return (
-      <svg className='bubbleSVG'>
+      <svg className='bubbleSVGWrapper'>
       </svg>
     )
   }
