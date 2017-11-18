@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3';
 import 'd3-selection-multi';
-import Bubbles from '../Bubbles'
+// import Bubbles from '../Bubbles'
 import ResponsiveWrapper from '../../../ResponsiveWrapper'
 import './Chart.css'
 
 
 class Chart extends Component {
-  constructor(props) {
-    super(props)
-  }
+  // constructor(props) {
+  //   super(props)
+  // }
 
   componentDidMount(){
     this.buildChart();
@@ -20,17 +20,18 @@ class Chart extends Component {
   }
 
   buildChart = () => {
-
+    console.log('buildingChart!');
     let d = {};
     let classes;
     classes = this.props.dataKey;
 
     var container = d3.select('.Responsive-wrapper');
-
+    console.log('responsive wrapper ->',container);
   //Declare SVG
     var svgElm = d3.select('.bubbleSVG'),
         svgWidth = +container.style('width').replace('px',''),
         svgHeight = +container.style('height').replace('px','');
+        // console.log('EARLY svg dimensions =>',svgWidth,svgHeight);
 
         svgElm
           .attrs({
@@ -50,7 +51,7 @@ class Chart extends Component {
   //begin the loop through data
     this.props.dataKey.forEach((obj) =>{
       d.value = Object.values(obj);
-      let objKey = Object.keys(obj);
+      // let objKey = Object.keys(obj);
       let objVal = Object.values(obj);
 
   //declare ROOT
@@ -82,7 +83,7 @@ class Chart extends Component {
 
   //declare a clipPath
       bubble.append('clipPath')
-          .attr('id', function(d) { return 'clip-',Object.keys(d.data)})
+          .attr('id', function(d) { return 'clip-' + Object.keys(d)})
         .append('use')
           .attr('xlink:href', function(d) { return '#' + Object.keys(d.data) });
 
@@ -119,6 +120,8 @@ class Chart extends Component {
       var w = parseInt( container.style('width'), 10); // computed width
       var a = svgWidth / svgHeight; // = aspect ratio to be applied to the container
       svgElm.attr('height', w / a  + 'px');
+      console.log('svg dimensions are =>',svgWidth,svgHeight)
+      // console.log('container dimensions are WIDTH:'+w+', aspect:'+a);
     }
 
   
