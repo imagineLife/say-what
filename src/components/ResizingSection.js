@@ -49,14 +49,6 @@ export default function ResizingSection(props) {
 		})
 	}
 
-//Words-By-Size section
-	// if(props.wordsBySize){		
-	// 	wordsBySizeList = props.wordsBySize.map(function(obj) { 
-	// 		let keyStr = Object.keys(obj).toString();
-	// 		let valStr = Object.values(obj).toString();			
-	// 		return <Li key={keyStr} boldWord={keyStr} word={valStr} />
-	// 	});
-	// }
 
 //Unique-Words section
 	if(props.numberOfWords){
@@ -83,7 +75,6 @@ export default function ResizingSection(props) {
 	        {props.includeBeginForm ? <BeginForm /> : null}
 	        {props.includeSpeechTextForm ? <SpeechTextForm /> : null}
 	        {props.text ? <Para text={props.text} /> : null }
-	        {/*props.wordsBySize ? wordsBySizeList : null*/}
 	        {props.wordsBySize ? <BubbleChart sectionKey='wordsBySize' dataKey={props.wordsBySize} /> : null}	        
 	        {props.includeHorizontalChart ? <HorizontalBarChart sectionKey='mostUsedWords' dataKey={props.mostUsedWords}/> : null}
 	        {props.includeBottomSpace ? <BottomSpacer /> : null}
