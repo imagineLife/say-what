@@ -16,7 +16,6 @@ export default function ResizingSection(props) {
 
 	let listOWords;
 	let singleStat;
-	// let wordsBySizeList;
 
 //WORD LIST SECTION
 	if(props.WordList || props.bigWords){
