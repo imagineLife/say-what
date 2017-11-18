@@ -35,12 +35,11 @@ class Chart extends Component {
   //Declare & set props of SVG
     var svgElm = d3.select('.bubbleSVGWrapper'),
         bubbleSVGWidth = +container.style('width').replace('px',''),
-        bubbleSVGHeight = +container.style('height').replace('px','');
+        bubbleSVGHeight = 440;
 
         svgElm
           .attrs({
             'viewBox' : '0, 0, ' + bubbleSVGWidth + ', ' + bubbleSVGHeight,  // meaning => min-x, min-y, width, height
-            // 'preserveAspectRatio' :'xMinYMid'
           });
 
   //PACK
@@ -120,9 +119,7 @@ class Chart extends Component {
   //   function resizeChart() {
   //     console.log('resizeChart!');
   // //Declare & set props of SVG
-  //       bubbleSVGWidth = +container.style('width').replace('px',''),
-  //       bubbleSVGHeight = +container.style('height').replace('px','');
-  //       // console.log('svg dimensions =>',bubbleSVGWidth,bubbleSVGHeight);
+  //       bubbleSVGWidth = +container.style('width').replace('px','');
 
   //       svgElm
   //         .attrs({
@@ -133,40 +130,12 @@ class Chart extends Component {
   //     var w = parseInt( bubbleSVGWidth, 10); // computed width
   //     var a = bubbleSVGWidth / bubbleSVGHeight; // = aspect ratio to be applied to the container
   //     svgElm.attr('height', w / a  + 'px');
-  //     console.log('RespWrap dimensions are =>',bubbleSVGWidth,'x',bubbleSVGHeight)
-  //     // console.log('container dimensions are WIDTH:'+w+', aspect:'+a);
-
 
   //   }
 
-    function wrap(text, width) {
-      console.log('wrapping', text,'to width',width);
-      text.each(function() {
-        var text = d3.select(this),
-            words = text.text().split(/\s+/).reverse(),
-            word,
-            line = [],
-            lineNumber = 0,
-            lineHeight = 1.1, // ems
-            y = text.attr("y"),
-            dy = parseFloat(text.attr("dy")),
-            tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
-        while (word = words.pop()) {
-          line.push(word);
-          tspan.text(line.join(" "));
-          if (tspan.node().getComputedTextLength() > width) {
-            line.pop();
-            tspan.text(line.join(" "));
-            line = [word];
-            tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-          }
-        }
-      });
-    }
-
   }
 
-  shouldComponentUpdate() { return false }
+  // shouldComponentUpdate() { return false }
 
 
   render() {
