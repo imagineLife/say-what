@@ -57,7 +57,7 @@ class Chart extends Component {
           });
 
   //declare the bubble element
-  //  - pack it ()
+  //  - pack ()
   //  - add a class
       var bubble = svgElm.selectAll('.bubble')
         .data(pack(root).leaves())
@@ -85,6 +85,7 @@ class Chart extends Component {
         .append('use')
           .attr('xlink:href', function(d) { return '#' + Object.keys(d.data).toString() });
 
+      // console.log('mid-object:',obj);
   //declare the text
       bubble.append('text')
           .attr('clip-path', function(d) { return 'url(#clip-'+Object.keys(d.data)+')'; })
@@ -94,17 +95,20 @@ class Chart extends Component {
           .attrs({
             'x' : 0,
             'y' : function(d,i,letters) {
-              return 13 + (i - letters.length / 2 - 0.5) * 10;
+              return 15 + (0 - letters.length / 2 - 0.5) * 10;
             },
             'text-anchor' : 'middle',
             'class' : 'bubbleText'
           })
-          .text(function(d) { return d+'-Letter Words: '+objVal; });
+          .text((val) => { 
+            console.log(val);
+            return val+'-Letter Words:'; 
+          });
 
 
   //declare the title, hidden from view, but exists in HTML
       bubble.append('title')
-          .text(function(d) { return Object.keys(d.data)[0] + ':\n' + format(d.value); });
+          .text(function(d) { return Object.keys(d.data)[0] + '-letter Words : ' + format(d.value); });
     
     });
 
