@@ -20,10 +20,7 @@ class Chart extends Component {
   }
 
   buildChart = () => {
-    console.log('buildingChart!');
     let d = {};
-    let classes;
-    classes = this.props.dataKey;
 
     var format = d3.format(',d');
 
@@ -54,14 +51,14 @@ class Chart extends Component {
       let objVal = Object.values(obj);
 
   //declare ROOT
-      var root = d3.hierarchy({children: classes})
+      var root = d3.hierarchy({children: this.props.dataKey})
           .sum(function(d) {
             return Object.values(d); 
           });
 
   //declare the bubble element
-    //give it a class
-    //make it transform
+  //  - pack it ()
+  //  - add a class
       var bubble = svgElm.selectAll('.bubble')
         .data(pack(root).leaves())
         .enter().append('g')
@@ -83,8 +80,8 @@ class Chart extends Component {
   //declare a clipPath
       bubble.append('clipPath')
           .attr('id', function(d) { 
-            console.log(d)
-            return Object.keys(d.data)})
+            return Object.keys(d.data)
+          })
         .append('use')
           .attr('xlink:href', function(d) { return '#' + Object.keys(d.data).toString() });
 
@@ -112,30 +109,30 @@ class Chart extends Component {
     });
 
 
-    // resizeChart();
+    resizeChart();
 
-    // d3.select(window).on('resize', resizeChart);
+    d3.select(window).on('resize', resizeChart);
 
-  //   function resizeChart() {
-  //     console.log('resizeChart!');
-  // //Declare & set props of SVG
-  //       bubbleSVGWidth = +container.style('width').replace('px','');
+    function resizeChart() {
+      console.log('resizeChart!');
+  //Declare & set props of SVG
+        bubbleSVGWidth = +container.style('width').replace('px','');
 
-  //       svgElm
-  //         .attrs({
-  //           'viewBox' : '0, 0, ' + bubbleSVGWidth + ', ' + bubbleSVGHeight,  // min-x, min-y, width, height
-  //           // 'preserveAspectRatio' :'xMinYMid'
-  //         });
+        svgElm
+          .attrs({
+            'viewBox' : '0, 0, ' + bubbleSVGWidth + ', ' + bubbleSVGHeight,  // min-x, min-y, width, height
+            // 'preserveAspectRatio' :'xMinYMid'
+          });
 
-  //     var w = parseInt( bubbleSVGWidth, 10); // computed width
-  //     var a = bubbleSVGWidth / bubbleSVGHeight; // = aspect ratio to be applied to the container
-  //     svgElm.attr('height', w / a  + 'px');
+      var w = parseInt( bubbleSVGWidth, 10); // computed width
+      var a = bubbleSVGWidth / bubbleSVGHeight; // = aspect ratio to be applied to the container
+      svgElm.attr('height', w / a  + 'px');
 
-  //   }
+    }
 
   }
 
-  // shouldComponentUpdate() { return false }
+  shouldComponentUpdate() { return false }
 
 
   render() {
