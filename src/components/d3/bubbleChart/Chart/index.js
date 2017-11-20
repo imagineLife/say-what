@@ -48,7 +48,7 @@ class Chart extends Component {
     this.props.dataKey.forEach((obj) =>{
       d.value = Object.values(obj);
       // let objKey = Object.keys(obj);
-      let objVal = Object.values(obj);
+      // let objVal = Object.values(obj);
 
   //declare ROOT
       var root = d3.hierarchy({children: this.props.dataKey})
