@@ -74,10 +74,6 @@ export default function App(props) {
 				]
 			},
 			{
-				// Title: `Words Per Minute`,
-				// text: `Interested in the details of what Trump said? Maybe Hillary? MLK Jr? Perhaps JFK or Abraham Lincoln?
-				// Get insight into the words of a variety of speeches.`,
-				// includeBottomSpace:true
 				Title: `Read the Speech Text`,
 				includeSpeechTextForm: true,
 				includeBottomSpace:true
