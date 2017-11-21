@@ -3,6 +3,10 @@ li {
   margin: 0 auto;
 }
 
+.liNoBold{
+	font-family: "Courier";
+}
+
 section li{
 	float:none;
 	display:block;
