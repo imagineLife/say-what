@@ -3,6 +3,6 @@ import './liNoBold.css';
 
 export default function LiNoBold(props) {
 	return (
-		<li>{props.word}</li>
+		<li className="liNoBold">{props.word}</li>
 	);
 }
