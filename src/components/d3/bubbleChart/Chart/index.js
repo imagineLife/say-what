@@ -47,8 +47,6 @@ class Chart extends Component {
   //begin the loop through data
     this.props.dataKey.forEach((obj) =>{
       d.value = Object.values(obj);
-      // let objKey = Object.keys(obj);
-      let objVal = Object.values(obj);
 
   //declare ROOT
       var root = d3.hierarchy({children: this.props.dataKey})
@@ -92,7 +90,7 @@ class Chart extends Component {
         .data(function(d) { 
           let curKey = Object.keys(d.data)[0];
           let ret = [{
-            length : parseInt(curKey),
+            length : parseInt(curKey, 10),
             amt : (d.data[curKey])
           }];
           return ret;
@@ -101,24 +99,23 @@ class Chart extends Component {
           .attrs({
             'x' : 0,
             'y' : function(d,i,letters) {
-              return 15 + (0 - letters.length / 2 - 0.5) * 10;
+              return 12 + (0 - letters.length / 2 - 0.5) * 10;
               // return 3;
             },
             'text-anchor' : 'middle',
-            'class' : 'bubbleText'
+            'class' : 'bubbleText title'
           })
           .text((val) => {
-            return val.length+'-Letter Words:'; 
+            return val.length+'-Letter Words'; 
           })
           .append('tspan')
           .attrs({
             'x' : 0,
             'y' : function(d,i,letters) {
-              console.log(d,i,letters);
-              return 25;
+              return 20;
             },
             'text-anchor' : 'middle',
-            'class' : 'bubbleText'
+            'class' : 'bubbleText val'
           })
           .text((val) => {
             return val.amt; 
