@@ -48,7 +48,7 @@ class Chart extends Component {
     this.props.dataKey.forEach((obj) =>{
       d.value = Object.values(obj);
       // let objKey = Object.keys(obj);
-      // let objVal = Object.values(obj);
+      let objVal = Object.values(obj);
 
   //declare ROOT
       var root = d3.hierarchy({children: this.props.dataKey})
@@ -85,24 +85,43 @@ class Chart extends Component {
         .append('use')
           .attr('xlink:href', function(d) { return '#' + Object.keys(d.data).toString() });
 
-      // console.log('mid-object:',obj);
   //declare the text
       bubble.append('text')
           .attr('clip-path', function(d) { return 'url(#clip-'+Object.keys(d.data)+')'; })
         .selectAll('tspan')
-        .data(function(d) { return Object.keys(d.data); })
+        .data(function(d) { 
+          let curKey = Object.keys(d.data)[0];
+          let ret = [{
+            length : parseInt(curKey),
+            amt : (d.data[curKey])
+          }];
+          return ret;
+        })
         .enter().append('tspan')
           .attrs({
             'x' : 0,
             'y' : function(d,i,letters) {
               return 15 + (0 - letters.length / 2 - 0.5) * 10;
+              // return 3;
             },
             'text-anchor' : 'middle',
             'class' : 'bubbleText'
           })
-          .text((val) => { 
-            console.log(val);
-            return val+'-Letter Words:'; 
+          .text((val) => {
+            return val.length+'-Letter Words:'; 
+          })
+          .append('tspan')
+          .attrs({
+            'x' : 0,
+            'y' : function(d,i,letters) {
+              console.log(d,i,letters);
+              return 25;
+            },
+            'text-anchor' : 'middle',
+            'class' : 'bubbleText'
+          })
+          .text((val) => {
+            return val.amt; 
           });
 
 
