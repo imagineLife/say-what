@@ -4,7 +4,7 @@ import './ResizingSection.css';
 import Title from './Title';
 import Para from './Para';
 import Li from './li';
-import LiNoBold from './liNoBold';
+import Ul from './ul';
 import BeginForm from './BeginForm';
 import SpeechTextForm from './SpeechTextForm';
 import HorizontalBarChart from './d3/horzBarChart/Chart';
@@ -14,15 +14,7 @@ import BottomSpacer from './BottomSpacer';
 
 export default function ResizingSection(props) {
 
-	let listOWords;
 	let singleStat;
-
-//Big-Words section
-	if(props.bigWords){
-		listOWords = props.bigWords.map((word, ind) =>
-			<LiNoBold key={ind} word={(word.charAt(0).toUpperCase() + word.slice(1))} />
-		);
-	}
 
 //QUICK-STATS SECTION
 	if(props.introInfo){
@@ -33,7 +25,6 @@ export default function ResizingSection(props) {
 			return null;
 		})
 	}
-
 
 //Unique-Words section
 	if(props.numberOfWords){
@@ -54,7 +45,7 @@ export default function ResizingSection(props) {
 		<section className="col-6">
 			<Title title={(props.Title || props.introInfo.Title)}/>
 	        {props.img ? props.img : null}
-	        {listOWords ? listOWords : null}
+	        {props.bigWords ? <Ul list={props.bigWords} /> : null}
 	       	{props.numberOfWords ? <GaugeChart sectionKey='numberOfWords' dataKey={props.numberOfWords}/> : null}
 	        {singleStat ? singleStat : ''}
 	        {props.includeBeginForm ? <BeginForm /> : null}
