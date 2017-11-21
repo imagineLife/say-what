@@ -17,25 +17,11 @@ export default function ResizingSection(props) {
 	let listOWords;
 	let singleStat;
 
-//WORD LIST SECTION
-	if(props.WordList || props.bigWords){
-
-		switch(props){
-			case (props.WordList) :
-				// build a looping word-list,
-				// outputting a single Li compoent for each word in the wordList
-				listOWords = props.WordList.map((word, ind) =>
-					<Li key={ind} word={word} />
-				);
-				break;
-
-			default:
-				listOWords = props.bigWords.map((word, ind) =>
-					<LiNoBold key={ind} word={(word.charAt(0).toUpperCase() + word.slice(1))} />
-				);
-				break;
-		}
-
+//Big-Words section
+	if(props.bigWords){
+		listOWords = props.bigWords.map((word, ind) =>
+			<LiNoBold key={ind} word={(word.charAt(0).toUpperCase() + word.slice(1))} />
+		);
 	}
 
 //QUICK-STATS SECTION
