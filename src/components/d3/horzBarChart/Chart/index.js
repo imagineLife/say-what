@@ -30,7 +30,7 @@ class Chart extends Component {
 
 
     const xScale = this.xScale
-      .padding(0.5)
+      .padding(0.2)
       .domain(this.props.dataKey.map(d => Object.keys(d)))
       .range([margins.left, svgDimensions.width - margins.right])
 
