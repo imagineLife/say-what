@@ -30,7 +30,7 @@ export default class Bars extends Component {
             fill={this.colorScale(Object.values(data))}
           />
           <text className="barLabel"
-            x={xScale(Object.keys(data)) + (.1 * xScale.bandwidth()) }
+            x={xScale(Object.keys(data)) + (.3 * xScale.bandwidth()) }
             y={yScale(Object.values(data)) * .99}
             fill='black'
           >
