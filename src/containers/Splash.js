@@ -1,6 +1,6 @@
 import React from 'react';
 import './Splash.css';
-import Header from '../components/Header';
+import HeaderSplash from '../components/HeaderSplash';
 import Section from '../components/Section';
 
 export default function App(props) {
@@ -35,7 +35,7 @@ export default function App(props) {
 
     return (
 		<main role="main">
-		  <Header title={pageHeader.Title} subTitle={pageHeader.subTitle} />
+		  <HeaderSplash title={pageHeader.Title} subTitle={pageHeader.subTitle} />
 	      
 	      {sections} 
 
