@@ -3,13 +3,13 @@
 }
 
 #gcSVGnumberOfWords{
-	border: 1px solid green;
+	/*border: 1px solid green;*/
 	height:200px;
 	width: 325px;
 }
 
 .actualGauge{
-	outline: 1px solid blue;
+	/*outline: 1px solid blue;*/
 	transform: translate(10px);
 }
 
