@@ -27,7 +27,7 @@ class Chart extends Component {
     var color = d3.scaleOrdinal(d3.schemeCategory20);
 
     var container = d3.select('.Responsive-wrapper');
-    console.log('Responsive-wrapper dimensions ->',container.style('height'),'x',container.style('width'));
+    // console.log('Responsive-wrapper dimensions ->',container.style('height'),'x',container.style('width'));
   
   //Declare & set props of SVG
     var svgElm = d3.select('.bubbleSVGWrapper'),
@@ -134,7 +134,7 @@ class Chart extends Component {
     d3.select(window).on('resize', resizeChart);
 
     function resizeChart() {
-      console.log('resizeChart!');
+      // console.log('resizeChart!');
   //Declare & set props of SVG
         bubbleSVGWidth = +container.style('width').replace('px','');
 
