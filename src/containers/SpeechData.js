@@ -57,7 +57,7 @@ export default function App(props) {
 				includeWordBubble: true
 			},
 			{
-				Title: `Top 12 Largest Words`,
+				Title: `Top 12 Longest Words`,
 				bigWords: [
 					"infrastructure",
 					"administration",
