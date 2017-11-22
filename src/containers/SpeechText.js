@@ -6,8 +6,8 @@ export default function SpeechText(props) {
 
 		const sectionsArray =[
 			{
-				title: `Speech Title`,
-				img: `[ Image of Orator behind Title ]`,
+				title: `Donald Trum 2017 Inaugural Address`,
+				// img: `[ Image of Orator behind Title ]`,
 				text: `Chief Justice Roberts, President Carter, President Clinton, President Bush, President Obama, fellow Americans, and people of the world, thank you. We the citizens of America are now joined in a great national effort to rebuild our country and restore its promise for all of our people. Together we will determine the course of America, and the world, for many, many years to come. We will face challenges. We will confront hardships, but we will get the job done.
 
 Every four years, we gather on these steps to carry out the orderly and peaceful transfer of power, and we are grateful to President Obama and First Lady Michelle Obama for their gracious aid throughout this transition. They have been magnificent. Thank you.
