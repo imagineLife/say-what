@@ -4,7 +4,6 @@ import Li from './li';
 import LiNoBold from './liNoBold';
 
 export default function Ul(props) {
-	console.log('UL props =>',props.list);
 	let listOWords = [];
 	let capd = '';
 	let capdWords = [];
