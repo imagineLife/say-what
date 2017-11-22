@@ -1,6 +1,6 @@
 import React from 'react';
 import './Login.css';
-import Header from '../components/Header';
+import HeaderSplash from '../components/HeaderSplash';
 import LoginSection from '../components/LoginSection';
 
 export default function Login(props) {
@@ -25,7 +25,7 @@ export default function Login(props) {
 
     return (
 		<main role="main">
-		  <Header title={pageHeader.title} subTitle={pageHeader.text}/>
+		  <HeaderSplash title={pageHeader.title} subTitle={pageHeader.text}/>
 	      
 	      {sections}
 

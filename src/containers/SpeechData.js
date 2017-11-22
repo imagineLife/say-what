@@ -43,7 +43,7 @@ export default function App(props) {
 					{'their': 11},
 					{'American': 11}
 				],
-				includeHorizontalChart:true
+				includeBarChart:true
 			},
 			{
 				Title: `Words By Size`,

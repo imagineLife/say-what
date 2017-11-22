@@ -7,7 +7,7 @@ import Li from './li';
 import Ul from './ul';
 import BeginForm from './BeginForm';
 import SpeechTextForm from './SpeechTextForm';
-import HorizontalBarChart from './d3/horzBarChart/Chart';
+import BarChart from './d3/BarChart/Chart';
 import BubbleChart from './d3/bubbleChart/Chart';
 import GaugeChart from './d3/gauge';
 import BottomSpacer from './BottomSpacer';
@@ -52,7 +52,7 @@ export default function ResizingSection(props) {
 	        {props.includeSpeechTextForm ? <SpeechTextForm /> : null}
 	        {props.text ? <Para text={props.text} /> : null }
 	        {props.wordsBySize ? <BubbleChart sectionKey='wordsBySize' dataKey={props.wordsBySize} /> : null}	        
-	        {props.includeHorizontalChart ? <HorizontalBarChart sectionKey='mostUsedWords' dataKey={props.mostUsedWords}/> : null}
+	        {props.includeBarChart ? <BarChart sectionKey='mostUsedWords' dataKey={props.mostUsedWords}/> : null}
 	        {props.includeBottomSpace ? <BottomSpacer /> : null}
 	    </section>
 	);
