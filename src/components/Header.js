@@ -8,7 +8,7 @@ export default function Header(props) {
 	};
 
     return (
-      <header style={sectionStyle} role="banner">
+      <header style={sectionStyle} role="banner" className="pageHeader">
         <h1 className="titleH1">{props.title}</h1>
         <h3 className="subTitle">{props.subTitle}</h3>
       </header>
