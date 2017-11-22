@@ -4,6 +4,7 @@ import './Header.css';
 export default function Header(props) {
 	let sectionStyle = {
 	  background: `url(${ props.imagePr }) no-repeat center center`,
+	  backgroundSize: `cover`
 	};
 
     return (
