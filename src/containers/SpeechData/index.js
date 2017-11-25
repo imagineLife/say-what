@@ -1,9 +1,9 @@
 import React from 'react';
-import '../float-grid.css';
+import '../../float-grid.css';
 import './SpeechData.css';
-import Header from '../components/Header';
-import ResizingSection from '../components/ResizingSection';
-import Image from '../imgs/trump.jpg';
+import Header from '../../components/Header';
+import ResizingSection from '../../components/ResizingSection';
+import Image from '../../imgs/trump.jpg';
 
 export default function App(props) {
 

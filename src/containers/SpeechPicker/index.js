@@ -1,7 +1,7 @@
 import React from 'react';
-import './Splash.css';
-import Header from '../components/Header';
-import Section from '../components/Section';
+import './SpeechPicker.css';
+import Header from '../../components/Header';
+import Section from '../../components/Section';
 
 export default function SpeechPicker(props) {
 

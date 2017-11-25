@@ -1,7 +1,7 @@
 import React from 'react';
 import './Login.css';
-import HeaderSplash from '../components/HeaderSplash';
-import LoginSection from '../components/LoginSection';
+import HeaderSplash from '../../components/HeaderSplash';
+import LoginSection from '../../components/LoginSection';
 
 export default function Login(props) {
 

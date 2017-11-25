@@ -1,7 +1,7 @@
 import React from 'react';
 import './Splash.css';
-import HeaderSplash from '../components/HeaderSplash';
-import Section from '../components/Section';
+import HeaderSplash from '../../components/HeaderSplash';
+import Section from '../../components/Section';
 
 export default function App(props) {
 
