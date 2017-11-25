@@ -48,11 +48,11 @@ export default function App(props) {
 			{
 				Title: `Words By Size`,
 				wordsBySize :[
-					{3 : 351},
-					{4: 242},
-					{2: 235},
-					{5: 187},
-					{7: 118}
+					{'size': 3, 'occurances' : 351},
+					{'size': 4, 'occurances' : 242},
+					{'size': 2, 'occurances' : 235},
+					{'size': 5, 'occurances' : 187},
+					{'size': 7, 'occurances' : 118}
 				],
 				includeWordBubble: true
 			},

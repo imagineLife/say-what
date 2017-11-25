@@ -46,12 +46,13 @@ class Chart extends Component {
 
   //begin the loop through data
     this.props.dataKey.forEach((obj) =>{
-      d.value = Object.values(obj);
+      // console.log(obj);
+      d.value = obj.occurances;
 
   //declare ROOT
       var root = d3.hierarchy({children: this.props.dataKey})
           .sum(function(d) {
-            return Object.values(d); 
+            return d.occurances; 
           });
 
   //declare the bubble element
@@ -78,20 +79,20 @@ class Chart extends Component {
   //declare a clipPath
       bubble.append('clipPath')
           .attr('id', function(d) { 
-            return Object.keys(d.data)
+            return d.size
           })
         .append('use')
-          .attr('xlink:href', function(d) { return '#' + Object.keys(d.data).toString() });
+          .attr('xlink:href', function(d) { return '#' + d.data.size.toString() });
 
   //declare the text
       bubble.append('text')
-          .attr('clip-path', function(d) { return 'url(#clip-'+Object.keys(d.data)+')'; })
+          .attr('clip-path', function(d) { return 'url(#clip-'+d.data.size+')'; })
         .selectAll('tspan')
         .data(function(d) { 
-          let curKey = Object.keys(d.data)[0];
+          let curKey = d.data.size;
           let ret = [{
             length : parseInt(curKey, 10),
-            amt : (d.data[curKey])
+            amt : (d.data.occurances)
           }];
           return ret;
         })
@@ -106,6 +107,7 @@ class Chart extends Component {
             'class' : 'bubbleText title'
           })
           .text((val) => {
+            console.log('val',val);
             return val.length+'-Letter Words'; 
           })
           .append('tspan')
@@ -124,7 +126,9 @@ class Chart extends Component {
 
   //declare the title, hidden from view, but exists in HTML
       bubble.append('title')
-          .text(function(d) { return Object.keys(d.data)[0] + '-letter Words : ' + format(d.value); });
+          .text(function(d) { 
+            console.log('d',d);
+            return d.data.size + '-letter Words : ' + format(d.value); });
     
     });
 
