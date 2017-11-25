@@ -1,10 +1,10 @@
 import React from 'react';
 import './Section.css';
-import Title from './Title';
-import Para from './Para';
-import UlLinks from './ulLinks';
-import BottomSpacer from './BottomSpacer';
-import BeginForm from './BeginForm';
+import Title from '../Title';
+import Para from '../Para';
+import UlLinks from '../ulLinks';
+import BottomSpacer from '../BottomSpacer';
+import BeginForm from '../BeginForm';
 
 export default function Section (props) {
 

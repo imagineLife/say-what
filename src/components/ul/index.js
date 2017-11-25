@@ -1,7 +1,7 @@
 import React from 'react';
 import './ul.css';
-import Li from './li';
-import LiNoBold from './liNoBold';
+import Li from '../li';
+import LiNoBold from '../liNoBold';
 
 export default function Ul(props) {
 	let listOWords = [];

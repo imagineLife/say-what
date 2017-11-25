@@ -1,6 +1,6 @@
 import React from 'react';
 import './ulLinks.css';
-import Li from './li';
+import Li from '../li';
 import {Link} from 'react-router-dom'
 
 export default function Ul(props) {

@@ -1,11 +1,11 @@
 import React from 'react';
-import './Section.css';
-import Title from './Title';
-import Para from './Para';
-import BeginForm from './BeginForm';
-import LoginForm from './LoginForm';
-import BottomSpacer from './BottomSpacer';
-import RegisterForm from './RegisterForm';
+import './LoginSection.css';
+import Title from '../Title';
+import Para from '../Para';
+import BeginForm from '../BeginForm';
+import LoginForm from '../LoginForm';
+import BottomSpacer from '../BottomSpacer';
+import RegisterForm from '../RegisterForm';
 
 export default class Section extends React.Component {
 	constructor(props){
