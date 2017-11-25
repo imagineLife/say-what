@@ -26,12 +26,12 @@ class Chart extends Component {
     }
 
 //max data-value
-    const maxValue = Math.max(...this.props.dataKey.map(d => Object.values(d)))
+    const maxValue = Math.max(...this.props.dataKey.map(d => d.occurances))
 
 
     const xScale = this.xScale
       .padding(0.2)
-      .domain(this.props.dataKey.map(d => Object.keys(d)))
+      .domain(this.props.dataKey.map(d => d.word))
       .range([margins.left, svgDimensions.width - margins.right])
 
     const yScale = this.yScale

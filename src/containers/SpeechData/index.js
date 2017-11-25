@@ -32,16 +32,16 @@ export default function App(props) {
 			{
 				Title: `Common Words`,
 				mostUsedWords: [
-					{'our' : 49},
-					{'we': 48},
-					{'will': 43},
-					{'America': 19},
-					{'you': 15},
-					{'all': 14},
-					{'but': 13},
-					{'are': 12},
-					{'their': 11},
-					{'American': 11}
+					{'word': 'our', 'occurances': 49},
+					{'word': 'we', 'occurances': 48},
+					{'word': 'will', 'occurances': 43},
+					{'word': 'America', 'occurances': 19},
+					{'word': 'you', 'occurances': 15},
+					{'word': 'all', 'occurances': 14},
+					{'word': 'but', 'occurances': 13},
+					{'word': 'are', 'occurances': 12},
+					{'word': 'their', 'occurances': 11},
+					{'word': 'American', 'occurances': 11}
 				],
 				includeBarChart:true
 			},

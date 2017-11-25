@@ -20,21 +20,21 @@ export default class Bars extends Component {
 
     const bars = (
       data.map(data =>
-        <g key={Object.keys(data)} className="barWrapper">
+        <g key={data.word} className="barWrapper">
           <rect
-            key={Object.keys(data)}
-            x={xScale(Object.keys(data))}
-            y={yScale(Object.values(data))}
-            height={height - margins.bottom - scales.yScale(Object.values(data))}
+            key={data.word}
+            x={xScale(data.word)}
+            y={yScale(data.occurances)}
+            height={height - margins.bottom - scales.yScale(data.occurances)}
             width={xScale.bandwidth()}
-            fill={this.colorScale(Object.values(data))}
+            fill={this.colorScale(data.occurances)}
           />
           <text className="barLabel"
-            x={xScale(Object.keys(data)) + (.3 * xScale.bandwidth()) }
-            y={yScale(Object.values(data)) * .99}
+            x={xScale(data.word) + (.3 * xScale.bandwidth()) }
+            y={yScale(data.occurances) * .99}
             fill='black'
           >
-            {(Object.values(data))}
+            {(data.occurances)}
           </text>
         </g>,
       )
