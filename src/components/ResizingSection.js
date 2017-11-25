@@ -5,7 +5,7 @@ import Title from './Title';
 import Para from './Para';
 import Li from './li';
 import Ul from './ul';
-import BeginForm from './BeginForm';
+import BeginForm from './Forms/Begin';
 import SpeechTextForm from './SpeechTextForm';
 import BarChart from './d3/BarChart/Chart';
 import BubbleChart from './d3/bubbleChart/Chart';

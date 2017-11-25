@@ -4,7 +4,7 @@ import Title from '../Title';
 import Para from '../Para';
 import UlLinks from '../ulLinks';
 import BottomSpacer from '../BottomSpacer';
-import BeginForm from '../BeginForm';
+import BeginForm from '../Forms/Begin';
 
 export default function Section (props) {
 
