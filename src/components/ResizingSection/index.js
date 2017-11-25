@@ -1,16 +1,16 @@
 import React from 'react';
-import '../float-grid.css';
+import '../../float-grid.css';
 import './ResizingSection.css';
-import Title from './Title';
-import Para from './Para';
-import Li from './li';
-import Ul from './ul';
-import BeginForm from './Forms/Begin';
-import SpeechTextForm from './SpeechTextForm';
-import BarChart from './d3/BarChart/Chart';
-import BubbleChart from './d3/bubbleChart/Chart';
-import GaugeChart from './d3/gauge';
-import BottomSpacer from './BottomSpacer';
+import Title from '../Title';
+import Para from '../Para';
+import Li from '../li';
+import Ul from '../ul';
+import BeginForm from '../Forms/Begin';
+import SpeechTextForm from '../Forms/SpeechText';
+import BarChart from '../d3/BarChart/Chart';
+import BubbleChart from '../d3/bubbleChart/Chart';
+import GaugeChart from '../d3/gauge';
+import BottomSpacer from '../BottomSpacer';
 
 export default function ResizingSection(props) {
 
