@@ -46,7 +46,6 @@ class Chart extends Component {
 
   //begin the loop through data
     this.props.dataKey.forEach((obj) =>{
-      // console.log(obj);
       d.value = obj.occurances;
 
   //declare ROOT
@@ -107,7 +106,6 @@ class Chart extends Component {
             'class' : 'bubbleText title'
           })
           .text((val) => {
-            console.log('val',val);
             return val.length+'-Letter Words'; 
           })
           .append('tspan')
@@ -127,7 +125,6 @@ class Chart extends Component {
   //declare the title, hidden from view, but exists in HTML
       bubble.append('title')
           .text(function(d) { 
-            console.log('d',d);
             return d.data.size + '-letter Words : ' + format(d.value); });
     
     });
