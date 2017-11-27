@@ -4,7 +4,7 @@ import Header from '../../components/Header';
 import Section from '../../components/Section';
 
 export default function SpeechPicker(props) {
-
+		console.log('speechPicker props ->',props);
 		const pageHeader = {
 			title: `Pick a Speech`,
 			text: ``
@@ -18,7 +18,7 @@ export default function SpeechPicker(props) {
 				speechesArray : [
 					{
 						Orator : 'Donald Trump',
-						title : 'Inauguration'
+						title : '2017 Inaugural Address'
 					}
 				]
 			}
