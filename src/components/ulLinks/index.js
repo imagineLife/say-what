@@ -7,7 +7,7 @@ export default function Ul(props) {
 	console.log(props.list);
 
 	const listOWords = props.list.map((list, ind) =>
-			<Link className="ulLink" key={ind} to={`/${list.title}/${ind}`}>
+			<Link className="ulLink" key={ind}to={`speechData/alpha`}>
 				<Li word={list.title} boldWord={list.Orator}/>
 			</Link>
 			
