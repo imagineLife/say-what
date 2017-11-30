@@ -3,10 +3,12 @@ import './SpeechText.css';
 import Section from '../../components/Section';
 
 export default function SpeechText(props) {
+		const dbTextString = "../speechText/t2017.txt";
 
 		const sectionsArray =[
 			{
 				title: `Donald Trum 2017 Inaugural Address`,
+				filePath: dbTextString,
 				// img: `[ Image of Orator behind Title ]`,
 				text: `Chief Justice Roberts, President Carter, President Clinton, President Bush, President Obama, fellow Americans, and people of the world, thank you. We the citizens of America are now joined in a great national effort to rebuild our country and restore its promise for all of our people. Together we will determine the course of America, and the world, for many, many years to come. We will face challenges. We will confront hardships, but we will get the job done.
 
