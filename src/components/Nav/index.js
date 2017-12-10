@@ -3,7 +3,11 @@ import './Nav.css';
 
 export default function Nav() {
 	// const navItems = ['Home', 'See Some Data', 'Sign Up'];
-
+	// const navLink = `<a href="/login"><img src="${process.env.PUBLIC_URL}/imgs/user.ico" className="icon" alt="Sign Up" /><span className="menuLabel">Sign Up</span></a>`;
+	//Help update this specific navLink text to change when signed-in-or-not :) 
+	const navLink = (true === true) 
+						? (<a href="/login"><img src="/imgs/user.ico" className="icon" alt="Sign Up" /><span className="menuLabel">Sign Up</span></a>)
+						: (<a href="/speechPicker"><img src="/imgs/user.ico" className="icon" alt="SomethingElse" /><span className="menuLabel">SomethingElse</span></a>)
     return (
 		<nav>
 			<ul>
@@ -20,10 +24,7 @@ export default function Nav() {
 					</a>
 				</li>
 				<li className='liWithIcon'>
-					<a href="/login">
-						<img src={process.env.PUBLIC_URL+'/imgs/user.ico'} className="icon" alt='Sign Up' />
-						<span className="menuLabel">Sign Up</span>
-					</a>
+					{navLink}
 				</li>
 			</ul>
 		</nav> 
