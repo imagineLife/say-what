@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 class SpeechText extends React.Component{
 	constructor(props){
 		super(props)
-		this.speechID = "5a1f441aee30112b4312157d";
+		this.speechID = "5a1ad99f978ca2681f42df12";
 		//get speechID from url EVENTUALLY
 	}
 
@@ -17,7 +17,7 @@ class SpeechText extends React.Component{
 	}
 
 	render(){
-
+		console.log('SpeechText container this.speechID',this.speechID);
 
 		const sectionsArray =[
 				{
