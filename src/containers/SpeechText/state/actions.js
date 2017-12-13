@@ -1,7 +1,15 @@
 export const GET_SPEECH_TEXT = 'GET_SPEECH_TEXT';
-export const xNgetSpeechText = (speechID, dispatch) => {
-	//This action pulls the URL string of the speech rom the DB
-//	fetch(`http://localhost:8080/api/speeches/text/${speechID}`)
-	fetch(`http://localhost:8080/api/speeches/default`)
-	.then((obj) => console.log('action object->',obj.json()));
+export const getSpeechTextAxn = (speechID, dispatch) => {
+	const defaultTextURL = `http://localhost:8080/api/speeches/default/text`;
+	let IDBasedURL = `http://localhost:8080/api/speeches/text/${speechID}`
+	
+	if(speechID === '5a1ad99f978ca2681f42df12'){	
+		fetch(defaultTextURL)
+		.then((obj) => { return obj.json() })
+		// .then((obj) => console.log('Get Speech Text action object->',obj.json()));		
+	}else{
+		fetch(IDBasedURL)
+		.then((obj) => { return obj.json() })
+		// .then((obj) => console.log('Get Speech Text action object->',obj.json()));
+	}
 };
