@@ -18,7 +18,7 @@ export default function Nav() {
 					</a>
 				</li>
 				<li className='liWithIcon'>
-					<a href='/speechData/alpha'>
+					<a href='/speechData/5a1ad99f978ca2681f42df12'>
 						<img src={process.env.PUBLIC_URL+'/imgs/search.ico'} className="icon" alt='View A Speech' />
 						<span className="menuLabel">View A Speech</span>
 					</a>
