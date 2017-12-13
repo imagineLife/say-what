@@ -9,7 +9,7 @@ export default function BeginForm(props) {
       <div>
         <label htmlFor="getStarted">See <em>a random speech </em></label>
         <button type='button' id="getStarted">
-          <Link to={`/speechData/alpha`}>
+          <Link to={`/speechData/5a1ad99f978ca2681f42df12`}>
               Here!
           </Link>
         </button>
