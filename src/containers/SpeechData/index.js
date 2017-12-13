@@ -101,8 +101,8 @@ export default class SpeechData extends React.Component {
 					Title: `Read the Speech Text`,
 					includeSpeechTextForm: true,
 					includeBottomSpace:true,
-					speechID: this.state.id
-
+					speechID: this.state.id,
+					title: this.state.title
 				}
 			];
 
