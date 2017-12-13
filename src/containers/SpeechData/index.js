@@ -5,95 +5,121 @@ import Header from '../../components/Header';
 import ResizingSection from '../../components/ResizingSection';
 import Image from '../../imgs/trump.jpg';
 
-export default function App(props) {
+export default class SpeechData extends React.Component {
+	constructor(props){
+		super(props)
+		this.state = {
+			loading: false
+		};
+	}
 
-		const pageHeader = {
-			Title: `Trump 2017 Inaugural Address`,
-			image: Image
-		}
+	componentWillMount(){
+		this.loadStats();
+	}
 
-		const sectionsArray =[
-			{
-				introInfo:{
-					Title : 'Quick Stats',
-					Orator : 'Donald J. Trump',
-					Date : 'Friday January 20, 2017',
-					Audience : 'Public, at the Capitol Building in Washington D.C.',
-					'Event Overview' : 'Donald Trump marks the commencement of a new four-year term as the President of the United States'
-				}
-			},
-			{
-				Title: 'How Many Words',
-				numberOfWords:{
-					wordCount : 1463,
-					uniqueWords : 538					
-				}
-			},
-			{
-				Title: `Common Words`,
-				mostUsedWords: [
-					{'word': 'our', 'occurances': 49},
-					{'word': 'we', 'occurances': 48},
-					{'word': 'will', 'occurances': 43},
-					{'word': 'America', 'occurances': 19},
-					{'word': 'you', 'occurances': 15},
-					{'word': 'all', 'occurances': 14},
-					{'word': 'but', 'occurances': 13},
-					{'word': 'are', 'occurances': 12},
-					{'word': 'their', 'occurances': 11},
-					{'word': 'American', 'occurances': 11}
-				],
-				includeBarChart:true
-			},
-			{
-				Title: `Words By Size`,
-				wordsBySize :[
-					{'size': 3, 'occurances' : 351},
-					{'size': 4, 'occurances' : 242},
-					{'size': 2, 'occurances' : 235},
-					{'size': 5, 'occurances' : 187},
-					{'size': 7, 'occurances' : 118}
-				],
-				includeWordBubble: true
-			},
-			{
-				Title: `12 Longest Words`,
-				bigWords: [
-					"infrastructure",
-					"administration",
-					"understanding",
-					"disagreements",
-					"establishment",
-					"redistributed",
-					"neighborhoods",
-					"transferring",
-					"technologies",
-					"importantly",
-					"immigration",
-					"magnificent"
-				]
-			},
-			{
-				Title: `Read the Speech Text`,
-				includeSpeechTextForm: true,
-				includeBottomSpace:true
+	loadStats(){
+        this.setState({
+            error: null,
+            loading: true
+        });
+        return fetch('http://localhost:8080/api/speeches/default')
+            .then(res => {
+                if (!res.ok) {
+                    return Promise.reject(res.statusText);
+                }
+                return res.json();
+            })
+            .then(stats =>
+                this.setState({
+					Audience:stats.Audience,
+					Date: stats.Date,
+					Orator:stats.Orator,
+					bigWords:stats.bigWords,
+					id:stats.id,
+					mostUsedWords:stats.mostUsedWords,
+					numberOfWords: stats.numberOfWords,
+					speechTextLink: stats.speechTextLink,
+					title: stats.title,
+					wordsBySize: stats.wordsBySize,
+					loading: false
+                })
+            )
+            .catch(err =>
+                this.setState({
+                    error: 'Could not load board',
+                    loading: false
+                })
+            );
 
+    }
+
+    render(){
+		
+		if (this.state.loading) {
+	    	return (
+				<main role="main">
+			      <p>Loading...</p>
+			    </main>
+	    	);
+        } else {
+
+	    	const pageHeader = {
+				Title: this.state.title,
+				image: Image
 			}
-		];
 
-	//set each resizing section to the 'section' variable,
-	// looping through each section in the above array		
-		const sections = sectionsArray.map((sec,ind) => {
-	      	return <ResizingSection key={ind} {...sec}/>;
-		})
+			const sectionsArray =[
+				{
+					introInfo:{
+						Title : 'Quick Stats',
+						Orator : this.state.Orator,
+						Date : this.state.Date.substring(0,10),
+						Audience : this.state.Audience,
+						'Event Overview' : 'Donald Trump marks the commencement of a new four-year term as the President of the United States'
+					}
+				},
+				{
+					Title: 'How Many Words',
+					numberOfWords:this.state.numberOfWords,
 
-    return (
-		<main role="main">
+				},
+				{
+					Title: `Common Words`,
+					mostUsedWords: this.state.mostUsedWords,
+					includeBarChart:true
+				},
+				{
+					Title: `Words By Size`,
+					wordsBySize :this.state.wordsBySize,
+					includeWordBubble: true
+				},
+				{
+					Title: `12 Longest Words`,
+					bigWords: this.state.bigWords
+				},
+				{
+					Title: `Read the Speech Text`,
+					includeSpeechTextForm: true,
+					includeBottomSpace:true,
+					speechID: this.state.id
 
-	      <Header title={pageHeader.Title} subTitle={pageHeader.text} imagePr={pageHeader.image}/>
-	      
-	      {sections}
+				}
+			];
 
-	    </main>
-    );
+		//converts the above sectionsArray into a 'sections' var for returning		
+			const sections = sectionsArray.map((sec,ind) => {
+		      	return <ResizingSection key={ind} {...sec}/>;
+			})
+
+	    	return (
+				<main role="main">
+
+			      <Header title={pageHeader.Title} subTitle={pageHeader.text} imagePr={pageHeader.image}/>
+			      
+			      {sections}
+
+			    </main>
+	    	);
+	    }
+    }
 }
