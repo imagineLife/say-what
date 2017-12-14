@@ -1,28 +1,34 @@
 import React from 'react';
 import './SpeechText.css';
 import Section from '../../components/Section';
-import {xNgetSpeechText} from './state/actions';
+import {getSpeechTextAxn} from './state/actions';
 import {connect} from 'react-redux';
 
 class SpeechText extends React.Component{
 	constructor(props){
 		super(props)
-		this.speechID = "5a1ad99f978ca2681f42df12";
-		//get speechID from url EVENTUALLY
+		this.state = {
+			loading : false,
+			speechID :"5a1ad99f978ca2681f42df12"
+			// speechText: 'Text coming in a moment'
+		};
+		//get speech ID from props
+		//... EVENTUALLY
 	}
 
 
 	componentDidMount(){
-		this.speech = this.props.runSpeechTextAction(this.speechID);
+		this.setState({
+			speechText : this.props.runSpeechTextAction(this.state.speechID)
+		});
 	}
 
 	render(){
-		console.log('SpeechText container this.speechID',this.speechID);
-
+		console.log('speechText state',this.state);
 		const sectionsArray =[
 				{
 					title: `Donald Trum 2017 Inaugural Address`,
-					filePath: this.speechID,
+					sectionSpeechID: this.state.speechID,
 					// img: `[ Image of Orator behind Title ]`,
 					text: `Chief Justice Roberts, President Carter, President Clinton, President Bush, President Obama, fellow Americans, and people of the world, thank you. We the citizens of America are now joined in a great national effort to rebuild our country and restore its promise for all of our people. Together we will determine the course of America, and the world, for many, many years to come. We will face challenges. We will confront hardships, but we will get the job done.
 
@@ -45,10 +51,13 @@ class SpeechText extends React.Component{
 		We stand at the birth of a new millennium, ready to unlock the mysteries of space, to free the Earth from the miseries of disease and to harness the industries and technologies of tomorrow. A new national pride will stir our souls, lift our sights and heal our divisions. It's time to remember that old wisdom our soldiers will never forget, that whether we are black, or brown, or white, we all bleed the same red blood of patriots. We all enjoy the same glorious freedoms, and we all salute the same, great American flag. And whether a child is born in the urban sprawl of Detroit or the windswept plains of Nebraska, they look up at the at the same night sky, they fill their heart with the same dreams and they are infused with the breath of life by the same almighty creator.
 
 		So to all Americans, in every city near and far, small and large, from mountain to mountain, from ocean to ocean, hear these words. You will never be ignored again. Your voice, your hopes, and your dreams will define our American destiny. And your courage and goodness and love, will forever guide us along the way. Together, we will make America strong again. We will make America wealthy again. We will make America proud again We will make America safe again, And yes, together, we will make we will make America great again. Thank you. God bless you. And god bless America. Thank you. God bless America.`,
+					ext: this.state.speechText,
 					includeBottomSpace:true
 
 				}
 			];
+
+			console.log('SpeechText container filePath ->', sectionsArray[0].sectionSpeechID);
 
 			const sections = sectionsArray.map((sec,ind) => {
 		      	return <Section key={ind} {...sec}/>;
@@ -67,7 +76,7 @@ class SpeechText extends React.Component{
 
 const mapDispatchToProps = (dispatch) =>
   ({
-    runSpeechTextAction: (speechId) => { xNgetSpeechText(speechId, dispatch); }
+    runSpeechTextAction: (speechId) => { getSpeechTextAxn(speechId, dispatch); }
   });
 
 const mapStateToProps = (state, ownProps) =>
