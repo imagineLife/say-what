@@ -5,8 +5,11 @@ export const getSpeechTextAxn = (speechID, dispatch) => {
 	
 	if(speechID === '5a1ad99f978ca2681f42df12'){	
 		fetch(defaultTextURL)
-		.then((obj) => { return obj.json() })
-		// .then((obj) => console.log('Get Speech Text action object->',obj.json()));		
+		.then((obj) => {
+			let jsonified = obj.json();
+			console.log('Get Speech Text action object->',jsonified);
+			return jsonified;
+		})		
 	}else{
 		fetch(IDBasedURL)
 		.then((obj) => { return obj.json() })
