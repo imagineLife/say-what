@@ -20,7 +20,7 @@ export default class Axis extends Component {
 
 //Grid-Lines
       .tickSize(-this.props.tickSize)
-      .tickPadding([12])
+      .tickPadding([6])
 
 //Even-Only number of y-axis marks
       .ticks([4])
