@@ -53,6 +53,18 @@ export default class SpeechData extends React.Component {
 
     }
 
+     parseDate(dateToParse){
+	    let usableDate = new Date(dateToParse);
+		
+		var monthNames = ["January", "February", "March", "April", "May", "June",
+		  "July", "August", "September", "October", "November", "December"];
+
+		let day = (usableDate.getDate() < 10 ? ('0'+usableDate.getDate()) : usableDate.getDate());
+		let month = ( (usableDate.getMonth() + 1) < 10 ? ( monthNames[usableDate.getMonth() + 1] ) : (monthNames[usableDate.getMonth() + 1]) );
+		let year = (usableDate.getFullYear() < 10 ? ('0'+usableDate.getFullYear()) : usableDate.getFullYear());
+		return month +' ' + day + ', ' + year;	
+     }
+    
     render(){
 		
 		if (this.state.loading) {
@@ -73,7 +85,8 @@ export default class SpeechData extends React.Component {
 					introInfo:{
 						Title : 'Quick Stats',
 						Orator : this.state.Orator,
-						Date : this.state.Date.substring(0,10),
+						// Date : this.state.Date.substring(0,10),
+						Date : this.parseDate(this.state.Date),
 						Audience : this.state.Audience,
 						'Event Overview' : 'Donald Trump marks the commencement of a new four-year term as the President of the United States'
 					}
