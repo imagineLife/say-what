@@ -10,7 +10,7 @@ export default function BeginForm(props) {
       <div>
         <label htmlFor="getStarted">See Trumps Inauguration Speech</label>
         <button type='button' id="getStarted">
-          <Link to={`/speechData/5a1ad99f978ca2681f42df12`}>
+          <Link to={`/speechData/${props.speechID}`}>
               Here!
           </Link>
         </button>
