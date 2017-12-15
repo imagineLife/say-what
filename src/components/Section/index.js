@@ -15,7 +15,7 @@ export default function Section (props) {
 	        <Para text={props.text}/>
 	        {props.speechPicker ? <UlLinks list={props.speechesArray} /> : null}
 	        {props.form ? props.form : null}
-	        {props.includeBeginForm ? <BeginForm /> : null}
+	        {props.includeBeginForm ? <BeginForm {...props}/> : null}
 	        {props.includeBottomSpace ? <BottomSpacer /> : null}
 	    </section>
 	)
