@@ -5,9 +5,9 @@ import HeaderSplash from '../../components/HeaderSplash';
 import Section from '../../components/Section';
 
 class Splash extends Component {
-		constructor(props){
-			super(props);
-		}
+		// constructor(props){
+		// 	super(props);
+		// }
 
 		render(){
 			console.log('Splash props ->',this.props);
