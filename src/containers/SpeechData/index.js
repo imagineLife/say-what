@@ -4,8 +4,9 @@ import './SpeechData.css';
 import Header from '../../components/Header';
 import ResizingSection from '../../components/ResizingSection';
 import Image from '../../imgs/trump.jpg';
+import {connect} from 'react-redux';
 
-export default class SpeechData extends React.Component {
+class SpeechData extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
@@ -13,7 +14,7 @@ export default class SpeechData extends React.Component {
 		};
 	}
 
-	componentWillMount(){
+	componentDidMount(){
 		this.loadStats();
 	}
 
@@ -22,7 +23,15 @@ export default class SpeechData extends React.Component {
             error: null,
             loading: true
         });
-        return fetch('http://localhost:8080/api/speeches/default')
+
+    //	Set speechID, for fetch url, to either default or speechID
+        let propsSpeechID = this.props.speechID;
+		let tempSpeechID = '';
+        propsSpeechID = '5a1ad99f978ca2681f42df12' ? tempSpeechID = 'default' : tempSpeechID = this.props.speechID;
+        
+    //	send & return speechstats
+    //	set speechstats to containers state
+        return fetch(`http://localhost:8080/api/speeches/${tempSpeechID}`)
             .then(res => {
                 if (!res.ok) {
                     return Promise.reject(res.statusText);
@@ -67,12 +76,15 @@ export default class SpeechData extends React.Component {
     
     render(){
 		
+    //WHEN loading...
 		if (this.state.loading) {
 	    	return (
 				<main role="main">
-			      <p>Loading...</p>
+			      <p>Processing Speech Stats...</p>
 			    </main>
 	    	);
+        
+	//WHEN not loading
         } else {
 
 	    	const pageHeader = {
@@ -85,7 +97,6 @@ export default class SpeechData extends React.Component {
 					introInfo:{
 						Title : 'Quick Stats',
 						Orator : this.state.Orator,
-						// Date : this.state.Date.substring(0,10),
 						Date : this.parseDate(this.state.Date),
 						Audience : this.state.Audience,
 						'Event Overview' : 'Donald Trump marks the commencement of a new four-year term as the President of the United States'
@@ -136,3 +147,9 @@ export default class SpeechData extends React.Component {
 	    }
     }
 }
+
+const mapStateToProps = (state) => ({ 
+	speechID: state._root.entries["0"][1]
+})
+
+export default connect(mapStateToProps)(SpeechData);
