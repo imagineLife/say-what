@@ -41,7 +41,8 @@ class SpeechText extends React.Component{
             })
             .then(resText =>
                 this.setState({
-					speechText: resText,
+					speechText: resText.text,
+					speechTitle: resText.title,
 					loading: false
                 })
             )
@@ -57,7 +58,6 @@ class SpeechText extends React.Component{
 	}
 
 	render(){
-
     //WHEN loading...
 		if (this.state.loading) {
 	    	return (
@@ -71,7 +71,7 @@ class SpeechText extends React.Component{
 
         	const sectionsArray =[
 				{
-					title: `Donald Trum 2017 Inaugural Address`,
+					title: this.state.speechTitle,
 					sectionSpeechID: this.state.speechID,
 					// img: `[ Image of Orator behind Title ]`,
 					text: this.state.speechText,
