@@ -24,10 +24,9 @@ class SpeechData extends React.Component {
             loading: true
         });
 
-    //	Set speechID, for fetch url, to either default or speechID
-        let propsSpeechID = this.props.speechID;
+        // set the API url speechID
 		let tempSpeechID = '';
-        propsSpeechID = '5a1ad99f978ca2681f42df12' ? tempSpeechID = 'default' : tempSpeechID = this.props.speechID;
+        this.props.speechID = '5a1ad99f978ca2681f42df12' ? tempSpeechID = 'default' : tempSpeechID = this.props.speechID;
         
     //	send & return speechstats
     //	set speechstats to containers state
