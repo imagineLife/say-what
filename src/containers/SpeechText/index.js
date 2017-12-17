@@ -32,6 +32,16 @@ class SpeechText extends React.Component{
     	
     //	send & return speechText
     //	set speechText to container's state
+    /*
+    	actions are useful when updating GLOBAL state,
+    	not 'necessary' when dealing with THIS state
+    	ex. when user can manipulate & update info
+    		I.E -> a user can HIGHLIGHT favorite parts, sharing
+    			ACTION for highlighting,
+    				saving the highlight
+    				return something to the state that shows the highlight
+    			
+    */
         return fetch(`http://localhost:8080/api/speeches/text/${tempSpeechID}`)
             .then(res => {
                 if (!res.ok) {
