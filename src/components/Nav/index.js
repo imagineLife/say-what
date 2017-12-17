@@ -3,9 +3,12 @@ import './Nav.css';
 
 export default function Nav() {
 	//Help update this specific navLink text to change when signed-in-or-not :) 
-	const navLink = (true === true) 
-						? (<a href="/login"><img src="/imgs/user.ico" className="icon" alt="Sign Up" /><span className="menuLabel">Sign Up</span></a>)
-						: (<a href="/speechPicker"><img src="/imgs/user.ico" className="icon" alt="SomethingElse" /><span className="menuLabel">SomethingElse</span></a>)
+	
+	// const navLink = (true === true) 
+	const navLink = 
+						// ? (<a href="/login"><img src="/imgs/user.ico" className="icon" alt="Sign Up" /><span className="menuLabel">Sign Up</span></a>)
+						(<a href="/login"><img src="/imgs/user.ico" className="icon" alt="Sign Up" /><span className="menuLabel">Sign Up</span></a>)
+						// : (<a href="/speechPicker"><img src="/imgs/user.ico" className="icon" alt="SomethingElse" /><span className="menuLabel">SomethingElse</span></a>)
     return (
 		<nav>
 			<ul>
