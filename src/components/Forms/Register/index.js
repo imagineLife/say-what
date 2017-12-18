@@ -8,8 +8,8 @@ export default class Register extends React.Component {
     this.state = {
       firstName: '',
       lastName: '',
-      userName: '',
-      passWord: ''
+      username: '',
+      password: ''
     }
   }
 
