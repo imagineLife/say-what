@@ -1,7 +1,7 @@
 import React from 'react';
 import './LoginForm.css';
 
-export default function BeginForm(props) {
+export default function LoginForm(props) {
   return (
   	<form className='login-form'>
       <fieldset>
