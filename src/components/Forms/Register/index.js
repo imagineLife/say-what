@@ -103,7 +103,7 @@ export default class Register extends React.Component {
             required/>
             <input 
               id="password" 
-              type="text" 
+              type="password" 
               name="password" 
               placeholder="password"
               value={this.state.password}
