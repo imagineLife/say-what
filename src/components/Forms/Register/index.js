@@ -2,6 +2,7 @@ import React from 'react';
 import './RegisterForm.css';
 
 export default class Register extends React.Component {
+  
   constructor(props){
     super(props);
     this.state = {
@@ -12,7 +13,7 @@ export default class Register extends React.Component {
     }
   }
 
-  submitFn(ev, values){
+  getResFromAPI(ev, values){
     ev.preventDefault();
     console.log('state->',this.state);
   }
@@ -45,7 +46,7 @@ export default class Register extends React.Component {
 
   render(){
     return (
-      <form className='register-form' onSubmit={e => this.submitFn(e)}>
+      <form className='register-form' onSubmit={e => this.getResFromAPI(e)}>
         <fieldset>
           <legend>Register</legend>
             <input 
