@@ -13,9 +13,37 @@ export default class Register extends React.Component {
     }
   }
 
-  getResFromAPI(ev, values){
+  getResFromAPI(ev){
     ev.preventDefault();
-    console.log('state->',this.state);
+    let tempState = this.state;
+    // console.log(tempState);
+    return (
+        fetch(`http://localhost:8080/api/users/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(tempState)
+        })
+            // Reject any requests which don't return a 200 status, creating
+            // errors which follow a consistent format
+            .then(res => res.json())
+            // .then(({authToken}) => storeAuthInfo(authToken, dispatch))
+            .catch(err => {
+                const {code} = err;
+                if (code === 401) {
+                  console.log(code);
+                    // Could not authenticate, so return a SubmissionError for Redux Form
+                    // return Promise.reject(
+                    //     new SubmissionError({
+                    //         _error: 'Incorrect username or password'
+                    //     })
+                    // );
+                }
+            })
+    );
+
+
   }
 
   setText(text, id) {
@@ -30,14 +58,14 @@ export default class Register extends React.Component {
           lastName: text
         })
         break;
-      case 'userName' :
+      case 'username' :
         this.setState({
-          userName: text
+          username: text
         })
         break; 
       default:
         this.setState({
-          passWord: text
+          password: text
         })
         break;
     }
@@ -66,19 +94,19 @@ export default class Register extends React.Component {
               onChange={e => this.setText(e.target.value, e.target.id)}
             required/>
             <input 
-              id="userName" 
+              id="username" 
               type="text" 
-              name="userName" 
-              placeholder="userName"
-              value={this.state.userName}
+              name="username" 
+              placeholder="username"
+              value={this.state.username}
               onChange={e => this.setText(e.target.value, e.target.id)}
             required/>
             <input 
-              id="passWord" 
+              id="password" 
               type="text" 
-              name="passWord" 
-              placeholder="passWord"
-              value={this.state.passWord}
+              name="password" 
+              placeholder="password"
+              value={this.state.password}
               onChange={e => this.setText(e.target.value, e.target.id)}
             required/>
             </fieldset>
