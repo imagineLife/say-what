@@ -16,8 +16,10 @@ export default class Register extends React.Component {
   getResFromAPI(ev){
     ev.preventDefault();
     let tempState = this.state;
-    // console.log(tempState);
+    let encodedStr = btoa(`${this.state.username}:${this.state.password}`);
+
     return (
+  //Register
         fetch(`http://localhost:8080/api/users/register`, {
             method: 'POST',
             headers: {
@@ -25,22 +27,27 @@ export default class Register extends React.Component {
             },
             body: JSON.stringify(tempState)
         })
-            // Reject any requests which don't return a 200 status, creating
-            // errors which follow a consistent format
-            .then(res => res.json())
-            // .then(({authToken}) => storeAuthInfo(authToken, dispatch))
-            .catch(err => {
-                const {code} = err;
-                if (code === 401) {
-                  console.log(code);
-                    // Could not authenticate, so return a SubmissionError for Redux Form
-                    // return Promise.reject(
-                    //     new SubmissionError({
-                    //         _error: 'Incorrect username or password'
-                    //     })
-                    // );
-                }
-            })
+        .then(() => {
+  //Login after register 
+          fetch(`http://localhost:8080/api/auth/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic ' + encodedStr
+            },
+            body: JSON.stringify({
+              username: this.state.username,
+              password: this.state.password
+            })            
+          })
+        })
+        .then(res => res.json())
+        .catch(err => {
+            const {code} = err;
+            if (code === 401) {
+              console.log(code);
+            }
+        })
     );
 
 
