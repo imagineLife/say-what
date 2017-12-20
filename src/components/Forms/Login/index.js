@@ -1,7 +1,9 @@
 import React from 'react';
 import './LoginForm.css';
+import {connect} from 'react-redux';
+import {login} from './state/actions';
 
-export default class LoginForm extends React.Component {
+class LoginForm extends React.Component {
   constructor(props){
     super(props);    
     this.state = {
@@ -12,26 +14,7 @@ export default class LoginForm extends React.Component {
 
   getResFromAPI(ev){
     ev.preventDefault();
-    let tempState = this.state;
-    let encodedStr = btoa(`${this.state.username}:${this.state.password}`);
-    // console.log(tempState);
-    return (
-        fetch(`http://localhost:8080/api/auth/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + encodedStr
-            },
-            body: JSON.stringify(tempState)
-        })
-        .then(res => res.json())
-        .catch(err => {
-            const {code} = err;
-            if (code === 401) {
-              console.log(code);
-            }
-        })
-    );    
+    this.props.componentLogin(this.state); 
   }
 
   setText(text, id) {
@@ -83,3 +66,15 @@ export default class LoginForm extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {};
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    componentLogin: (obj) => login(obj,dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
