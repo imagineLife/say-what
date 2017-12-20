@@ -3,9 +3,7 @@ import './LoginForm.css';
 
 export default class LoginForm extends React.Component {
   constructor(props){
-    console.log(props);
-    super(props);
-    
+    super(props);    
     this.state = {
       username: '',
       password: ''
@@ -15,32 +13,42 @@ export default class LoginForm extends React.Component {
   getResFromAPI(ev){
     ev.preventDefault();
     let tempState = this.state;
+    let encodedStr = btoa(`${this.state.username}:${this.state.password}`);
     // console.log(tempState);
     return (
-        fetch(`http://localhost:8080/api/users/login`, {
+        fetch(`http://localhost:8080/api/auth/login`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic ' + encodedStr
             },
             body: JSON.stringify(tempState)
         })
-            // Reject any requests which don't return a 200 status, creating
-            // errors which follow a consistent format
-            .then(res => res.json())
-            // .then(({authToken}) => storeAuthInfo(authToken, dispatch))
-            .catch(err => {
-                const {code} = err;
-                if (code === 401) {
-                  console.log(code);
-                    // Could not authenticate, so return a SubmissionError for Redux Form
-                    // return Promise.reject(
-                    //     new SubmissionError({
-                    //         _error: 'Incorrect username or password'
-                    //     })
-                    // );
-                }
-            })
+        .then(res => res.json())
+        .catch(err => {
+            const {code} = err;
+            if (code === 401) {
+              console.log(code);
+            }
+        })
     );    
+  }
+
+  setText(text, id) {
+    switch(id) {
+      case 'username' :
+        this.setState({
+          username: text
+        })
+        break; 
+      default:
+        this.setState({
+          password: text
+        })
+        break;
+    }
+    console.log(this.state);
+
   }
 
   render(){
@@ -48,10 +56,27 @@ export default class LoginForm extends React.Component {
     	<form className='login-form' onSubmit={e => this.getResFromAPI(e)}>
         <fieldset>
           <legend>Log in</legend>
-            <input id="userame" type="text" name="username" placeholder="Username" required/>
-            <input id="passeord" type="text" name="password"  placeholder="Password" required/>
+            <input 
+            id="username" 
+            type="text" 
+            name="username" 
+            placeholder="Username" 
+            onChange={e => this.setText(e.target.value, e.target.id)}
+            required/>
+            <input 
+            id="password" 
+            type="text" 
+            name="password" 
+            onChange={e => this.setText(e.target.value, e.target.id)}
+            placeholder="Password" 
+            required/>
         </fieldset>
-            <input type="submit" name="submit" value="Log in" />
+            <input 
+            type="submit" 
+            name="submit" 
+            value="Log in"
+            onChange={e => this.setText(e.target.value, e.target.id)}
+            required/>
             <label htmlFor="register">Don't have an account?</label>
             <input type="button" name="register" id="register" value="Sign up" onClick={this.props.toggleForm}/>
       </form>
