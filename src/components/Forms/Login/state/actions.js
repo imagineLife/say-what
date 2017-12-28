@@ -19,8 +19,6 @@ export const loginAction = (obj, dispatch) => {
     })
 }
 
-//does NOT need export, 
-//as only using in this file
 const saveTokenAction = (obj, dispatch) => {
     let dispatchObject = {
         type: LOGIN,
