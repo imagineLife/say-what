@@ -38,7 +38,7 @@ class LoginForm extends React.Component {
       if there's an authToken,
       redirect user to the speechPicker page
     */
-    if(this.props._root.entries["0"][1].authToken){
+    if(this.props._root.entries["0"][1].authToken.length > 1){
       return (
         <Redirect to="/speechPicker" />
       );
