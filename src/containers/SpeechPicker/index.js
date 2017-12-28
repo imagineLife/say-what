@@ -2,9 +2,51 @@ import React from 'react';
 import './SpeechPicker.css';
 import Header from '../../components/Header';
 import Section from '../../components/Section';
+import {connect} from 'react-redux';
 
-export default function SpeechPicker(props) {
-		console.log('speechPicker props ->',props);
+class SpeechPicker extends React.Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			error: null,
+			loading: false
+		};
+	}
+
+
+	componentDidMount(){
+		this.loadSpeeches();
+	}
+	
+	loadSpeeches(){
+		this.setState({
+			error: null,
+			loading:true
+		})
+
+		return fetch(`http://localhost:8080/api/speeches/speechList`)
+            .then(res => {
+                if (!res.ok) {
+                    return Promise.reject(res.statusText);
+                }
+                return res.json();
+            })
+            .then(resText =>
+                this.setState({
+					speechText: resText.text,
+					speechTitle: resText.title,
+					loading: false
+                })
+            )
+            .catch(err =>
+                this.setState({
+                    error: 'Could not load SpeechText',
+                    loading: false
+                })
+            );
+	}
+
+	render(){	
 		const pageHeader = {
 			title: `Pick a Speech`,
 			text: ``
@@ -31,12 +73,20 @@ export default function SpeechPicker(props) {
 
 
 
-    return (
-		<main role="main">
-		  <Header title={pageHeader.title}/>
-	      
-	      {sections}
+	    return (
+			<main role="main">
+			  <Header title={pageHeader.title}/>
+		      
+		      {sections}
 
-	    </main>
-    );
+		    </main>
+	    );
+	}
 }
+
+const mapStateToProps = (state) =>
+({ 
+	speechID: state._root.entries["0"][1]
+})
+
+export default connect(mapStateToProps)(SpeechPicker);

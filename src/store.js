@@ -1,7 +1,6 @@
 import {createStore, applyMiddleware, compose} from 'redux';
-import reducer from './reducer';
 import { fromJS } from 'immutable';
-
+import createReducer from './reducer';
 
 export default function myConfigureStore(initialState){
 
@@ -19,6 +18,6 @@ export default function myConfigureStore(initialState){
 	    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
 	      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
 
-	const store = createStore(reducer, fromJS(initialState), composeEnhancers(...enhancers));
+	const store = createStore(createReducer(), fromJS(initialState), composeEnhancers(...enhancers));
 	return store;
 }

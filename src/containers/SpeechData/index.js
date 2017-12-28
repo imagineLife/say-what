@@ -10,7 +10,8 @@ class SpeechData extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			loading: false
+			loading: false,
+			speechID : '5a1ad99f978ca2681f42df12'
 		};
 	}
 
@@ -26,8 +27,17 @@ class SpeechData extends React.Component {
 
         // set the API url speechID
 		let tempSpeechID = '';
-        this.props.speechID === '5a1ad99f978ca2681f42df12' ? tempSpeechID = 'default' : tempSpeechID = this.props.speechID;
+        this.state.speechID === '5a1ad99f978ca2681f42df12' ? tempSpeechID = 'default' : tempSpeechID = this.props.speechID;
         
+    /*
+
+		create a header object?!
+		conditionally add the header?
+		when requesting other speeches, authentication header needs to be present
+		with authToken
+
+    */
+
     //	send & return speechstats
     //	set speechstats to containers state
         return fetch(`http://localhost:8080/api/speeches/${tempSpeechID}`)

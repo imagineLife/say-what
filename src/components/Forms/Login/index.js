@@ -1,7 +1,7 @@
 import React from 'react';
 import './LoginForm.css';
 import {connect} from 'react-redux';
-import {login} from './state/actions';
+import {loginAction} from './state/actions';
 
 class LoginForm extends React.Component {
   constructor(props){
@@ -14,7 +14,7 @@ class LoginForm extends React.Component {
 
   getResFromAPI(ev){
     ev.preventDefault();
-    this.props.componentLogin(this.state); 
+    this.props.myRunLoginKey(this.state); 
   }
 
   setText(text, id) {
@@ -30,8 +30,6 @@ class LoginForm extends React.Component {
         })
         break;
     }
-    console.log(this.state);
-
   }
 
   render(){
@@ -73,7 +71,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    componentLogin: (obj) => login(obj,dispatch)
+    myRunLoginKey: (obj) => loginAction(obj,dispatch)
   };
 }
 

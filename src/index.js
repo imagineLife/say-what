@@ -5,9 +5,7 @@ import {Provider} from 'react-redux';
 import myConfigureStore from './store';
 import './index.css';
 
-const initialState = {
-	speechID : '5a1ad99f978ca2681f42df12'
-};
+const initialState = {};
 
 const store = myConfigureStore(initialState);
 
