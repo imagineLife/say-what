@@ -24,20 +24,20 @@ class SpeechPicker extends React.Component {
 			loading:true
 		})
 
-		return fetch(`http://localhost:8080/api/speeches/speechList`)
+		// console.log('loadSpeeches mappedAuthToken->',this.props.mappedAuthToken.authToken);
+		return fetch(`http://localhost:8080/api/speeches/speechList`, {
+		        method: 'GET',
+		        headers: {
+		            'Content-Type': 'application/json',
+		            'Authorization': 'Bearer ' + this.props.mappedAuthToken.authToken
+		        }
+		    })
             .then(res => {
                 if (!res.ok) {
                     return Promise.reject(res.statusText);
                 }
                 return res.json();
             })
-            .then(resText =>
-                this.setState({
-					speechText: resText.text,
-					speechTitle: resText.title,
-					loading: false
-                })
-            )
             .catch(err =>
                 this.setState({
                     error: 'Could not load SpeechText',
@@ -86,7 +86,7 @@ class SpeechPicker extends React.Component {
 
 const mapStateToProps = (state) =>
 ({ 
-	speechID: state._root.entries["0"][1]
+	mappedAuthToken: state._root.entries["0"][1]
 })
 
 export default connect(mapStateToProps)(SpeechPicker);
