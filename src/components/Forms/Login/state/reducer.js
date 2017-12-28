@@ -1,8 +1,6 @@
 import {fromJS} from 'immutable';
 import {LOGIN} from './constants';
-const initialState = fromJS({
-	authToken: 'xyz123'
-});
+const initialState = fromJS({});
 
 const setAuthToken = (state, action) => {
 	console.log('in setAuthToken reducer, state is...',state);
@@ -16,7 +14,7 @@ const setAuthToken = (state, action) => {
 				data that is going into the state would go...
 					IE doing math on return content etc.
 			*/
-			console.log('inside LOGIN setAuthToken switch Login reducer');
+			console.log('inside LOGIN setAuthToken switch Login reducer, authToken is',action.payload.authToken);
 			return action.payload.authToken;
 		
 		default: 
