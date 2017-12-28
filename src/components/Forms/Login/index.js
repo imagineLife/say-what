@@ -2,6 +2,7 @@ import React from 'react';
 import './LoginForm.css';
 import {connect} from 'react-redux';
 import {loginAction} from './state/actions';
+import {Redirect} from 'react-router-dom';
 
 class LoginForm extends React.Component {
   constructor(props){
@@ -14,7 +15,7 @@ class LoginForm extends React.Component {
 
   getResFromAPI(ev){
     ev.preventDefault();
-    this.props.myRunLoginKey(this.state); 
+    this.props.myRunLoginKey(this.state);
   }
 
   setText(text, id) {
@@ -33,30 +34,39 @@ class LoginForm extends React.Component {
   }
 
   render(){
+    /*
+      if there's an authToken,
+      redirect user to the speechPicker page
+    */
+    if(this.props._root.entries["0"][1].authToken){
+      return (
+        <Redirect to="/speechPicker" />
+      );
+    }
     return (
     	<form className='login-form' onSubmit={e => this.getResFromAPI(e)}>
         <fieldset>
           <legend>Log in</legend>
             <input 
-            id="username" 
-            type="text" 
-            name="username" 
-            placeholder="Username" 
-            onChange={e => this.setText(e.target.value, e.target.id)}
+              id="username" 
+              type="text" 
+              name="username" 
+              placeholder="Username" 
+              onChange={e => this.setText(e.target.value, e.target.id)}
             required/>
             <input 
-            id="password" 
-            type="text" 
-            name="password" 
-            onChange={e => this.setText(e.target.value, e.target.id)}
-            placeholder="Password" 
+              id="password" 
+              type="text" 
+              name="password" 
+              onChange={e => this.setText(e.target.value, e.target.id)}
+              placeholder="Password" 
             required/>
         </fieldset>
             <input 
-            type="submit" 
-            name="submit" 
-            value="Log in"
-            onChange={e => this.setText(e.target.value, e.target.id)}
+              type="submit" 
+              name="submit" 
+              value="Log in"
+              onChange={e => this.setText(e.target.value, e.target.id)}
             required/>
             <label htmlFor="register">Don't have an account?</label>
             <input type="button" name="register" id="register" value="Sign up" onClick={this.props.toggleForm}/>
@@ -66,7 +76,7 @@ class LoginForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {...state};
 }
 
 const mapDispatchToProps = (dispatch) => {
