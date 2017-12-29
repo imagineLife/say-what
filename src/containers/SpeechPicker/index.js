@@ -8,6 +8,7 @@ class SpeechPicker extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
+			speeches: [],
 			error: null,
 			loading: false
 		};
@@ -38,6 +39,12 @@ class SpeechPicker extends React.Component {
                 }
                 return res.json();
             })
+            .then(resSpeeches => {
+            	this.setState({ 
+            		speeches: resSpeeches,
+            		loading: false
+            	})
+            })
             .catch(err =>
                 this.setState({
                     error: 'Could not load SpeechText',
@@ -47,40 +54,66 @@ class SpeechPicker extends React.Component {
 	}
 
 	render(){	
-		const pageHeader = {
-			title: `Pick a Speech`,
-			text: ``
-		}
 
-		const sectionsArray =[
-			{
-				title: `Choose from a list of options`,
-				text: ``,
-				speechPicker: true,
-				speechesArray : [
-					{
-						Orator : 'Donald Trump',
-						title : '2017 Inaugural Address'
-					}
-				]
+	//WHEN loading...
+		if (this.state.loading) {
+	    	return (
+				<main role="main">
+			      <p>Processing Speech Stats...</p>
+			    </main>
+	    	);
+        
+	//WHEN not loading
+        } else {
+	
+			console.log('render this.state->',this.state);
+			const pageHeader = {
+				title: `Pick a Speech`,
+				text: ``
 			}
-		];
 
-		const sections = sectionsArray.map((sec,ind) => {
-	      	return <Section key={ind} {...sec}/>;
-		})
+			const mySpeechesArray = [
+				this.state.speeches.map((speech) => {
+					return {
+						speechID : speech._id,
+						speechTitle: speech.title
+					}
+				})
+			]
+
+			console.log('speechesArray->',mySpeechesArray);
+
+			const sectionsArray =[
+				{
+					title: `Choose from a list of options`,
+					text: ``,
+					speechPicker: true,
+					speechesArray : [
+						{
+							Orator : 'Donald Trump',
+							title : mySpeechesArray[0].speechTitle
+							// title: this.state.speeches[0]
+						}
+					]
+				}
+			];
+
+			const sections = sectionsArray.map((sec,ind) => {
+		      	return <Section key={ind} {...sec}/>;
+			})
 
 
 
 
-	    return (
-			<main role="main">
-			  <Header title={pageHeader.title}/>
-		      
-		      {sections}
+		    return (
+				<main role="main">
+				  <Header title={pageHeader.title}/>
+			      
+			      {sections}
 
-		    </main>
-	    );
+			    </main>
+		    );
+		}
 	}
 }
 
