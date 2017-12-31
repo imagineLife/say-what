@@ -3,8 +3,6 @@ import './BeginForm.css';
 import {Link} from 'react-router-dom';
 
 export default function BeginForm(props) {
-  console.log('beginFormProps ->',props);
-
   return (
 		<form className='begin-form'>
       <div>
