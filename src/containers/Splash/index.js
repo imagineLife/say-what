@@ -10,8 +10,6 @@ class Splash extends Component {
 		// }
 
 		render(){
-			console.log('Splash props ->',this.props);
-
 			const pageHeader = {
 				Title: `Say What?!`,
 				subTitle: `See data within speeches`
