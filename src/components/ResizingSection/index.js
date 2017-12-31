@@ -48,7 +48,7 @@ export default function ResizingSection(props) {
 	       	{props.numberOfWords ? <GaugeChart sectionKey='numberOfWords' dataKey={props.numberOfWords}/> : null}
 	        {singleStat ? singleStat : ''}
 	        {props.includeBeginForm ? <BeginForm /> : null}
-	        {props.includeSpeechTextForm ? <SpeechTextForm speechID={props.speechID}/> : null}
+	        {props.includeSpeechTextForm ? <SpeechTextForm speechID={props.speechID} speechTitle = {props.speechTitle}/> : null}
 	        {props.text ? <Para text={props.text} /> : null }
 	        {props.wordsBySize ? <BubbleChart sectionKey='wordsBySize' dataKey={props.wordsBySize} /> : null}	        
 	        {props.includeBarChart ? <BarChart sectionKey='mostUsedWords' dataKey={props.mostUsedWords}/> : null}
