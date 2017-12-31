@@ -3,13 +3,14 @@ import './BeginForm.css';
 import {Link} from 'react-router-dom';
 
 export default function BeginForm(props) {
+  console.log('beginFormProps ->',props);
 
   return (
 		<form className='begin-form'>
       <div>
         <label htmlFor="getStarted">See Trumps Inauguration Speech</label>
         <button type='button' id="getStarted">
-          <Link to={`/speechData/${props.speechID}`}>
+          <Link to={`/speechData/5a1ad99f978ca2681f42df12`}>
               Here!
           </Link>
         </button>
