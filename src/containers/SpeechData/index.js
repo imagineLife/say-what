@@ -135,13 +135,13 @@ class SpeechData extends React.Component {
 					includeSpeechTextForm: true,
 					includeBottomSpace:true,
 					speechID: this.state.id,
-					title: this.state.title
+					speechTitle: this.state.title
 				}
 			];
 
 		//converts the above sectionsArray into a 'sections' var for returning		
 			const sections = sectionsArray.map((sec,ind) => {
-		      	return <ResizingSection key={ind} {...sec}/>;
+				return <ResizingSection key={ind} {...sec}/>;
 			})
 
 	    	return (
