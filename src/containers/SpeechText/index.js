@@ -25,11 +25,19 @@ class SpeechText extends React.Component{
 			// speechText : this.props.runSpeechTextAction(this.props.speechID)
 		});
 
-	//	Set speechID, for fetch url, to either default or speechID
-        let propsSpeechID = this.props.speechID;
-		let tempSpeechID = '';
-        propsSpeechID === '5a1ad99f978ca2681f42df12' ? tempSpeechID = 'default' : tempSpeechID = this.props.speechID;
-    	
+    //	Parsing the speechID from URL
+    
+        let fetchURL = '';
+        let stringTempSpeechID = '';
+
+        let urlText = window.location.href;
+        let lastPartOfURL = urlText.split("/").pop();
+
+	// setting up the fetch url
+    
+    	lastPartOfURL = '5a1ad99f978ca2681f42df12' ? fetchURL = `http://localhost:8080/api/speeches/text/default` :fetchURL = `http://localhost:8080/api/speeches/text/${lastPartOfURL}`;
+    	console.log('speechText Container fetch URL is ', fetchURL);
+
     //	send & return speechText
     //	set speechText to container's state
     /*
@@ -42,7 +50,7 @@ class SpeechText extends React.Component{
     				return something to the state that shows the highlight
     			
     */
-        return fetch(`http://localhost:8080/api/speeches/text/${tempSpeechID}`)
+        return fetch(fetchURL)
             .then(res => {
                 if (!res.ok) {
                     return Promise.reject(res.statusText);
