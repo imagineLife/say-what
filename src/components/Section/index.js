@@ -13,7 +13,7 @@ export default function Section (props) {
 			<Title title={props.title}/>
 	        {props.img ? props.img : null}
 	        <Para text={props.text}/>
-	        {props.speechPicker ? <UlLinks list={props.speechesArray} /> : null}
+	        {props.speechPicker ? <UlLinks speechParts={props.speechesFromAPI} /> : null}
 	        {props.form ? props.form : null}
 	        {props.includeBeginForm ? <BeginForm {...props}/> : null}
 	        {props.includeBottomSpace ? <BottomSpacer /> : null}
