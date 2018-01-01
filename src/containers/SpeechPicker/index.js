@@ -66,7 +66,6 @@ class SpeechPicker extends React.Component {
 	//WHEN not loading
         } else {
 	
-			console.log('render this.state->',this.state);
 			const pageHeader = {
 				title: `Pick a Speech`,
 				text: ``
@@ -76,25 +75,18 @@ class SpeechPicker extends React.Component {
 				this.state.speeches.map((speech) => {
 					return {
 						speechID : speech._id,
-						speechTitle: speech.title
+						Orator : speech.Orator,
+						title: speech.title
 					}
 				})
 			]
-
-			console.log('speechesArray->',mySpeechesArray);
-
+			
 			const sectionsArray =[
 				{
 					title: `Choose from a list of options`,
 					text: ``,
 					speechPicker: true,
-					speechesArray : [
-						{
-							Orator : 'Donald Trump',
-							title : mySpeechesArray[0].speechTitle
-							// title: this.state.speeches[0]
-						}
-					]
+					speechesFromAPI: this.state.speeches
 				}
 			];
 
