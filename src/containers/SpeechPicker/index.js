@@ -70,16 +70,6 @@ class SpeechPicker extends React.Component {
 				title: `Pick a Speech`,
 				text: ``
 			}
-
-			const mySpeechesArray = [
-				this.state.speeches.map((speech) => {
-					return {
-						speechID : speech._id,
-						Orator : speech.Orator,
-						title: speech.title
-					}
-				})
-			]
 			
 			const sectionsArray =[
 				{
