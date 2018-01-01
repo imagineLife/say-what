@@ -5,15 +5,15 @@ import {Link} from 'react-router-dom'
 
 export default function Ul(props) {
 
-	const listOWords = props.list.map((list, ind) =>
-			<Link className="ulLink" key={ind}to={`speechData/alpha`}>
-				<Li word={list.title} boldWord={list.Orator}/>
-			</Link>			
+	const speechLinks = props.speechParts.map((speech, ind) => 
+		<Link className="ulLink" key={ind} to={`speechData/${speech._id}`} >
+			<Li word={speech.title} boldWord={speech.Orator} />
+		</Link>
 	)
 
     return (
 		<ul>
-			{listOWords}
+			{speechLinks}
 		</ul>
     );
 
