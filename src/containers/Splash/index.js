@@ -30,7 +30,7 @@ class Splash extends Component {
 					title: 'Check it out!',
 					includeBeginForm: true,
 					includeBottomSpace:true,
-					speechID: this.props.speechID
+					speechID: this.props.mappedSpeechID
 				}
 			];
 			
@@ -51,7 +51,7 @@ class Splash extends Component {
 }
 
 const mapStateToProps = (state) => ({ 
-	speechID: state._root.entries["0"][1]
+	mappedSpeechID: state._root.entries["0"][1]
 })
 
 export default connect(mapStateToProps)(Splash);
