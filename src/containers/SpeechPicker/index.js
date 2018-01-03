@@ -3,6 +3,7 @@ import './SpeechPicker.css';
 import Header from '../../components/Header';
 import Section from '../../components/Section';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
 class SpeechPicker extends React.Component {
 	constructor(props){
@@ -16,7 +17,7 @@ class SpeechPicker extends React.Component {
 
 
 	componentDidMount(){
-		this.loadSpeeches();
+		if( localStorage.getItem('localStorageAuthToken') ){this.loadSpeeches();}
 	}
 	
 	loadSpeeches(){
@@ -25,83 +26,100 @@ class SpeechPicker extends React.Component {
 			loading:true
 		})
 
-		// console.log('loadSpeeches mappedAuthToken->',this.props.mappedAuthToken.authToken);
 		return fetch(`http://localhost:8080/api/speeches/speechList`, {
-		        method: 'GET',
-		        headers: {
-		            'Content-Type': 'application/json',
-		            'Authorization': 'Bearer ' + this.props.mappedAuthToken.authToken
-		        }
-		    })
-            .then(res => {
-                if (!res.ok) {
-                    return Promise.reject(res.statusText);
-                }
-                return res.json();
+	        method: 'GET',
+	        headers: {
+	            'Content-Type': 'application/json',
+	            'Authorization': 'Bearer ' + localStorage.getItem('localStorageAuthToken')
+	        }
+	    })
+        .then(res => {
+
+//If not-logged in,
+// send user to /login        	
+
+        	if(res.status === 401){
+        		delete localStorage.localStorageAuthToken;
+
+        		window.location.href = '/login';
+        	}
+
+            if (!res.ok) {
+                return Promise.reject(res.statusText);
+            }
+
+            return res.json();
+        })
+        .then(resSpeeches => {
+        	this.setState({ 
+        		speeches: resSpeeches,
+        		loading: false
+        	})
+        })
+        .catch(err =>
+            this.setState({
+                error: 'Could not load SpeechText',
+                loading: false
             })
-            .then(resSpeeches => {
-            	this.setState({ 
-            		speeches: resSpeeches,
-            		loading: false
-            	})
-            })
-            .catch(err =>
-                this.setState({
-                    error: 'Could not load SpeechText',
-                    loading: false
-                })
-            );
+        );
 	}
 
 	render(){	
+    
+    //if there's no authToken, redirect user to the Login page
+		if(!localStorage.getItem('localStorageAuthToken')){
+		      return (
+		        <Redirect to="/login" />
+		      );
+		}else{
 
 	//WHEN loading...
-		if (this.state.loading) {
-	    	return (
-				<main role="main">
-			      <p>Processing Speech Stats...</p>
-			    </main>
-	    	);
-        
+			if (this.state.loading) {
+		    	return (
+					<main role="main">
+				      <p>Processing Speech Stats...</p>
+				    </main>
+		    	);
+	        
 	//WHEN not loading
-        } else {
-	
-			const pageHeader = {
-				title: `Pick a Speech`,
-				text: ``
-			}
-			
-			const sectionsArray =[
-				{
-					title: `Choose from a list of options`,
-					text: ``,
-					speechPicker: true,
-					speechesFromAPI: this.state.speeches
+	        } else {
+
+	    		const pageHeader = {
+					title: `Pick a Speech`,
+					text: ``
 				}
-			];
+				
+				const sectionsArray =[
+					{
+						title: `Choose from a list of options`,
+						text: ``,
+						speechPicker: true,
+						speechesFromAPI: this.state.speeches
+					}
+				];
 
-			const sections = sectionsArray.map((sec,ind) => {
-		      	return <Section key={ind} {...sec}/>;
-			})
+				const sections = sectionsArray.map((sec,ind) => {
+			      	return <Section key={ind} {...sec}/>;
+				})
 
 
+			    return (
+					<main role="main">
+					  <Header title={pageHeader.title}/>
+				      
+				      {sections}
 
-
-		    return (
-				<main role="main">
-				  <Header title={pageHeader.title}/>
-			      
-			      {sections}
-
-			    </main>
-		    );
+				    </main>
+			    );
+			}
 		}
 	}
 }
 
 const mapStateToProps = (state) =>
 ({ 
-	mappedAuthToken: state._root.entries["0"][1]
+	mappedAuthToken: state._root.entries["0"][1],
+	...state
 })
 
 export default connect(mapStateToProps)(SpeechPicker);
