@@ -3,7 +3,7 @@ import './LoginForm.css';
 import {connect} from 'react-redux';
 import {loginAction} from './state/actions';
 import {Redirect} from 'react-router-dom';
-
+import Input from '../../Input'
 class LoginForm extends React.Component {
   constructor(props){
     super(props);    
@@ -11,6 +11,12 @@ class LoginForm extends React.Component {
       username: '',
       password: ''
     }
+
+    //COULD USE THIS!
+    //this.setText = this.setText.bind(this)
+    //onChangeProp would change back to this.setText
+    // and the input component would need to pass 2 params, the currentTarget & currentVal (as prior) 
+
   }
 
   getResFromAPI(ev){
@@ -34,11 +40,35 @@ class LoginForm extends React.Component {
   }
 
   render(){
+
+    const handleTextChange = (e) => {
+      this.setText(e.currentTarget.value, e.currentTarget.id)
+    }
+
+    let formInputArr = [
+      {
+        source: "username",
+        type : "text",
+        onChangeProp : handleTextChange
+        // onChangeProp : this.setText
+      },
+      {
+        source: "password",
+        type : "password",
+        onChangeProp : handleTextChange
+        // onChangeProp : this.setText
+      }
+    ];
+
+    const inputs = formInputArr.map((input, index) => {
+      return <Input key={index} {...input} onAdd={text => this.setText(text)}/>;
+    })
+
     /*
       if there's an authToken,
       redirect user to the speechPicker page
     */
-    if(this.props._root.entries["0"][1].authToken.length > 1){
+    if(localStorage.getItem('localStorageAuthToken')){
       return (
         <Redirect to="/speechPicker" />
       );
@@ -51,7 +81,7 @@ class LoginForm extends React.Component {
               id="username" 
               type="text" 
               name="username" 
-              placeholder="Username" 
+              placeholder="UsernameOLD" 
               onChange={e => this.setText(e.target.value, e.target.id)}
             required/>
             <input 
@@ -59,7 +89,7 @@ class LoginForm extends React.Component {
               type="text" 
               name="password" 
               onChange={e => this.setText(e.target.value, e.target.id)}
-              placeholder="Password" 
+              placeholder="PasswordOLD" 
             required/>
         </fieldset>
             <input 
@@ -70,6 +100,7 @@ class LoginForm extends React.Component {
             required/>
             <label htmlFor="register">Don't have an account?</label>
             <input type="button" name="register" id="register" value="Sign up" onClick={this.props.toggleForm}/>
+
       </form>
     );
   }
