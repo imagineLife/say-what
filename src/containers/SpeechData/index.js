@@ -28,13 +28,6 @@ class SpeechData extends React.Component {
             error: null,
             loading: true
         });
- 
-    /*
-		create a header object?!
-		conditionally add the header?
-		when requesting other speeches, authentication header needs to be present
-		with authToken
-    */
 
     //	send & return speechstats
     //	set speechstats to containers state
@@ -61,6 +54,7 @@ class SpeechData extends React.Component {
 					mostUsedWords:stats.mostUsedWords,
 					numberOfWords: stats.numberOfWords,
 					speechTextLink: stats.speechTextLink,
+					imageLink: stats.imageLink,
 					title: stats.title,
 					wordsBySize: stats.wordsBySize,
 					loading: false
