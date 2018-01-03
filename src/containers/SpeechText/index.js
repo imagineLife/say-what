@@ -27,8 +27,7 @@ class SpeechText extends React.Component{
 
     //	Parsing the speechID from URL
     
-        let fetchURL = '';
-        let stringTempSpeechID = '';
+        let fetchURL;
 
         let urlText = window.location.href;
         let lastPartOfURL = urlText.split("/").pop();
