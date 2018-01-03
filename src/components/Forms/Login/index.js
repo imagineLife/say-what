@@ -77,20 +77,7 @@ class LoginForm extends React.Component {
     	<form className='login-form' onSubmit={e => this.getResFromAPI(e)}>
         <fieldset>
           <legend>Log in</legend>
-            <input 
-              id="username" 
-              type="text" 
-              name="username" 
-              placeholder="UsernameOLD" 
-              onChange={e => this.setText(e.target.value, e.target.id)}
-            required/>
-            <input 
-              id="password" 
-              type="text" 
-              name="password" 
-              onChange={e => this.setText(e.target.value, e.target.id)}
-              placeholder="PasswordOLD" 
-            required/>
+            {inputs}
         </fieldset>
             <input 
               type="submit" 
