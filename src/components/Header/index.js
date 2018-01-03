@@ -2,8 +2,9 @@ import React from 'react';
 import './Header.css';
 
 export default function Header(props) {
+  console.log('Header props',props);
 	let sectionStyle = {
-	  background: `url(${ props.imagePr }) no-repeat center center`,
+	  background: `url(${ props.imageLinkProp }) no-repeat center center`,
 	  backgroundSize: `cover`
 	};
 
