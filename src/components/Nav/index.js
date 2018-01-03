@@ -20,7 +20,7 @@ export default function Nav() {
 					</Link>
 				</li>
 				<li className='liWithIcon'>
-					<Link to='/speechData/5a1ad99f978ca2681f42df12'>
+					<Link to='/speechData/default'>
 						<img src={process.env.PUBLIC_URL+'/imgs/search.ico'} className="icon" alt='View A Speech' />
 						<span className="menuLabel">View A Speech</span>
 					</Link>
