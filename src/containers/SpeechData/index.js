@@ -9,9 +9,13 @@ import {connect} from 'react-redux';
 class SpeechData extends React.Component {
 	constructor(props){
 		super(props)
+
+		let urlSpeechID = window.location.href.split('/'); 
+		urlSpeechID = urlSpeechID[ urlSpeechID.length - 1 ];
+
 		this.state = {
 			loading: false,
-			speechID : '5a1ad99f978ca2681f42df12'
+			speechID : urlSpeechID
 		};
 	}
 
@@ -24,23 +28,23 @@ class SpeechData extends React.Component {
             error: null,
             loading: true
         });
-
-        // set the API url speechID
-		let tempSpeechID = '';
-        this.state.speechID === '5a1ad99f978ca2681f42df12' ? tempSpeechID = 'default' : tempSpeechID = this.props.speechID;
-        
+ 
     /*
-
 		create a header object?!
 		conditionally add the header?
 		when requesting other speeches, authentication header needs to be present
 		with authToken
-
     */
 
     //	send & return speechstats
     //	set speechstats to containers state
-        return fetch(`http://localhost:8080/api/speeches/${tempSpeechID}`)
+        return fetch(`http://localhost:8080/api/speeches/${this.state.speechID}`, {
+		        method: 'GET',
+		        headers: {
+		            'Content-Type': 'application/json',
+		            'Authorization': 'Bearer ' + localStorage.getItem('localStorageAuthToken')
+		        }
+		    })
             .then(res => {
                 if (!res.ok) {
                     return Promise.reject(res.statusText);
