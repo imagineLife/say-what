@@ -55,6 +55,7 @@ class SpeechData extends React.Component {
 					numberOfWords: stats.numberOfWords,
 					speechTextLink: stats.speechTextLink,
 					imageLink: stats.imageLink,
+					eventOverview: stats.eventOverview,
 					title: stats.title,
 					wordsBySize: stats.wordsBySize,
 					loading: false
@@ -110,7 +111,7 @@ class SpeechData extends React.Component {
 						Orator : this.state.Orator,
 						Date : this.parseDate(this.state.Date),
 						Audience : this.state.Audience,
-						'Event Overview' : 'Donald Trump marks the commencement of a new four-year term as the President of the United States'
+						'Event Overview' : this.state.eventOverview
 					}
 				},
 				{
