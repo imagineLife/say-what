@@ -26,13 +26,13 @@ class SpeechText extends React.Component{
 
     //	Parsing the speechID from URL
     
-        let fetchURL;
-        let urlText = window.location.href;
-        let lastPartOfURL = urlText.split("/").pop();
+        let fetchURL, urlText, lastPartOfURL;
+        urlText = window.location.href;
+        lastPartOfURL = urlText.split("/").pop();
 
 	// setting up the fetch url
     
-    	lastPartOfURL = '5a1ad99f978ca2681f42df12' ? fetchURL = `http://localhost:8080/api/speeches/text/default` :fetchURL = `http://localhost:8080/api/speeches/text/${lastPartOfURL}`;
+    	lastPartOfURL === '5a1ad99f978ca2681f42df12' ? fetchURL = `http://localhost:8080/api/speeches/text/default` :fetchURL = `http://localhost:8080/api/speeches/text/${lastPartOfURL}`;
 
     //	send & return speechText
     //	set speechText to container's state
