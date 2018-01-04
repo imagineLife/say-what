@@ -16,16 +16,17 @@
 }
 
 .request-form label{
-	width : 50%;
+	width : 45%;
 	margin: 0 auto;
-	text-align : right;
+	text-align : left;
 	font-size : 20px;
-	line-height : 40px;
-	display : block;
+	line-height : 30px;
+	display : inline-block;
 }
 
 .request-form input[type='radio']{
-	/*display:inline;*/
+	width: 50%;
+	vertical-align: middle;
 }
 
 input[type='text']:nth-of-type(2) {
