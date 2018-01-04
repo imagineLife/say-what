@@ -95,6 +95,12 @@ class SpeechPicker extends React.Component {
 						text: ``,
 						speechPicker: true,
 						speechesFromAPI: this.state.speeches
+					},
+					{
+						title: `Make A Request`,
+						text: ``,
+						includeRequestForm: true,
+						includeBottomSpace: true
 					}
 				];
 
