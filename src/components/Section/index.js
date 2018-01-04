@@ -5,6 +5,7 @@ import Para from '../Para';
 import UlLinks from '../ulLinks';
 import BottomSpacer from '../BottomSpacer';
 import BeginForm from '../Forms/Begin';
+import RequestForm from '../Forms/Request';
 
 export default function Section (props) {
 
@@ -16,6 +17,7 @@ export default function Section (props) {
 	        {props.speechPicker ? <UlLinks speechParts={props.speechesFromAPI} /> : null}
 	        {props.form ? props.form : null}
 	        {props.includeBeginForm ? <BeginForm {...props}/> : null}
+	        {props.includeRequestForm ? <RequestForm {...props}/> : null}
 	        {props.includeBottomSpace ? <BottomSpacer /> : null}
 	    </section>
 	)
