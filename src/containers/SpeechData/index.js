@@ -83,7 +83,6 @@ class SpeechData extends React.Component {
      }
     
     render(){
-    	console.log('this.state',this.state);
 		
     //WHEN loading...
 		if (this.state.loading) {
@@ -101,8 +100,6 @@ class SpeechData extends React.Component {
 				image: Image,
 				imageLink: this.state.imageLink
 			}
-
-			console.log('pageHeader',pageHeader);
 
 			const sectionsArray =[
 				{
