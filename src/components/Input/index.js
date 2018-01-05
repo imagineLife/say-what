@@ -8,7 +8,7 @@ export default function Input(props) {
 	      id = {props.source} 
 	      type = {props.source} 
 	      name = {props.source} 
-	      placeholder = {props.source.charAt(0).toUpperCase() + props.source.slice(1)} 
+	      placeholder = {props.placeholder ? props.placeholder : props.source.charAt(0).toUpperCase() + props.source.slice(1)} 
 	      onChange={e => props.onChangeProp(e)}
 	    required/>
 	);
