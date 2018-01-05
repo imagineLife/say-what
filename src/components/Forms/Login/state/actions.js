@@ -1,7 +1,7 @@
 import {LOGIN} from './constants';
 export const loginAction = (obj, dispatch) => {
     let encodedStr = btoa(`${obj.username}:${obj.password}`);
-    fetch(`//localhost:8080/api/auth/login`, {
+    fetch(`http://localhost:8080/api/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
