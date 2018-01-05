@@ -49,6 +49,7 @@ class RequestForm extends React.Component {
       {
         source: "text",
         type : "text",
+        placeholder: "I'd like to see ...",
         onChangeProp : handleTextChange
         // onChangeProp : this.setText
       }
