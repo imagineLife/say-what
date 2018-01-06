@@ -8,7 +8,18 @@ export default function Nav() {
 	// const navLink = (true === true) 
 	const navLink = 
 						// ? (<a href="/login"><img src="/imgs/user.ico" className="icon" alt="Sign Up" /><span className="menuLabel">Sign Up</span></a>)
-						(<Link to="/login"><img src="/imgs/user.ico" className="icon" alt="Sign Up" /><span className="menuLabel">Sign Up</span></Link>)
+						(
+							<li className='liWithIcon'>
+								<Link to="/login">
+									<img 
+										src="/imgs/user.ico" 
+										className="icon" 
+										alt="Sign Up" 
+									/>
+									<span className="menuLabel">Sign Up</span>
+								</Link>
+							</li>
+						)
 						// : (<a href="/speechPicker"><img src="/imgs/user.ico" className="icon" alt="SomethingElse" /><span className="menuLabel">SomethingElse</span></a>)
     return (
 		<nav>
@@ -25,9 +36,7 @@ export default function Nav() {
 						<span className="menuLabel">View A Speech</span>
 					</Link>
 				</li>
-				<li className='liWithIcon'>
-					{navLink}
-				</li>
+				{navLink}
 			</ul>
 		</nav> 
     );
