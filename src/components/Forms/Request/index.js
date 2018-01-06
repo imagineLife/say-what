@@ -3,6 +3,7 @@ import './RequestForm.css';
 import {connect} from 'react-redux';
 import {requestAction} from './state/actions';
 import Input from '../../Input'
+import Radio from '../../Radio'
 class RequestForm extends React.Component {
   constructor(props){
     super(props);    
@@ -43,7 +44,27 @@ class RequestForm extends React.Component {
       this.setText(e.currentTarget.value, e.currentTarget.id)
     }
 
+    const handleRadioChange = (e) => {
+      this.setType(e.currentTarget.value)
+    }
+
     let reqInputArr = [
+      {
+        source : "speech",
+        type : "radio",
+        labelText: "Speech",
+        val : 0,
+        onChangeProp : handleRadioChange
+        // onChangeProp : this.setText
+      },
+      {
+        source : "speech",
+        type : "radio",
+        labelText: "Analytic",
+        val : 1,
+        onChangeProp : handleRadioChange
+        // onChangeProp : this.setText
+      },
       {
         source: "text",
         type : "text",
@@ -54,7 +75,11 @@ class RequestForm extends React.Component {
     ];
 
     const reqInputs = reqInputArr.map((input, index) => {
-      return <Input key={index} {...input} onAdd={text => this.setText(text)}/>;
+      if (input.source === 'text'){
+        return <Input key={index} {...input} onAdd={text => this.setText(text)}/>;
+      }else{
+        return <Radio key={index} {...input} onAdd={text => this.setType(text)}/>;
+      }
     })
 
     return (
@@ -65,14 +90,6 @@ class RequestForm extends React.Component {
         </fieldset>
 
           <legend>Request a...</legend>
-          
-          <label htmlFor="speech">Speech
-            <input id="speech" type="radio" name="speech" value="0" />
-          </label>
-
-          <label htmlFor="analytic">Analytic
-            <input id="analytic" type="radio" name="speech" value="1" />
-          </label>
           
           {reqInputs}
 
