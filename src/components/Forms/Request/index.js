@@ -80,7 +80,7 @@ class RequestForm extends React.Component {
 
 
 // Extracts Input components from
-// array of objects above into
+// array of objects above
 
     const reqInputs = reqInputArr.map((input, index) => {
       if (input.source === 'text'){
@@ -89,8 +89,8 @@ class RequestForm extends React.Component {
       else return null;
     })
 
-// Extracts Input components from
-// array of objects above into
+// Extracts Radio components from
+// array of objects above
 
     const reqRadio = reqInputArr.map((input, index) => {
       if (input.source === 'speech'){
