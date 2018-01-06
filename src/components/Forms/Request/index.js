@@ -79,15 +79,24 @@ class RequestForm extends React.Component {
     ];
 
 
-// Converts array of objects above into Components
-// conditionally based on array Object Source ( input vs. radio button )
+// Extracts Input components from
+// array of objects above into
 
     const reqInputs = reqInputArr.map((input, index) => {
       if (input.source === 'text'){
         return <Input key={index} {...input} onAdd={text => this.setText(text)}/>;
-      }else{
+      }
+      else return null;
+    })
+
+// Extracts Input components from
+// array of objects above into
+
+    const reqRadio = reqInputArr.map((input, index) => {
+      if (input.source === 'speech'){
         return <Radio key={index} {...input} onAdd={text => this.setType(text)}/>;
       }
+      else return null;
     })
 
 //Return the form with input components
@@ -95,12 +104,11 @@ class RequestForm extends React.Component {
     	<form className='request-form' onSubmit={e => this.getResFromAPI(e)}>
        
         <fieldset>
-            
+          <legend>Request a...</legend>
+          {reqRadio}    
         </fieldset>
 
-          <legend>Request a...</legend>
-          
-          {reqInputs}
+        {reqInputs}
 
           <input 
             type="submit" 
