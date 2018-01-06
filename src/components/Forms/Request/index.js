@@ -7,8 +7,8 @@ class RequestForm extends React.Component {
   constructor(props){
     super(props);    
     this.state = {
-      username: '',
-      password: ''
+      text: '',
+      type: 0
     }
 
     //COULD USE THIS!
@@ -24,22 +24,20 @@ class RequestForm extends React.Component {
   }
 
   setText(text, id) {
-    switch(id) {
-      case 'username' :
-        this.setState({
-          username: text
-        })
-        break; 
-      default:
-        this.setState({
-          password: text
-        })
-        break;
+      this.setState({
+        text: text
+      })
     }
+
+  setType(typeVal){
+    this.setState({
+      type: typeVal
+    })
   }
 
   render(){
     console.log('in Request form Render!');
+    console.log('ReqForm State inside render -->',this.state);
 
     const handleTextChange = (e) => {
       this.setText(e.currentTarget.value, e.currentTarget.id)
