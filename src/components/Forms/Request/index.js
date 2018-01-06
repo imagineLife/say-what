@@ -48,6 +48,10 @@ class RequestForm extends React.Component {
       this.setType(e.currentTarget.value)
     }
 
+
+// Array of Form-Input Objects
+// Declaring props of inputs
+
     let reqInputArr = [
       {
         source : "speech",
@@ -74,6 +78,10 @@ class RequestForm extends React.Component {
       }
     ];
 
+
+// Converts array of objects above into Components
+// conditionally based on array Object Source ( input vs. radio button )
+
     const reqInputs = reqInputArr.map((input, index) => {
       if (input.source === 'text'){
         return <Input key={index} {...input} onAdd={text => this.setText(text)}/>;
@@ -82,6 +90,7 @@ class RequestForm extends React.Component {
       }
     })
 
+//Return the form with input components
     return (
     	<form className='request-form' onSubmit={e => this.getResFromAPI(e)}>
        
