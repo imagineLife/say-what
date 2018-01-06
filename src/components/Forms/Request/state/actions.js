@@ -1,11 +1,10 @@
 import {REQUEST} from './constants';
 export const requestAction = (obj, dispatch) => {
-    let encodedStr = btoa(`${obj.username}:${obj.password}`);
-    fetch(`http://localhost:8080/api/auth/login`, {
+    fetch(`http://localhost:8080/api/requests`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Basic ' + encodedStr
+            'Authorization': 'Bearer ' + localStorage.getItem('localStorageAuthToken')
         },
         body: JSON.stringify(obj)
     })
