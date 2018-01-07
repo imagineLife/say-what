@@ -3,6 +3,7 @@ import './RegisterForm.css';
 import {connect} from 'react-redux';
 import {loginAction} from './state/actions';
 import {Redirect} from 'react-router-dom';
+import Input from '../../Input'
 
 class Register extends React.Component {
   
@@ -98,50 +99,52 @@ class Register extends React.Component {
       );
     }
 
+    const handleTextChange = (e) => {
+      this.setText(e.currentTarget.value, e.currentTarget.id)
+    }
+
+    let formInputArr = [
+      {
+        source: "firstName",
+        type : "text",
+        onChangeProp : handleTextChange
+        // onChangeProp : this.setText
+      },
+      {
+        source: "lastName",
+        type : "text",
+        onChangeProp : handleTextChange
+        // onChangeProp : this.setText
+      },
+      {
+        source: "email",
+        type : "email",
+        onChangeProp : handleTextChange
+        // onChangeProp : this.setText
+      },       
+      {
+        source: "username",
+        type : "text",
+        onChangeProp : handleTextChange
+        // onChangeProp : this.setText
+      },
+      {
+        source: "password",
+        type : "password",
+        onChangeProp : handleTextChange
+        // onChangeProp : this.setText
+      }
+    ];
+
+    const inputs = formInputArr.map((input, index) => {
+      return <Input key={index} {...input} onAdd={text => this.setText(text)}/>;
+    })
+
     return (
       <form className='register-form' onSubmit={e => this.getResFromAPI(e)}>
         <fieldset>
           <legend>Register</legend>
-            <input 
-              id="firstName" 
-              type="text" 
-              name="firstName" 
-              placeholder="firstName"
-              value={this.state.firstName}
-              onChange={e => this.setText(e.target.value, e.target.id)}
-            required/>
-            <input 
-              id="lastName" 
-              type="text" 
-              name="lastName" 
-              placeholder="lastName"
-              value={this.state.lastName}
-              onChange={e => this.setText(e.target.value, e.target.id)}
-            required/>
-            <input 
-              id="email" 
-              type="text" 
-              name="email" 
-              placeholder="email"
-              value={this.state.email}
-              onChange={e => this.setText(e.target.value, e.target.id)}
-            required/>
-            <input 
-              id="username" 
-              type="text" 
-              name="username" 
-              placeholder="username"
-              value={this.state.username}
-              onChange={e => this.setText(e.target.value, e.target.id)}
-            required/>
-            <input 
-              id="password" 
-              type="password" 
-              name="password" 
-              placeholder="password"
-              value={this.state.password}
-              onChange={e => this.setText(e.target.value, e.target.id)}
-            required/>
+          {inputs}
             </fieldset>
             <input type="submit" name="submit" value="Register" />
       </form>
