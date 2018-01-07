@@ -173,7 +173,7 @@ export default class GaugeChart extends React.Component {
 					.attrs({
 						'transform' : (d) => {
 							let ratio = scale(d);
-							let newAngle = config.minAngle + (ratio * range);
+							let newAngle = config.minAngle + (ratio * range * .98);
 							return 'rotate(' +newAngle +') translate(0,' +(config.labelInset - radius) +')'; },
 						'class': 'gaugeLabel'
 					
