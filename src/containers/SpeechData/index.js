@@ -4,6 +4,7 @@ import './SpeechData.css';
 import Header from '../../components/Header';
 import ResizingSection from '../../components/ResizingSection';
 import Image from '../../imgs/trump.jpg';
+import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 class SpeechData extends React.Component {
@@ -83,6 +84,17 @@ class SpeechData extends React.Component {
      }
     
     render(){
+    // IF Non-default speech,
+    // Requre logged-in via localStorage
+    // Otherwise, Redirect to login
+    	if(this.state.speechID !== 'default'){
+    		if(!localStorage.getItem('localStorageAuthToken')){
+    			console.log('will redirect to login');
+    			return (
+		        <Redirect to="/login" />
+		      );
+    		}
+    	}
 		
     //WHEN loading...
 		if (this.state.loading) {
