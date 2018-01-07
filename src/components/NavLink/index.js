@@ -6,13 +6,13 @@ export default function NavLink(props) {
 	console.log('navLinkProps -->',props);
 	return(
 		<li className='liWithIcon'>
-			<Link to="/login">
+			<Link to= {props.linkTo}>
 				<img 
-					src="/imgs/user.ico" 
+					src= {props.imgSrc} 
 					className="icon" 
-					alt="Sign Up" 
+					alt= {props.linkTitle} 
 				/>
-				<span className="menuLabel">Sign Up</span>
+				<span className="menuLabel"> {props.linkTitle} </span>
 			</Link>
 		</li>
 	);

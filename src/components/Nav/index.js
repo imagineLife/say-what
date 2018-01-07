@@ -23,7 +23,7 @@ export default function Nav() {
 	// 					)
 						// : (<a href="/speechPicker"><img src="/imgs/user.ico" className="icon" alt="SomethingElse" /><span className="menuLabel">SomethingElse</span></a>)
 
-	const newLink = <NavLink />
+	const newLink = <NavLink linkTo="/login" imgSrc="imgs/user.ico" linkTitle="Sign Up"/>
     return (
 		<nav>
 			<ul>
