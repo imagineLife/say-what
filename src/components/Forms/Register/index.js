@@ -1,5 +1,7 @@
 import React from 'react';
 import './RegisterForm.css';
+// import {loginAction} from './state/actions';
+import {Redirect} from 'react-router-dom';
 
 export default class Register extends React.Component {
   
@@ -38,7 +40,7 @@ export default class Register extends React.Component {
             body: JSON.stringify({
               username: this.state.username,
               password: this.state.password
-            })            
+            })
           })
         })
         .then(res => res.json())
@@ -80,6 +82,13 @@ export default class Register extends React.Component {
   }
 
   render(){
+
+    if(localStorage.getItem('localStorageAuthToken')){
+      return (
+        <Redirect to="/speechPicker" />
+      );
+    }
+
     return (
       <form className='register-form' onSubmit={e => this.getResFromAPI(e)}>
         <fieldset>
