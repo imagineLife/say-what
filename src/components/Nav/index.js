@@ -8,7 +8,7 @@ export default function Nav() {
 	const navLinkArray = [
 		{
 			linkTo : "/",
-			imgSrc : "imgs/home.ico",
+			imgSrc : "/imgs/home.ico",
 			alt : "Home"
 		},
 		{
@@ -18,7 +18,7 @@ export default function Nav() {
 		},
 		{
 			linkTo : "/login",
-			imgSrc : "imgs/user.ico",
+			imgSrc : "/imgs/user.ico",
 			alt : "Sign Up"
 		}
 	];
