@@ -1,26 +1,29 @@
 import React from 'react';
 import './Nav.css';
 import {Link} from 'react-router-dom';
+import NavLink from '../NavLink';
 
 export default function Nav() {
 	//Help update this specific navLink text to change when signed-in-or-not :) 
 	
 	// const navLink = (true === true) 
-	const navLink = 
-						// ? (<a href="/login"><img src="/imgs/user.ico" className="icon" alt="Sign Up" /><span className="menuLabel">Sign Up</span></a>)
-						(
-							<li className='liWithIcon'>
-								<Link to="/login">
-									<img 
-										src="/imgs/user.ico" 
-										className="icon" 
-										alt="Sign Up" 
-									/>
-									<span className="menuLabel">Sign Up</span>
-								</Link>
-							</li>
-						)
+	// const navLink = 
+	// 					// ? (<a href="/login"><img src="/imgs/user.ico" className="icon" alt="Sign Up" /><span className="menuLabel">Sign Up</span></a>)
+	// 					(
+	// 						<li className='liWithIcon'>
+	// 							<Link to="/login">
+	// 								<img 
+	// 									src="/imgs/user.ico" 
+	// 									className="icon" 
+	// 									alt="Sign Up" 
+	// 								/>
+	// 								<span className="menuLabel">Sign Up</span>
+	// 							</Link>
+	// 						</li>
+	// 					)
 						// : (<a href="/speechPicker"><img src="/imgs/user.ico" className="icon" alt="SomethingElse" /><span className="menuLabel">SomethingElse</span></a>)
+
+	const newLink = <NavLink />
     return (
 		<nav>
 			<ul>
@@ -36,7 +39,7 @@ export default function Nav() {
 						<span className="menuLabel">View A Speech</span>
 					</Link>
 				</li>
-				{navLink}
+				{newLink}
 			</ul>
 		</nav> 
     );
