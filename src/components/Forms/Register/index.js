@@ -145,8 +145,8 @@ class Register extends React.Component {
         <fieldset>
           <legend>Register</legend>
           {inputs}
-            </fieldset>
-            <input type="submit" name="submit" value="Register" />
+        </fieldset>
+        <input type="submit" name="submit" value="Register" />
       </form>
     );
   }
