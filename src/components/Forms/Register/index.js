@@ -1,9 +1,10 @@
 import React from 'react';
 import './RegisterForm.css';
-// import {loginAction} from './state/actions';
+import {connect} from 'react-redux';
+import {loginAction} from './state/actions';
 import {Redirect} from 'react-router-dom';
 
-export default class Register extends React.Component {
+class Register extends React.Component {
   
   constructor(props){
     super(props);
@@ -18,7 +19,7 @@ export default class Register extends React.Component {
   getResFromAPI(ev){
     ev.preventDefault();
     let tempState = this.state;
-    let encodedStr = btoa(`${this.state.username}:${this.state.password}`);
+    // let encodedStr = btoa(`${this.state.username}:${this.state.password}`);
 
     return (
   //Register
@@ -30,18 +31,20 @@ export default class Register extends React.Component {
             body: JSON.stringify(tempState)
         })
         .then(() => {
+              this.props.myRunLoginKey(this.state);
   //Login after register 
-          fetch(`http://localhost:8080/api/auth/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + encodedStr
-            },
-            body: JSON.stringify({
-              username: this.state.username,
-              password: this.state.password
-            })
-          })
+  //TRYING the loginAction
+          // fetch(`http://localhost:8080/api/auth/login`, {
+          //   method: 'POST',
+          //   headers: {
+          //       'Content-Type': 'application/json',
+          //       'Authorization': 'Basic ' + encodedStr
+          //   },
+          //   body: JSON.stringify({
+          //     username: this.state.username,
+          //     password: this.state.password
+          //   })
+          // })
         })
         .then(res => res.json())
         .catch(err => {
@@ -131,3 +134,15 @@ export default class Register extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {...state};
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    myRunLoginKey: (obj) => loginAction(obj,dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
