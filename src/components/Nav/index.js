@@ -26,24 +26,7 @@ export default function Nav() {
 	const linkObjsToComponents = navLinkArray.map((navLink,ind) => {
 		return <NavLink key={ind} linkTo={navLink.linkTo}  imgSrc={navLink.imgSrc}  linkTitle={navLink.alt}/>;
 	})
-
-	// const navLink = (true === true) 
-	// const navLink = 
-	// 					// ? (<a href="/login"><img src="/imgs/user.ico" className="icon" alt="Sign Up" /><span className="menuLabel">Sign Up</span></a>)
-	// 					(
-	// 						<li className='liWithIcon'>
-	// 							<Link to="/login">
-	// 								<img 
-	// 									src="/imgs/user.ico" 
-	// 									className="icon" 
-	// 									alt="Sign Up" 
-	// 								/>
-	// 								<span className="menuLabel">Sign Up</span>
-	// 							</Link>
-	// 						</li>
-	// 					)
-						// : (<a href="/speechPicker"><img src="/imgs/user.ico" className="icon" alt="SomethingElse" /><span className="menuLabel">SomethingElse</span></a>)
-
+	
     return (
 		<nav>
 			<ul>
