@@ -16,7 +16,7 @@ class SpeechData extends React.Component {
 
 		this.state = {
 			loading: false,
-			speechID : urlSpeechID
+			urlSpeechID : urlSpeechID
 		};
 	}
 
@@ -32,7 +32,7 @@ class SpeechData extends React.Component {
 
     //	send & return speechstats
     //	set speechstats to containers state
-        return fetch(`http://localhost:8080/api/speeches/${this.state.speechID}`, {
+        return fetch(`http://localhost:8080/api/speeches/${this.state.urlSpeechID}`, {
 		        method: 'GET',
 		        headers: {
 		            'Content-Type': 'application/json',
@@ -89,10 +89,9 @@ class SpeechData extends React.Component {
     // Otherwise, Redirect to login
     	if(this.state.speechID !== 'default'){
     		if(!localStorage.getItem('localStorageAuthToken')){
-    			console.log('will redirect to login');
     			return (
-		        <Redirect to="/login" />
-		      );
+		        	<Redirect to="/login" />
+		      	);
     		}
     	}
 		
