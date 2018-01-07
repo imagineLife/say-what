@@ -12,7 +12,8 @@ class Register extends React.Component {
       firstName: '',
       lastName: '',
       username: '',
-      password: ''
+      password: '',
+      email: ''
     }
   }
 
@@ -75,16 +76,21 @@ class Register extends React.Component {
           username: text
         })
         break; 
+      case 'email' :
+        this.setState({
+          email: text
+        })
+        break;
       default:
         this.setState({
           password: text
         })
         break;
     }
-
   }
 
   render(){
+    console.log(this.state);
 
     if(localStorage.getItem('localStorageAuthToken')){
       return (
@@ -110,6 +116,14 @@ class Register extends React.Component {
               name="lastName" 
               placeholder="lastName"
               value={this.state.lastName}
+              onChange={e => this.setText(e.target.value, e.target.id)}
+            required/>
+            <input 
+              id="email" 
+              type="text" 
+              name="email" 
+              placeholder="email"
+              value={this.state.email}
               onChange={e => this.setText(e.target.value, e.target.id)}
             required/>
             <input 
