@@ -2,6 +2,7 @@ import React from 'react';
 import './Login.css';
 import HeaderSplash from '../../components/HeaderSplash';
 import LoginSection from '../../components/LoginSection';
+import {Redirect} from 'react-router-dom';
 
 export default function Login(props) {
 
@@ -23,6 +24,12 @@ export default function Login(props) {
 	      	return <LoginSection key={ind} {...sec}/>;
 		})
 
+		if(localStorage.getItem('localStorageAuthToken')){
+	      return (
+	        <Redirect to="/speechPicker" />
+	      );
+	    }
+	    
     return (
 		<main role="main">
 		  <HeaderSplash title={pageHeader.title} subTitle={pageHeader.text}/>
