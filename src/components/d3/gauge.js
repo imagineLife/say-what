@@ -16,7 +16,7 @@ export default class GaugeChart extends React.Component {
 				arcTotalHeight: 275,
 				ringThickness: 60,
 				maxRingValue: props.dataKey.wordCount,
-				transitionMs: 2000,
+				transitionMs: 2500,
 			})
 		}
 	}
