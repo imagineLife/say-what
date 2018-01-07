@@ -29,7 +29,7 @@ class SpeechText extends React.Component{
         let fetchURL, urlText, lastPartOfURL;
         urlText = window.location.href;
         lastPartOfURL = urlText.split("/").pop();
-        console.log('lastPartOfURL',lastPartOfURL);
+
 	// setting up the fetch url
     
     	lastPartOfURL === '5a1ad99f978ca2681f42df12' ? fetchURL = `http://localhost:8080/api/speeches/text/default` :fetchURL = `http://localhost:8080/api/speeches/text/${lastPartOfURL}`;
