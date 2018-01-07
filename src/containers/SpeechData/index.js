@@ -87,11 +87,9 @@ class SpeechData extends React.Component {
     // IF Non-default speech,
     // Requre logged-in via localStorage
     // Otherwise, Redirect to login
-    	if(this.state.speechID !== 'default'){
+    	if(this.state.speechID !== 'default' && this.state.speechID !== undefined){
     		if(!localStorage.getItem('localStorageAuthToken')){
-    			return (
-		        	<Redirect to="/login" />
-		      	);
+    			return <Redirect to="/login" />;
     		}
     	}
 		
