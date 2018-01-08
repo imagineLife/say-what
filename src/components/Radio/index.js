@@ -4,11 +4,11 @@ import './radio.css';
 export default function Radio(props) {
 	
     return (
-		<label htmlFor="speech">{props.labelText}
+		<label htmlFor={props.val}>{props.labelText}
 			<input 
 				id={props.val} 
 				type="radio" 
-				name="speech"
+				name="requestType"
 				value={props.val} 
 				onChange={e => props.onChangeProp(e)}
 			required />
