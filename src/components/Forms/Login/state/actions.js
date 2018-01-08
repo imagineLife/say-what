@@ -28,6 +28,5 @@ const saveTokenAction = (obj, dispatch) => {
         type: LOGIN,
         payload: obj
     };
-    console.log('dispatch object INSIDE saveTokenAction is =>',dispatchObject);
     dispatch(dispatchObject);
 }
