@@ -37,8 +37,6 @@ class RequestForm extends React.Component {
   }
 
   render(){
-    console.log('in Request form Render!');
-    console.log('ReqForm State inside render -->',this.state);
 
     const handleTextChange = (e) => {
       this.setText(e.currentTarget.value, e.currentTarget.id)
