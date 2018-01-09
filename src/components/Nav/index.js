@@ -4,7 +4,9 @@ import NavLink from '../NavLink';
 
 export default function Nav() {
 	//Help update this specific navLink text to change when signed-in-or-not :) 
-	
+
+//array of Objects,
+//these are properties of each NavLink below	
 	const navLinkArray = [
 		{
 			linkTo : "/",
@@ -23,6 +25,7 @@ export default function Nav() {
 		}
 	];
 
+//convert the array above into <NavLink />s
 	const linkObjsToComponents = navLinkArray.map((navLink,ind) => {
 		return <NavLink key={ind} linkTo={navLink.linkTo}  imgSrc={navLink.imgSrc}  linkTitle={navLink.alt}/>;
 	})
