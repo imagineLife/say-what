@@ -25,7 +25,7 @@ class Register extends React.Component {
 
     return (
   //Register
-        fetch(`http://localhost:8080/api/users/register`, {
+        fetch(`${window.backendPath}/api/users/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

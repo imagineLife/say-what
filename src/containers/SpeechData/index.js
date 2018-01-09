@@ -32,7 +32,7 @@ class SpeechData extends React.Component {
 
     //	send & return speechstats
     //	set speechstats to containers state
-        return fetch(`http://localhost:8080/api/speeches/${this.state.urlSpeechID}`, {
+        return fetch(`${window.backendPath}/api/speeches/${this.state.urlSpeechID}`, {
 		        method: 'GET',
 		        headers: {
 		            'Content-Type': 'application/json',

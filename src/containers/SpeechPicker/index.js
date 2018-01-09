@@ -26,7 +26,7 @@ class SpeechPicker extends React.Component {
 			loading:true
 		})
 
-		return fetch(`http://localhost:8080/api/speeches/speechList`, {
+		return fetch(`${window.backendPath}/api/speeches/speechList`, {
 	        method: 'GET',
 	        headers: {
 	            'Content-Type': 'application/json',

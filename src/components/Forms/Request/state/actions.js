@@ -1,6 +1,6 @@
 import {REQUEST} from './constants';
 export const requestAction = (obj, dispatch) => {
-    fetch(`http://localhost:8080/api/requests`, {
+    fetch(`${window.backendPath}/api/requests`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
