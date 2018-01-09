@@ -1,7 +1,7 @@
 import React from 'react';
 import './RegisterForm.css';
 import {connect} from 'react-redux';
-import {loginAction} from './state/actions';
+import {loginAction} from '../Login/state/actions';
 import {Redirect} from 'react-router-dom';
 import Input from '../../Input'
 
@@ -34,19 +34,6 @@ class Register extends React.Component {
         })
         .then(() => {
               this.props.myRunLoginKey(this.state);
-  //Login after register 
-  //TRYING the loginAction
-          // fetch(`http://localhost:8080/api/auth/login`, {
-          //   method: 'POST',
-          //   headers: {
-          //       'Content-Type': 'application/json',
-          //       'Authorization': 'Basic ' + encodedStr
-          //   },
-          //   body: JSON.stringify({
-          //     username: this.state.username,
-          //     password: this.state.password
-          //   })
-          // })
         })
         .then(res => res.json())
         .catch(err => {
