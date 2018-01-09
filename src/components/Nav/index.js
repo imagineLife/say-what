@@ -25,7 +25,7 @@ export default function Nav() {
 		}
 	];
 
-//convert the array above into <NavLink />s
+//convert the array objects above into <NavLink />s
 	const linkObjsToComponents = navLinkArray.map((navLink,ind) => {
 		return <NavLink key={ind} linkTo={navLink.linkTo}  imgSrc={navLink.imgSrc}  linkTitle={navLink.alt}/>;
 	})
