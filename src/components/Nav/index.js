@@ -19,7 +19,7 @@ export default function Nav() {
 		{
 			linkTo : "/login",
 			imgSrc : "/imgs/user.ico",
-			alt : "Sign Up"
+			alt : "Login / Sign Up"
 		}
 	];
 
