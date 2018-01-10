@@ -98,24 +98,35 @@ class Chart extends Component {
           }];
           return ret;
         })
+
         .enter().append('tspan')
           .attrs({
             'x' : 0,
             'y' : function(d,i,letters) {
-              return 12 + (0 - letters.length / 2 - 0.5) * 10;
+              return -5;
               // return 3;
             },
             'text-anchor' : 'middle',
             'class' : 'bubbleText title'
           })
           .text((val) => {
-            return val.length+'-Letter Words'; 
+            return val.length+'-Letter'; 
           })
           .append('tspan')
           .attrs({
             'x' : 0,
             'y' : function(d,i,letters) {
-              return 20;
+              return 11;
+            },
+            'text-anchor' : 'middle',
+            'class' : 'bubbleText title'
+          })
+          .text('Words')
+          .append('tspan')
+          .attrs({
+            'x' : 0,
+            'y' : function(d,i,letters) {
+              return 30;
             },
             'text-anchor' : 'middle',
             'class' : 'bubbleText val'
