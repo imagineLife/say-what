@@ -100,7 +100,8 @@ class SpeechPicker extends React.Component {
 						title: `Make A Request`,
 						text: ``,
 						includeRequestForm: true,
-						includeBottomSpace: true
+						includeBottomSpace: true,
+						requested: this.props.mappedUserRequest
 					}
 				];
 
@@ -125,6 +126,7 @@ class SpeechPicker extends React.Component {
 const mapStateToProps = (state) =>
 ({ 
 	mappedAuthToken: state._root.entries["0"][1],
+	mappedUserRequest: state._root.entries[1][1].userSubmittedRequest,
 	...state
 })
 
