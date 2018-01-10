@@ -32,7 +32,7 @@ class SpeechText extends React.Component{
 
 	// setting up the fetch url
     
-    	lastPartOfURL === '5a1ad99f978ca2681f42df12' ? fetchURL = `http://localhost:8080/api/speeches/text/default` :fetchURL = `http://localhost:8080/api/speeches/text/${lastPartOfURL}`;
+    	lastPartOfURL === '5a1ad99f978ca2681f42df12' ? fetchURL = `${window.backendPath}/api/speeches/text/default` :fetchURL = `${window.backendPath}/api/speeches/text/${lastPartOfURL}`;
 
     //	send & return speechText
     //	set speechText to container's state
