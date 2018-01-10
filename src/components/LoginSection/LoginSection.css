@@ -2,3 +2,7 @@ section {
   min-height: 200px;
   padding: 30px 15px;
 }
+
+.bottomSpacer{
+	height: 150px;
+}
