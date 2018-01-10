@@ -1,6 +1,6 @@
 nav, footer {
   padding-top:1%;
-  background-color: rgba(170,170,170,.5);
+  background-color: rgba(170,170,170,.7);
 }
 
 nav {
@@ -39,4 +39,17 @@ ul li.liWithIcon{
 a{
   text-decoration: none;
   color:#444;
+}
+
+.blurred{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height:60px;
+  background-color: rgba(170,170,170,.7);
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
 }
