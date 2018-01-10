@@ -1,5 +1,9 @@
-button{
-	background-color: transparent;
+#getStarted, #pickFromList{
+	background-color: #7591AA;
+	margin-top: 10px;
 	border-style: none;
-	font-size: 16px;
+	width : 100%;
+	font-size : 18px;
+	color: rgba(26,25,33,.9);
+	height:40px;
 }
