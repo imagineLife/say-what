@@ -1,7 +1,11 @@
 .App {
   text-align: center;
   font-family: 'Lucida Grande';
-  color: #D8D8D8;
+  color: rgb(216,216,216);
   background-color: #1A1920;
 }
 
+.App * {
+	font-family: 'Lucida Grande';
+	color: rgb(216,216,216);
+}
