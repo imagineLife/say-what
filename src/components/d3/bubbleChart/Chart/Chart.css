@@ -4,6 +4,7 @@
 
 .bubbleText{
 	font-size: 16px;
+	fill: #D8D8D8;
 }
 
 .title{
@@ -12,4 +13,8 @@
 
 .val{
 	font-weight:normal;
+}
+
+.clipText{
+	z-index: 10;
 }

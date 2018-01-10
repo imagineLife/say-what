@@ -85,7 +85,10 @@ class Chart extends Component {
 
   //declare the text
       bubble.append('text')
-          .attr('clip-path', function(d) { return 'url(#clip-'+d.data.size+')'; })
+          .attrs({
+            'clip-path' : function(d) { return 'url(#clip-'+d.data.size+')'; },
+            'class' : 'clipText'
+          })
         .selectAll('tspan')
         .data(function(d) { 
           let curKey = d.data.size;
