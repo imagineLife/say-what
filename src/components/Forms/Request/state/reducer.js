@@ -2,9 +2,8 @@ import {fromJS} from 'immutable';
 import {REQUEST} from './constants';
 const initialState = fromJS({});
 
-const setAuthToken = (state, action) => {
-	console.log('in setAuthToken reducer, state is...',state);
-	console.log('setAuthToken Reducer  action.type',action.type);
+const setUserSubmitted = (state, action) => {
+	
 	switch(action.type) {
 		
 		case REQUEST:
@@ -14,9 +13,8 @@ const setAuthToken = (state, action) => {
 				data that is going into the state would go...
 					IE doing math on return content etc.
 			*/
-			console.log('inside REQUEST setAuthToken switch Login reducer, authToken is',action.payload.authToken);
-			return action.payload.authToken;
-		
+			return true;
+	
 		default: 
 			return state;
 	}
@@ -24,7 +22,7 @@ const setAuthToken = (state, action) => {
 
 const requestReducer = (state = initialState, action) => {
 	return {
-		authToken: setAuthToken(state, action)
+		userSubmittedRequest: setUserSubmitted(state, action)
 	};
 };
 
