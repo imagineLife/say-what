@@ -1,6 +1,6 @@
 section {
   min-height: 200px;
-  padding: 30px 15px;
+  padding: 40px 15px;
 }
 
 section:nth-child(even) {

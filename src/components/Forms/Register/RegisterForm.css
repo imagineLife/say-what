@@ -22,7 +22,7 @@ input[type='text'],[type='password'] {
 .register-form input[type='submit']{
 	background-color: #7591AA;
 	margin-top: 10px;
-	border-style: solid;
+	border-style: none;
 }
 
 .register-form label{
