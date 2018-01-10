@@ -1,0 +1,8 @@
+input[type=text], input[type=password], input[type=email] {
+	color: black;
+}
+
+input[type=submit] {
+	font-size: 18px;
+	color: rgba(26,25,33,.9);
+}

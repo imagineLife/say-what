@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Forms.css';
 import './LoginForm.css';
 import {connect} from 'react-redux';
 import {loginAction} from './state/actions';
