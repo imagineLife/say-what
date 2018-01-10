@@ -59,7 +59,6 @@ nav ul li a .menuLabel{
 }
 
 section:nth-child(even) {
-  background-color: #ddd;
 }
 
 /* Non-mobile, grid */
@@ -80,7 +79,6 @@ section:nth-child(even) {
     padding-right: 2.5%;
     width: 50%;
     height:600px;
-    background-color: #ddd;
   }
 
   /* 12 columns */

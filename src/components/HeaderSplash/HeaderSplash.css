@@ -1,13 +1,13 @@
-.subTitle{
-	margin:5px;
-	font-size: .85em;
-}
-
 header a {
 	font-size: 14px;
 }
 
 .titleSplash{
 	margin-bottom:0px;
-	color:black;
+	color:#D8D8D8;
+}
+
+.subTitle{
+	margin:5px;
+	font-size: 1.2em;
 }
