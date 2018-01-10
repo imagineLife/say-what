@@ -21,10 +21,9 @@ class Splash extends Component {
 					text: `SayWhay looks at a speech and its text content as a dataset, illuminating the largest words spoken, the most common words of the speech, and more!`
 				},
 				{
-					title: `Pick from a variety of Speeches`,
+					title: `Pick from a list of Speeches`,
 					text: `Interested in the details of what Trump said? Maybe Hillary? MLK Jr? Perhaps JFK or Abraham Lincoln?
-					Get insight into the words of a variety of speeches.`,
-					img: 'IMAGE OF SPEAKER'
+					Get insight into the words of a variety of speeches.`
 				},
 				{
 					title: 'Check it out!',
