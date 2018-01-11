@@ -41,9 +41,9 @@ class Splash extends Component {
 		    return (
 				<main role="main">
 				  <HeaderSplash title={pageHeader.Title} subTitle={pageHeader.subTitle} />
-			      
-			      {sections} 
-
+			      <div className="row">
+			      	{sections} 
+			      </div>
 			    </main>
 		    );
 		}

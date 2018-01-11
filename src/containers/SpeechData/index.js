@@ -118,33 +118,39 @@ class SpeechData extends React.Component {
 						Date : this.parseDate(this.state.Date),
 						Audience : this.state.Audience,
 						'Event Overview' : this.state.eventOverview
-					}
-				},
-				{
-					Title: 'How Many Words',
-					numberOfWords:this.state.numberOfWords,
-
+					},
+					colSize:3
 				},
 				{
 					Title: `Common Words`,
 					mostUsedWords: this.state.mostUsedWords,
-					includeBarChart:true
-				},
-				{
-					Title: `Words By Size`,
-					wordsBySize :this.state.wordsBySize,
-					includeWordBubble: true
-				},
-				{
-					Title: `12 Longest Words`,
-					bigWords: this.state.bigWords
+					includeBarChart:true,
+					colSize:6
 				},
 				{
 					Title: `Read the Speech Text`,
 					includeSpeechTextForm: true,
 					includeBottomSpace:true,
 					speechID: this.state.id,
-					speechTitle: this.state.title
+					speechTitle: this.state.title,
+					colSize:3
+				},
+				{
+					Title: 'How Many Words',
+					numberOfWords:this.state.numberOfWords,
+					colSize:4
+
+				},
+				{
+					Title: `Words By Size`,
+					wordsBySize :this.state.wordsBySize,
+					includeWordBubble: true,
+					colSize:4
+				},
+				{
+					Title: `12 Longest Words`,
+					bigWords: this.state.bigWords,
+					colSize:4
 				}
 			];
 

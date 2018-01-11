@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../float-grid.css';
 import './ResizingSection.css';
 import Title from '../Title';
 import Para from '../Para';
@@ -41,7 +40,7 @@ export default function ResizingSection(props) {
 	}
 
 	return (
-		<section className="col-6">
+		<section className={"col-"+props.colSize}>
 			<Title title={(props.Title || props.introInfo.Title)}/>
 	        {props.img ? props.img : null}
 	        {props.bigWords ? <Ul list={props.bigWords} /> : null}

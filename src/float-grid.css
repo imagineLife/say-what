@@ -37,7 +37,7 @@ nav ul li a .menuLabel{
 }
 
 /*Mobile defaults*/
-.col-3, .col-4, .col-6, .col-12 {
+div[class*="col-"], section[class*="col-"] {
   /* Gutters:
    * Each column is padded by half-a-gutter on each side,
    *
@@ -52,34 +52,40 @@ nav ul li a .menuLabel{
   height:auto;
   width: 95%;
   margin: 20px auto;
-}
-
-
-section:nth-child(even) {
+  display:inline-block;
 }
 
 /* Non-mobile, grid */
 @media only screen and (min-width: 768px) {
+  /*
+  universal margin affects col-* widths
+  */
+
+  div[class*="col-"], section[class*="col-"]{
+    width: unset;
+    padding: 5px;
+    margin: 2%;
+    float: left;
+  }
+
   /* 3 columns, 3/12 in % */
-  .col-3 {
-    width: 25%;
+  section.col-3 {
+    width: 21%;
   }
 
   /* 4 columns */
-  .col-4 {
-    width: 33.33%;
+  section.col-4 {
+    width: 29.33%;
   }
 
   /* 6 columns */
-  .col-6 {
-    padding-left: 2.5%;
-    padding-right: 2.5%;
-    width: 50%;
-    height:600px;
+  section.col-6 {
+    width: 46%;
   }
 
   /* 12 columns */
-  .col-12 {
+  section.col-12 {
+    width: 96%;
   }
 
   section header{
