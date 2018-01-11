@@ -22,7 +22,7 @@ class Splash extends Component {
 				},
 				{
 					title: `Pick from a list of Speeches`,
-					text: `Interested in the details of what Trump said? Maybe Hillary? MLK Jr? Perhaps JFK or Abraham Lincoln?
+					text: `Interested in the details of what Trump said at his inauguration speech? Perhaps JFK or Abraham Lincoln?
 					Get insight into the words of a variety of speeches.`
 				},
 				{
