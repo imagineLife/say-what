@@ -7,19 +7,19 @@ export default function BeginForm(props) {
 		<form className='begin-form'>
       <div>
         <label htmlFor="getStarted">See Trumps Inauguration Speech</label>
-        <button type='button' id="getStarted">
           <Link to={`/speechData/default`}>
+            <button type='button' id="getStarted">
               Here!
+            </button>
           </Link>
-        </button>
       </div>
       <div>
         <label htmlFor="pickFromList">Choose a speech </label>
-        <button type='button' id ="pickFromList">
           <Link to={`/speechPicker`}>
+            <button type='button' id ="pickFromList">
               Here!
+            </button>
           </Link>
-        </button>
       </div>
     </form>
   );
