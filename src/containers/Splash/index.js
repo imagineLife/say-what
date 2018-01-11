@@ -28,7 +28,7 @@ class Splash extends Component {
 				{
 					title: 'Check it out!',
 					includeBeginForm: true,
-					includeBottomSpace:true,
+					// includeBottomSpace:true,
 					speechID: this.props.mappedSpeechID
 				}
 			];
