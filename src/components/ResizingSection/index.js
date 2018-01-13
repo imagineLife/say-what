@@ -12,6 +12,8 @@ import GaugeChart from '../d3/gauge';
 import BottomSpacer from '../BottomSpacer';
 
 export default function ResizingSection(props) {
+	console.log('calcHeight', props.calcHeight);
+
 	let singleStat;
 
 //QUICK-STATS SECTION
