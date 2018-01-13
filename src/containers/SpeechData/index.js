@@ -87,8 +87,13 @@ class SpeechData extends React.Component {
     // IF Non-default speech,
     // Requre logged-in via localStorage
     // Otherwise, Redirect to login
-    	if(this.state.speechID !== 'default' && this.state.speechID !== undefined){
+    console.log('speechData speechID,',this.state.speechID);
+    console.log('speechData mappedSpeechID,',this.state.mappedSpeechID);
+    	if(this.state.speechID !== 'default' && this.state.speechID !== 'undefined'){
+    		console.log('undefined speechID HERE!');
+    		console.log('localStorage is ',localStorage.getItem('localStorageAuthToken'));
     		if(!localStorage.getItem('localStorageAuthToken')){
+    			console.log('SHOULD REDIRECT!');
     			return <Redirect to="/login" />;
     		}
     	}
@@ -119,13 +124,25 @@ class SpeechData extends React.Component {
 						Audience : this.state.Audience,
 						'Event Overview' : this.state.eventOverview
 					},
-					colSize:3
+					colSize:4
 				},
 				{
-					Title: `Common Words`,
-					mostUsedWords: this.state.mostUsedWords,
-					includeBarChart:true,
-					colSize:6
+					Title: `Words By Size`,
+					wordsBySize :this.state.wordsBySize,
+					includeWordBubble: true,
+					colSize:8
+				},
+				{
+					Title: `12 Longest Words`,
+					bigWords: this.state.bigWords,
+					includeBottomSpace:true,
+					colSize:4
+				},
+				{
+					Title: 'How Many Words',
+					numberOfWords:this.state.numberOfWords,
+					colSize:8
+
 				},
 				{
 					Title: `Read the Speech Text`,
@@ -136,21 +153,10 @@ class SpeechData extends React.Component {
 					colSize:3
 				},
 				{
-					Title: 'How Many Words',
-					numberOfWords:this.state.numberOfWords,
-					colSize:4
-
-				},
-				{
-					Title: `Words By Size`,
-					wordsBySize :this.state.wordsBySize,
-					includeWordBubble: true,
-					colSize:4
-				},
-				{
-					Title: `12 Longest Words`,
-					bigWords: this.state.bigWords,
-					colSize:4
+					Title: `Common Words`,
+					mostUsedWords: this.state.mostUsedWords,
+					includeBarChart:true,
+					colSize:9
 				}
 			];
 
@@ -159,21 +165,31 @@ class SpeechData extends React.Component {
 				return <ResizingSection key={ind} {...sec}/>;
 			})
 
+			console.log(sections[0]);
+
 	    	return (
 				<main role="main">
 
 			      <Header title={pageHeader.Title} subTitle={pageHeader.text} imageLinkProp={pageHeader.imageLink} imagePr={pageHeader.image}/>
 			      
-			      {sections}
-
-			    </main>
+			      <div className="row">
+				      {sections[0]}{sections[1]}
+				  </div>
+			      <div className="row">
+				      {sections[2]}{sections[3]}
+				  </div>
+			      <div className="row">
+				      {sections[4]}{sections[5]}
+				  </div>
+				  
+				</main>
 	    	);
 	    }
     }
 }
 
 const mapStateToProps = (state) => ({ 
-	speechID: state._root.entries["0"][1]
+	mappedSpeechID: state._root.entries["0"][1]
 })
 
 export default connect(mapStateToProps)(SpeechData);
