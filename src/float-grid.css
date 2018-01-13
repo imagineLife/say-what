@@ -47,8 +47,8 @@ div[class*="col-"], section[class*="col-"] {
    */
 /*  padding-left: 1.04166666%;
   padding-right: 1.04166666%;*/
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 3%;
+  padding-right: 3%;
   height:auto;
   width: 95%;
   margin: 20px auto;
@@ -63,7 +63,7 @@ div[class*="col-"], section[class*="col-"] {
 
   div[class*="col-"], section[class*="col-"]{
     width: unset;
-    padding: 5px;
+    padding: 2%;
     margin: 2%;
     float: left;
   }
@@ -119,7 +119,7 @@ div[class*="col-"], section[class*="col-"] {
 
   h3{
     margin:30px;
-    font-size: 1.8em;
+    font-size: 1.6em;
   }
 
   td{
