@@ -144,7 +144,7 @@ class SpeechData extends React.Component {
 					colSize:4
 				},
 				{
-					Title: `Read the Speech Text`,
+					Title: `Speech Text`,
 					includeSpeechTextForm: true,
 					includeBottomSpace:true,
 					speechID: this.state.id,
