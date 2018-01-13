@@ -76,6 +76,7 @@ div[class*="col-"], section[class*="col-"] {
   /* 3 columns, 3/12 in % */
   section.col-3 {
     width: 21%;
+    margin-top: 15%
   }
 
   /* 4 columns */
