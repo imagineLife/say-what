@@ -25,7 +25,7 @@ export default class Section extends React.Component {
 			this.setState({loginOrRegister});
 		}
 		return (
-			<section className="loginRegisterWrapper">
+			<section className="maxWidthWrapper">
 				<Title title={this.title}/>
 		        {this.state.loginOrRegister === 'register' ? <Para text={this.props.text} compClass="registerText"/> : null}
 		        {this.props.img ? this.props.img : null}
