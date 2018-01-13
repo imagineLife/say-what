@@ -16,12 +16,25 @@ class SpeechData extends React.Component {
 
 		this.state = {
 			loading: false,
-			urlSpeechID : urlSpeechID
+			urlSpeechID : urlSpeechID,
+			sectionHeight: 0,
 		};
 	}
 
 	componentDidMount(){
 		this.loadStats();
+
+		let myH = 0;
+		document.querySelectorAll('section[ class *= "col-" ]').forEach((itm) => {
+		    myH = Math.max(myH, itm.offsetHeight)
+		    console.log('SpeechData compDidMount, looping myH',myH);
+		})
+
+		console.log('SpeechData compDidMount, AFTER LOOP myH',myH);
+
+		this.setState({
+			sectionHeight: myH
+		})
 	}
 
 	loadStats(){
@@ -87,102 +100,101 @@ class SpeechData extends React.Component {
     // IF Non-default speech,
     // Requre logged-in via localStorage
     // Otherwise, Redirect to login
-    console.log('speechData speechID,',this.state.speechID);
-    console.log('speechData mappedSpeechID,',this.state.mappedSpeechID);
-    console.log('urlSpeechID is...',this.state.urlSpeechID);
-    	if(this.state.speechID !== 'default' && this.state.speechID !== 'undefined'){
-    		console.log('undefined speechID HERE!');
-    		console.log('localStorage is ',localStorage.getItem('localStorageAuthToken'));
-    		if(!localStorage.getItem('localStorageAuthToken')){
-    			console.log('SHOULD REDIRECT!');
-    			return <Redirect to="/login" />;
-    		}
-    	}
-		
-    //WHEN loading...
-		if (this.state.loading) {
-	    	return (
-				<main role="main">
-			      <p>Processing Speech Stats...</p>
-			    </main>
-	    	);
-        
-	//WHEN not loading
-        } else {
 
-	    	const pageHeader = {
-				Title: this.state.title,
-				image: Image,
-				imageLink: this.state.imageLink
-			}
+    	if(localStorage.getItem('localStorageAuthToken') === null && this.state.urlSpeechID !== 'default'){
+    		console.log('no auth token & non-default');
+    		return <Redirect to="/login" />;
+    	}else{
+	    		console.log('Localstorage is ',localStorage.getItem('localStorageAuthToken'));
+	    		console.log('this.state.urlSpeechID',this.state.urlSpeechID);
+			
+	    //WHEN loading...
+			if (this.state.loading) {
+		    	return (
+					<main role="main">
+				      <p>Processing Speech Stats...</p>
+				    </main>
+		    	);
+	        
+		//WHEN not loading
+	        } else {
 
-			const sectionsArray =[
-				{
-					introInfo:{
-						Title : 'Quick Stats',
-						Orator : this.state.Orator,
-						Date : this.parseDate(this.state.Date),
-						Audience : this.state.Audience,
-						'Event Overview' : this.state.eventOverview
-					},
-					colSize:4
-				},
-				{
-					Title: `Words By Size`,
-					wordsBySize :this.state.wordsBySize,
-					includeWordBubble: true,
-					colSize:8
-				},
-				{
-					Title: 'How Many Words',
-					numberOfWords:this.state.numberOfWords,
-					colSize:8
-
-				},
-				{
-					Title: `12 Longest Words`,
-					bigWords: this.state.bigWords,
-					colSize:4
-				},
-				{
-					Title: `Speech Text`,
-					includeSpeechTextForm: true,
-					includeBottomSpace:true,
-					speechID: this.state.id,
-					speechTitle: this.state.title,
-					colSize:3
-				},
-				{
-					Title: `Common Words`,
-					mostUsedWords: this.state.mostUsedWords,
-					includeBarChart:true,
-					colSize:9
+		    	const pageHeader = {
+					Title: this.state.title,
+					image: Image,
+					imageLink: this.state.imageLink
 				}
-			];
 
-		//converts the above sectionsArray into a 'sections' var for returning		
-			const sections = sectionsArray.map((sec,ind) => {
-				return <ResizingSection key={ind} {...sec}/>;
-			})
+				const sectionsArray =[
+					{
+						introInfo:{
+							Title : 'Quick Stats',
+							Orator : this.state.Orator,
+							Date : this.parseDate(this.state.Date),
+							Audience : this.state.Audience,
+							'Event Overview' : this.state.eventOverview
+						},
+						colSize:4
+					},
+					{
+						Title: `Words By Size`,
+						wordsBySize :this.state.wordsBySize,
+						includeWordBubble: true,
+						colSize:8
+					},
+					{
+						Title: 'How Many Words',
+						numberOfWords:this.state.numberOfWords,
+						colSize:8
 
-	    	return (
-				<main role="main">
+					},
+					{
+						Title: `12 Longest Words`,
+						bigWords: this.state.bigWords,
+						colSize:4
+					},
+					{
+						Title: `Speech Text`,
+						includeSpeechTextForm: true,
+						includeBottomSpace:true,
+						speechID: this.state.id,
+						speechTitle: this.state.title,
+						colSize:3
+					},
+					{
+						Title: `Common Words`,
+						mostUsedWords: this.state.mostUsedWords,
+						includeBarChart:true,
+						colSize:9
+					}
+				];
 
-			      <Header title={pageHeader.Title} subTitle={pageHeader.text} imageLinkProp={pageHeader.imageLink} imagePr={pageHeader.image}/>
-			      
-			      <div className="row">
-				      {sections[0]}{sections[1]}
-				  </div>
-			      <div className="row">
-				      {sections[2]}{sections[3]}
-				  </div>
-			      <div className="row">
-				      {sections[4]}{sections[5]}
-				  </div>
-				  
-				</main>
-	    	);
-	    }
+			//converts the above sectionsArray into a 'sections' var for returning		
+				const sections = sectionsArray.map((sec,ind) => {
+					return <ResizingSection key={ind} {...sec} calcHeight='auto' />;
+				})
+
+		    	return (
+					<main role="main">
+
+				      <Header title={pageHeader.Title} subTitle={pageHeader.text} imageLinkProp={pageHeader.imageLink} imagePr={pageHeader.image}/>
+				      
+				      <div className="row">
+					      {sections[0]}{sections[1]}
+					  </div>
+
+				      <div className="row">
+					      {sections[2]}{sections[3]}
+					  </div>
+
+				      <div className="row">
+					      {sections[4]}{sections[5]}
+					  </div>
+					  
+					</main>
+		    	);
+		    }
+		}
     }
 }
 
@@ -190,4 +202,8 @@ const mapStateToProps = (state) => ({
 	mappedSpeechID: state._root.entries["0"][1]
 })
 
-export default connect(mapStateToProps)(SpeechData);
+const mapDispatchDispatchToProps = (dispatch) => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchDispatchToProps)(SpeechData);
