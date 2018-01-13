@@ -7,3 +7,8 @@ input[type=submit] {
 	color: rgba(26,25,33,.9);
 	-webkit-appearance: none;
 }
+
+.maxWidthWrapper{
+	max-width: 350px;
+	margin: 0 auto;
+}
