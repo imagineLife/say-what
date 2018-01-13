@@ -8,7 +8,6 @@ import BeginForm from '../Forms/Begin';
 import RequestForm from '../Forms/Request';
 
 export default function Section (props) {
-	console.log('props.requested->',props.requested);
 
 	return (
 		<section>
