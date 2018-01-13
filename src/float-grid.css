@@ -80,12 +80,12 @@ div[class*="col-"], section[class*="col-"] {
 
   /* 4 columns */
   section.col-4 {
-    width: 29.33%;
+    width: 29.333%;
   }
 
   /* 5 columns */
   section.col-5 {
-    width: 37.66%;
+    width: 37.666%;
   }
 
   /* 6 columns */
@@ -95,8 +95,14 @@ div[class*="col-"], section[class*="col-"] {
 
   /* 8 columns */
   section.col-8 {
-    width: 62.66%;
+    width: 62.666%;
   }
+
+  /* 9 columns */
+  section.col-9 {
+    width: 71%;
+  }
+
   /* 12 columns */
   section.col-12 {
     width: 96%;
