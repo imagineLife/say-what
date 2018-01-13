@@ -133,16 +133,15 @@ class SpeechData extends React.Component {
 					colSize:8
 				},
 				{
-					Title: `12 Longest Words`,
-					bigWords: this.state.bigWords,
-					includeBottomSpace:true,
-					colSize:4
-				},
-				{
 					Title: 'How Many Words',
 					numberOfWords:this.state.numberOfWords,
 					colSize:8
 
+				},
+				{
+					Title: `12 Longest Words`,
+					bigWords: this.state.bigWords,
+					colSize:4
 				},
 				{
 					Title: `Read the Speech Text`,
