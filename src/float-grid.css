@@ -93,6 +93,10 @@ div[class*="col-"], section[class*="col-"] {
     width: 46%;
   }
 
+  /* 8 columns */
+  section.col-8 {
+    width: 62.66%;
+  }
   /* 12 columns */
   section.col-12 {
     width: 96%;
