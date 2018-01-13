@@ -89,6 +89,7 @@ class SpeechData extends React.Component {
     // Otherwise, Redirect to login
     console.log('speechData speechID,',this.state.speechID);
     console.log('speechData mappedSpeechID,',this.state.mappedSpeechID);
+    console.log('urlSpeechID is...',this.state.urlSpeechID);
     	if(this.state.speechID !== 'default' && this.state.speechID !== 'undefined'){
     		console.log('undefined speechID HERE!');
     		console.log('localStorage is ',localStorage.getItem('localStorageAuthToken'));
@@ -163,8 +164,6 @@ class SpeechData extends React.Component {
 			const sections = sectionsArray.map((sec,ind) => {
 				return <ResizingSection key={ind} {...sec}/>;
 			})
-
-			console.log(sections[0]);
 
 	    	return (
 				<main role="main">
