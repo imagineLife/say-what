@@ -11,8 +11,8 @@ export default class GaugeChart extends React.Component {
 	//Spread props makes extensibility!!
 		this.state = {...props,
 			powerGauge : this.gauge(`#gcSVG${props.sectionKey}`, {
-				totalRadius: 310,
-				arcTotalWidth: 320,
+				totalRadius: 280,
+				arcTotalWidth: 290,
 				arcTotalHeight: 275,
 				ringThickness: 60,
 				maxRingValue: props.dataKey.wordCount,
