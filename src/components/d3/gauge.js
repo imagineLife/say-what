@@ -69,7 +69,7 @@ export default class GaugeChart extends React.Component {
 			
 			transitionMs				: 750,
 			
-			majorTicks					: 8,
+			majorTicks					: 4,
 			labelFormat					: d3.format('d'),
 			labelInset					: 10,
 			
