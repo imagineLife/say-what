@@ -8,7 +8,7 @@ export default class Bars extends Component {
     super(props)
 
     this.colorScale = scaleLinear()
-      .range(['#256CFF','#1845A2'])
+      .range(['#256CFF','#143B8A'])
       .interpolate(interpolateLab)
   }
 
@@ -17,7 +17,7 @@ export default class Bars extends Component {
     const { xScale, yScale } = scales
     const { height } = svgDimensions
     
-    this.colorScale.domain([0, data.length]);
+    this.colorScale.domain([0, data.length - 1]);
 
     const bars = (
       data.map( (data, index) =>
