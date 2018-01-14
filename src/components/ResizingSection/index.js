@@ -16,6 +16,13 @@ export default function ResizingSection(props) {
 
 	let singleStat;
 
+	// const setHeight = () => {
+	// 	console.log('setHeight...',props.canLoadHeight, props.calcHeight);
+	// 	return (props.canLoadHeight) 
+	// 	? {height: `${props.calcHeight}px`}
+	// 	:  {visibility: 'visible'};		
+	// }
+
 //QUICK-STATS SECTION
 	if(props.introInfo){
 		singleStat = Object.keys(props.introInfo).map(key => {
@@ -42,7 +49,7 @@ export default function ResizingSection(props) {
 	}
 
 	return (
-		<section className={"col-"+props.colSize}>
+		<section className={"col-"+props.colSize} /*style= { setHeight() }*/>
 			<Title title={(props.Title || props.introInfo.Title)}/>
 	        {props.img ? props.img : null}
 	        {props.bigWords ? <Ul list={props.bigWords} /> : null}
