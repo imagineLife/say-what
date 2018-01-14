@@ -33,7 +33,6 @@ export default class Bars extends Component {
           <text className="barLabel"
             x={xScale(data.word) + (.3 * xScale.bandwidth()) }
             y={yScale(data.occurances) * .99}
-            fill='black'
           >
             {(data.occurances)}
           </text>
