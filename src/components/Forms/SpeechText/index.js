@@ -1,5 +1,5 @@
 import React from 'react';
-import './SpeechTextForm.css';
+import '../Forms.css';
 import {Link} from 'react-router-dom';
 
 export default function SpeechTextForm(props) {
@@ -7,7 +7,7 @@ export default function SpeechTextForm(props) {
 		<form className='begin-form'>
       <div>
         <label htmlFor="speechText">Read through the entire speech</label>
-        <button type='button' id="speechText">
+        <button type='butoon' id="speechText">
           <Link to={`/speechText/${props.speechID}`}>
               Here!
           </Link>
