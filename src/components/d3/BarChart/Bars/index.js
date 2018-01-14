@@ -8,8 +8,7 @@ export default class Bars extends Component {
     super(props)
 
     this.colorScale = scaleLinear()
-      .domain([0, this.props.maxValue])
-      .range(['#1845A2', '#C3CDF5'])
+      .range(['#256CFF','#1845A2'])
       .interpolate(interpolateLab)
   }
 
@@ -17,10 +16,11 @@ export default class Bars extends Component {
     const { scales, margins, data, svgDimensions } = this.props
     const { xScale, yScale } = scales
     const { height } = svgDimensions
+    
+    this.colorScale.domain([0, data.length]);
 
-    console.log('data is...',data);
     const bars = (
-      data.map(data =>
+      data.map( (data, index) =>
         <g key={data.word} className="singleBar">
           <rect
             key={data.word}
@@ -28,7 +28,7 @@ export default class Bars extends Component {
             y={yScale(data.occurances)}
             height={height - margins.bottom - scales.yScale(data.occurances)}
             width={xScale.bandwidth()}
-            fill={this.colorScale(data.occurances)}
+            fill={this.colorScale(index)}
           />
           <text className="barLabel"
             x={xScale(data.word) + (.3 * xScale.bandwidth()) }
