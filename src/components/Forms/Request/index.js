@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Forms.css';
 import './RequestForm.css';
 import {connect} from 'react-redux';
 import {requestAction} from './state/actions';
@@ -99,7 +100,7 @@ class RequestForm extends React.Component {
 
 //Return the form with input components
     return (
-    	<form className='request-form' onSubmit={e => this.getResFromAPI(e)}>
+    	<form className='request-form maxWidthWrapper' onSubmit={e => this.getResFromAPI(e)}>
        
         <fieldset>
           <legend>Request a...</legend>

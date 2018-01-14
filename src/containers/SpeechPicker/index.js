@@ -114,8 +114,9 @@ class SpeechPicker extends React.Component {
 					<main role="main">
 					  <Header title={pageHeader.title}/>
 				      
-				      {sections}
-
+				      <div className="row">
+				      	{sections}
+				      </div>
 				    </main>
 			    );
 			}

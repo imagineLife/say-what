@@ -90,7 +90,7 @@ div[class*="col-"], section[class*="col-"] {
   }
 
   /* 6 columns */
-  section.col-6 {
+  section.col-6, li.col-6 {
     width: 46%;
   }
 

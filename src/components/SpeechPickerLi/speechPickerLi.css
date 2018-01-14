@@ -1,10 +1,14 @@
 .SpeechPickerLi {
   text-align: left;
   margin: 0 auto 20px auto;
+  float:left;
+}
+
+ul{
+	overflow: hidden;
 }
 
 section .li{
-	float:none;
 	display:block;
 }
 
