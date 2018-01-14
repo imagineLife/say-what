@@ -18,9 +18,10 @@ export default class Bars extends Component {
     const { xScale, yScale } = scales
     const { height } = svgDimensions
 
+    console.log('data is...',data);
     const bars = (
       data.map(data =>
-        <g key={data.word} className="barWrapper">
+        <g key={data.word} className="singleBar">
           <rect
             key={data.word}
             x={xScale(data.word)}
@@ -41,7 +42,7 @@ export default class Bars extends Component {
     )
 
     return (
-      <g>{bars}</g>
+      <g className="barWrapper">{bars}</g>
     )
   }
 }
