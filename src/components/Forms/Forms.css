@@ -8,6 +8,21 @@ input[type=submit] {
 	-webkit-appearance: none;
 }
 
+#speechText {
+    background-color: #7591AA;
+    margin-top: 10px;
+    border-style: none;
+    font-size: 18px;
+	-webkit-appearance: none;
+    width: 100%;
+    height: 40px;
+    line-height: 18px
+}
+
+#speechText a{
+	color: rgba(26,25,33,.9);
+}
+
 .maxWidthWrapper{
 	max-width: 350px;
 	margin: 0 auto;
