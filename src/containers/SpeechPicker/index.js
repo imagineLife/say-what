@@ -5,7 +5,7 @@ import Section from '../../components/Section';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-class SpeechPicker extends React.Component {
+export class SpeechPicker extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {

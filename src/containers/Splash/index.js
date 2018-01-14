@@ -4,7 +4,7 @@ import './Splash.css';
 import HeaderSplash from '../../components/HeaderSplash';
 import Section from '../../components/Section';
 
-class Splash extends Component {
+export class Splash extends Component {
 		// constructor(props){
 		// 	super(props);
 		// }

@@ -7,7 +7,7 @@ import Image from '../../imgs/trump.jpg';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-class SpeechData extends React.Component {
+export class SpeechData extends React.Component {
 	constructor(props){
 		super(props)
 

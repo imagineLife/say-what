@@ -4,7 +4,7 @@ import Section from '../../components/Section';
 import {getSpeechTextAxn} from './state/actions';
 import {connect} from 'react-redux';
 
-class SpeechText extends React.Component{
+export class SpeechText extends React.Component{
 	constructor(props){
 		super(props)
 		this.state = {
