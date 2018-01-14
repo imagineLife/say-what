@@ -18,9 +18,7 @@ describe('SpeechData.js', () => {
 	it('Renders <Redirect/> when not logged in', () => {
 		const test = shallow(<SpeechData />);
 		const instance = test.instance();
-		console.log('speechData instance->',instance);
 		const mockRedirect = test.find('Redirect');
 		expect(mockRedirect.length).toEqual(1);
 	})
 })
-
