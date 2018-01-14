@@ -56,7 +56,6 @@ export class SpeechData extends React.Component {
 		    })
             .then(res => {
                 if (!res.ok) {
-                	console.log('res is',res);
                 	<Redirect to="/login" />;
                     // return Promise.reject(res.statusText);
                 }
