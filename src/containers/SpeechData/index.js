@@ -18,6 +18,7 @@ class SpeechData extends React.Component {
 			loading: false,
 			urlSpeechID : urlSpeechID,
 			sectionHeight: 0,
+			canLoadHeight: false
 		};
 	}
 
@@ -27,13 +28,14 @@ class SpeechData extends React.Component {
 		let myH = 0;
 		document.querySelectorAll('section[ class *= "col-" ]').forEach((itm) => {
 		    myH = Math.max(myH, itm.offsetHeight)
-		    console.log('SpeechData compDidMount, looping myH',myH);
+		// console.log('SpeechData compDidMount, looping myH',myH);
 		})
 
-		console.log('SpeechData compDidMount, AFTER LOOP myH',myH);
+		// console.log('SpeechData compDidMount, AFTER LOOP myH',myH);
 
 		this.setState({
-			sectionHeight: myH
+			sectionHeight : myH,
+			canLoadHeight : true
 		})
 	}
 
@@ -102,12 +104,10 @@ class SpeechData extends React.Component {
     // Otherwise, Redirect to login
 
     	if(localStorage.getItem('localStorageAuthToken') === null && this.state.urlSpeechID !== 'default'){
-    		console.log('no auth token & non-default');
+    	//no authToken & urlSpeechID is not-default
     		return <Redirect to="/login" />;
     	}else{
-	    		console.log('Localstorage is ',localStorage.getItem('localStorageAuthToken'));
-	    		console.log('this.state.urlSpeechID',this.state.urlSpeechID);
-			
+
 	    //WHEN loading...
 			if (this.state.loading) {
 		    	return (
@@ -171,7 +171,9 @@ class SpeechData extends React.Component {
 
 			//converts the above sectionsArray into a 'sections' var for returning		
 				const sections = sectionsArray.map((sec,ind) => {
-					return <ResizingSection key={ind} {...sec} calcHeight='auto' />;
+					sec.calcHeight = this.state.sectionHeight;
+					sec.canLoadHeight = this.state.canLoadHeight;
+					return <ResizingSection key={ind} {...sec}  />;
 				})
 
 		    	return (
