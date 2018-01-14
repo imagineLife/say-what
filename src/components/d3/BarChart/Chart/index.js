@@ -21,7 +21,7 @@ class Chart extends Component {
   // which SEEMS to come from the responsiveWrapper fn
   //  which wraps around the <Chart /> 
     const svgDimensions = {
-      width: Math.max(this.props.parentWidth, 300),
+      width: Math.max(this.props.respWrapWidth, 300),
       height: 440
     }
 

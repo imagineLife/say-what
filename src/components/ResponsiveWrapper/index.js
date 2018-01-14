@@ -54,7 +54,7 @@ export default ChartComponent => (
 
 //1. PARENT WIDTH in component
       return (
-        <ChartComponent {...this.props} parentWidth={parentWidth} />
+        <ChartComponent {...this.props} respWrapWidth={parentWidth} />
       )
     }
 
