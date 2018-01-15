@@ -19,7 +19,7 @@ Server
 >   cd say-what-api
 >   npm install
 ```
-**Launching**
+<br />**Launching**<br />
 Launch client & server from respective separate client & server terminal windows.
 ```
 Client
@@ -28,8 +28,8 @@ Client
 Server
 >   nodemon server.js
 ```
-Then open [`localhost:3000`](http://localhost:3000) in a browser.
-**Testing**
+Then open [`localhost:3000`](http://localhost:3000) in a browser.<br />
+<br />**Testing**<br />
 ```
 >   npm test
 ```
@@ -50,7 +50,7 @@ Enzyme (testing)<br />
 <br />
 **Responsive Design**<br />
 The app is designed & built with a mobile-first approach,
-and fits tablets and desktops as well.
+and fits tablets and desktops as well.<br />
 <br />
 **Security**<br />
 User passwords are encrypted using bcrypt.js.
