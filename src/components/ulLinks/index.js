@@ -3,7 +3,7 @@ import './ulLinks.css';
 import SpeechPickerLi from '../SpeechPickerLi';
 import {Link} from 'react-router-dom'
 
-export default function Ul(props) {
+export default function UlLink(props) {
      let parseDateToYear = (dateToParse) => {
 	    let usableDate = new Date(dateToParse);
 		let year = (usableDate.getFullYear() < 10 ? ('0'+usableDate.getFullYear()) : usableDate.getFullYear());
