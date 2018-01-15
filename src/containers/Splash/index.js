@@ -18,7 +18,7 @@ export class Splash extends Component {
 			const sectionsArray =[
 				{
 					title: `Notice what they're saying`,
-					text: `SayWhay looks at a speech and its text content as a dataset, illuminating the largest words spoken, the most common words of the speech, and more!`
+					text: `SayWhat looks at a speech and its text content as a dataset, illuminating the largest words spoken, the most common words of the speech, and more!`
 				},
 				{
 					title: `Pick from a list of Speeches`,
