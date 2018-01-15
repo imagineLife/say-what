@@ -36,28 +36,22 @@ Then open [`localhost:3000`](http://localhost:3000) in a browser.
 
 
 ## Technology Used
-**Front**<br />
+**Frontend**<br />
 HTML<br />
 CSS<br />
 JavaScript<br />
 React & Redux<br />
 <D3 <br/>
-
 <br/>
-
 **Backend**<br />
 Node.js + Express (web server)<br />
 MongoDB & Mongoose (database & object data modeling)<br />
 Enzyme (testing)<br />
-
 <br />
-
 **Responsive Design**<br />
 The app is designed & built with a mobile-first approach,
 and fits tablets and desktops as well.
-
 <br />
-
 **Security**<br />
 User passwords are encrypted using bcrypt.js.
 Passport protects enpoints from unauthorized access and  
