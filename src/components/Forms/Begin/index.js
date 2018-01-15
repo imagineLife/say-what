@@ -7,7 +7,7 @@ export default function BeginForm(props) {
   return (
     <div className="maxWidthWrapper">
   		<form className='begin-form'>
-        <div>
+        <div id='getStartedDiv'>
           <label htmlFor="getStarted">See Trumps Inauguration Speech</label>
             <Link to={`/speechData/default`}>
               <button type='button' id="getStarted">
@@ -15,7 +15,7 @@ export default function BeginForm(props) {
               </button>
             </Link>
         </div>
-        <div>
+        <div id='pickFromListDiv'>
           <label htmlFor="pickFromList">Choose a speech </label>
             <Link to={`/speechPicker`}>
               <button type='button' id ="pickFromList">
