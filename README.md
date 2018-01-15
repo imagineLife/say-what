@@ -1,5 +1,5 @@
 ## SayWhat?!
-<a href="say-what.netlify.com">SayWhat??!</a> is a responsive full-stack app where users can look at analytics around speeches.
+<a href="say-what.netlify.com">SayWhat??!</a> is a responsive full-stack app where users have an analytical view of speeches.
 ![Alt text](public/imgs/image1.jpg?raw=true "Starting Out")
 ![Alt text](public/imgs/image2.jpg?raw=true "Search Results Preview 1")
 ![Alt text](public/imgs/image3.jpg?raw=true "Search Results Preview 2")
@@ -35,7 +35,7 @@ Then open [`localhost:3000`](http://localhost:3000) in a browser.<br />
 ```
 
 
-## Technology Used
+## Technology
 **Frontend**<br />
 HTML<br />
 CSS<br />
