@@ -12,16 +12,8 @@ import GaugeChart from '../d3/gauge';
 import BottomSpacer from '../BottomSpacer';
 
 export default function ResizingSection(props) {
-	console.log('calcHeight', props.calcHeight);
 
 	let singleStat;
-
-	// const setHeight = () => {
-	// 	console.log('setHeight...',props.canLoadHeight, props.calcHeight);
-	// 	return (props.canLoadHeight) 
-	// 	? {height: `${props.calcHeight}px`}
-	// 	:  {visibility: 'visible'};		
-	// }
 
 //QUICK-STATS SECTION
 	if(props.introInfo){
