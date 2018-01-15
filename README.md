@@ -1,12 +1,12 @@
 ## SayWhat?!
 <a href="say-what.netlify.com">SayWhat??!</a> is a responsive full-stack app where users can look at analytics around speeches.
-![Alt text](startingOut.jpg?raw=true "Starting Out")
-![Alt text](uiInProcess.jpg?raw=true "Searching")
-![Alt text](searchResults.jpg?raw=true "Search Results")
+![Alt text](imgs/image1.jpg?raw=true "Starting Out")
+![Alt text](imgs/image2.jpg?raw=true "Search Results Preview 1")
+![Alt text](searchResults.jpg?raw=true "Search Results Preview 2")
 ![Alt text](previewingMacros.jpg?raw=true "Previewing Macros")
 
 ## Getting Started
-**Installing**
+</br>**Installing**</br>
 Install client & server files using separate terminal windows.
 ```
 Client
