@@ -7,11 +7,11 @@ export default function SpeechTextForm(props) {
 		<form className='begin-form'>
       <div>
         <label htmlFor="speechText">Read through the entire speech</label>
-        <button type='button' id="speechText">
           <Link to={`/speechText/${props.speechID}`}>
+            <button type='button' id="speechText">
               Here!
+            </button>
           </Link>
-        </button>
       </div>
       <div>
       </div>
