@@ -118,6 +118,7 @@ class Register extends React.Component {
       {
         source: "password",
         type : "password",
+        minInputLength: 8,
         onChangeProp : handleTextChange
         // onChangeProp : this.setText
       }
