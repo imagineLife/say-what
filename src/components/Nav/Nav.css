@@ -26,7 +26,7 @@ ul li.liWithIcon{
   display:inline-block;
   width:33%;
   text-align: center;
-  line-height: 70px;
+  line-height: 45px;
 }
 
 .liWithIcon a {
@@ -36,6 +36,7 @@ ul li.liWithIcon{
 .icon{
   width:45px;
   height:auto;
+  margin-top: 10px;
 }
 
 a{
