@@ -8,7 +8,7 @@ export default function BeginForm(props) {
     <div className="maxWidthWrapper">
   		<form className='begin-form'>
         <div id='getStartedDiv'>
-          <label htmlFor="getStarted">See President Trump's Inauguration Speech without an account</label>
+          <label htmlFor="getStarted">See President Trump's Inauguration Speech  <small>(without an account)</small></label>
             <Link to={`/speechData/default`}>
               <button type='button' id="getStarted">
                 Here!
