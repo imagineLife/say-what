@@ -31,7 +31,7 @@ export default function Login(props) {
 	    }
 	    
     return (
-		<main role="main">
+		<main role="main" className="splashBack">
 		  <HeaderSplash title={pageHeader.title} subTitle={pageHeader.text}/>
 	      
 	      {sections}

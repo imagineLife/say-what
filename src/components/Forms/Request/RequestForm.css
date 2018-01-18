@@ -25,8 +25,8 @@
 }
 
 .request-form input[type='radio']{
-	width: 50%;
 	vertical-align: middle;
+	margin: 25px 0px;
 }
 
 input[type='text']:nth-of-type(2) {

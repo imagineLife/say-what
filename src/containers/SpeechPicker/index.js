@@ -76,7 +76,7 @@ export class SpeechPicker extends React.Component {
 	//WHEN loading...
 			if (this.state.loading) {
 		    	return (
-					<main role="main">
+					<main role="main" className="splashBack">
 				      <p>Processing Speech Stats...</p>
 				    </main>
 		    	);
@@ -111,7 +111,7 @@ export class SpeechPicker extends React.Component {
 
 
 			    return (
-					<main role="main">
+					<main role="main" className="splashBack">
 					  <Header title={pageHeader.title}/>
 				      
 				      <div className="row">

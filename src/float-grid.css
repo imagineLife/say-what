@@ -32,6 +32,8 @@
   clear: both;
 }
 
+
+
 nav ul li a .menuLabel{
   display:none;
 }
@@ -56,6 +58,12 @@ div[class*="col-"], section[class*="col-"] {
 }
 
 /* Non-mobile, grid */
+
+@media only scree and (min-width: 435px) {
+  .request-form input[type='radio']{
+  margin-top: 0px;
+  }
+}
 @media only screen and (min-width: 768px) {
   /*
   universal margin affects col-* widths
@@ -110,6 +118,7 @@ div[class*="col-"], section[class*="col-"] {
   }
 
   section header{
+    margin-bottom:20px;
     padding:0;
   }
 
@@ -140,7 +149,7 @@ div[class*="col-"], section[class*="col-"] {
   }
 
   nav{
-    top: 0;
     bottom: auto;
   }
+
 }

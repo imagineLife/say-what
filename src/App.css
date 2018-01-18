@@ -503,7 +503,7 @@ template {
   text-align: center;
   font-family: 'Lucida Grande';
   color: rgb(216,216,216);
-  background-color: #1A1920;
+  /*background-color: #1A1920;*/
 }
 
 a{

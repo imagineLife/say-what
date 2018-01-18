@@ -70,7 +70,7 @@ export class SpeechText extends React.Component{
     //WHEN loading...
 		if (this.state.loading) {
 	    	return (
-				<main role="main">
+				<main role="main" className="splashBack">
 			      <p>Processing Speech Text...</p>
 			    </main>
 	    	);

@@ -112,7 +112,7 @@ export class SpeechData extends React.Component {
 	    //WHEN loading...
 			if (this.state.loading) {
 		    	return (
-					<main role="main">
+					<main role="main" className="splashBack">
 				      <p>Processing Speech Stats...</p>
 				    </main>
 		    	);
@@ -178,7 +178,7 @@ export class SpeechData extends React.Component {
 				})
 
 		    	return (
-					<main role="main">
+					<main role="main" className="splashBack">
 
 				      <Header title={pageHeader.Title} subTitle={pageHeader.text} imageLinkProp={pageHeader.imageLink} imagePr={pageHeader.image}/>
 				      

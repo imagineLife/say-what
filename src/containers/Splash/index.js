@@ -18,12 +18,11 @@ export class Splash extends Component {
 			const sectionsArray =[
 				{
 					title: `Notice What They're Saying`,
-					text: `SayWhat looks at a speech and its text content as a dataset, illuminating the largest words spoken, the most common words of the speech, and more!`
+					text: `SayWhat treats speeches like large datasets.`
 				},
 				{
 					title: `Pick from a List of Speeches`,
-					text: `Interested in the details of what Trump said at his inauguration speech? Perhaps JFK or Abraham Lincoln?
-					Get insight into the words of a variety of speeches.`
+					text: `Look at the words of Trump, Obama, Bill Clinton, & more!`
 				},
 				{
 					title: 'Check It Out!',
@@ -39,7 +38,7 @@ export class Splash extends Component {
 
 
 		    return (
-				<main role="main">
+				<main role="main" className="splashBack">
 				  <HeaderSplash title={pageHeader.Title} subTitle={pageHeader.subTitle} />
 			      <div className="row">
 			      	{sections} 

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../Forms.css';
 import './RequestForm.css';
+import '../../../float-grid.css';
 import {connect} from 'react-redux';
 import {requestAction} from './state/actions';
 import Input from '../../Input'
