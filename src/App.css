@@ -509,3 +509,7 @@ template {
 a{
   color: rgb(216,216,216)
 }
+
+h1{
+  margin: 0;
+}
