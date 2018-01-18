@@ -100,8 +100,12 @@ export class SpeechPicker extends React.Component {
 						title: `Make A Request`,
 						text: ``,
 						includeRequestForm: true,
-						includeBottomSpace: true,
 						requested: this.props.mappedUserRequest
+					},
+					{
+						title: 'Logout',
+						includeLogoutForm: true,
+						includeBottomSpace: true
 					}
 				];
 
