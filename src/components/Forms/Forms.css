@@ -27,3 +27,9 @@ input[type=submit] {
 	max-width: 350px;
 	margin: 0 auto;
 }
+
+input[type='submit']{
+	background-color: #7591AA;
+	margin-top: 10px;
+	border-style: none;
+}
