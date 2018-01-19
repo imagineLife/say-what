@@ -5,6 +5,7 @@ import Para from '../Para';
 import UlLinks from '../ulLinks';
 import BottomSpacer from '../BottomSpacer';
 import BeginForm from '../Forms/Begin';
+import LogoutForm from '../Forms/Logout';
 import RequestForm from '../Forms/Request';
 
 export default function Section (props) {
@@ -23,6 +24,7 @@ export default function Section (props) {
             		: <RequestForm {...props} /> 
      			: null
      		}
+	        {props.includeLogoutForm ? <LogoutForm {...props}/> : null}
 	        {props.includeBottomSpace ? <BottomSpacer /> : null}
 	    </section>
 	)
