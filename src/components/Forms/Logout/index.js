@@ -12,9 +12,7 @@ export default function LogoutForm(props) {
 
   return (
 		<form className='logout-form' onSubmit={(e) => onSubmit(e)}>
-        <button type='submit' id="logout" >
-          Here!
-        </button>
+        <input type='submit' id="logout" value= "Here" />
     </form>
   );
 }
