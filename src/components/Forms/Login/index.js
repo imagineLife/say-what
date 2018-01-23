@@ -88,7 +88,6 @@ class LoginForm extends React.Component {
             required/>
             <label htmlFor="register">Don't have an account?</label>
             <input type="button" name="register" id="register" value="Sign up" onClick={this.props.toggleForm}/>
-
       </form>
     );
   }
