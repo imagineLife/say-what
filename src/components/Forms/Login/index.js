@@ -22,7 +22,14 @@ class LoginForm extends React.Component {
 
   getResFromAPI(ev){
     ev.preventDefault();
-    this.props.myRunLoginKey(this.state);
+
+    let loginObj = {
+      username : this.state.username,
+      password : this.state.password
+    }
+
+    this.props.myRunLoginKey(loginObj);
+
   }
 
   setText(text, id) {
