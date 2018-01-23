@@ -55,7 +55,7 @@ class LoginForm extends React.Component {
 
     if (this.state.loading) {
       body = (
-          <div className="message message-default">Loading board...</div>
+          <div className="message message-default">Logging in...</div>
       );
 
     }else{
