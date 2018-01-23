@@ -10,7 +10,8 @@ class LoginForm extends React.Component {
     super(props);    
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      loading: false
     }
 
     //COULD USE THIS!
@@ -22,13 +23,14 @@ class LoginForm extends React.Component {
 
   getResFromAPI(ev){
     ev.preventDefault();
-
+    this.setState( { loading: true } )
     let loginObj = {
       username : this.state.username,
       password : this.state.password
     }
 
     this.props.myRunLoginKey(loginObj);
+    this.setState( { loading: false } );
 
   }
 
@@ -49,53 +51,69 @@ class LoginForm extends React.Component {
 
   render(){
 
-    const handleTextChange = (e) => {
-      this.setText(e.currentTarget.value, e.currentTarget.id)
-    }
+    let body;
 
-    let formInputArr = [
-      {
-        source: "username",
-        type : "text",
-        onChangeProp : handleTextChange
-        // onChangeProp : this.setText
-      },
-      {
-        source: "password",
-        type : "password",
-        onChangeProp : handleTextChange
-        // onChangeProp : this.setText
-      }
-    ];
-
-    const inputs = formInputArr.map((input, index) => {
-      return <Input key={index} {...input} onAdd={text => this.setText(text)}/>;
-    })
-
-    /*
-      if there's an authToken,
-      redirect user to the speechPicker page
-    */
-    if(localStorage.getItem('localStorageAuthToken')){
-      return (
-        <Redirect to="/speechPicker" />
+    if (this.state.loading) {
+      body = (
+          <div className="message message-default">Loading board...</div>
       );
+
+    }else{
+
+      const handleTextChange = (e) => {
+        this.setText(e.currentTarget.value, e.currentTarget.id)
+      }
+
+      let formInputArr = [
+        {
+          source: "username",
+          type : "text",
+          onChangeProp : handleTextChange
+          // onChangeProp : this.setText
+        },
+        {
+          source: "password",
+          type : "password",
+          onChangeProp : handleTextChange
+          // onChangeProp : this.setText
+        }
+      ];
+
+      const inputs = formInputArr.map((input, index) => {
+        return <Input key={index} {...input} onAdd={text => this.setText(text)}/>;
+      })
+
+      /*
+        if there's an authToken,
+        redirect user to the speechPicker page
+      */
+      if(localStorage.getItem('localStorageAuthToken')){
+        return (
+          <Redirect to="/speechPicker" />
+        );
+      }
+
+      body = (
+        <form className='login-form' onSubmit={e => this.getResFromAPI(e)}>
+          <fieldset>
+            <legend>Log in</legend>
+              {inputs}
+          </fieldset>
+              <input 
+                type="submit" 
+                name="submit" 
+                value="Log in"
+                onChange={e => this.setText(e.target.value, e.target.id)}
+              required/>
+              <label htmlFor="register">Don't have an account?</label>
+              <input type="button" name="register" id="register" value="Sign up" onClick={this.props.toggleForm}/>
+        </form>
+      );
+
     }
+
     return (
-    	<form className='login-form' onSubmit={e => this.getResFromAPI(e)}>
-        <fieldset>
-          <legend>Log in</legend>
-            {inputs}
-        </fieldset>
-            <input 
-              type="submit" 
-              name="submit" 
-              value="Log in"
-              onChange={e => this.setText(e.target.value, e.target.id)}
-            required/>
-            <label htmlFor="register">Don't have an account?</label>
-            <input type="button" name="register" id="register" value="Sign up" onClick={this.props.toggleForm}/>
-      </form>
+      <div>{body}</div>
     );
   }
 }
