@@ -10,8 +10,7 @@ class LoginForm extends React.Component {
     super(props);    
     this.state = {
       username: '',
-      password: '',
-      loading: false
+      password: ''
     }
 
     //COULD USE THIS!
@@ -23,14 +22,12 @@ class LoginForm extends React.Component {
 
   getResFromAPI(ev){
     ev.preventDefault();
-    this.setState( { loading: true } )
     let loginObj = {
       username : this.state.username,
       password : this.state.password
     }
 
     this.props.myRunLoginKey(loginObj);
-    this.setState( { loading: false } );
 
   }
 
@@ -54,6 +51,7 @@ class LoginForm extends React.Component {
     let body;
 
     if (this.state.loading) {
+      console.log('loading props',this.props);
       body = (
           <div className="message message-default">Logging in...</div>
       );
@@ -88,6 +86,7 @@ class LoginForm extends React.Component {
         redirect user to the speechPicker page
       */
       if(localStorage.getItem('localStorageAuthToken')){
+        
         return (
           <Redirect to="/speechPicker" />
         );
