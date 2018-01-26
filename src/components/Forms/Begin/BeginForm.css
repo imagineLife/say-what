@@ -1,10 +1,13 @@
 #getStarted, #pickFromList{
 	background-color: #7591AA;
 	margin-top: 10px;
-	margin-bottom: 50px;
 	border-style: none;
 	width : 100%;
 	font-size : 18px;
 	color: rgba(26,25,33,.9);
 	height:40px;
+}
+
+#getStartedDiv{
+	margin-bottom: 50px;
 }
