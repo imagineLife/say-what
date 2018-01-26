@@ -11,7 +11,7 @@ export default function Nav() {
 		{
 			linkTo : "/",
 			imgSrc : "/imgs/home.ico",
-			alt : "Home"
+			alt : "SayWhat?!"
 		},
 		{
 			linkTo : "/speechData/default",
