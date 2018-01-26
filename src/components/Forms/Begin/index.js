@@ -17,10 +17,10 @@ export default function BeginForm(props) {
             <label htmlFor="getStarted" className="subLabel"><small>(without an account)</small></label>
         </div>
         <div id='pickFromListDiv'>
-          <label htmlFor="pickFromList">To see more speeches, sign up for an account or login! </label>
+          <label htmlFor="pickFromList">To see more speeches</label>
             <Link to={`/speechPicker`}>
               <button type='button' id ="pickFromList">
-                Here!
+                Sign up for an account or login!
               </button>
             </Link>
         </div>
