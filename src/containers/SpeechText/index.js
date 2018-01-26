@@ -94,7 +94,7 @@ export class SpeechText extends React.Component{
 			})
 
 		    return (
-				<main role="main">
+				<main role="main" className="splashBack">
 			      
 			      {sections}
 
