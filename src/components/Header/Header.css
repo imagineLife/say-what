@@ -8,6 +8,8 @@ header a {
 }
 
 .titleH1{
-	margin-bottom:0px;
-	color:white;
+    background-color: rgba(0,0,0,.4);
+    margin-bottom: 0px;
+    color: white;
+    border-radius: 46px;
 }
