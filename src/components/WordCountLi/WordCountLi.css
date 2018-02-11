@@ -1,0 +1,22 @@
+.WordCountLi {
+  text-align: center;
+  margin: 0 auto 15px auto;
+  float:none;
+  display:inline-block;
+  width:50%;
+}
+
+.WordCountLi p {
+	display: inline;
+	text-align: left;
+}
+
+.boldWord{
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+nav li{
+	margin-left: 10px;
+	margin-right: 10px;
+}

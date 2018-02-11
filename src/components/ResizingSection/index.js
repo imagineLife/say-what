@@ -2,6 +2,7 @@ import React from 'react';
 import './ResizingSection.css';
 import Title from '../Title';
 import Para from '../Para';
+import WordCountLi from '../WordCountLi';
 import Li from '../li';
 import Ul from '../ul';
 import BeginForm from '../Forms/Begin';
@@ -30,10 +31,10 @@ export default function ResizingSection(props) {
 		singleStat = Object.keys(props.numberOfWords).map(key => {
 			if(key !== 'Title'){
 				if(key === 'wordCount'){
-					return <Li key={key} boldWord='Total' word={props.numberOfWords[key]} />
+					return <WordCountLi key={key} boldWord='Total' word={props.numberOfWords[key]} />
 				}
 				if(key === 'uniqueWords'){
-					return <Li key={key} boldWord='Unique Words' word={props.numberOfWords[key]} />
+					return <WordCountLi key={key} boldWord='Unique Words' word={props.numberOfWords[key]} />
 				}
 			}
 			return null;
