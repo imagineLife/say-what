@@ -6,6 +6,8 @@
 	font-size : 18px;
 	color: rgba(26,25,33,.9);
 	height:40px;
+	cursor: pointer;
+
 }
 
 #getStartedDiv{
