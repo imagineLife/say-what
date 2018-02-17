@@ -84,7 +84,7 @@ div[class*="col-"], section[class*="col-"] {
   /* 3 columns, 3/12 in % */
   section.col-3 {
     width: 21%;
-    margin-top:15%;
+    height: 590px;
   }
 
   /* 4 columns */
@@ -132,12 +132,20 @@ div[class*="col-"], section[class*="col-"] {
     font-size: 1.6em;
   }
 
+  section.col-3 > header h3 {
+    margin:0;
+  }
+
   td{
     padding:10px;
   }
 
   .bottomSpacer{
     display:none;
+  }
+
+  .begin-form{
+    margin: 50% 0;
   }
 
   nav ul li a .menuLabel{
