@@ -6,7 +6,6 @@ export default ChartComponent => (
     constructor(props) {
       super(props)
 
-//  3. HERE containerWidth is set to null to start 
       this.state = {
         containerWidth: null,
       }
@@ -15,11 +14,7 @@ export default ChartComponent => (
     }
 
     componentDidMount() {
-/*  4. AFTER component mounts
-    run fitParentContainer, written below AND/OR referenced above... ? 
-*/
       this.fitParentContainer()
-//  5.JQ-like event-listener?!
       window.addEventListener('resize', this.fitParentContainer)
     }
 
@@ -28,33 +23,24 @@ export default ChartComponent => (
     }
 
     fitParentContainer() {
-//  6.Fitting the parent container 
 
-//  7.pull containerWidth out of state as reference
       const { containerWidth } = this.state
-
-/*  8.WHERE is 'chartContainer'?!
-    WAY down in a div ref?!
-*/
-      const currentContainerWidth = this.chartContainer.getBoundingClientRect().width
-
-      const shouldResize = containerWidth !== currentContainerWidth
+      const ResponsiveWrapperDiv = this.chartContainerViaRef;
+      const ResponsiveWrapperDivWidth = ResponsiveWrapperDiv.getBoundingClientRect().width;
+      const shouldResize = containerWidth !== ResponsiveWrapperDivWidth
 
       if (shouldResize) {
         this.setState({
-          containerWidth: currentContainerWidth,
+          containerWidth: ResponsiveWrapperDivWidth,
         })
       }
     }
 
     renderChartComponent() {
-//2. declaration of parent width
-//  FROM state.containerWidth
-      const parentWidth = this.state.containerWidth
+      const parentDivWidth = this.state.containerWidth;
 
-//1. PARENT WIDTH in component
       return (
-        <ChartComponent {...this.props} respWrapWidth={parentWidth} />
+        <ChartComponent {...this.props} respWrapWidth={parentDivWidth} />
       )
     }
 
@@ -64,7 +50,7 @@ export default ChartComponent => (
 
       return (
         <div
-          ref={(el) => { this.chartContainer = el }}
+          ref={(el) => { this.chartContainerViaRef = el }}
           className="Responsive-wrapper"
         >
           {shouldRenderChart && this.renderChartComponent()}
