@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import * as d3 from 'd3';
 import 'd3-selection-multi';
 // import Bubbles from '../Bubbles'
-import ResponsiveWrapper from '../../../ResponsiveWrapper'
+// import ResponsiveWrapper from '../../../ResponsiveWrapper'
 import './Chart.css'
 
 
@@ -73,7 +73,6 @@ class Chart extends Component {
             'id' : function(d) { return d.id; },
             'class' : 'circle',
             'r' : function(d) { 
-              // console.log('updating radius ->',d);
               return d.r; }
           })
           .style('fill', function(d,i) { return color(i); });
@@ -152,7 +151,6 @@ class Chart extends Component {
     d3.select(window).on('resize', resizeChart);
 
     function resizeChart() {
-      console.log('resizingChart!');
   //Declare & set props of SVG
         bubbleSVGWidth = +container.style('width').replace('px','');
 
@@ -170,15 +168,6 @@ class Chart extends Component {
 
   render() {
 
-    //svgDimensions gets its withd from this.props.parentWidth
-  // which SEEMS to come from the responsiveWrapper fn
-  //  which wraps around the <Chart /> 
-    // const svgDimensions = {
-    //   width: Math.max(this.props.respWrapWidth, 300),
-    //   height: 440
-    // }
-
-    // console.log('copied fn svgDimensions -->',svgDimensions);
     return (
       <svg className='bubbleSVGWrapper'>
       </svg>
