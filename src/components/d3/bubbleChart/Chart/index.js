@@ -20,6 +20,7 @@ class Chart extends Component {
   }
 
   buildChart = () => {
+
     let d = {};
 
     var format = d3.format(',d');
@@ -27,21 +28,20 @@ class Chart extends Component {
     var color = d3.scaleOrdinal(d3.schemeCategory20);
 
     var container = d3.select('.Responsive-wrapper');
-    // console.log('Responsive-wrapper dimensions ->',container.style('height'),'x',container.style('width'));
   
   //Declare & set props of SVG
-    var svgElm = d3.select('.bubbleSVGWrapper'),
+    var bubbleSVGWrapper = d3.select('.bubbleSVGWrapper'),
         bubbleSVGWidth = +container.style('width').replace('px',''),
         bubbleSVGHeight = 440;
 
-        svgElm
+        bubbleSVGWrapper
           .attrs({
-            'viewBox' : '0, 0, ' + bubbleSVGWidth + ', ' + bubbleSVGHeight,  // meaning => min-x, min-y, width, height
+            'viewBox' : '25, 0, 298, 439'// + bubbleSVGWidth + ', ' + bubbleSVGHeight,  // meaning => min-x, min-y, width, height
           });
 
   //PACK
     var pack = d3.pack()
-        .size([bubbleSVGWidth, bubbleSVGHeight])
+        .size([298, 439])
         .padding(0);
 
   //begin the loop through data
@@ -57,7 +57,7 @@ class Chart extends Component {
   //declare the bubble element
   //  - pack ()
   //  - add a class
-      var bubble = svgElm.selectAll('.bubble')
+      var bubble = bubbleSVGWrapper.selectAll('.bubble')
         .data(pack(root).leaves())
         .enter().append('g')
           .attrs({
@@ -71,7 +71,10 @@ class Chart extends Component {
       bubble.append('circle')
           .attrs({
             'id' : function(d) { return d.id; },
-            'r' : function(d) { return d.r; }
+            'class' : 'circle',
+            'r' : function(d) { 
+              // console.log('updating radius ->',d);
+              return d.r; }
           })
           .style('fill', function(d,i) { return color(i); });
 
@@ -149,28 +152,33 @@ class Chart extends Component {
     d3.select(window).on('resize', resizeChart);
 
     function resizeChart() {
-      // console.log('resizeChart!');
+      console.log('resizingChart!');
   //Declare & set props of SVG
         bubbleSVGWidth = +container.style('width').replace('px','');
 
-        svgElm
-          .attrs({
-            'viewBox' : '0, 0, ' + bubbleSVGWidth + ', ' + bubbleSVGHeight,  // min-x, min-y, width, height
-            // 'preserveAspectRatio' :'xMinYMid'
-          });
-
       var w = parseInt( bubbleSVGWidth, 10); // computed width
       var a = bubbleSVGWidth / bubbleSVGHeight; // = aspect ratio to be applied to the container
-      svgElm.attr('height', w / a  + 'px');
+      bubbleSVGWrapper.attr('height', w / a  + 'px');
+      
 
     }
 
   }
 
-  shouldComponentUpdate() { return false }
+  shouldComponentUpdate() { return true }
 
 
   render() {
+
+    //svgDimensions gets its withd from this.props.parentWidth
+  // which SEEMS to come from the responsiveWrapper fn
+  //  which wraps around the <Chart /> 
+    // const svgDimensions = {
+    //   width: Math.max(this.props.respWrapWidth, 300),
+    //   height: 440
+    // }
+
+    // console.log('copied fn svgDimensions -->',svgDimensions);
     return (
       <svg className='bubbleSVGWrapper'>
       </svg>
@@ -178,4 +186,4 @@ class Chart extends Component {
   }
 }
 
-export default ResponsiveWrapper(Chart)
+export default Chart
