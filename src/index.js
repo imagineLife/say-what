@@ -16,16 +16,16 @@ const isLocalhost = Boolean(
     )
 );
 
-
-//something magical
-window.backendPath = ( isLocalhost ) ? '//localhost:8080' : '//thinkful-saywhat-api.herokuapp.com';
+window.backendPath = isLocalhost ? '//localhost:8080' : '//thinkful-saywhat-api.herokuapp.com';
 
 const initialState = {};
 
 const store = myConfigureStore(initialState);
 
-ReactDOM.render(
-	<Provider store={store}>
+console.log('store')
+console.log(store)
+
+ReactDOM.render(<Provider store={store}>
 		<App />
 	</Provider>
-		, document.getElementById('root'));
+		, document.getElementById('app'));
