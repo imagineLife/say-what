@@ -18,7 +18,7 @@ export class SpeechData extends React.Component {
 			loading: false,
 			urlSpeechID : urlSpeechID,
 			sectionHeight: 0,
-			canLoadHeight: false
+			// canLoadHeight: false
 		};
 	}
 
@@ -28,14 +28,11 @@ export class SpeechData extends React.Component {
 		let myH = 0;
 		document.querySelectorAll('section[ class *= "col-" ]').forEach((itm) => {
 		    myH = Math.max(myH, itm.offsetHeight)
-		// console.log('SpeechData compDidMount, looping myH',myH);
 		})
-
-		// console.log('SpeechData compDidMount, AFTER LOOP myH',myH);
 
 		this.setState({
 			sectionHeight : myH,
-			canLoadHeight : true
+			// canLoadHeight : true
 		})
 	}
 
@@ -44,41 +41,41 @@ export class SpeechData extends React.Component {
             error: null,
             loading: true
         });
-
+        
     //	send & return speechstats
     //	set speechstats to containers state
-        return fetch(`${window.backendPath}/api/speeches/${this.state.urlSpeechID}`, {
+        return fetch(`${window.backendPath}/api/speeches/${(this.state.urlSpeechID !== 'default' ? this.state.urlSpeechID : '')}`, {
 		        method: 'GET',
 		        headers: {
 		            'Content-Type': 'application/json',
 		            'Authorization': 'Bearer ' + localStorage.getItem('localStorageAuthToken')
 		        }
-		    })
-            .then(res => {
+		    }).then(res => {
+            	console.log(`${window.backendPath}/api/speeches/${this.state.urlSpeechID} RES:`)
+            	console.log(res)
+            	
                 if (!res.ok) {
                 	return <Redirect to="/login" />;
-                    // return Promise.reject(res.statusText);
                 }
-                return res.json();
-            })
-            .then(stats =>
-                this.setState({
-					Audience:stats.Audience,
-					Date: stats.Date,
-					Orator:stats.Orator,
-					bigWords:stats.bigWords,
-					id:stats.id,
-					mostUsedWords:stats.mostUsedWords,
-					numberOfWords: stats.numberOfWords,
-					speechTextLink: stats.speechTextLink,
-					imageLink: stats.imageLink,
-					eventOverview: stats.eventOverview,
-					title: stats.title,
-					wordsBySize: stats.wordsBySize,
-					loading: false
-                })
-            )
-            .catch(err =>
+                
+                res.json().then(stats => {
+                	this.setState({
+						Audience:stats.Audience,
+						Date: stats.Date,
+						Orator:stats.Orator,
+						bigWords:stats.bigWords,
+						id:stats.id,
+						mostUsedWords:stats.mostUsedWords,
+						numberOfWords: stats.numberOfWords,
+						speechTextLink: stats.speechTextLink,
+						imageLink: stats.imageLink,
+						eventOverview: stats.eventOverview,
+						title: stats.title,
+						wordsBySize: stats.wordsBySize,
+						loading: false
+	                })
+                })    	
+            }).catch(err =>
                 this.setState({
                     error: 'Could not load board',
                     loading: false
@@ -173,7 +170,7 @@ export class SpeechData extends React.Component {
 			//converts the above sectionsArray into a 'sections' var for returning		
 				const sections = sectionsArray.map((sec,ind) => {
 					sec.calcHeight = this.state.sectionHeight;
-					sec.canLoadHeight = this.state.canLoadHeight;
+					// sec.canLoadHeight = this.state.canLoadHeight;
 					return <ResizingSection key={ind} {...sec}  />;
 				})
 
@@ -205,8 +202,4 @@ const mapStateToProps = (state) => ({
 	mappedSpeechID: state._root.entries["0"][1]
 })
 
-const mapDispatchDispatchToProps = (dispatch) => ({
-
-})
-
-export default connect(mapStateToProps, mapDispatchDispatchToProps)(SpeechData);
+export default connect(mapStateToProps)(SpeechData);
