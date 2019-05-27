@@ -21,7 +21,7 @@ class Chart extends Component {
 
   buildChart = () => {
 
-    let d = {};
+    let dataObj = {};
 
     var format = d3.format(',d');
 
@@ -40,31 +40,27 @@ class Chart extends Component {
           });
 
   //PACK
-    var pack = d3.pack()
+    var d3PackFn = d3.pack()
         .size([298, 439])
         .padding(0);
 
   //begin the loop through data
     this.props.dataKey.forEach((obj) =>{
-      d.value = obj.occurances;
+      dataObj.value = obj.occurances;
 
   //declare ROOT
       var root = d3.hierarchy({children: this.props.dataKey})
-          .sum(function(d) {
-            return d.occurances; 
-          });
+          .sum(d => d.occurances);
 
   //declare the bubble element
   //  - pack ()
   //  - add a class
       var bubble = bubbleSVGWrapper.selectAll('.bubble')
-        .data(pack(root).leaves())
+        .data(d3PackFn(root).leaves())
         .enter().append('g')
           .attrs({
             'class': 'bubble',
-            'transform': function(d) { 
-              return 'translate(' + d.x + ',' + d.y + ')'; 
-            }
+            'transform': d => `translate(${d.x},${d.y})`
           });
 
   //declare the circle
@@ -75,15 +71,13 @@ class Chart extends Component {
             'r' : function(d) { 
               return d.r; }
           })
-          .style('fill', function(d,i) { return color(i); });
+          .style('fill', (d,i) => color(i));
 
   //declare a clipPath
       bubble.append('clipPath')
-          .attr('id', function(d) { 
-            return d.size
-          })
+          .attr('id', d => d.size)
         .append('use')
-          .attr('xlink:href', function(d) { return '#' + d.data.size.toString() });
+          .attr('xlink:href', d => `#${d.data.size.toString()}`);
 
   //declare the text
       bubble.append('text')
