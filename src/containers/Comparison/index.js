@@ -62,7 +62,10 @@ export default function Comparison() {
 		  	<p>Most-Used-Words are loaded</p>
 		  	<ul>
 		  	{mostUsedWords.words.map(word => {
-		  		return <DropDownWord key={word.word} word={word} wordsByOrator={mostUsedWords.wordCountByOrator[word.word]} />
+		  		return <DropDownWord 
+		  			key={word.word} 
+		  			word={word} 
+		  			wordsByOrator={mostUsedWords.wordCountByOrator[word.word].sort((a,b) => b.occurances - a.occurances)} />
 		  	})}
 		  	</ul>
 		  	</React.Fragment>}
