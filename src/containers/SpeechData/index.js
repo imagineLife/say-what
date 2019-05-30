@@ -3,7 +3,7 @@ import '../../float-grid.css';
 import './SpeechData.css';
 import Header from '../../components/Header';
 import ResizingSection from '../../components/ResizingSection';
-import Image from '../../imgs/trump.jpg';
+import Image from '../../../src/imgs/trump.jpg';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -15,15 +15,16 @@ export class SpeechData extends React.Component {
 		urlSpeechID = urlSpeechID[ urlSpeechID.length - 1 ];
 
 		this.state = {
-			loading: false,
+			loading: true,
 			urlSpeechID : urlSpeechID,
-			sectionHeight: 0,
-			// canLoadHeight: false
+			sectionHeight: 0
 		};
 	}
 
 	componentDidMount(){
-		this.loadStats();
+		// setTimeout(() => {
+			this.loadStats();
+		// }, 1500)
 
 		let myH = 0;
 		document.querySelectorAll('section[ class *= "col-" ]').forEach((itm) => {
@@ -31,8 +32,7 @@ export class SpeechData extends React.Component {
 		})
 
 		this.setState({
-			sectionHeight : myH,
-			// canLoadHeight : true
+			sectionHeight : myH
 		})
 	}
 
@@ -51,8 +51,8 @@ export class SpeechData extends React.Component {
 		            'Authorization': 'Bearer ' + localStorage.getItem('localStorageAuthToken')
 		        }
 		    }).then(res => {
-            	console.log(`${window.backendPath}/api/speeches/${this.state.urlSpeechID} RES:`)
-            	console.log(res)
+            	// console.log(`${window.backendPath}/api/speeches/${this.state.urlSpeechID} RES:`)
+            	// console.log(res)
             	
                 if (!res.ok) {
                 	return <Redirect to="/login" />;
@@ -135,24 +135,24 @@ export class SpeechData extends React.Component {
 						colSize:4
 					},
 					{
-						Title: `Words By Size`,
+						title: `Words By Size`,
 						wordsBySize :this.state.wordsBySize,
 						includeWordBubble: true,
 						colSize:8
 					},
 					{
-						Title: 'How Many Words',
+						title: 'How Many Words',
 						numberOfWords:this.state.numberOfWords,
 						colSize:8
 
 					},
 					{
-						Title: `12 Longest Words`,
+						title: `12 Longest Words`,
 						bigWords: this.state.bigWords,
 						colSize:4
 					},
 					{
-						Title: `Speech Text`,
+						title: `Speech Text`,
 						includeSpeechTextForm: true,
 						includeBottomSpace:true,
 						speechID: this.state.id,
@@ -160,7 +160,7 @@ export class SpeechData extends React.Component {
 						colSize:3
 					},
 					{
-						Title: `Common Words`,
+						title: `Common Words`,
 						mostUsedWords: this.state.mostUsedWords,
 						includeBarChart:true,
 						colSize:9
