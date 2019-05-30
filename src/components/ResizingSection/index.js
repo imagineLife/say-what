@@ -12,29 +12,45 @@ import BubbleChart from '../d3/bubbleChart/Chart';
 import GaugeChart from '../d3/gauge';
 import BottomSpacer from '../BottomSpacer';
 
-export default function ResizingSection(props) {
+export default function ResizingSection({
+	introInfo, 
+	numberOfWords,
+	colSize,
+	title,
+	img, 
+	bigWords,
+	includeBeginForm,
+	includeBarChart,
+	includeBottomSpace,
+	includeSpeechTextForm,
+	speechID,
+	speechTitle,
+	text,
+	wordsBySize,
+	mostUsedWords
+}) {
 
 	let singleStat;
 
 //QUICK-STATS SECTION
-	if(props.introInfo){
-		singleStat = Object.keys(props.introInfo).map(key => {
+	if(introInfo){
+		singleStat = Object.keys(introInfo).map(key => {
 			if(key !== 'Title'){
-				return <Li key={key} boldWord={key} word={props.introInfo[key]} />
+				return <Li key={key} boldWord={key} word={introInfo[key]} />
 			}
 			return null;
 		})
 	}
 
 //Unique-Words section
-	if(props.numberOfWords){
-		singleStat = Object.keys(props.numberOfWords).map(key => {
+	if(numberOfWords){
+		singleStat = Object.keys(numberOfWords).map(key => {
 			if(key !== 'Title'){
 				if(key === 'wordCount'){
-					return <WordCountLi key={key} boldWord='Total' word={props.numberOfWords[key]} />
+					return <WordCountLi key={key} boldWord='Total' word={numberOfWords[key]} />
 				}
 				if(key === 'uniqueWords'){
-					return <WordCountLi key={key} boldWord='Unique Words' word={props.numberOfWords[key]} />
+					return <WordCountLi key={key} boldWord='Unique Words' word={numberOfWords[key]} />
 				}
 			}
 			return null;
@@ -42,18 +58,18 @@ export default function ResizingSection(props) {
 	}
 
 	return (
-		<section className={"col-"+props.colSize} /*style= { setHeight() }*/>
-			<Title title={(props.Title || props.introInfo.Title)}/>
-	        {props.img ? props.img : null}
-	        {props.bigWords ? <Ul list={props.bigWords} /> : null}
-	       	{props.numberOfWords ? <GaugeChart sectionKey='numberOfWords' dataKey={props.numberOfWords}/> : null}
+		<section className={"col-"+colSize} /*style= { setHeight() }*/>
+			<Title title={(title || introInfo.Title)}/>
+	        {img ? img : null}
+	        {bigWords ? <Ul list={bigWords} /> : null}
+	       	{ numberOfWords ? <GaugeChart sectionKey='numberOfWords' dataKey={numberOfWords}/> : null}
 	        {singleStat ? singleStat : ''}
-	        {props.includeBeginForm ? <BeginForm /> : null}
-	        {props.includeSpeechTextForm ? <SpeechTextForm speechID={props.speechID} speechTitle = {props.speechTitle}/> : null}
-	        {props.text ? <Para text={props.text} /> : null }
-	        {props.wordsBySize ? <BubbleChart sectionKey='wordsBySize' dataKey={props.wordsBySize} /> : null}	        
-	        {props.includeBarChart ? <BarChart sectionKey='mostUsedWords' dataKey={props.mostUsedWords}/> : null}
-	        {props.includeBottomSpace ? <BottomSpacer /> : null}
+	        {includeBeginForm ? <BeginForm /> : null}
+	        {includeSpeechTextForm ? <SpeechTextForm speechID={speechID} speechTitle = {speechTitle}/> : null}
+	        {text ? <Para text={text} /> : null }
+	        {wordsBySize ? <BubbleChart sectionKey='wordsBySize' dataKey={wordsBySize} /> : null}
+	        {includeBarChart ? <BarChart sectionKey='mostUsedWords' dataKey={mostUsedWords}/> : null}
+	        {includeBottomSpace ? <BottomSpacer /> : null}
 	    </section>
 	);
 }
