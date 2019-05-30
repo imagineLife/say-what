@@ -3,7 +3,7 @@ import '../Forms.css';
 import './BeginForm.css';
 import {Link} from 'react-router-dom';
 
-export default function BeginForm(props) {
+export default function BeginForm() {
   return (
     <div className="maxWidthWrapper">
   		<form className='begin-form'>

@@ -2,7 +2,7 @@ import React from 'react';
 import '../Forms.css';
 // import {Redirect} from 'react-router-dom';
 
-export default function LogoutForm(props) {
+export default function LogoutForm() {
   
   let onSubmit = (event) => {
     event.preventDefault();
