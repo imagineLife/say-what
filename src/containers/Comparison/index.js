@@ -3,7 +3,7 @@ import './index.css';
 import HeaderSplash from '../../components/HeaderSplash';
 
 export default function Comparison() {
-	let [mostUsedWords, setMostUsedWords] = React.useState()
+	let [mostUsedWords, setMostUsedWords] = React.useState({})
 
 	React.useEffect(() => {
 
@@ -11,13 +11,23 @@ export default function Comparison() {
 		fetch('http://localhost:8080/api/speeches/compare').then(res => {
 			let jsonResult = res.json().then(jsonRes => {
 				let wordsArr = []
-				jsonRes.forEach(wordSet => {
-					let theseWords = wordSet.wordsByCount;
+
+				jsonRes.forEach(wordsByOrator => {
+					let theseWords = wordsByOrator.wordsByCount;
 					theseWords.forEach(thisWord => {
+						
+						if(thisWord.word == ""){
+							return
+						}
 						let isAlreadyInWordsArr = wordsArr.filter(w => w.word == thisWord.word)
+						
+						//not in array yet
 						if(isAlreadyInWordsArr.length < 1){
 							let thisArr = [thisWord]
+							let thisWordBySpeaker = {orator: wordsByOrator.orator, count: thisWord.occurances}
 							wordsArr = [...wordsArr, ...thisArr]
+
+						//in array already
 						}else{
 							let thisWordInd = wordsArr.findIndex(existingWord => existingWord.word == thisWord.word)
 							wordsArr[thisWordInd] = {
@@ -28,10 +38,9 @@ export default function Comparison() {
 						
 					})
 				})
-
-				return wordsArr
-			}).then(newArr => {
-				setMostUsedWords(newArr)		
+				setMostUsedWords({
+					words: wordsArr.sort((a,b) => b.occurances - a.occurances)
+				})
 			})
 			
 		})
@@ -39,10 +48,10 @@ export default function Comparison() {
     return (
 		<main role="main" className="splashBack">
 		  <HeaderSplash title={"Comparing Words"} subTitle={"Most-Used Words Across Speeches"}/>
-		  {mostUsedWords && <React.Fragment>
+		  {mostUsedWords.words && <React.Fragment>
 		  	<p>Most-Used-Words are loaded</p>
 		  	<ul>
-		  	{mostUsedWords.map(word => {
+		  	{mostUsedWords.words.map(word => {
 		  		return <li key={word.word} className="comparison-list">
 		  			<span className="value">{word.word}</span>
 		  			<span className="count">{word.occurances}<sub>x</sub></span>
@@ -50,7 +59,7 @@ export default function Comparison() {
 		  	})}
 		  	</ul>
 		  	</React.Fragment>}
-		  {!mostUsedWords && <p>Not loaded yet...</p>}
+		  {!mostUsedWords.words && <p>Not loaded yet...</p>}
 	    </main>
     );
 }
