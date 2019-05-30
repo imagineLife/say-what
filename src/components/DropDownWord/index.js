@@ -5,12 +5,11 @@ export default function DropDownWord({word, wordsByOrator}){
 	let [arrowDirection, setArrowDirection] = React.useState("right")
 	return(
 		<React.Fragment>
-			<li className="comparison-list">
+			<li className="comparison-list" 
+				onClick={() => setArrowDirection((arrowDirection == 'right') ? "down" : "right")}>
 				<span className="value">{word.word}</span>
 				<span className="count">{word.occurances}<sub>x</sub></span>
-				<i 
-					className={`arrow ${arrowDirection}`} 
-					onClick={() => setArrowDirection((arrowDirection == 'right') ? "down" : "right")}></i>
+				<i className={`arrow ${arrowDirection}`}></i>
 			</li>
 			{arrowDirection == "down" && wordsByOrator.map(wbo => {
 				return (<li key={`${word.word}${wbo.orator}`} className="list-by-orator">
