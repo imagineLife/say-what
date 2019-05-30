@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import AppRouter from './AppRouter';
 import {Provider} from 'react-redux';
 import myConfigureStore from './store';
 import './index.css';
@@ -22,10 +22,7 @@ const initialState = {};
 
 const store = myConfigureStore(initialState);
 
-console.log('store')
-console.log(store)
-
 ReactDOM.render(<Provider store={store}>
-		<App />
+		<AppRouter />
 	</Provider>
 		, document.getElementById('app'));
