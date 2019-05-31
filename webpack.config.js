@@ -15,8 +15,11 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: "babel-loader",
+          options: {
+              presets: ['@babel/react', '@babel/env']
+          }
+        },
       },
       {
         test: /\.html$/,
@@ -32,20 +35,10 @@ module.exports = {
         use: [MiniCss.loader, "css-loader"]
       },
       {
-        test: /\.(png|svg|jpg|gif|ico)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            outputPath: 'distImgs'
-          }
-        }
-        ]
+        test: /\.(png|svg|jpe?g|gif|ico)$/,
+        use: [{ loader: 'file-loader', options: {}}]
       }
     ]
-  },
-  devServer: {
-    historyApiFallback: true,
-    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -56,5 +49,10 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css'
     })
-  ]
+  ],
+    devServer: {
+    historyApiFallback: true,
+    publicPath: '/',
+    port:8081
+  }
 };
