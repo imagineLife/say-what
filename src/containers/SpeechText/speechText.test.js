@@ -3,13 +3,7 @@ import ReactDOM from 'react-dom';
 import {SpeechText} from './index';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import localStorage from 'mock-local-storage';
-
-global.window = {};
-window.localStorage = global.localStorage;
-
-
-Enzyme.configure({ adapter: new Adapter() });
+require('isomorphic-fetch')
 
 describe('SpeechText.js', () => {
 	it('renders without crashing', () => {
