@@ -3,22 +3,18 @@ import ReactDOM from 'react-dom';
 import { SpeechData } from './index';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import localStorage from 'mock-local-storage';
+require('isomorphic-fetch')
 
-Enzyme.configure({ adapter: new Adapter() });
+// Enzyme.configure({ adapter: new Adapter() });
 
-global.window = {};
-window.localStorage = global.localStorage;
-
-describe('SpeechData.js', () => {
-	it('renders without crashing', () => {
-	  shallow(<SpeechData />);
+describe('SpeechData', () => {
+	
+	it('Calls CDM && MOCK loadStats', () => {
+	  jest.spyOn(SpeechData.prototype, 'componentDidMount')
+	  jest.spyOn(SpeechData.prototype, 'loadStats')
+      
+      const component = shallow(<SpeechData/>)
+      expect(SpeechData.prototype.componentDidMount.mock.calls.length).toBe(1)
+      expect(SpeechData.prototype.loadStats.mock.calls.length).toBe(1)
 	});
-
-	it('Renders <Redirect/> when not logged in', () => {
-		const test = shallow(<SpeechData />);
-		const instance = test.instance();
-		const mockRedirect = test.find('Redirect');
-		expect(mockRedirect.length).toEqual(1);
-	})
 })
