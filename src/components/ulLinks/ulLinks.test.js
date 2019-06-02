@@ -7,11 +7,11 @@ import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('ulLinks.js', () => {
-	let dummyProp = [
-		"_id" :1234,
+	let dummyProp = [{
+		"_id":1234,
 		"Date":'January',
 		"title":'AmazingSpeech'
-	]
+	}]
 
 	it('renders without crashing', () => {
 		shallow(<Ul speechParts={dummyProp}/>);
