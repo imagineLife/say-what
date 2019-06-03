@@ -14,7 +14,7 @@
 
  deploy:
    provider: script
-   script: netlify deploy -s e6037ca7-0a26-4f1c-bb69-8a65153f7c5f --aut c8dc003473ba3794917ac6d13cebef842276fdba2a4ec3f53a800fc1de436a84 -p --dir ./build
+   script: netlify deploy -s e6037ca7-0a26-4f1c-bb69-8a65153f7c5f --auth c8dc003473ba3794917ac6d13cebef842276fdba2a4ec3f53a800fc1de436a84 -p --dir ./build
    skip_cleanup: true
    on:
      branch: master
