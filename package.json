@@ -12,8 +12,8 @@
     "redux-immutable": "^4.0.0"
   },
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --mode development ./src/index.js --open",
-    "build": "NODE_ENV=production webpack --mode production",
+    "start": "NODE_ENV=development webpack-dev-server --mode development ./src/index.js --config webpack.config.dev.js --open",
+    "build": "NODE_ENV=production webpack --mode production --config webpack.config.prod.js",
     "test": " jest"
   },
   "devDependencies": {
