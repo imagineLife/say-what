@@ -57,7 +57,16 @@ module.exports = {
       chunkFilename: '[id].css'
     }),
     new CopyPlugin([
-      { from: path.resolve(__dirname, '_redirects'), to: path.resolve(__dirname, 'build/') }
+      //_redirects for react-router frontend handling on netlify
+      { 
+        from: path.resolve(__dirname, '_redirects'),
+        to: path.resolve(__dirname, 'build/') 
+      },
+      //imgs
+      { 
+        from: path.resolve(__dirname, 'src/imgs'),
+        to: path.resolve(__dirname, 'build/imgs') 
+      }
     ]),
     /**
          * CleanWebpackPlugin:
