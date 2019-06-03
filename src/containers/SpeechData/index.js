@@ -3,8 +3,8 @@ import '../../float-grid.css';
 import './SpeechData.css';
 import Header from '../../components/Header';
 import ResizingSection from '../../components/ResizingSection';
-import Image from '../../../src/imgs/trump.jpg';
-import {Redirect} from 'react-router-dom';
+// const Image = require('../../imgs/trump.jpg');
+import {Redirect, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 export class SpeechData extends React.Component {
@@ -177,7 +177,10 @@ export class SpeechData extends React.Component {
 		    	return (
 					<main role="main" className="splashBack">
 
-				      <Header title={pageHeader.Title} subTitle={pageHeader.text} imageLinkProp={pageHeader.imageLink} imagePr={pageHeader.image}/>
+				      <Header 
+				      	title={pageHeader.Title} 
+				      	subTitle={pageHeader.text} 
+				      	imageLinkProp={pageHeader.imageLink}/>
 				      
 				      <div className="row">
 					      {sections[0]}{sections[1]}
