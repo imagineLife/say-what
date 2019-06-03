@@ -9,12 +9,15 @@ import './App.css';
 import Nav from './components/Nav';
 import Splash from './containers/Splash';
 import SpeechData from './containers/SpeechData';
-const SpeechPicker = lazy(() => import('./containers/SpeechPicker'))
-const SpeechText = lazy(() => import('./containers/SpeechText'))
-const Comparison = lazy(() => import('./containers/Comparison'))
+// const SpeechPicker = lazy(() => import('./containers/SpeechPicker'))
+// const SpeechText = lazy(() => import('./containers/SpeechText'))
+// const Comparison = lazy(() => import('./containers/Comparison'))
+import SpeechPicker from './containers/SpeechPicker';
+import SpeechText from './containers/SpeechText';
+import Comparison from './containers/Comparison';
 import Login from './containers/Login';
 
-function App(){
+function AppRouter(){
   return (
 	<Router>
 	      <div className="App">
@@ -35,4 +38,4 @@ function App(){
   );
 }
 
-export default App;
+export default AppRouter;
