@@ -59,7 +59,7 @@ div[class*="col-"], section[class*="col-"] {
 
 /* Non-mobile, grid */
 
-@media only scree and (min-width: 435px) {
+@media only screen and (min-width: 435px) {
   .request-form input[type='radio']{
   margin-top: 0px;
   }
