@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import * as d3 from 'd3';
 import 'd3-selection-multi';
 // import Bubbles from '../Bubbles'
-// import ResponsiveWrapper from '../../../ResponsiveWrapper'
+import ResponsiveWrapper from '../../../ResponsiveWrapper'
 import './Chart.css'
 
 
@@ -25,7 +25,7 @@ class Chart extends Component {
 
     var format = d3.format(',d');
 
-    var color = d3.scaleOrdinal(d3.schemeCategory20);
+    var color = d3.scaleOrdinal(d3.schemeCategory10);
 
     var container = d3.select('.Responsive-wrapper');
   
@@ -66,10 +66,9 @@ class Chart extends Component {
   //declare the circle
       bubble.append('circle')
           .attrs({
-            'id' : function(d) { return d.id; },
+            'id' : d => d.id,
             'class' : 'circle',
-            'r' : function(d) { 
-              return d.r; }
+            'r' : d => d.r
           })
           .style('fill', (d,i) => color(i));
 
@@ -82,11 +81,11 @@ class Chart extends Component {
   //declare the text
       bubble.append('text')
           .attrs({
-            'clip-path' : function(d) { return 'url(#clip-'+d.data.size+')'; },
+            'clip-path' : d => `url(#clip-${d.data.size})`,
             'class' : 'clipText'
           })
         .selectAll('tspan')
-        .data(function(d) { 
+        .data(d => {
           let curKey = d.data.size;
           let ret = [{
             length : parseInt(curKey, 10),
@@ -134,8 +133,7 @@ class Chart extends Component {
 
   //declare the title, hidden from view, but exists in HTML
       bubble.append('title')
-          .text(function(d) { 
-            return d.data.size + '-letter Words : ' + format(d.value); });
+          .text(d => `${d.data.size}-letter Words : ${format(d.value)}`);
     
     });
 
@@ -157,9 +155,6 @@ class Chart extends Component {
 
   }
 
-  shouldComponentUpdate() { return true }
-
-
   render() {
 
     return (
@@ -169,4 +164,4 @@ class Chart extends Component {
   }
 }
 
-export default Chart
+export default ResponsiveWrapper(Chart)
