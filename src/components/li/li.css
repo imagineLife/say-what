@@ -6,6 +6,7 @@
 section .li{
 	float:none;
 	display:block;
+	line-height: 1.2;
 }
 
 .boldWord{
@@ -16,4 +17,9 @@ section .li{
 nav li{
 	margin-left: 10px;
 	margin-right: 10px;
+}
+
+.quick-stats-sub-title{
+	font-weight: lighter;
+	font-size: .7em;
 }
