@@ -1,6 +1,9 @@
 import React from 'react';
 import './Nav.css';
 import NavLink from '../NavLink';
+import HomeIcon from '../../../imgs/home.ico'
+import SearchIcon from '../../../imgs/search.ico'
+import UserIcon from '../../../imgs/user.ico'
 
 export default function Nav() {
 	//Help update this specific navLink text to change when signed-in-or-not :) 
@@ -10,17 +13,17 @@ export default function Nav() {
 	const navLinkArray = [
 		{
 			linkTo : "/",
-			imgSrc : "/imgs/home.ico",
+			imgSrc : HomeIcon,
 			alt : "SayWhat?!"
 		},
 		{
 			linkTo : "/speechData/default",
-			imgSrc : "/imgs/search.ico",
+			imgSrc : SearchIcon,
 			alt : "View A Speech"
 		},
 		{
 			linkTo : "/login",
-			imgSrc : "/imgs/user.ico",
+			imgSrc : UserIcon,
 			alt : "Login / Sign Up"
 		}
 	];
