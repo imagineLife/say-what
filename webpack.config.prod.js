@@ -39,10 +39,7 @@ module.exports = {
         use: [
           { 
             loader: 'file-loader', 
-            options: {
-              publicPath: '/src/imgs',
-              outputPath: '/build/static/imgs',
-            },
+            options: {},
           }
         ]
       }
