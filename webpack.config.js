@@ -64,7 +64,7 @@ module.exports = {
       },
       //imgs
       { 
-        from: path.resolve(__dirname, 'src/imgs'),
+        from: path.resolve(__dirname, 'imgs'),
         to: path.resolve(__dirname, 'build/imgs') 
       }
     ]),
