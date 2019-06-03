@@ -16,7 +16,7 @@ const isLocalhost = Boolean(
     )
 );
 
-window.backendPath = isLocalhost ? '//localhost:8080' : '//thinkful-saywhat-api.herokuapp.com';
+window.backendPath = isLocalhost ? '//localhost:8080' : '//saywhat-speech-api.herokuapp.com';
 
 const initialState = {};
 
