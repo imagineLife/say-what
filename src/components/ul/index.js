@@ -3,11 +3,11 @@ import './ul.css';
 import Li from '../li';
 import LiNoBold from '../liNoBold';
 
-export default function Ul(props) {
+export default function Ul({list}) {
 	let listOWords = [];
 	let capd = '';
 	let capdWords = [];
-	let singleWord = props.list;
+	let singleWord = list;
 
 //capitalize words fn
 	let capitalize = (word) => {
@@ -22,8 +22,8 @@ export default function Ul(props) {
 		capitalize(singleWord[i]);
 	}
 
-	if(props.list.title){
-		listOWords = props.list.map((list, ind) =>
+	if(list.title){
+		listOWords = list.map((list, ind) =>
 			<Li key={ind} word={list.title} boldWord={list.Orator}/>
 		)
 	}else{
