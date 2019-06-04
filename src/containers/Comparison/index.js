@@ -51,15 +51,11 @@ export default function Comparison() {
 			
 		})
 	}, [])
-
-	console.log('mostUsedWords')
-	console.log(mostUsedWords)
 	
     return (
 		<main role="main" className="splashBack">
 		  <HeaderSplash title={"Comparing Words"} subTitle={"Most-Used Words Across Speeches"}/>
 		  {mostUsedWords.words && <React.Fragment>
-		  	<p>Most-Used-Words are loaded</p>
 		  	<ul>
 		  	{mostUsedWords.words.map(word => {
 		  		return <DropDownWord 
@@ -69,7 +65,7 @@ export default function Comparison() {
 		  	})}
 		  	</ul>
 		  	</React.Fragment>}
-		  {!mostUsedWords.words && <p>Not loaded yet...</p>}
+		  {!mostUsedWords.words && <p>Loading...</p>}
 	    </main>
     );
 }
