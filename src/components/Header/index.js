@@ -7,7 +7,7 @@ export default function Header({imageLinkProp, title, subTitle}) {
   let myLink = 'trump.jpg'
   
 	let sectionStyle = {
-	  background: `url(/src/imgs/${myLink}) no-repeat center center`,
+	  background: `url(/imgs/${myLink}) no-repeat center center`,
 	  backgroundSize: `cover`
 	};
 
