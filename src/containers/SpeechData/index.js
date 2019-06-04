@@ -59,6 +59,9 @@ export class SpeechData extends React.Component {
                 }
                 
                 res.json().then(stats => {
+                	console.log('Fetch stats res')
+                	console.log(stats)
+                	
                 	this.setState({
 						Audience:stats.Audience,
 						Date: stats.Date,
@@ -68,7 +71,7 @@ export class SpeechData extends React.Component {
 						mostUsedWords:stats.mostUsedWords,
 						numberOfWords: stats.numberOfWords,
 						speechTextLink: stats.speechTextLink,
-						imageLink: stats.imageLink,
+						imageFile: stats.imageFile,
 						eventOverview: stats.eventOverview,
 						title: stats.title,
 						wordsBySize: stats.wordsBySize,
@@ -120,7 +123,7 @@ export class SpeechData extends React.Component {
 		    	const pageHeader = {
 					Title: this.state.title,
 					image: Image,
-					imageLink: this.state.imageLink
+					imageFile: this.state.imageFile
 				}
 
 				const sectionsArray =[
@@ -180,7 +183,7 @@ export class SpeechData extends React.Component {
 				      <Header 
 				      	title={pageHeader.Title} 
 				      	subTitle={pageHeader.text} 
-				      	imageLinkProp={pageHeader.imageLink}/>
+				      	imageFile={pageHeader.imageFile}/>
 				      
 				      <div className="row">
 					      {sections[0]}{sections[1]}
