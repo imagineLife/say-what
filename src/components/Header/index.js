@@ -1,13 +1,10 @@
 import React from 'react';
 import './Header.css';
 
-export default function Header({imageLinkProp, title, subTitle}) {
-  console.log('imageLinkProp')
-  console.log(imageLinkProp)
-  let myLink = 'trump.jpg'
+export default function Header({imageFile, title, subTitle}) {
   
 	let sectionStyle = {
-	  background: `url(/imgs/${myLink}) no-repeat center center`,
+	  background: `url(/imgs/${imageFile}) no-repeat center center`,
 	  backgroundSize: `cover`
 	};
 
