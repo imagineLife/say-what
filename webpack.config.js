@@ -8,8 +8,9 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'main.js',
+
+    //where to put the output, in the build dir
     path: path.resolve(__dirname, 'build'),
-    publicPath: '/',
   },
   module: {
     rules: [
