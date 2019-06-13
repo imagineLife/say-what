@@ -4,7 +4,7 @@ import { interpolateLab } from 'd3-interpolate'
 import './Bars.css'
 
 export default function Bars({ scales, margins, data, svgDimensions }){
-  
+
   const { xScale, yScale } = scales
   const { height } = svgDimensions
 
@@ -16,20 +16,20 @@ export default function Bars({ scales, margins, data, svgDimensions }){
   return (
     <React.Fragment>
       {data && data.map( (data, index) =>
-        <g key={data.word} className="singleBar">
+        <g key={`${data.x}${data.index}`} className="singleBar">
           <rect
-            key={data.word}
-            x={xScale(data.word)}
-            y={yScale(data.occurances)}
-            height={height - margins.bottom - scales.yScale(data.occurances)}
+            key={data.x}
+            x={xScale(data.x)}
+            y={yScale(data.y)}
+            height={height - margins.bottom - scales.yScale(data.y)}
             width={xScale.bandwidth()}
             fill={colorScale(index)}
           />
           <text className="barLabel"
-            x={xScale(data.word) + (.3 * xScale.bandwidth()) }
-            y={yScale(data.occurances) * .99}
+            x={xScale(data.x) + (.3 * xScale.bandwidth()) }
+            y={yScale(data.y) * .99}
           >
-            {(data.occurances)}
+            {(data.y)}
           </text>
         </g>,
       )}
