@@ -18,9 +18,6 @@ const Chart = (props) => {
   }
 
   let remappedData = remapData(props.data, props.xKey, props.yKey)
-
-  console.log('remappedData')
-  console.log(remappedData)
   
     let xScale = d3.scaleBand()
     let yScale = d3.scaleLinear()
@@ -29,24 +26,21 @@ const Chart = (props) => {
     const margins = { top: 0, right: 20, bottom: 70, left: 30 }
 
     const svgDimensions = {
-      width: Math.max(this.props.respWrapWidth, 300),
+      width: Math.max(props.respWrapWidth, 300),
       height: 440
     }
 
 //max data-value
-    const maxValue = Math.max(...this.props.dataKey.map(d => d.occurances))
+    const maxValue = Math.max(...remappedData.map(d => d.y))
 
     xScale
       .padding(0.2)
-      .domain(this.props.dataKey.map(d => d.word))
+      .domain(remappedData.map(d => d.x))
       .range([margins.left, svgDimensions.width - margins.right])
 
     yScale
       .domain([0, (maxValue * 1.05)])
       .range([svgDimensions.height - margins.bottom, margins.top])
-
-    console.log('this.props')
-    console.log(this.props)
     
     return (
       <svg className='chartSVG' width={svgDimensions.width} height={svgDimensions.height}>
@@ -60,7 +54,7 @@ const Chart = (props) => {
         <Bars
           scales={{ xScale, yScale }}
           margins={margins}
-          data={this.props.dataKey}
+          data={remappedData}
           maxValue={maxValue}
           svgDimensions={svgDimensions}
         />
