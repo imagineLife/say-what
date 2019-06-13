@@ -15,8 +15,8 @@ export default function Bars(props){
   
   colorScale.domain([0, data.length - 1]);
 
-  const bars = (
-    data.map( (data, index) =>
+  return (
+    <g className="barWrapper">{data && data.map( (data, index) =>
       <g key={data.word} className="singleBar">
         <rect
           key={data.word}
@@ -33,10 +33,6 @@ export default function Bars(props){
           {(data.occurances)}
         </text>
       </g>,
-    )
-  )
-
-  return (
-    <g className="barWrapper">{bars}</g>
+    )}</g>
   )
 }
