@@ -42,7 +42,7 @@ export default function Bars({ scales, margins, data, svgDimensions }){
             y={yScale(data.y)}
             height={height - margins.bottom - scales.yScale(data.y)}
             width={xScale.bandwidth()}
-            fill={`url(#Gradient1)`}
+            fill={`url(#Gradient1)`} //colorScale(index)
             className={'singleRect'}
           />
           <text className={"barLabel"}
