@@ -5,34 +5,35 @@ import './Bars.css'
 
 export default function Bars(props){
 
-  const colorScale = scaleLinear()
-    .range(['#256CFF','#143B8A'])
-    .interpolate(interpolateLab)
-
   const { scales, margins, data, svgDimensions } = props
   const { xScale, yScale } = scales
   const { height } = svgDimensions
-  
-  colorScale.domain([0, data.length - 1]);
+
+    const colorScale = scaleLinear()
+    .range(['#256CFF','#143B8A'])
+    .interpolate(interpolateLab)
+    .domain([0, data.length - 1]);
 
   return (
-    <g className="barWrapper">{data && data.map( (data, index) =>
-      <g key={data.word} className="singleBar">
-        <rect
-          key={data.word}
-          x={xScale(data.word)}
-          y={yScale(data.occurances)}
-          height={height - margins.bottom - scales.yScale(data.occurances)}
-          width={xScale.bandwidth()}
-          fill={colorScale(index)}
-        />
-        <text className="barLabel"
-          x={xScale(data.word) + (.3 * xScale.bandwidth()) }
-          y={yScale(data.occurances) * .99}
-        >
-          {(data.occurances)}
-        </text>
-      </g>,
-    )}</g>
+    <React.Fragment>
+      {data && data.map( (data, index) =>
+        <g key={data.word} className="singleBar">
+          <rect
+            key={data.word}
+            x={xScale(data.word)}
+            y={yScale(data.occurances)}
+            height={height - margins.bottom - scales.yScale(data.occurances)}
+            width={xScale.bandwidth()}
+            fill={colorScale(index)}
+          />
+          <text className="barLabel"
+            x={xScale(data.word) + (.3 * xScale.bandwidth()) }
+            y={yScale(data.occurances) * .99}
+          >
+            {(data.occurances)}
+          </text>
+        </g>,
+      )}
+    </React.Fragment>
   )
 }
