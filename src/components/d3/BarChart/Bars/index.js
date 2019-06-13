@@ -3,9 +3,8 @@ import { scaleLinear } from 'd3-scale'
 import { interpolateLab } from 'd3-interpolate'
 import './Bars.css'
 
-export default function Bars(props){
-
-  const { scales, margins, data, svgDimensions } = props
+export default function Bars({ scales, margins, data, svgDimensions }){
+  
   const { xScale, yScale } = scales
   const { height } = svgDimensions
 
