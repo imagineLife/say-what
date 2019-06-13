@@ -68,7 +68,11 @@ export default function ResizingSection({
 	        {includeSpeechTextForm ? <SpeechTextForm speechID={speechID} speechTitle = {speechTitle}/> : null}
 	        {text ? <Para text={text} /> : null }
 	        {wordsBySize ? <BubbleChart sectionKey='wordsBySize' dataKey={wordsBySize} /> : null}
-	        {includeBarChart ? <BarChart sectionKey='mostUsedWords' dataKey={mostUsedWords}/> : null}
+	        {includeBarChart ? <BarChart 
+	        	sectionKey='mostUsedWords'
+	        	xKey={'word'}
+	        	yKey={'occurances'}
+	        	data={mostUsedWords}/> : null}
 	        {includeBottomSpace ? <BottomSpacer /> : null}
 	    </section>
 	);
