@@ -6,20 +6,28 @@ import ResponsiveWrapper from '../../../ResponsiveWrapper'
 import './Chart.css'
 
 
-class Chart extends Component {
-  constructor(props) {
-    super(props)
-    this.xScale = d3.scaleBand()
-    this.yScale = d3.scaleLinear()
+const Chart = (props) => {
+
+  function remapData(srcData, xVal, yVal){
+    return srcData.map(d => {
+      return {
+        x: d[xVal],
+        y: d[yVal],
+      }
+    })
   }
 
-  render() {
+  let remappedData = remapData(props.data, props.xKey, props.yKey)
+
+  console.log('remappedData')
+  console.log(remappedData)
+  
+    let xScale = d3.scaleBand()
+    let yScale = d3.scaleLinear()
+    
 //chart margins / offset
     const margins = { top: 0, right: 20, bottom: 70, left: 30 }
 
-//svgDimensions gets its withd from this.props.parentWidth
-  // which SEEMS to come from the responsiveWrapper fn
-  //  which wraps around the <Chart /> 
     const svgDimensions = {
       width: Math.max(this.props.respWrapWidth, 300),
       height: 440
@@ -28,16 +36,18 @@ class Chart extends Component {
 //max data-value
     const maxValue = Math.max(...this.props.dataKey.map(d => d.occurances))
 
-
-    const xScale = this.xScale
+    xScale
       .padding(0.2)
       .domain(this.props.dataKey.map(d => d.word))
       .range([margins.left, svgDimensions.width - margins.right])
 
-    const yScale = this.yScale
+    yScale
       .domain([0, (maxValue * 1.05)])
       .range([svgDimensions.height - margins.bottom, margins.top])
 
+    console.log('this.props')
+    console.log(this.props)
+    
     return (
       <svg className='chartSVG' width={svgDimensions.width} height={svgDimensions.height}>
         
@@ -57,7 +67,6 @@ class Chart extends Component {
      
       </svg>
     )
-  }
 }
 
 export default ResponsiveWrapper(Chart)
