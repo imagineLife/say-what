@@ -13,19 +13,27 @@ export default function Bars({ scales, margins, data, svgDimensions }){
     .interpolate(interpolateLab)
     .domain([0, data.length - 1]);
 
-  let ColorGradientDefs = () => {
+  let ColorGradientDefs = ({color, direction}) => {
+    let directions = (direction == 'down') ? {
+        x1:"0",
+        x2:"0",
+        y1:"1",
+        y2:"0"
+      } : null
+
     return(
       <defs>
-        <linearGradient id="Gradient1" x1="1" x2="1" y1="1" y2="0">
-          <stop offset="0%" stopColor="rgba(0,0,255,0)"/>
-          <stop offset="100%" stopColor="blue"/>
+        <linearGradient id="Gradient1" {...directions}>
+          <stop offset="0%" stopColor={`rgb(${color},0)`}/>
+          <stop offset="100%" stopColor={`rgb(${color})`}/>
         </linearGradient>
       </defs>
     )
   }
+
   return (
     <React.Fragment>
-      <ColorGradientDefs />
+      <ColorGradientDefs color={`100, 149, 237`} direction={'down'}/>
       {data && data.map( (data, index) =>
         <g key={`${data.x}${data.index}`} className="singleBar">
           <rect
