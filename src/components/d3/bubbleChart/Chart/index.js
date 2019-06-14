@@ -7,9 +7,13 @@ import './Chart.css'
 
 
 class Chart extends Component {
-  // constructor(props) {
-  //   super(props)
-  // }
+  constructor(props) {
+    super(props);
+    this.enterBubbleFn = this.enterBubbleFn.bind(this);
+    this.updateBubbleFn = this.updateBubbleFn.bind(this)
+    this.color = d3.scaleOrdinal(d3.schemeCategory10);
+    this.format = d3.format(',d');
+  }
 
   componentDidMount(){
     this.buildChart();
@@ -19,82 +23,39 @@ class Chart extends Component {
     this.buildChart();
   }
 
-  buildChart = () => {
+  updateBubbleFn(u){
+    console.log('u here@');
+  }
 
-    let dataObj = {};
-
-    var format = d3.format(',d');
-
-    var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-    var container = d3.select('.Responsive-wrapper');
-  
-  //Declare & set props of SVG
-    var bubbleSVGWrapper = d3.select('.bubbleSVGWrapper'),
-        bubbleSVGWidth = +container.style('width').replace('px',''),
-        bubbleSVGHeight = 440;
-
-        bubbleSVGWrapper
-          .attrs({
-            'viewBox' : '25, 0, 298, 439'// + bubbleSVGWidth + ', ' + bubbleSVGHeight,  // meaning => min-x, min-y, width, height
-          });
-
-  //PACK
-    var d3PackFn = d3.pack()
-        .size([298, 439])
-        .padding(0);
-
-  //begin the loop through data
-    this.props.dataKey.forEach((obj) =>{
-      dataObj.value = obj.occurances;
-
-  //declare ROOT
-      var root = d3.hierarchy({children: this.props.dataKey})
-          .sum(d => d.occurances);
-
-  //declare the bubble element
-  //  - pack ()
-  //  - add a class
-      var bubble = bubbleSVGWrapper.selectAll('.bubble')
-        .data(d3PackFn(root).leaves())
-        .enter().append('g')
+  enterBubbleFn(enterBubbles){
+    let bubbleG = enterBubbles.append('g')
           .attrs({
             'class': 'bubble',
             'transform': d => `translate(${d.x},${d.y})`
           });
 
-  //declare the circle
-      bubble.append('circle')
+          let bubbleCircle = bubbleG.append('circle')
           .attrs({
             'id' : d => d.id,
             'class' : 'circle',
             'r' : d => d.r
           })
-          .style('fill', (d,i) => color(i));
+          .style('fill', (d,i) => this.color(i));
 
   //declare a clipPath
-      bubble.append('clipPath')
-          .attr('id', d => d.size)
+      let clipPath = bubbleG.append('clipPath')
+          .attr('id', d => d.data.size)
         .append('use')
           .attr('xlink:href', d => `#${d.data.size.toString()}`);
 
   //declare the text
-      bubble.append('text')
+      let bubbleText = bubbleG.append('text')
           .attrs({
             'clip-path' : d => `url(#clip-${d.data.size})`,
             'class' : 'clipText'
           })
-        .selectAll('tspan')
-        .data(d => {
-          let curKey = d.data.size;
-          let ret = [{
-            length : parseInt(curKey, 10),
-            amt : (d.data.occurances)
-          }];
-          return ret;
-        })
-
-        .enter().append('tspan')
+      
+      let bubbleTspan = bubbleText.append('tspan')
           .attrs({
             'x' : 0,
             'y' : function(d,i,letters) {
@@ -104,10 +65,9 @@ class Chart extends Component {
             'text-anchor' : 'middle',
             'class' : 'bubbleText title'
           })
-          .text((val) => {
-            return val.length+'-Letter'; 
-          })
-          .append('tspan')
+          .text((d) => d.data.size+'-Letter')
+          
+      let bubbleTspanWords = bubbleText.append('tspan')
           .attrs({
             'x' : 0,
             'y' : function(d,i,letters) {
@@ -117,7 +77,8 @@ class Chart extends Component {
             'class' : 'bubbleText title'
           })
           .text('Words')
-          .append('tspan')
+          
+      let bubbleTspanVal = bubbleText.append('tspan')
           .attrs({
             'x' : 0,
             'y' : function(d,i,letters) {
@@ -127,31 +88,48 @@ class Chart extends Component {
             'class' : 'bubbleText val'
           })
           .text((val) => {
-            return val.amt; 
+            return val.data.occurances; 
           });
 
-
   //declare the title, hidden from view, but exists in HTML
-      bubble.append('title')
-          .text(d => `${d.data.size}-letter Words : ${format(d.value)}`);
+      bubbleG.append('title')
+          .text(d => `${d.data.size}-letter Words : ${this.format(d.value)}`);
+  }
+
+  buildChart = () => {
+    console.log('this.props')
+    console.log(this.props)
+
+    var container = d3.select('.Responsive-wrapper');
+
+    let sectionDiv  = document.getElementsByClassName("bubbleSVGWrapper")[0].parentElement.parentElement;
+    let rowDiv = sectionDiv.parentElement 
+  
+  //Declare & set props of SVG
+    var bubbleSVGWrapper = d3.select('.bubbleSVGWrapper');
+      bubbleSVGWrapper
+        .attrs({
+          'viewBox' : `25, 0, ${this.props.respWrapWidth}, ${this.props.respWrapWidth}`// + bubbleSVGWidth + ', ' + bubbleSVGHeight,  // meaning => min-x, min-y, width, height
+        });
+
+  //PACK
+    var d3PackFn = d3.pack()
+        .size([this.props.respWrapWidth, this.props.respWrapWidth]);
+
+  //begin the loop through data
+    this.props.dataKey.forEach((obj) =>{
+      // dataObj.value = obj.occurances;
+
+  //declare ROOT
+      var root = d3.hierarchy({children: this.props.dataKey})
+          .sum(d => d.occurances);
+
+      let packedCircles = d3PackFn(root);
+
+      var bubble = bubbleSVGWrapper.selectAll('.bubble')
+        .data(packedCircles.leaves()).join(this.enterBubbleFn, this.updateBubbleFn)
     
     });
-
-
-    resizeChart();
-
-    d3.select(window).on('resize', resizeChart);
-
-    function resizeChart() {
-  //Declare & set props of SVG
-        bubbleSVGWidth = +container.style('width').replace('px','');
-
-      var w = parseInt( bubbleSVGWidth, 10); // computed width
-      var a = bubbleSVGWidth / bubbleSVGHeight; // = aspect ratio to be applied to the container
-      bubbleSVGWrapper.attr('height', w / a  + 'px');
-      
-
-    }
 
   }
 
