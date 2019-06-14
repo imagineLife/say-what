@@ -24,10 +24,11 @@ class Chart extends Component {
   }
 
   render() {
-
+    
+    let sizeToUse = this.props.respWrapWidth * .85
     //PACK
     var d3PackFn = d3.pack()
-        .size([this.props.respWrapWidth * .75, this.props.respWrapWidth  * .75]);
+        .size([sizeToUse, sizeToUse]);
 
 
     //declare ROOT
@@ -37,24 +38,17 @@ class Chart extends Component {
     let packedCircleRoot = d3PackFn(root);
 
     let packedCircles = packedCircleRoot.leaves()
-      console.log('packedCircles')
-      console.log(packedCircles)
 
-    let circles = packedCircles.map((c, ind) => {
-      console.log('c')
-      console.log(c)
-      
+    return (
+      <svg className='bubbleSVGWrapper' viewBox={`25, 0, ${sizeToUse}, ${sizeToUse}`}>
+        {packedCircles && packedCircles.map((c, ind) => {
         return <circle 
           key={`circle${ind}`}
           r={c.r}
           cx={c.x}
           cy={c.y}
           fill={this.color(ind)}></circle>
-    })
-
-    return (
-      <svg className='bubbleSVGWrapper' viewBox={`25, 0, ${this.props.respWrapWidth * .75}, ${this.props.respWrapWidth * .75}`}>
-        {circles}
+    })}
       </svg>
     )
   }
