@@ -55,8 +55,27 @@ class Chart extends Component {
             <text 
               className="clipText" 
               clipPath={`url(#clip-${c.data.size.toString()})`}>
-              <tspan className="bubbleText title">-Letter</tspan>
-              <tspan>Words</tspan>
+              <tspan 
+                className="bubbleText title"
+                textAnchor={"middle"}
+                x={0}
+                y={-5}>
+                {`${c.data.size}-Letter`}
+              </tspan>
+              <tspan 
+                className="bubbleText title"
+                x={0}
+                y={11}
+                textAnchor={"middle"}>
+                Words
+              </tspan>
+              <tspan 
+                className="bubbleText val"
+                x={0}
+                y={30}
+                textAnchor={"middle"}>
+                {`${c.data.occurances}`}
+              </tspan>
             </text>
           </g>)
     })}
