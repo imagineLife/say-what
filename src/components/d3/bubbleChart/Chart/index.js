@@ -39,22 +39,26 @@ class Chart extends Component {
 
     let packedCircles = packedCircleRoot.leaves()
 
+
     return (
       <svg className='bubbleSVGWrapper' viewBox={`25, 0, ${sizeToUse}, ${sizeToUse}`}>
         {packedCircles && packedCircles.map((c, ind) => {
-        return (<g key={`circle${ind}`} className="singleBubbleG">
-          <clipPath xlinkHref={`#${c.data.size.toString()}`}></clipPath>
-          <circle 
-            r={c.r}
-            cx={c.x}
-            cy={c.y}
-            fill={this.color(ind)}>
-              <text x={0} y={-5}>
-                <tspan>-Letter</tspan>
-                <tspan>Words</tspan>
-              </text>
-          </circle>
-        </g>)
+        return (<g 
+          key={`circle${ind}`} 
+          className="singleBubbleG"
+          transform={`translate(${c.x},${c.y})`}>
+            <clipPath xlinkHref={`#clip-${c.data.size.toString()}`}></clipPath>
+            <circle 
+              r={c.r}
+              fill={this.color(ind)}>
+            </circle>
+            <text 
+              className="clipText" 
+              clipPath={`url(#clip-${c.data.size.toString()})`}>
+              <tspan className="bubbleText title">-Letter</tspan>
+              <tspan>Words</tspan>
+            </text>
+          </g>)
     })}
       </svg>
     )
