@@ -6,9 +6,9 @@ import ResponsiveWrapper from '../../../ResponsiveWrapper'
 import './Chart.css'
 
 
-function Chart({respWrapWidth, data}) {
+function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
   let color = d3.scaleOrdinal(d3.schemeCategory10);
-   
+  
   let sizeToUse = respWrapWidth * .85
   //PACK
   var d3PackFn = d3.pack()
@@ -17,7 +17,7 @@ function Chart({respWrapWidth, data}) {
 
   //declare ROOT
   var root = d3.hierarchy({children: data})
-    .sum(d => d.occurances);
+    .sum(d => d[radiusKey]);
 
   let packedCircleRoot = d3PackFn(root);
 
@@ -31,20 +31,20 @@ function Chart({respWrapWidth, data}) {
         key={`circle${ind}`} 
         className="singleBubbleG"
         transform={`translate(${c.x},${c.y})`}>
-          <clipPath xlinkHref={`#clip-${c.data.size.toString()}`}></clipPath>
+          <clipPath xlinkHref={`#clip-${c.data[categoryKey].toString()}`}></clipPath>
           <circle 
             r={c.r}
             fill={color(ind)}>
           </circle>
           <text 
             className="clipText" 
-            clipPath={`url(#clip-${c.data.size.toString()})`}>
+            clipPath={`url(#clip-${c.data[categoryKey].toString()})`}>
             <tspan 
               className="bubbleText title"
               textAnchor={"middle"}
               x={0}
               y={-5}>
-              {`${c.data.size}-Letter`}
+              {`${c.data[categoryKey]}-Letter`}
             </tspan>
             <tspan 
               className="bubbleText title"
@@ -58,7 +58,7 @@ function Chart({respWrapWidth, data}) {
               x={0}
               y={30}
               textAnchor={"middle"}>
-              {`${c.data.occurances}`}
+              {`${c.data[radiusKey]}`}
             </tspan>
           </text>
         </g>)
