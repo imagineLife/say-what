@@ -6,17 +6,17 @@ import ResponsiveWrapper from '../../../ResponsiveWrapper'
 import './Chart.css'
 
 
-function Chart(props) {
+function Chart({respoWrapWidth, data}) {
   let color = d3.scaleOrdinal(d3.schemeCategory10);
    
-  let sizeToUse = props.respWrapWidth * .85
+  let sizeToUse = respWrapWidth * .85
   //PACK
   var d3PackFn = d3.pack()
       .size([sizeToUse, sizeToUse]);
 
 
   //declare ROOT
-  var root = d3.hierarchy({children: props.data})
+  var root = d3.hierarchy({children: data})
     .sum(d => d.occurances);
 
   let packedCircleRoot = d3PackFn(root);
