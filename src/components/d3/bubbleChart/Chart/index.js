@@ -6,7 +6,7 @@ import ResponsiveWrapper from '../../../ResponsiveWrapper'
 import './Chart.css'
 
 
-function Chart({respoWrapWidth, data}) {
+function Chart({respWrapWidth, data}) {
   let color = d3.scaleOrdinal(d3.schemeCategory10);
    
   let sizeToUse = respWrapWidth * .85
