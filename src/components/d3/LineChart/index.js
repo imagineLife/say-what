@@ -5,12 +5,12 @@ import ResponsiveWrapper from '../../ResponsiveWrapper'
 import './index.css'
 
 
-const Chart = ({data, xKey, yKey, respWrapWidth}) => {
-
+const Chart = ({data, xKey, yKey, respWrapWidth, labels}) => {
+  
   if(!data){
     return <p>Loading...</p>
   }
-
+  
   function remapData(srcData, xVal, yVal){
     
     return srcData.map((d,ind) => {
@@ -56,6 +56,26 @@ const Chart = ({data, xKey, yKey, respWrapWidth}) => {
 
   let thisLineFn = makeLineFn(xScale, yScale);
 
+  let optLabels = !(Object.keys(labels).length > 0) ? null : (
+    <React.Fragment>
+      <text
+        fill={`rgb(216,216,216)`}
+        stroke={'none'}
+        fontSize={'14px'}
+        textAnchor={'left'}
+        transform={`translate(${margins.left},${margins.top + 20})`}>
+        {labels.yAxis}
+      </text>
+      <text 
+        fill={`rgb(216,216,216)`}
+        stroke={'none'}
+        fontSize={'14px'}
+        textAnchor={'middle'}
+        transform={`translate(${svgDimensions.width / 2},${svgDimensions.height - (margins.bottom * .25)})`}>
+        {labels.xAxis}
+      </text>
+      </React.Fragment>)
+
   return (
     <svg className='chartSVG' width={svgDimensions.width} height={svgDimensions.height}>
       
@@ -72,6 +92,8 @@ const Chart = ({data, xKey, yKey, respWrapWidth}) => {
         strokeWidth="4px"
         fill="none">
       </path>
+
+      {optLabels}
     </svg>
   )
 }
