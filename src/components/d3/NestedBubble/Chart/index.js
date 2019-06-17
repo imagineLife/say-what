@@ -8,23 +8,29 @@ import './Chart.css'
 
 function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
   
+  //'tracks' hovered state of bubbles
   let [hovered, setHovered] = React.useState([])
+
+  //'tracks' visibility state of bubbles
+  let [visible, setVisible] = React.useState([])
   
   
   /*
     Mouse-Over
   */
   let mouseOver = (d) => {
-    console.log('HOVERING d')
-    console.log(d)
-    
-    if(d.visible && d.children){
-      console.log('d.id')
-      console.log(d.id)
+
+    if(!hovered.includes(d.id) && d.children){
       
+      //darken bg of hovered circle
       let newHovered = hovered.concat(d.id)
-      //darken bg
       setHovered(newHovered)
+
+      let childrenIDs = d.children.map(d => d.data.id)
+      console.log('childrenIDs')
+      console.log(childrenIDs)
+      
+      
 
     }
     console.log('// - - - - - //')
@@ -47,6 +53,12 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
   let allCircles = []
 
   let circleObj = (d, visibility) => {
+    
+    if(visibility.visible == true && !visible.includes(d.data.id)){
+      let newVisibility = visible.concat(d.data.id)
+      
+      setVisible(newVisibility)
+    }
     return {
       r : d.r,
       y : d.y,
@@ -55,7 +67,6 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
       id: d.data.id,
       text: (d.data.id !== 'wordCount') ? `${d.data.id} Words` : null,
       root: (d.data.id == 'wordCount') ? true : false,
-      visible: visibility.visible,
       children: d.children || null
     }
   }
@@ -77,6 +88,13 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
     })
   }
 
+  console.log('hovered')
+  console.log(hovered)
+  console.log('visible')
+  console.log(visible)
+  
+  
+
   return (
     <svg className='bubbleSVGWrapper' viewBox={`25, 0, ${sizeToUse}, ${sizeToUse}`}>
       <g className="gWrapper" transform={`translate(${25},0)`}>
@@ -84,7 +102,7 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
 
           let hoveredVal = (hovered.includes(c.id)) ? .2 : 1
 
-          if(c.root == false && c.visible == true){
+          if(c.root == false && visible.includes(c.id)){
             return (<g 
               key={`circle${ind}`} 
               className="singleBubbleG"
@@ -101,6 +119,9 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
                   fillOpacity={hoveredVal}
                   cursor='pointer'>
                 </circle>
+
+                {/* Text is conditional based on hover 'state' */}
+
                 {
                   hoveredVal == 1 && <text 
                   className="clipText" 
