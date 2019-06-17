@@ -7,21 +7,19 @@ import './index.css'
 
 const Chart = ({data, xKey, yKey, respWrapWidth, labels}) => {
   
+  if(!data){
+    return <p>Loading...</p>
+  }
+
+  //mousedOver && mouseMove
   const moused = d => {
     let sentenceNumber = Math.ceil(xScale.invert(d.clientX - 55))
     console.log('sentenceNumber')
     console.log(sentenceNumber)
-    
-    
-    
-  }
-
-  if(!data){
-    return <p>Loading...</p>
   }
   
+  //set x && y keys to a re-mapped data object
   function remapData(srcData, xVal, yVal){
-    
     return srcData.map((d,ind) => {
       return {
         x: (xVal == 'index') ? ind : d[xVal],
@@ -38,11 +36,6 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels}) => {
       .y(d => yScale(d.y))
       .curve(d3.curveMonotoneX)
   }
-
-  let remappedData = remapData(data, xKey, yKey)
-        
-  let xScale = d3.scaleLinear()
-  let yScale = d3.scaleLinear()
     
   //chart margins / offset
   const margins = { top: 0, right: 20, bottom: 70, left: 50 }
@@ -52,19 +45,24 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels}) => {
     height: 440
   }
 
-//max data-value
-  const maxValue = Math.max(...remappedData.map(d => d.y))
+  let remappedData = remapData(data, xKey, yKey)
 
-  xScale
+//max data-value
+  const maxYValue = Math.max(...remappedData.map(d => d.y))
+
+  //d3 scales
+  let xScale = d3.scaleLinear()
     .domain(d3.extent(remappedData, d => d.x))//remappedData.map(d => d.x))
     .range([margins.left, svgDimensions.width - margins.right])
 
-  yScale
-    .domain([0, (maxValue * 1.05)])
+  let yScale = d3.scaleLinear()
+    .domain([0, (maxYValue * 1.05)])
     .range([svgDimensions.height - margins.bottom, margins.top])
 
+  // Create line fn from scales
   let thisLineFn = makeLineFn(xScale, yScale);
   
+  //optional labels, dependant on presence of 'labels' prop
   let optLabels = !(Object.keys(labels).length > 0) ? null : (
     <React.Fragment>
       <text
