@@ -6,7 +6,7 @@ import ResponsiveWrapper from '../../../ResponsiveWrapper'
 import './Chart.css'
 
 
-const Chart = (props) => {
+const Chart = ({data, xKey, yKey, respWrapWidth}) => {
 
   function remapData(srcData, xVal, yVal){
     return srcData.map(d => {
@@ -17,7 +17,7 @@ const Chart = (props) => {
     })
   }
 
-  let remappedData = remapData(props.data, props.xKey, props.yKey)
+  let remappedData = remapData(data, xKey, yKey)
   
     let xScale = d3.scaleBand()
     let yScale = d3.scaleLinear()
@@ -26,7 +26,7 @@ const Chart = (props) => {
     const margins = { top: 0, right: 20, bottom: 70, left: 30 }
 
     const svgDimensions = {
-      width: Math.max(props.respWrapWidth, 300),
+      width: Math.max(respWrapWidth, 300),
       height: 440
     }
 
