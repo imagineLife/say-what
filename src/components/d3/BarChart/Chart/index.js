@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import * as d3 from 'd3';
-import Axes from '../Axes'
+import Axes from '../../Axes'
 import Bars from '../Bars'
 import ResponsiveWrapper from '../../../ResponsiveWrapper'
 import './Chart.css'
@@ -23,7 +23,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth}) => {
     let yScale = d3.scaleLinear()
     
 //chart margins / offset
-    const margins = { top: 0, right: 20, bottom: 70, left: 30 }
+    const margins = { top: 0, right: 20, bottom: 70, left: 50 }
 
     const svgDimensions = {
       width: Math.max(respWrapWidth, 300),
