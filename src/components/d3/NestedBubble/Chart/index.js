@@ -10,10 +10,14 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
   
   console.log('data')
   console.log(data)
+  console.log('// - - - - - //')
+  
   
   let mouseOver = (circleData) => {
     console.log('circleData')
     console.log(circleData)
+    console.log('// - - - - - //')
+    
     
   }
 
@@ -38,7 +42,8 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
       id: d.data.id,
       text: (d.data.id !== 'wordCount') ? `${d.data.id} Words` : null,
       root: (d.data.id == 'wordCount') ? true : false,
-      visible: visibility.visible
+      visible: visibility.visible,
+      children: d.children || null
     }
   }
 
@@ -46,11 +51,16 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
   
   if(packedCircles && packedCircles.children){
     packedCircles.children.forEach(circle => {
+      console.log('circle')
+      console.log(circle)
+      
       let thisCircle = circleObj(circle, {visible: true})
       allCircles.push(thisCircle)
 
       if(circle && circle.children){
         circle.children.forEach(subCircle => {
+          console.log('subCircle')
+          console.log(subCircle)
           let thisSubCircle = circleObj(subCircle, {visible: false})
           allCircles.push(thisSubCircle)
         })
@@ -65,7 +75,7 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
     <svg className='bubbleSVGWrapper' viewBox={`25, 0, ${sizeToUse}, ${sizeToUse}`}>
       <g className="gWrapper" transform={`translate(${25},0)`}>
         {allCircles && allCircles.map((c, ind) => {
-          if(c.root == false){
+          if(c.root == false && c.visible == true){
             return (<g 
               key={`circle${ind}`} 
               className="singleBubbleG"
