@@ -26,11 +26,8 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
       let newHovered = hovered.concat(d.id)
       setHovered(newHovered)
 
-      let childrenIDs = d.children.map(d => d.data.id)
-      console.log('childrenIDs')
-      console.log(childrenIDs)
-      
-      
+      let childrenIDs = d.children.map(d => d.data.id)      
+      setVisible(visible.concat(childrenIDs))
 
     }
     console.log('// - - - - - //')
@@ -38,7 +35,10 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
     
   }
 
-  let mouseOut = d => setHovered([]);
+  let mouseOut = d => {
+    setHovered([]);
+    setVisible(["small", "medium", "large"])
+  }
 
   let color = d3.scaleOrdinal(d3.schemeCategory10);
   
@@ -113,8 +113,8 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
                 <circle 
                   r={c.r}
                   className={`bubble`}
-                  fill={color(ind)}
-                  stroke={color(ind)}
+                  fill={'black'}
+                  stroke={'black'}
                   strokeWidth={`1px`}
                   fillOpacity={hoveredVal}
                   cursor='pointer'>
@@ -123,7 +123,8 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
                 {/* Text is conditional based on hover 'state' */}
 
                 {
-                  hoveredVal == 1 && <text 
+                  hoveredVal == 1 && <text
+                  color={`white`}
                   className="clipText" 
                   clipPath={`url(#clip-${c[categoryKey].toString()})`}>
                   <tspan 
