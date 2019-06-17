@@ -85,7 +85,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       </text>
       </React.Fragment>)
 
-  let optHoverLine = !(sentenceNumber || !hoverLine) ? null : (
+  let optHoverLine = !sentenceNumber || !hoverLine ? null : (
     <line 
       strokeWidth={'2'}
       stroke={'rgb(150,150,150)'}
