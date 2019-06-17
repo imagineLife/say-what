@@ -85,13 +85,13 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       </text>
       </React.Fragment>)
 
-  let optHoverLine = !sentenceNumber || !hoverLine ? null : (
+  let optHoverLine = !sentenceNumber || !hoverLine  || sentenceNumber < 0 || sentenceNumber > xScale.domain()[1]  ? null : (
     <line 
       strokeWidth={'2'}
       stroke={'rgb(150,150,150)'}
       strokeDasharray={'5 15'}
-      x1={xScale(sentenceNumber)}
-      x2={xScale(sentenceNumber)}
+      x1={xScale(sentenceNumber) - 5}
+      x2={xScale(sentenceNumber) - 5}
       y1={yScale(0)}
       y2={yScale(maxYValue * 1.05)}></line>) 
   
