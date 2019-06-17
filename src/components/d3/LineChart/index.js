@@ -7,6 +7,15 @@ import './index.css'
 
 const Chart = ({data, xKey, yKey, respWrapWidth, labels}) => {
   
+  const moused = d => {
+    let sentenceNumber = Math.ceil(xScale.invert(d.clientX - 55))
+    console.log('sentenceNumber')
+    console.log(sentenceNumber)
+    
+    
+    
+  }
+
   if(!data){
     return <p>Loading...</p>
   }
@@ -55,7 +64,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels}) => {
     .range([svgDimensions.height - margins.bottom, margins.top])
 
   let thisLineFn = makeLineFn(xScale, yScale);
-
+  
   let optLabels = !(Object.keys(labels).length > 0) ? null : (
     <React.Fragment>
       <text
@@ -77,7 +86,10 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels}) => {
       </React.Fragment>)
 
   return (
-    <svg className='chartSVG' width={svgDimensions.width} height={svgDimensions.height}>
+    <svg 
+      className='chartSVG' 
+      width={svgDimensions.width} 
+      height={svgDimensions.height}>
       
       <Axes
         scales={{ xScale, yScale }}
@@ -90,6 +102,8 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels}) => {
         d={thisLineFn(remappedData)}
         stroke="green"
         strokeWidth="4px"
+        onMouseOver={moused}
+        onMouseMove={moused}
         fill="none">
       </path>
 
