@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import 'd3-selection-multi';
 // import Bubbles from '../Bubbles'
 import ResponsiveWrapper from '../../../ResponsiveWrapper'
-import './Chart.css'
+import './index.css'
 
 
 function Chart({respWrapWidth, data, radiusKey, categoryKey}) {

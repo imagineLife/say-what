@@ -1,0 +1,26 @@
+.bubbleSVG{
+	/*outline: 1px solid purple;*/
+}
+
+.bubbleText{
+	font-size: 16px;
+}
+
+.title{
+	font-weight: bold;
+}
+
+.val{
+	font-weight:normal;
+}
+
+.clipText{
+	z-index: 10;
+}
+
+.bubble:hover{
+	-webkit-transition: fill-opacity .4s ease;
+ 	-moz-transition: fill-opacity .4s ease;
+ 	-o-transition: fill-opacity .4s ease;
+ 	transition: fill-opacity .4s ease;
+}
