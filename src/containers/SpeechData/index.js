@@ -51,16 +51,12 @@ export class SpeechData extends React.Component {
 		            'Authorization': 'Bearer ' + localStorage.getItem('localStorageAuthToken')
 		        }
 		    }).then(res => {
-            	// console.log(`${window.backendPath}/api/speeches/${this.state.urlSpeechID} RES:`)
-            	// console.log(res)
             	
                 if (!res.ok) {
                 	return <Redirect to="/login" />;
                 }
                 
                 res.json().then(stats => {
-                	console.log('Fetch stats res')
-                	console.log(stats)
                 	
                 	this.setState({
 						Audience:stats.Audience,
@@ -167,6 +163,12 @@ export class SpeechData extends React.Component {
 						mostUsedWords: this.state.mostUsedWords,
 						includeBarChart:true,
 						colSize:9
+					},
+					{
+						title: `Words Per Sentence`,
+						mostUsedWords: this.state.sentences,
+						chart: 'line', 
+						colSize:12
 					}
 				];
 
@@ -195,6 +197,10 @@ export class SpeechData extends React.Component {
 
 				      <div className="row">
 					      {sections[4]}{sections[5]}
+					  </div>
+
+					  <div className="row">
+					      {sections[6]}
 					  </div>
 					  
 					</main>
