@@ -7,6 +7,9 @@ import './index.css'
 
 const Chart = ({data, xKey, yKey, respWrapWidth, labels}) => {
   
+  let [showLine, setShowLine] = React.useState(false)
+  let [sentenceNumber, setSentenceNumber] = React.useState(0)
+
   if(!data){
     return <p>Loading...</p>
   }
@@ -14,8 +17,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels}) => {
   //mousedOver && mouseMove
   const moused = d => {
     let sentenceNumber = Math.ceil(xScale.invert(d.clientX - 55))
-    console.log('sentenceNumber')
-    console.log(sentenceNumber)
+    setSentenceNumber(sentenceNumber)
   }
   
   //set x && y keys to a re-mapped data object
@@ -83,11 +85,23 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels}) => {
       </text>
       </React.Fragment>)
 
+  let optHoverLine = !(sentenceNumber) ? null : (
+    <line 
+      strokeWidth={'2'}
+      stroke={'rgb(150,150,150)'}
+      strokeDasharray={'5 15'}
+      x1={xScale(sentenceNumber)}
+      x2={xScale(sentenceNumber)}
+      y1={yScale(0)}
+      y2={yScale(maxYValue * 1.05)}></line>) 
+  
   return (
     <svg 
       className='chartSVG' 
       width={svgDimensions.width} 
-      height={svgDimensions.height}>
+      height={svgDimensions.height}
+      onMouseOver={moused}
+      onMouseMove={moused}>
       
       <Axes
         scales={{ xScale, yScale }}
@@ -100,12 +114,11 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels}) => {
         d={thisLineFn(remappedData)}
         stroke="green"
         strokeWidth="4px"
-        onMouseOver={moused}
-        onMouseMove={moused}
         fill="none">
       </path>
 
       {optLabels}
+      {optHoverLine}
     </svg>
   )
 }
