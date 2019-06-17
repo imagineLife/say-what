@@ -8,6 +8,9 @@ import './Chart.css'
 
 function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
   
+  console.log('data')
+  console.log(data)
+  
   let mouseOver = (circleData) => {
     console.log('circleData')
     console.log(circleData)
@@ -26,7 +29,7 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
   
   let allCircles = []
 
-  let circleObj = (d) => {
+  let circleObj = (d, visibility) => {
     return {
       r : d.r,
       y : d.y,
@@ -34,34 +37,35 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
       value : d.value,
       id: d.data.id,
       text: (d.data.id !== 'wordCount') ? `${d.data.id} Words` : null,
-      root: (d.data.id !== 'wordCount') ? true : false
+      root: (d.data.id == 'wordCount') ? true : false,
+      visible: visibility.visible
     }
   }
 
-  allCircles.push(circleObj(packedCircles))
+  allCircles.push(circleObj(packedCircles, {visible: false}))
   
   if(packedCircles && packedCircles.children){
     packedCircles.children.forEach(circle => {
-      console.log('circle')
-      console.log(circle)
-      
-      let thisCircle = circleObj(circle)
+      let thisCircle = circleObj(circle, {visible: true})
       allCircles.push(thisCircle)
 
       if(circle && circle.children){
         circle.children.forEach(subCircle => {
-          let thisSubCircle = circleObj(subCircle)
+          let thisSubCircle = circleObj(subCircle, {visible: false})
           allCircles.push(thisSubCircle)
         })
       }
     })
   }
 
+  console.log('allCircles')
+  console.log(allCircles)
+
   return (
     <svg className='bubbleSVGWrapper' viewBox={`25, 0, ${sizeToUse}, ${sizeToUse}`}>
       <g className="gWrapper" transform={`translate(${25},0)`}>
         {allCircles && allCircles.map((c, ind) => {
-          if(c.root == true){
+          if(c.root == false){
             return (<g 
               key={`circle${ind}`} 
               className="singleBubbleG"
