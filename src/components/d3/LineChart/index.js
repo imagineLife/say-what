@@ -22,40 +22,52 @@ const Chart = ({data, xKey, yKey, respWrapWidth}) => {
     })
   }
 
-  let remappedData = remapData(data, xKey, yKey)
-  
-    let xScale = d3.scaleLinear()
-    let yScale = d3.scaleLinear()
-    
-//chart margins / offset
-    const margins = { top: 0, right: 20, bottom: 70, left: 30 }
+  //make line functions
+  const makeLineFn = (xScale,yScale) => {
+    return d3.line()
+      .defined(d => d.y)
+      .x(d => xScale(d.x))
+      .y(d => yScale(d.y))
+      .curve(d3.curveMonotoneX)
+  }
 
-    const svgDimensions = {
-      width: Math.max(respWrapWidth, 300),
-      height: 440
-    }
+  let remappedData = remapData(data, xKey, yKey)
+        
+  let xScale = d3.scaleLinear()
+  let yScale = d3.scaleLinear()
+    
+  //chart margins / offset
+  const margins = { top: 0, right: 20, bottom: 70, left: 30 }
+
+  const svgDimensions = {
+    width: Math.max(respWrapWidth, 300),
+    height: 440
+  }
 
 //max data-value
-    const maxValue = Math.max(...remappedData.map(d => d.y))
+  const maxValue = Math.max(...remappedData.map(d => d.y))
 
-    xScale
-      .domain(remappedData.map(d => d.x))
-      .range([margins.left, svgDimensions.width - margins.right])
+  xScale
+    .domain(d3.extent(remappedData, d => d.x))//remappedData.map(d => d.x))
+    .range([margins.left, svgDimensions.width - margins.right])
 
-    yScale
-      .domain([0, (maxValue * 1.05)])
-      .range([svgDimensions.height - margins.bottom, margins.top])
-    
-    console.log('xScale.domain()')
-    console.log(xScale.domain())
-    console.log('yScale.domain()')
-    console.log(yScale.domain())
-    
-    return (
-      <svg className='chartSVG' width={svgDimensions.width} height={svgDimensions.height}>
-     
-      </svg>
-    )
+  yScale
+    .domain([0, (maxValue * 1.05)])
+    .range([svgDimensions.height - margins.bottom, margins.top])
+
+  let thisLineFn = makeLineFn(xScale, yScale);
+
+  return (
+    <svg className='chartSVG' width={svgDimensions.width} height={svgDimensions.height}>
+      <path
+        className="linePath"
+        d={thisLineFn(remappedData)}
+        stroke="green"
+        strokeWidth="4px"
+        fill="none">
+      </path>
+    </svg>
+  )
 }
 
 export default ResponsiveWrapper(Chart)
