@@ -101,7 +101,8 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
                   fillOpacity={hoveredVal}
                   cursor='pointer'>
                 </circle>
-                <text 
+                {
+                  hoveredVal == 1 && <text 
                   className="clipText" 
                   clipPath={`url(#clip-${c[categoryKey].toString()})`}>
                   <tspan 
@@ -118,7 +119,8 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
                     textAnchor={"middle"}>
                     {c.value}
                   </tspan>
-                </text>
+                </text> 
+                }
               </g>)
           }else{null}
         }).filter(d => d)}
