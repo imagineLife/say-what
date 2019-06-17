@@ -19,7 +19,6 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
     Mouse-Over
   */
   let mouseOver = (d) => {
-
     if(!hovered.includes(d.id) && d.children){
       
       //darken bg of hovered circle
@@ -30,8 +29,6 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
       setVisible(visible.concat(childrenIDs))
 
     }
-    console.log('// - - - - - //')
-    
     
   }
 
@@ -88,13 +85,6 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
     })
   }
 
-  console.log('hovered')
-  console.log(hovered)
-  console.log('visible')
-  console.log(visible)
-  
-  
-
   return (
     <svg className='bubbleSVGWrapper' viewBox={`25, 0, ${sizeToUse}, ${sizeToUse}`}>
       <g className="gWrapper" transform={`translate(${25},0)`}>
@@ -112,7 +102,7 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
                 <clipPath xlinkHref={`#clip-${c[categoryKey].toString()}`}></clipPath>
                 <circle 
                   r={c.r}
-                  className={`bubble`}
+                  className={(c.children) ? `bubble` : 'bubble bubble-child'}
                   fill={'black'}
                   stroke={'black'}
                   strokeWidth={`1px`}

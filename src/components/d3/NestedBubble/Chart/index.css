@@ -19,8 +19,12 @@
 }
 
 .bubble:hover{
-	-webkit-transition: fill-opacity .4s ease;
- 	-moz-transition: fill-opacity .4s ease;
- 	-o-transition: fill-opacity .4s ease;
- 	transition: fill-opacity .4s ease;
+	-webkit-transition: all .4s ease;
+ 	-moz-transition: all .4s ease;
+ 	-o-transition: all .4s ease;
+ 	transition: all .4s ease;
+}
+
+.bubble *, .bubble > *, .bubble-child, .bubble-child > *, .bubbleText {
+	pointer-events: none;
 }
