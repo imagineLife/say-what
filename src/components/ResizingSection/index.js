@@ -8,9 +8,12 @@ import Ul from '../ul';
 import BeginForm from '../Forms/Begin';
 import SpeechTextForm from '../Forms/SpeechText';
 import BarChart from '../d3/BarChart/Chart';
+import LineChart from '../d3/LineChart/';
 import BubbleChart from '../d3/bubbleChart/Chart';
+import NestedBubble from '../d3/NestedBubble/Chart';
 import GaugeChart from '../d3/gauge';
 import BottomSpacer from '../BottomSpacer';
+import * as d3 from 'd3'
 
 export default function ResizingSection({
 	introInfo, 
@@ -27,8 +30,60 @@ export default function ResizingSection({
 	speechTitle,
 	text,
 	wordsBySize,
-	mostUsedWords
+	mostUsedWords,
+	sentences,
+	chart
 }) {
+
+	function nestData(srcData){
+
+		srcData.forEach(d => {
+			let thisNestedData;
+			if([2,3,4].includes(d.size)){
+				d.parent = 'small'
+			}else if([5,6,7].includes(d.size)){
+				d.parent = 'medium'
+			}else{
+				d.parent = 'large'
+			}
+		})
+
+		let newObjs = [
+			{
+				size: "small",
+				occurances: 0,
+				parent: "wordCount"
+			},
+			{
+				size: "medium",
+				occurances: 0,
+				parent: "wordCount"
+			},
+			{
+				size: "large",
+				occurances: 0,
+				parent: "wordCount"
+			},
+			{
+				size: "wordCount",
+				occurances: 0,
+				parent: ""
+			}
+		]
+
+		let finalArr = [...srcData, ...newObjs]
+
+		let hierarchical = d3.stratify()
+	    .id(d => d.size)
+	    .parentId(d => d.parent)
+	    (finalArr)
+
+	    hierarchical.sum(d => d.occurances)
+
+	    var root = d3.hierarchy(hierarchical);
+
+		  return root
+	}
 
 	let singleStat;
 
@@ -57,22 +112,40 @@ export default function ResizingSection({
 		})
 	}
 
+	let nestedData;
+	if(wordsBySize){
+		nestedData = nestData(wordsBySize)
+	}
+
 	return (
 		<section className={"col-"+colSize} /*style= { setHeight() }*/>
 			<Title title={(title || introInfo.Title)}/>
 	        {img ? img : null}
 	        {bigWords ? <Ul list={bigWords} /> : null}
-	       	{ numberOfWords ? <GaugeChart sectionKey='numberOfWords' dataKey={numberOfWords}/> : null}
+	       	{numberOfWords ? <GaugeChart sectionKey='numberOfWords' dataKey={numberOfWords}/> : null}
 	        {singleStat ? singleStat : ''}
 	        {includeBeginForm ? <BeginForm /> : null}
 	        {includeSpeechTextForm ? <SpeechTextForm speechID={speechID} speechTitle = {speechTitle}/> : null}
 	        {text ? <Para text={text} /> : null }
-	        {wordsBySize ? <BubbleChart sectionKey='wordsBySize' dataKey={wordsBySize} /> : null}
+	        {/*
+	        	{wordsBySize ? <BubbleChart sectionKey='wordsBySize' data={wordsBySize} radiusKey={`occurances`} categoryKey={`size`} /> : null}
+	        */}
+	        {wordsBySize ? <NestedBubble sectionKey='wordsBySize' data={nestedData} radiusKey={`value`} categoryKey={`id`} /> : null}
 	        {includeBarChart ? <BarChart 
 	        	sectionKey='mostUsedWords'
 	        	xKey={'word'}
 	        	yKey={'occurances'}
 	        	data={mostUsedWords}/> : null}
+	        {chart == 'line' ? <LineChart 
+	        	sectionKey='wordsPerSentence'
+	        	xKey={'index'}
+	        	yKey={'wordCount'}
+	        	data={sentences}
+	        	labels={{
+	        		xAxis: "Sentence Number",
+	        		yAxis: "Word Count"
+	        	}}
+	        	hoverLine/> : null}
 	        {includeBottomSpace ? <BottomSpacer /> : null}
 	    </section>
 	);

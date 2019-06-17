@@ -5,7 +5,7 @@ import ResponsiveWrapper from '../../ResponsiveWrapper'
 import './index.css'
 
 
-const Chart = ({data, xKey, yKey, respWrapWidth, labels}) => {
+const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   
   let [showLine, setShowLine] = React.useState(false)
   let [sentenceNumber, setSentenceNumber] = React.useState(0)
@@ -85,7 +85,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels}) => {
       </text>
       </React.Fragment>)
 
-  let optHoverLine = !(sentenceNumber) ? null : (
+  let optHoverLine = !(sentenceNumber || !hoverLine) ? null : (
     <line 
       strokeWidth={'2'}
       stroke={'rgb(150,150,150)'}
