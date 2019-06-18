@@ -10,7 +10,8 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   let [showLine, setShowLine] = React.useState(false)
   let [sentenceNumber, setSentenceNumber] = React.useState(0)
   let [curSentence, setCurSentence] = React.useState(false)
-
+  let [margins] = React.useState({ top: 15, right: 20, bottom: 70, left: 50 })
+    
   if(!data){
     return <p>Loading...</p>
   }
@@ -53,9 +54,6 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       .y(d => yScale(d.y))
       .curve(d3.curveMonotoneX)
   }
-    
-  //chart margins / offset
-  const margins = { top: 15, right: 20, bottom: 70, left: 50 }
 
   const svgDimensions = {
     width: Math.max(respWrapWidth, 300),
@@ -85,15 +83,22 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   /*
     Axis Labels
     optional labels, dependant on presence of 'labels' prop
+    requires 
+      margins ({l,r,t,b}), 
+      svgDims ({height, width}), 
+      labels ({x, y})
   */ 
-
-  const optLabels = useLabels({margins, svgDimensions,labels})
+  const optLabels = useLabels({margins, svgDimensions, labels})
 
   let xOffset = 7
   /*
     Hover-line
   */ 
-  let optHoverLine = !showLine ? null : (
+  let optHoverLine = !hoverLine  || 
+    sentenceNumber < 0 || 
+    !sentenceNumber || 
+    sentenceNumber > xScale.domain()[1] ||
+    !showLine ? null : (
     <line 
       strokeWidth={'1'}
       stroke={'rgb(150,150,150)'}
@@ -106,7 +111,11 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   /*
     Hover-circle
   */   
-  let hoverCircle = !showLine ? null : (
+  let hoverCircle = !hoverLine  || 
+    sentenceNumber < 0 || 
+    !sentenceNumber || 
+    sentenceNumber > xScale.domain()[1] ||
+    !showLine ? null : (
       <circle
         r={8}
         fill={'rgba(255,255,255,.3)'}
