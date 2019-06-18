@@ -61,10 +61,12 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
 
   let remappedData = remapData(data, xKey, yKey)
   
-//max data-value
+  //max data-value
   const maxYValue = Math.max(...remappedData.map(d => d.y))
 
-  //d3 scales
+  /*
+    d3 scales
+  */ 
   let xScale = d3.scaleLinear()
     .domain(d3.extent(remappedData, d => d.x))//remappedData.map(d => d.x))
     .range([margins.left, svgDimensions.width - margins.right])
@@ -76,7 +78,10 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   // Create line fn from scales
   let thisLineFn = makeLineFn(xScale, yScale);
   
-  //optional labels, dependant on presence of 'labels' prop
+  /*
+    Axis Labels
+    optional labels, dependant on presence of 'labels' prop
+  */ 
   let optLabels = !(Object.keys(labels).length > 0) ? null : (
     <React.Fragment>
       <text
@@ -97,11 +102,14 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       </text>
       </React.Fragment>)
 
-  let optHoverLine = !sentenceNumber || 
-                    !hoverLine  || 
-                    sentenceNumber < 0 || 
-                    !showLine || 
-                    sentenceNumber > xScale.domain()[1]  ? null : (
+  /*
+    Hover-line
+  */ 
+  let optHoverLine = !hoverLine  || 
+    sentenceNumber < 0 || 
+    !sentenceNumber || 
+    sentenceNumber > xScale.domain()[1] ||
+    !showLine ? null : (
     <line 
       strokeWidth={'2'}
       stroke={'rgb(150,150,150)'}
