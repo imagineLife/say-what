@@ -18,6 +18,12 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   const moused = d => {
     let sentenceNumber = Math.ceil(xScale.invert(d.clientX - 55))
     setSentenceNumber(sentenceNumber)
+    setShowLine(true)
+  }
+
+  const mousedOut = d => {
+    console.log('here...');
+    setShowLine(false)
   }
   
   //set x && y keys to a re-mapped data object
@@ -85,13 +91,17 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       </text>
       </React.Fragment>)
 
-  let optHoverLine = !sentenceNumber || !hoverLine  || sentenceNumber < 0 || sentenceNumber > xScale.domain()[1]  ? null : (
+  let optHoverLine = !sentenceNumber || 
+                    !hoverLine  || 
+                    sentenceNumber < 0 || 
+                    !showLine || 
+                    sentenceNumber > xScale.domain()[1]  ? null : (
     <line 
       strokeWidth={'2'}
       stroke={'rgb(150,150,150)'}
       strokeDasharray={'5 15'}
-      x1={xScale(sentenceNumber) - 5}
-      x2={xScale(sentenceNumber) - 5}
+      x1={xScale(sentenceNumber)}
+      x2={xScale(sentenceNumber)}
       y1={yScale(0)}
       y2={yScale(maxYValue * 1.05)}></line>) 
   
@@ -101,7 +111,8 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       width={svgDimensions.width} 
       height={svgDimensions.height}
       onMouseOver={moused}
-      onMouseMove={moused}>
+      onMouseMove={moused}
+      onMouseOut={mousedOut} >
       
       <Axes
         scales={{ xScale, yScale }}
