@@ -3,7 +3,7 @@
 }
 
 .bubbleText{
-	font-size: 16px;
+	font-size: 1em;
 }
 
 .title{
@@ -12,17 +12,29 @@
 
 .val{
 	font-weight:normal;
+	font-size: .75em;
+}
+
+.child{
+	font-size: .75em;
 }
 
 .clipText{
 	z-index: 10;
 }
 
+.bubble{
+	-webkit-transition: all 1s ease;
+ 	-moz-transition: all 1s ease;
+ 	-o-transition: all 1s ease;
+ 	transition: all 1s ease;
+}
+
 .bubble:hover{
-	-webkit-transition: all .4s ease;
- 	-moz-transition: all .4s ease;
- 	-o-transition: all .4s ease;
- 	transition: all .4s ease;
+	-webkit-transition: all .7s ease;
+ 	-moz-transition: all .7s ease;
+ 	-o-transition: all .7s ease;
+ 	transition: all .7s ease;
 }
 
 .bubble *, .bubble > *, .bubble-child, .bubble-child > *, .bubbleText {

@@ -32,22 +32,32 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
     
   }
 
+  /*
+    Mouse Out
+  */
   let mouseOut = d => {
     setHovered([]);
     setVisible(["small", "medium", "large"])
   }
 
+  /*
+    Data Prep
+  */
   let color = d3.scaleOrdinal(d3.schemeCategory10);
-  
   let sizeToUse = respWrapWidth
-  //PACK
   var d3PackFn = d3.pack()
       .size([sizeToUse, sizeToUse])
-      .padding(3);
-  
+      .padding(2);
   let packedCircles = d3PackFn(data)
   
+  /*
+    Get Cirlces OUT of D3 pack layout INTO an array
+  */
   let allCircles = []
+
+  let makeTextFromD = d => {
+    return (d.data.id !== 'wordCount') ? (d.children) ? `${d.data.id} Words` : `${d.data.id}-Letter` : null
+  }
 
   let circleObj = (d, visibility) => {
     
@@ -62,7 +72,7 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
       x : d.x,
       value : d.value,
       id: d.data.id,
-      text: (d.data.id !== 'wordCount') ? `${d.data.id} Words` : null,
+      text: makeTextFromD(d),
       root: (d.data.id == 'wordCount') ? true : false,
       children: d.children || null
     }
@@ -106,8 +116,7 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
                   fill={'black'}
                   stroke={'black'}
                   strokeWidth={`1px`}
-                  fillOpacity={hoveredVal}
-                  cursor='pointer'>
+                  fillOpacity={hoveredVal}>
                 </circle>
 
                 {/* Text is conditional based on hover 'state' */}
@@ -118,16 +127,26 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
                   className="clipText" 
                   clipPath={`url(#clip-${c[categoryKey].toString()})`}>
                   <tspan 
-                    className="bubbleText title"
+                    className={`bubbleText title ${(c.children) ? null : 'child'}`}
                     textAnchor={"middle"}
                     x={0}
                     y={-5}>
                     {c.text}
                   </tspan>
+
+                {/*Optional tspan for Child Bubbles*/}
+                  {!c.children && <tspan 
+                    className="bubbleText val"
+                    x={0}
+                    y={10}
+                    textAnchor={"middle"}>
+                    {'words'}
+                  </tspan>}
+
                   <tspan 
                     className="bubbleText val"
                     x={0}
-                    y={30}
+                    y={40}
                     textAnchor={"middle"}>
                     {c.value}
                   </tspan>
