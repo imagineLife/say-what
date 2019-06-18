@@ -16,13 +16,19 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
 
   //mousedOver && mouseMove
   const moused = d => {
-    let sentenceNumber = Math.ceil(xScale.invert(d.clientX - 55))
-    setSentenceNumber(sentenceNumber)
-    setShowLine(true)
+    let lineSVG = document.getElementsByClassName('lineSVG')[0]
+    let lineSVGXOffset = lineSVG.getBoundingClientRect().x
+    let xPos = d.pageX - lineSVGXOffset
+    
+    if(xPos >= xScale.range()[0]){
+      let sentenceNumber = Math.ceil(xScale.invert(xPos - 5)) //d.clientX - 55
+      setSentenceNumber(sentenceNumber)
+      setShowLine(true)
+    }
+    
   }
 
   const mousedOut = d => {
-    console.log('here...');
     setShowLine(false)
   }
   
@@ -39,7 +45,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   //make line functions
   const makeLineFn = (xScale,yScale) => {
     return d3.line()
-      .defined(d => d.y)
+      .defined(d => d.y > 0)
       .x(d => xScale(d.x))
       .y(d => yScale(d.y))
       .curve(d3.curveMonotoneX)
@@ -54,7 +60,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   }
 
   let remappedData = remapData(data, xKey, yKey)
-
+  
 //max data-value
   const maxYValue = Math.max(...remappedData.map(d => d.y))
 
@@ -107,7 +113,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   
   return (
     <svg 
-      className='chartSVG' 
+      className='lineSVG' 
       width={svgDimensions.width} 
       height={svgDimensions.height}
       onMouseOver={moused}
