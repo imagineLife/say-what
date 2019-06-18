@@ -1,3 +1,12 @@
+/*
+  Axis Labels
+  optional labels, dependant on presence of 'labels' prop
+  requires 
+    margins ({l,r,t,b}), 
+    svgDims ({height, width}), 
+    labels ({x, y})
+*/
+
 import React from 'react';
 
 const useLabels = ({margins, svgDimensions,labels}) => {

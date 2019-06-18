@@ -1,3 +1,7 @@
+/*
+  Maps data to {x, y} type res object
+*/
+
 import React from 'react';
 
 //set x && y keys to a re-mapped data object
