@@ -11,7 +11,23 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   let [sentenceNumber, setSentenceNumber] = React.useState(0)
   let [curSentence, setCurSentence] = React.useState(false)
   let [margins] = React.useState({ top: 15, right: 20, bottom: 70, left: 50 })
-    
+  let [svgDimensions] = React.useState({
+      width: Math.max(respWrapWidth, 300),
+      height: 440
+    })
+
+  /*
+    Axis Labels
+    optional labels, dependant on presence of 'labels' prop
+    requires 
+      margins ({l,r,t,b}), 
+      svgDims ({height, width}), 
+      labels ({x, y})
+  */ 
+  const optLabels = useLabels({margins, svgDimensions, labels})
+  let [remappedData] = React.useState(remapData(data, xKey, yKey))
+
+
   if(!data){
     return <p>Loading...</p>
   }
@@ -47,20 +63,13 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   }
 
   //make line functions
-  const makeLineFn = (xScale,yScale) => {
+  const makeLineFn = (xS,yS) => {
     return d3.line()
       .defined(d => d.y > 0)
-      .x(d => xScale(d.x))
-      .y(d => yScale(d.y))
+      .x(d => xS(d.x))
+      .y(d => yS(d.y))
       .curve(d3.curveMonotoneX)
   }
-
-  const svgDimensions = {
-    width: Math.max(respWrapWidth, 300),
-    height: 440
-  }
-
-  let remappedData = remapData(data, xKey, yKey)
   
   //max data-value
   const maxYValue = Math.max(...remappedData.map(d => d.y))
@@ -78,17 +87,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
 
   // Create line fn from scales
   let thisLineFn = makeLineFn(xScale, yScale);
-  
 
-  /*
-    Axis Labels
-    optional labels, dependant on presence of 'labels' prop
-    requires 
-      margins ({l,r,t,b}), 
-      svgDims ({height, width}), 
-      labels ({x, y})
-  */ 
-  const optLabels = useLabels({margins, svgDimensions, labels})
 
   let xOffset = 7
   /*
