@@ -6,6 +6,28 @@ import useLabels from '../Hooks/AxisLabels/'
 import useDataMapper from '../Hooks/DataMapper'
 import './index.css'
 
+const makeScale = (type, xOrY, srcData, m, dims) => {
+  let thisScale = d3[`scale${type}`]()
+  
+  if(type == 'Linear' && xOrY == 'x'){
+    thisScale.domain(d3.extent(srcData, d => d.x))
+  }
+  
+  if(type == 'Linear' && xOrY == 'y'){
+    thisScale.domain([0, (Math.max(...srcData.map(d => d.y)) * 1.05)])
+  }
+  
+  if(xOrY == 'x'){
+    thisScale.range([m.left, dims.width - m.right])
+  }
+
+  if(xOrY == 'y'){
+    thisScale.range([dims.height - m.bottom, m.top])
+  }
+    
+  return thisScale
+}
+
 const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   
   let [showLine, setShowLine] = React.useState(false)
@@ -16,16 +38,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       width: Math.max(respWrapWidth, 300),
       height: 440
     })
-  let [xOffset] = React.useState(7)
-
-  /*
-    Axis Labels
-    optional labels, dependant on presence of 'labels' prop
-    requires 
-      margins ({l,r,t,b}), 
-      svgDims ({height, width}), 
-      labels ({x, y})
-  */ 
+  let [xOffset] = React.useState(7) 
   const optLabels = useLabels({margins, svgDimensions, labels})
   let remappedData = useDataMapper(data, xKey, yKey)
 
@@ -62,19 +75,13 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       .curve(d3.curveMonotoneX)
   }
   
-  //max data-value
-  const maxYValue = Math.max(...remappedData.map(d => d.y))
+  //max data-y-value
 
   /*
     d3 scales
   */ 
-  let xScale = d3.scaleLinear()
-    .domain(d3.extent(remappedData, d => d.x))//remappedData.map(d => d.x))
-    .range([margins.left, svgDimensions.width - margins.right])
-
-  let yScale = d3.scaleLinear()
-    .domain([0, (maxYValue * 1.05)])
-    .range([svgDimensions.height - margins.bottom, margins.top])
+  let xScale = makeScale('Linear', 'x', remappedData, margins, svgDimensions)
+  let yScale = makeScale('Linear', 'y', remappedData, margins, svgDimensions)
 
   // Create line fn from scales
   let thisLineFn = makeLineFn(xScale, yScale);
@@ -94,7 +101,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       x1={xScale(sentenceNumber) - xOffset}
       x2={xScale(sentenceNumber) - xOffset}
       y1={yScale(0)}
-      y2={yScale(maxYValue * 1.05)}></line>) 
+      y2={yScale(Math.max(...remappedData.map(d => d.y)) * 1.05)}></line>) 
   
   /*
     Hover-circle
