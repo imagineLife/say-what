@@ -20,9 +20,9 @@ export default ({ scales, margins, svgDimensions }) => {
   }
 
   return (
-    <g>
+    <React.Fragment>
       <Axis {...xProps} />
       <Axis {...yProps} />
-    </g>
+    </React.Fragment>
   )
 }
