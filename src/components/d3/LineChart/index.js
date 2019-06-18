@@ -9,6 +9,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   
   let [showLine, setShowLine] = React.useState(false)
   let [sentenceNumber, setSentenceNumber] = React.useState(0)
+  let [curSentence, setCurSentence] = React.useState(false)
 
   if(!data){
     return <p>Loading...</p>
@@ -21,15 +22,17 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
     let xPos = d.pageX - lineSVGXOffset
     
     if(xPos >= xScale.range()[0]){
-      let sentenceNumber = Math.ceil(xScale.invert(xPos - 5)) //d.clientX - 55
+      let sentenceNumber = Math.ceil(xScale.invert(xPos))      
       setSentenceNumber(sentenceNumber)
       setShowLine(true)
+      setCurSentence(data[(sentenceNumber - 1)])
     }
     
   }
 
   const mousedOut = d => {
     setShowLine(false)
+    setCurSentence(false)
   }
   
   //set x && y keys to a re-mapped data object
@@ -52,7 +55,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   }
     
   //chart margins / offset
-  const margins = { top: 0, right: 20, bottom: 70, left: 50 }
+  const margins = { top: 15, right: 20, bottom: 70, left: 50 }
 
   const svgDimensions = {
     width: Math.max(respWrapWidth, 300),
@@ -102,6 +105,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       </text>
       </React.Fragment>)
 
+  let xOffset = 7
   /*
     Hover-line
   */ 
@@ -111,13 +115,45 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
     sentenceNumber > xScale.domain()[1] ||
     !showLine ? null : (
     <line 
-      strokeWidth={'2'}
+      strokeWidth={'1'}
       stroke={'rgb(150,150,150)'}
       strokeDasharray={'5 15'}
-      x1={xScale(sentenceNumber)}
-      x2={xScale(sentenceNumber)}
+      x1={xScale(sentenceNumber) - xOffset}
+      x2={xScale(sentenceNumber) - xOffset}
       y1={yScale(0)}
       y2={yScale(maxYValue * 1.05)}></line>) 
+  
+  /*
+    Hover-circle
+  */   
+  let hoverCircle = !hoverLine  || 
+    sentenceNumber < 0 || 
+    !sentenceNumber || 
+    sentenceNumber > xScale.domain()[1] ||
+    !showLine ? null : (
+      <circle
+        r={8}
+        fill={'rgba(255,255,255,.3)'}
+        stroke={'white'}
+        strokeWidth={'1'}
+        strokeDasharray={`2 3`} 
+        cx={xScale(sentenceNumber) - xOffset}
+        cy={yScale(remappedData[sentenceNumber - 1].y)}/>
+    )
+
+  /*
+    Sentence string
+  */
+  let sentenceObj = !curSentence ? null : (
+    <text
+      transform={`translate(${svgDimensions.width / 2}, ${margins.top + 5})`}
+      textAnchor={'middle'}
+      fontSize={'12px'}
+      fill={'white'}
+      stroke={'none'}>
+        {curSentence.text}
+      </text>
+    )
   
   return (
     <svg 
@@ -144,6 +180,8 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
 
       {optLabels}
       {optHoverLine}
+      {hoverCircle}
+      {curSentence && sentenceObj}
     </svg>
   )
 }
