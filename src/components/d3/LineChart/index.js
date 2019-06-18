@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 import Axes from '../Axes'
 import ResponsiveWrapper from '../../ResponsiveWrapper'
 import useLabels from '../Hooks/AxisLabels/'
+import useDataMapper from '../Hooks/DataMapper'
 import './index.css'
 
 const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
@@ -26,10 +27,9 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       labels ({x, y})
   */ 
   const optLabels = useLabels({margins, svgDimensions, labels})
-  let [remappedData] = React.useState(remapData(data, xKey, yKey))
+  let remappedData = useDataMapper(data, xKey, yKey)
 
-
-  if(!data){
+  if(!data || !remappedData){
     return <p>Loading...</p>
   }
 
@@ -51,16 +51,6 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   const mousedOut = d => {
     setShowLine(false)
     setCurSentence(false)
-  }
-  
-  //set x && y keys to a re-mapped data object
-  function remapData(srcData, xVal, yVal){
-    return srcData.map((d,ind) => {
-      return {
-        x: (xVal == 'index') ? ind : d[xVal],
-        y: d[yVal],
-      }
-    })
   }
 
   //make line functions
