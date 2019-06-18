@@ -15,6 +15,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       width: Math.max(respWrapWidth, 300),
       height: 440
     })
+  let [xOffset] = React.useState(7)
 
   /*
     Axis Labels
@@ -88,8 +89,6 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   // Create line fn from scales
   let thisLineFn = makeLineFn(xScale, yScale);
 
-
-  let xOffset = 7
   /*
     Hover-line
   */ 
