@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import * as d3 from 'd3';
 import Axes from '../Axes'
 import ResponsiveWrapper from '../../ResponsiveWrapper'
+import useLabels from '../Hooks/AxisLabels/'
 import './index.css'
-
 
 const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   
@@ -81,39 +81,19 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   // Create line fn from scales
   let thisLineFn = makeLineFn(xScale, yScale);
   
+
   /*
     Axis Labels
     optional labels, dependant on presence of 'labels' prop
   */ 
-  let optLabels = !(Object.keys(labels).length > 0) ? null : (
-    <React.Fragment>
-      <text
-        fill={`rgb(216,216,216)`}
-        stroke={'none'}
-        fontSize={'14px'}
-        textAnchor={'left'}
-        transform={`translate(${margins.left},${margins.top + 20})`}>
-        {labels.yAxis}
-      </text>
-      <text 
-        fill={`rgb(216,216,216)`}
-        stroke={'none'}
-        fontSize={'14px'}
-        textAnchor={'middle'}
-        transform={`translate(${svgDimensions.width / 2},${svgDimensions.height - (margins.bottom * .25)})`}>
-        {labels.xAxis}
-      </text>
-      </React.Fragment>)
+
+  const optLabels = useLabels({margins, svgDimensions,labels})
 
   let xOffset = 7
   /*
     Hover-line
   */ 
-  let optHoverLine = !hoverLine  || 
-    sentenceNumber < 0 || 
-    !sentenceNumber || 
-    sentenceNumber > xScale.domain()[1] ||
-    !showLine ? null : (
+  let optHoverLine = !showLine ? null : (
     <line 
       strokeWidth={'1'}
       stroke={'rgb(150,150,150)'}
@@ -126,11 +106,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   /*
     Hover-circle
   */   
-  let hoverCircle = !hoverLine  || 
-    sentenceNumber < 0 || 
-    !sentenceNumber || 
-    sentenceNumber > xScale.domain()[1] ||
-    !showLine ? null : (
+  let hoverCircle = !showLine ? null : (
       <circle
         r={8}
         fill={'rgba(255,255,255,.3)'}
@@ -154,6 +130,14 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
         {curSentence.text}
       </text>
     )
+
+  let line = thisLineFn(remappedData) && <path
+        className="linePath"
+        d={thisLineFn(remappedData)}
+        stroke="green"
+        strokeWidth="4px"
+        fill="none">
+      </path>
   
   return (
     <svg 
@@ -170,17 +154,14 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
         svgDimensions={svgDimensions}
       />
 
-      <path
-        className="linePath"
-        d={thisLineFn(remappedData)}
-        stroke="green"
-        strokeWidth="4px"
-        fill="none">
-      </path>
+      {line}
 
       {optLabels}
+      
       {optHoverLine}
+      
       {hoverCircle}
+      
       {curSentence && sentenceObj}
     </svg>
   )
