@@ -29,12 +29,16 @@ const makeScale = (type, xOrY, srcData, m, dims) => {
 }
 
 const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
+
+  console.log('respWrapWidth')
+  console.log(respWrapWidth)
+  
   
   let [showLine, setShowLine] = React.useState(false)
   let [sentenceNumber, setSentenceNumber] = React.useState(0)
   let [curSentence, setCurSentence] = React.useState(false)
   let [margins] = React.useState({ top: 15, right: 20, bottom: 70, left: 50 })
-  let [svgDimensions] = React.useState({
+  let [svgDimensions, setSVGDimensions] = React.useState({
       width: Math.max(respWrapWidth, 300),
       height: 440
     })
@@ -42,6 +46,21 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   const optLabels = useLabels({margins, svgDimensions, labels})
   let remappedData = useDataMapper(data, xKey, yKey)
 
+  // console.log('svgDimensions')
+  // console.log(svgDimensions)
+
+  // console.log('// - - - - - //')
+  
+
+  //update svg dims on resize
+  React.useEffect(() => {
+    setSVGDimensions({
+      width: Math.max(respWrapWidth, 300),
+      height: 440
+    })
+  }, [respWrapWidth]);
+
+  
   if(!data || !remappedData){
     return <p>Loading...</p>
   }
@@ -171,4 +190,5 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   )
 }
 
+export { Chart };
 export default ResponsiveWrapper(Chart)
