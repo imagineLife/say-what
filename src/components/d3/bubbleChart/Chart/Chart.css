@@ -17,3 +17,7 @@
 .clipText{
 	z-index: 10;
 }
+
+.bubbleText{
+	fill: rgb(225,225,225);
+}
