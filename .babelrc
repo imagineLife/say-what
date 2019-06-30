@@ -3,7 +3,7 @@
   "presets": [
     "@babel/preset-env",
     "@babel/preset-react",
-    "preset-flow"
+    "@babel/preset-flow"
   ],
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",
