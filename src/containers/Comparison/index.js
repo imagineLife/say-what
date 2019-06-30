@@ -6,16 +6,17 @@ import DropDownWord from '../../components/DropDownWord';
 export default function Comparison() {
 	let [mostUsedWords, setMostUsedWords] = React.useState({})
 
-	React.useEffect(() => {
-
+	//fetch stats
+	const fetchStatsEffect = (setMostUsedWords) => {
 		//fetch most-used-words here
 		fetch('http://localhost:8080/api/speeches/compare').then(res => {
 			let jsonResult = res.json().then(jsonRes => {
 				let wordsArr = []
 				let wordCountByOrator = {}
 
-				jsonRes.forEach(wordsByOrator => {
-					let theseWords = wordsByOrator.wordsByCount;
+				jsonRes.forEach(thisResult => {
+					
+					let theseWords = thisResult.comparison;
 					theseWords.forEach(thisWord => {
 						
 						if(thisWord.word == ""){
@@ -26,10 +27,10 @@ export default function Comparison() {
 						//not in array yet
 						if(isAlreadyInWordsArr.length < 1){
 							let thisArr = [thisWord]
-							let thisWordBySpeaker = {orator: wordsByOrator.orator, count: thisWord.occurances}
+							let thisWordBySpeaker = {orator: thisResult.orator, count: thisWord.occurances}
 						
 							wordsArr = [...wordsArr, ...thisArr]
-							wordCountByOrator[thisWord.word] = [{orator: wordsByOrator.orator, occurances: thisWord.occurances}]
+							wordCountByOrator[thisWord.word] = [{orator: thisResult.orator, occurances: thisWord.occurances}]
 						//in array already
 						}else{
 							let thisWordInd = wordsArr.findIndex(existingWord => existingWord.word == thisWord.word)
@@ -37,7 +38,7 @@ export default function Comparison() {
 								word: thisWord.word,
 								occurances: wordsArr[thisWordInd].occurances + thisWord.occurances
 							}
-							let newWorCountArr = [{orator: wordsByOrator.orator, occurances: thisWord.occurances}]
+							let newWorCountArr = [{orator: thisResult.orator, occurances: thisWord.occurances}]
 							wordCountByOrator[thisWord.word] = [...wordCountByOrator[thisWord.word], ...newWorCountArr]
 						}		
 					})
@@ -50,7 +51,9 @@ export default function Comparison() {
 			})
 			
 		})
-	}, [])
+	} 
+
+	React.useEffect(() => fetchStatsEffect(setMostUsedWords), [])
 	
     return (
 		<main role="main" className="splashBack">
