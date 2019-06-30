@@ -71,6 +71,7 @@ export class SpeechData extends React.Component {
 						eventOverview: stats.eventOverview,
 						title: stats.title,
 						wordsBySize: stats.wordsBySize,
+						sentences: stats.sentences,
 						loading: false
 	                })
                 })    	
@@ -121,7 +122,7 @@ export class SpeechData extends React.Component {
 					image: Image,
 					imageFile: this.state.imageFile
 				}
-
+				
 				const sectionsArray =[
 					{
 						introInfo:{
@@ -166,7 +167,7 @@ export class SpeechData extends React.Component {
 					},
 					{
 						title: `Words Per Sentence`,
-						mostUsedWords: this.state.sentences,
+						sentences: this.state.sentences,
 						chart: 'line', 
 						colSize:12
 					}
