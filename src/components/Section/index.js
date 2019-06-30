@@ -8,24 +8,35 @@ import BeginForm from '../Forms/Begin';
 import LogoutForm from '../Forms/Logout';
 import RequestForm from '../Forms/Request';
 
-export default function Section (props) {
+export default function Section ({title, 
+	img, 
+	text, 
+	speechPicker, 
+	speechesFromAPI, 
+	form, 
+	includeBeginForm,
+	includeRequestForm,
+	requested,
+	includeLogoutForm,
+	includeBottomSpace
+}) {
 
 	return (
 		<section>
-			<Title title={props.title}/>
-	        {props.img ? props.img : null}
-	        <Para text={props.text}/>
-	        {props.speechPicker ? <UlLinks speechParts={props.speechesFromAPI} /> : null}
-	        {props.form ? props.form : null}
-	        {props.includeBeginForm ? <BeginForm {...props}/> : null}
-	        {props.includeRequestForm 
-     			? props.requested === true
+			<Title title={title}/>
+	        {img ? img : null}
+	        <Para text={text}/>
+	        {speechPicker ? <UlLinks speechParts={speechesFromAPI} /> : null}
+	        {form ? form : null}
+	        {includeBeginForm ? <BeginForm /> : null}
+	        {includeRequestForm 
+     			? requested === true
             		?   <div>Submitted! THANKS </div>
-            		: <RequestForm {...props} /> 
+            		: <RequestForm /> 
      			: null
      		}
-	        {props.includeLogoutForm ? <LogoutForm {...props}/> : null}
-	        {props.includeBottomSpace ? <BottomSpacer /> : null}
+	        {includeLogoutForm ? <LogoutForm /> : null}
+	        {includeBottomSpace ? <BottomSpacer /> : null}
 	    </section>
 	)
 
