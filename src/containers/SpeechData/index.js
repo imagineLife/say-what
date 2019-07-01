@@ -21,6 +21,57 @@ export class SpeechData extends React.Component {
 		};
 	}
 
+	/*
+		let [ loading, setLoading ] = React.useState()
+		let [ urlSpeechID, setUrlSpeechID ] = React.useState()
+		let [ sectionHeight, setSectionHeight ] = React.useState()
+		let [speechStats, setSpeechStats] = React.useState()
+
+		//NEED A HOOK HERE!!
+		let urlSpeechID = useUrl()
+		let maxDivHeight = getMaxDivHeight('section[ class *= "col-" ]')
+
+		React.useEffect(() => {
+			
+			//1.
+			setLoading(true)
+
+			//2
+			loadStats().then(stats => {
+
+				//3.
+				let myH = 0;
+					document.querySelectorAll('section[ class *= "col-" ]').forEach((itm) => {
+					    myH = Math.max(myH, itm.offsetHeight)
+					})
+
+				//4.
+				setSectionHeight(myH)
+				setSpeechStats({
+					Audience:stats.Audience,
+					Date: stats.Date,
+					Orator:stats.Orator,
+					bigWords:stats.bigWords,
+					id:stats.id,
+					mostUsedWords:stats.mostUsedWords,
+					numberOfWords: stats.numberOfWords,
+					speechTextLink: stats.speechTextLink,
+					imageFile: stats.imageFile,
+					eventOverview: stats.eventOverview,
+					title: stats.title,
+					wordsBySize: stats.wordsBySize,
+					sentences: stats.sentences,
+					loading: false
+				})
+				setLoading(false)
+
+			})
+
+
+		}, [])
+
+	*/
+
 	componentDidMount(){
 		// setTimeout(() => {
 			this.loadStats();
