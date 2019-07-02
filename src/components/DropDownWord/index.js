@@ -1,8 +1,12 @@
+import type { Props } from './flow'
+
 import React from 'react'
 import './index.css'
 
-export default function DropDownWord({word, wordsByOrator}){
+export default function DropDownWord({word, wordsByOrator} : Props){
+
 	let [arrowDirection, setArrowDirection] = React.useState("right")
+	
 	return(
 		<React.Fragment>
 			<li className="comparison-list" 
