@@ -1,3 +1,4 @@
+import type { Props, State, loginObjType} from './flow'
 import React from 'react';
 import '../Forms.css';
 import './LoginForm.css';
@@ -5,10 +6,14 @@ import {connect} from 'react-redux';
 import {loginAction} from './state/actions';
 import {Redirect} from 'react-router-dom';
 import Input from '../../Input'
-class LoginForm extends React.Component {
-  constructor(props){
+
+class LoginForm extends React.Component <Props, State>{
+  constructor(props : Props){
     super(props);    
-    this.state = {
+    console.log('LoginForm props')
+    console.log(props)
+    
+    this.state : State = {
       username: '',
       password: ''
     }
@@ -22,7 +27,7 @@ class LoginForm extends React.Component {
 
   getResFromAPI(ev){
     ev.preventDefault();
-    let loginObj = {
+    let loginObj : loginObjType = {
       username : this.state.username,
       password : this.state.password
     }
