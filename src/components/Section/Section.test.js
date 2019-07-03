@@ -15,7 +15,6 @@ describe('Section.js', () => {
 		let dummyTitle = "vanillaIce";
 	  let testComp = shallow(<Section title={dummyTitle} />);
 	  const mockTitle = testComp.find('Title');
-	  console.log('mockTitle',mockTitle.prop('title'));
 	  expect(mockTitle.prop('title')).toEqual(dummyTitle);
 	});	
 
