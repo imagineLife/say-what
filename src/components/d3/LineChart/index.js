@@ -37,12 +37,12 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   let [showLine, setShowLine] = React.useState(false)
   let [sentenceNumber, setSentenceNumber] = React.useState(0)
   let [curSentence, setCurSentence] = React.useState(false)
-  let [margins] = React.useState({ top: 15, right: 20, bottom: 70, left: 50 })
+  let [margins] = React.useState({ top: 15, right: 35, bottom: 70, left: 50 })
   let [svgDimensions, setSVGDimensions] = React.useState({
       width: Math.max(respWrapWidth, 300),
       height: 440
     })
-  let [xOffset] = React.useState(5) 
+  let [xOffset] = React.useState(3) 
   const optLabels = useLabels({margins, svgDimensions, labels})
   let remappedData = useDataMapper(data, xKey, yKey)
 
