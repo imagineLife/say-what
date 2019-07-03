@@ -4,6 +4,7 @@ import Axes from '../Axes'
 import ResponsiveWrapper from '../../ResponsiveWrapper'
 import useLabels from '../Hooks/AxisLabels/'
 import useDataMapper from '../Hooks/DataMapper'
+import SentenceObj from '../../SentenceObj'
 import './index.css'
 
 const makeScale = (type, xOrY, srcData, m, dims) => {
@@ -33,7 +34,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   let [showLine, setShowLine] = React.useState(false)
   let [sentenceNumber, setSentenceNumber] = React.useState(0)
   let [curSentence, setCurSentence] = React.useState(false)
-  let [margins] = React.useState({ top: 15, right: 35, bottom: 70, left: 50 })
+  let [margins] = React.useState({ top: 35, right: 35, bottom: 70, left: 50 })
   let [svgDimensions, setSVGDimensions] = React.useState({
       width: Math.max(respWrapWidth, 300),
       height: 440
@@ -136,21 +137,6 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
         cy={yScale(remappedData[sentenceNumber - 1].y)}/>
     )
 
-  /*
-    Sentence string
-  */
-  
-  let sentenceObj = !curSentence ? null : (
-    <text
-      transform={`translate(${svgDimensions.width / 2}, ${margins.top})`}
-      textAnchor={'middle'}
-      fontSize={'12px'}
-      fill={'white'}
-      stroke={'none'}>
-        {curSentence.text}
-      </text>
-    )
-
   let line = thisLineFn(remappedData) && <path
         className="linePath"
         d={thisLineFn(remappedData)}
@@ -182,7 +168,10 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       
       {hoverCircle}
       
-      {curSentence && sentenceObj}
+      {curSentence && <SentenceObj 
+        text={curSentence} 
+        dims={svgDimensions} 
+        margins={margins}/>}
     </svg>
   )
 }
