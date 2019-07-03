@@ -13,7 +13,8 @@ class LoginForm extends React.Component <Props, State>{
     console.log('LoginForm props')
     console.log(props)
     
-    this.state : State = {
+    //this.state : State = {
+    this.state = {
       username: '',
       password: ''
     }
