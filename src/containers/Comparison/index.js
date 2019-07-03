@@ -19,27 +19,28 @@ export default function Comparison() {
 					let theseWords = thisResult.comparison;
 					theseWords.forEach(thisWord => {
 						
-						if(thisWord.word == ""){
+						let {itm, occurances} = thisWord;
+						if(itm == ""){
 							return
 						}
-						let isAlreadyInWordsArr = wordsArr.filter(w => w.word == thisWord.word)
+						let isAlreadyInWordsArr = wordsArr.filter(w => w.word == itm)
 						
 						//not in array yet
 						if(isAlreadyInWordsArr.length < 1){
 							let thisArr = [thisWord]
-							let thisWordBySpeaker = {orator: thisResult.orator, count: thisWord.occurances}
+							let thisWordBySpeaker = {orator: thisResult.orator, count: occurances}
 						
 							wordsArr = [...wordsArr, ...thisArr]
-							wordCountByOrator[thisWord.word] = [{orator: thisResult.orator, occurances: thisWord.occurances}]
+							wordCountByOrator[itm] = [{orator: thisResult.orator, occurances: occurances}]
 						//in array already
 						}else{
-							let thisWordInd = wordsArr.findIndex(existingWord => existingWord.word == thisWord.word)
+							let thisWordInd = wordsArr.findIndex(existingWord => existingWord.word == itm)
 							wordsArr[thisWordInd] = {
-								word: thisWord.word,
-								occurances: wordsArr[thisWordInd].occurances + thisWord.occurances
+								word: itm,
+								occurances: wordsArr[thisWordInd].occurances + occurances
 							}
-							let newWorCountArr = [{orator: thisResult.orator, occurances: thisWord.occurances}]
-							wordCountByOrator[thisWord.word] = [...wordCountByOrator[thisWord.word], ...newWorCountArr]
+							let newWorCountArr = [{orator: thisResult.orator, occurances: occurances}]
+							wordCountByOrator[itm] = [...wordCountByOrator[itm], ...newWorCountArr]
 						}		
 					})
 				})
