@@ -42,7 +42,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       width: Math.max(respWrapWidth, 300),
       height: 440
     })
-  let [xOffset] = React.useState(7) 
+  let [xOffset] = React.useState(5) 
   const optLabels = useLabels({margins, svgDimensions, labels})
   let remappedData = useDataMapper(data, xKey, yKey)
 
@@ -108,6 +108,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
     sentenceNumber > xScale.domain()[1] ||
     !showLine ? null : (
     <line 
+      pointerEvents={"none"}
       strokeWidth={'1'}
       stroke={'rgb(150,150,150)'}
       strokeDasharray={'5 15'}
@@ -125,6 +126,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
     sentenceNumber > xScale.domain()[1] ||
     !showLine ? null : (
       <circle
+        pointerEvents={"none"}
         r={8}
         fill={'rgba(255,255,255,.3)'}
         stroke={'white'}
