@@ -46,12 +46,6 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   const optLabels = useLabels({margins, svgDimensions, labels})
   let remappedData = useDataMapper(data, xKey, yKey)
 
-  // console.log('svgDimensions')
-  // console.log(svgDimensions)
-
-  // console.log('// - - - - - //')
-  
-
   //update svg dims on resize
   React.useEffect(() => {
     setSVGDimensions({
