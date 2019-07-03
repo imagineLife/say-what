@@ -29,10 +29,6 @@ const makeScale = (type, xOrY, srcData, m, dims) => {
 }
 
 const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
-
-  console.log('respWrapWidth')
-  console.log(respWrapWidth)
-  
   
   let [showLine, setShowLine] = React.useState(false)
   let [sentenceNumber, setSentenceNumber] = React.useState(0)
@@ -42,19 +38,23 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
       width: Math.max(respWrapWidth, 300),
       height: 440
     })
-  let [xOffset] = React.useState(3) 
+  
+  let [xOffset, setXOffset] = React.useState(0) 
+  
   const optLabels = useLabels({margins, svgDimensions, labels})
   let remappedData = useDataMapper(data, xKey, yKey)
 
   //update svg dims on resize
+  //update xOffset on resize
   React.useEffect(() => {
     setSVGDimensions({
       width: Math.max(respWrapWidth, 300),
       height: 440
     })
-  }, [respWrapWidth]);
 
-  
+    setXOffset((respWrapWidth > 800) ? 8 : (respWrapWidth > 600) ? 6 : 4)
+  }, [respWrapWidth]);
+    
   if(!data || !remappedData){
     return <p>Loading...</p>
   }
@@ -139,9 +139,10 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   /*
     Sentence string
   */
+  
   let sentenceObj = !curSentence ? null : (
     <text
-      transform={`translate(${svgDimensions.width / 2}, ${margins.top + 5})`}
+      transform={`translate(${svgDimensions.width / 2}, ${margins.top})`}
       textAnchor={'middle'}
       fontSize={'12px'}
       fill={'white'}
