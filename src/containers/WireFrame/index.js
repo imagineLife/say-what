@@ -3,6 +3,37 @@ import './index.css';
 
 const WireFrame = () => {
 	
+	let speeches = [
+		{
+			title: "speech one",
+			id: "1234"
+		},
+		{
+			title: "speech two",
+			id: "2345"
+		},
+		{
+			title: "speech three",
+			id: "3456"
+		},
+		{
+			title: "speech four",
+			id: "4567"
+		},
+		{
+			title: "speech five",
+			id: "5678"
+		},
+		{
+			title: "speech six",
+			id: "6789"
+		},
+		{
+			title: "speech seven",
+			id: "7890"
+		}
+	]
+
 	const updateVisibleSpeeches = (e) => {
 		e.preventDefault()
 		console.log('Changed input here!!');
@@ -16,12 +47,9 @@ const WireFrame = () => {
 			<input onChange={(e) => updateVisibleSpeeches(e)} placeholder=" Search..."/>
 			<p>Choose two speeches to compare analysis:</p>
 			<ul>
-				<li>Speech1</li>
-				<li>Speech2</li>
-				<li>Speech3</li>
-				<li>Speech4</li>
-				<li>Speech5</li>
-				<li>Speech6</li>
+				{speeches && speeches.map((s,ind) =>( 
+					<li key={`${ind}${s.id}`}>{s.title}</li>)
+				)}
 			</ul>
 		</section>
 		<section id="common-words">
