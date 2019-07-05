@@ -1,12 +1,20 @@
 import React from 'react'
+import './index.css';
 
 const WireFrame = () => {
+	
+	const updateVisibleSpeeches = (e) => {
+		e.preventDefault()
+		console.log('Changed input here!!');
+	}
+	
 	return (<React.Fragment>
-	  <main id="wireFrame" role="main" className="splashBack">
+	  <main id="wire-frame" role="main" className="splashBack">
 		<h2>Compare Statistics</h2>
 		<section id="compare-speeches">
 			<h2>Compare Speeches</h2>
-			<p>Pick two Speeches:</p>
+			<input onChange={(e) => updateVisibleSpeeches(e)} placeholder=" Search..."/>
+			<p>Choose two speeches to compare analysis:</p>
 			<ul>
 				<li>Speech1</li>
 				<li>Speech2</li>
