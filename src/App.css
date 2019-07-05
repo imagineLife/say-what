@@ -499,7 +499,7 @@ template {
   display: none;
 }
 
-.App main{
+main > * {
   text-align: center;
   font-family: 'Lucida Grande';
   color: rgb(216,216,216);
