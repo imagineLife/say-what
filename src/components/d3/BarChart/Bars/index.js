@@ -9,28 +9,16 @@ export default function Bars({ scales, margins, data, svgDimensions }){
   const { height } = svgDimensions
 
     const colorScale = scaleLinear()
-    .range(['#256CFF','#143B8A'])
+    .range(['rgb(37,108,255)','rgb(20,59,138)']) // light-to-dark blue
     .interpolate(interpolateLab)
     .domain([0, data.length - 1]);
 
-  // let ColorGradientDefs = ({color, direction}) => {
-    // let directions = (direction == 'down') ? {
-      let directions = {
-        x1:"0",
-        x2:"0",
-        y1:"1",
-        y2:"0"
-      } //: null
-
-  //   return(
-  //     <defs>
-  //       <linearGradient id="Gradient1" {...directions}>
-  //         <stop offset="0%" stopColor={`rgb(${color},0)`}/>
-  //         <stop offset="100%" stopColor={`rgb(${color})`}/>
-  //       </linearGradient>
-  //     </defs>
-  //   )
-  // }
+    let directions = {
+      x1:"0",
+      x2:"0",
+      y1:"1",
+      y2:"0"
+    }
 
   return (
     <React.Fragment>
