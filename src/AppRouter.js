@@ -19,21 +19,19 @@ import Login from './containers/Login';
 function AppRouter(){
   return (
 	<Router>
-	      <div className="App">
-	        <Nav />
-	        <Suspense fallback={<div>Loading...</div>}>
-		        <Switch>
-			        <Route exact path="/" component={Splash} />
-			        <Route exact path="/speechData/:id" component={SpeechData} />
-			        <Route exact path="/speechText/:id" component={SpeechText} />
-			        <Route exact path="/speechPicker" component={SpeechPicker} />
-			        <Route exact path="/compare" component={Comparison} />
-			        <Route exact path="/wireframe" component={WireFrame} />
-			        <Route exact path="/login" component={Login} />
-			        <Redirect from='/*' to="/speechData/default" />
-			    </Switch>
-			</Suspense>    
-	      </div>
+        <Nav />
+        <Suspense fallback={<div>Loading...</div>}>
+	        <Switch>
+		        <Route exact path="/" component={Splash} />
+		        <Route exact path="/speechData/:id" component={SpeechData} />
+		        <Route exact path="/speechText/:id" component={SpeechText} />
+		        <Route exact path="/speechPicker" component={SpeechPicker} />
+		        <Route exact path="/compare" component={Comparison} />
+		        <Route exact path="/wireframe" component={WireFrame} />
+		        <Route exact path="/login" component={Login} />
+		        <Redirect from='/*' to="/speechData/default" />
+		    </Switch>
+		</Suspense>
 	</Router>
   );
 }
