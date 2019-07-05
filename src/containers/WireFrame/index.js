@@ -4,6 +4,18 @@ const WireFrame = () => {
 	return (<React.Fragment>
 	  <main id="wireFrame" role="main" className="splashBack">
 		<h2>Compare Statistics</h2>
+		<section id="compare-speeches">
+			<h2>Compare Speeches</h2>
+			<p>Pick two Speeches:</p>
+			<ul>
+				<li>Speech1</li>
+				<li>Speech2</li>
+				<li>Speech3</li>
+				<li>Speech4</li>
+				<li>Speech5</li>
+				<li>Speech6</li>
+			</ul>
+		</section>
 		<section id="common-words">
 			<h2>Most-Used Words</h2>
 			<p>Across Party lines &&  throughout time, the most used words thoughout these texts.**</p>
