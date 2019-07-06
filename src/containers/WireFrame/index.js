@@ -9,6 +9,12 @@ const WireFrame = ({speeches}) => {
 		setVisibleSpeeches(speeches.filter(s => s.title.includes(e.currentTarget.value)))
 	}
 
+	const selectedSpeech = e => {
+		console.log('selected speech e.currentTarget')
+		console.log(e.currentTarget.id)
+		
+	}
+
 	let [visibleSpeeches, setVisibleSpeeches] = React.useState(speeches)
 	
 	return (<React.Fragment>
@@ -21,7 +27,9 @@ const WireFrame = ({speeches}) => {
 			<ul>
 				{speeches && visibleSpeeches.map((s,ind) =>( 
 					<li 
-						key={`${ind}${s.id}`}>{s.title}</li>)
+						key={`${ind}${s.id}`}
+						id={s.id}
+						onClick={(e) => selectedSpeech(e)}>{s.title}</li>)
 				)}
 			</ul>
 		</section>
