@@ -1,0 +1,14 @@
+#wire-frame section h2 {
+	font-weight: bold;
+	font-size: 2em
+}
+
+#compare-speeches ul li{
+	cursor: pointer;
+	text-align: center;
+	line-height: 1.4;
+}
+
+#compare-speeches ul li:hover{
+	background-color: rgb(50,50,50);
+}
