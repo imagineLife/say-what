@@ -1,43 +1,15 @@
 import React from 'react'
 import './index.css';
 
-const WireFrame = () => {
+const WireFrame = ({speeches}) => {
 	
-	let speeches = [
-		{
-			title: "speech one",
-			id: "1234"
-		},
-		{
-			title: "speech two",
-			id: "2345"
-		},
-		{
-			title: "speech three",
-			id: "3456"
-		},
-		{
-			title: "speech four",
-			id: "4567"
-		},
-		{
-			title: "speech five",
-			id: "5678"
-		},
-		{
-			title: "speech six",
-			id: "6789"
-		},
-		{
-			title: "speech seven",
-			id: "7890"
-		}
-	]
-
 	const updateVisibleSpeeches = (e) => {
 		e.preventDefault()
 		console.log('Changed input here!!');
+		setVisibleSpeeches(speeches.filter(s => s.title.includes(e.currentTarget.value)))
 	}
+
+	let [visibleSpeeches, setVisibleSpeeches] = React.useState(speeches)
 	
 	return (<React.Fragment>
 	  <main id="wire-frame" role="main" className="splashBack">
@@ -47,8 +19,9 @@ const WireFrame = () => {
 			<input onChange={(e) => updateVisibleSpeeches(e)} placeholder=" Search..."/>
 			<p>Choose two speeches to compare analysis:</p>
 			<ul>
-				{speeches && speeches.map((s,ind) =>( 
-					<li key={`${ind}${s.id}`}>{s.title}</li>)
+				{speeches && visibleSpeeches.map((s,ind) =>( 
+					<li 
+						key={`${ind}${s.id}`}>{s.title}</li>)
 				)}
 			</ul>
 		</section>
