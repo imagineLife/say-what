@@ -29,7 +29,6 @@
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/polyfill": "^7.0.0-beta.51",
     "@babel/preset-env": "^7.0.0-beta.51",
-    "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0-beta.51",
     "acorn": "^6.1.1",
     "babel-cli": "^6.26.0",
@@ -61,7 +60,8 @@
     "rimraf": "^2.6.3",
     "webpack": "^4.28.4",
     "webpack-cli": "^3",
-    "webpack-dev-server": "^3.1.3"
+    "webpack-dev-server": "^3.1.3",
+    "@babel/preset-flow": "^7.0.0"
   },
   "jest": {
     "setupFilesAfterEnv": [
