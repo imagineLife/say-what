@@ -46,10 +46,12 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
     let xPos = d.pageX - lineSVGXOffset
     
     if(xPos >= xScale.range()[0]){
-      let sentenceNumber = Math.ceil(xScale.invert(xPos))      
-      setSentenceNumber(sentenceNumber)
-      setShowLine(true)
-      setCurSentence(data[(sentenceNumber - 1)])
+      let sentenceNumber = Math.ceil(xScale.invert(xPos))  
+      if(sentenceNumber < (remappedData.length + 1)){
+        setSentenceNumber(sentenceNumber)
+        setShowLine(true)
+        setCurSentence(data[(sentenceNumber - 1)])
+      }
     }
     
   }
@@ -103,7 +105,6 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
   let hoverCircle = !hoverLine  || 
     sentenceNumber < 0 || 
     !sentenceNumber || 
-    sentenceNumber > xScale.domain()[1] ||
     !showLine ? null : (
       <circle
         pointerEvents={"none"}
@@ -115,7 +116,7 @@ const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
         cx={xScale(sentenceNumber) - xOffset}
         cy={yScale(remappedData[sentenceNumber - 1].y)}/>
     )
-
+    
   let line = thisLineFn(remappedData) && <path
         className="linePath"
         d={thisLineFn(remappedData)}
