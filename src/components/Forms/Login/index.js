@@ -1,4 +1,4 @@
-import type { Props, State, loginObjType} from './flow'
+import type { Props, state, loginObjType, EventType} from './flow'
 import React from 'react';
 import '../Forms.css';
 import './LoginForm.css';
@@ -7,120 +7,101 @@ import {loginAction} from './state/actions';
 import {Redirect} from 'react-router-dom';
 import Input from '../../Input'
 
-class LoginForm extends React.Component <Props, State>{
-  constructor(props : Props){
-    super(props);    
-    console.log('LoginForm props')
-    console.log(props)
-    
-    //this.state : State = {
-    this.state = {
-      username: '',
-      password: ''
-    }
+const LoginForm = (props) =>{
 
-    //COULD USE THIS!
-    //this.setText = this.setText.bind(this)
-    //onChangeProp would change back to this.setText
-    // and the input component would need to pass 2 params, the currentTarget & currentVal (as prior) 
-
-  }
-
-  getResFromAPI(ev){
+  let[username, setUsername] = React.useState('');
+  let[password, setPassword] = React.useState('');
+  let [loading, setLoading] = React.useState(false)
+  const getResFromAPI = (ev: EventType ) => {
     ev.preventDefault();
+    
     let loginObj : loginObjType = {
-      username : this.state.username,
-      password : this.state.password
+      username : username,
+      password : password,
+      loading: false
     }
 
-    this.props.myRunLoginKey(loginObj);
-
+    props.myRunLoginKey(loginObj);
   }
 
-  setText(text, id) {
+  const setText = (text : string, id?: string) => {
     switch(id) {
       case 'username' :
-        this.setState({
-          username: text
-        })
+        setUsername(text)
         break; 
       default:
-        this.setState({
-          password: text
-        })
+        setPassword(text)
         break;
     }
   }
 
-  render(){
+  let body;
 
-    let body;
+  if(loading){
+    
+    console.log('loading props', props);
+    body = (
+        <div className="message message-default">Logging in...</div>
+    );
 
-    if (this.state.loading) {
-      console.log('loading props',this.props);
-      body = (
-          <div className="message message-default">Logging in...</div>
-      );
+  }else{
 
-    }else{
-
-      const handleTextChange = (e) => {
-        this.setText(e.currentTarget.value, e.currentTarget.id)
-      }
-
-      let formInputArr = [
-        {
-          source: "username",
-          type : "text",
-          onChangeProp : handleTextChange
-          // onChangeProp : this.setText
-        },
-        {
-          source: "password",
-          type : "password",
-          onChangeProp : handleTextChange
-          // onChangeProp : this.setText
-        }
-      ];
-
-      const inputs = formInputArr.map((input, index) => {
-        return <Input key={index} {...input} onAdd={text => this.setText(text)}/>;
-      })
-
-      /*
-        if there's an authToken,
-        redirect user to the speechPicker page
-      */
-      if(localStorage.getItem('localStorageAuthToken')){
-        
-        return (
-          <Redirect to="/speechPicker" />
-        );
-      }
-
-      body = (
-        <form className='login-form' onSubmit={e => this.getResFromAPI(e)}>
-          <fieldset>
-            <legend>Log in</legend>
-              {inputs}
-          </fieldset>
-              <input 
-                type="submit" 
-                name="submit" 
-                value="Log in"
-                onChange={e => this.setText(e.target.value, e.target.id)}
-              required/>
-              <label htmlFor="register">Don't have an account?</label>
-              <input type="button" name="register" id="register" value="Sign up" onClick={this.props.toggleForm}/>
-        </form>
-      );
-
+    const handleTextChange = (e) => {
+      setText(e.currentTarget.value, e.currentTarget.id)
     }
 
-    return (
-      <div>{body}</div>
+    let formInputArr = [
+      {
+        source: "username",
+        type : "text",
+        onChangeProp : handleTextChange
+      },
+      {
+        source: "password",
+        type : "password",
+        onChangeProp : handleTextChange
+      }
+    ];
+
+    const inputs = formInputArr.map((input, index) => {
+      return <Input key={index} {...input} onAdd={text => setText(text)}/>;
+    })
+
+    /*
+      if there's an authToken,
+      redirect user to the speechPicker page
+    */
+    if(localStorage.getItem('localStorageAuthToken')){
+      
+      return (
+        <Redirect to="/speechPicker" />
+      );
+    }
+
+    body = (
+      <form className='login-form' onSubmit={e => getResFromAPI(e)}>
+        <fieldset>
+          <legend>Log in</legend>
+            {inputs}
+        </fieldset>
+            <input 
+              type="submit" 
+              name="submit" 
+              value="Log in"
+              onChange={e => setText(e.target.value, e.target.id)}
+            required/>
+            <label htmlFor="register">Don't have an account?</label>
+            <input type="button" name="register" id="register" value="Sign up" onClick={props.toggleForm}/>
+      </form>
     );
+
   }
+
+  console.log('RENDER LOGIN!!');
+
+  return (
+    <div>{body}</div>
+  );
 }
 
 const mapStateToProps = (state) => {
