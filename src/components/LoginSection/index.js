@@ -19,6 +19,8 @@ export default class Section extends React.Component {
 	}
 	
 	render(){
+
+		console.log('loginSection');
 		let toggleForm = () => {
 			let loginOrRegister = (this.state.loginOrRegister === 'login') ? 'register' : 'login';
 			this.title = loginOrRegister.charAt(0).toUpperCase() + loginOrRegister.slice(1);

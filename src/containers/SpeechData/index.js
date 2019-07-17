@@ -102,12 +102,12 @@ export class SpeechData extends React.Component {
 		            'Authorization': 'Bearer ' + localStorage.getItem('localStorageAuthToken')
 		        }
 		    }).then(res => {
-            	
-                if (!res.ok) {
-                	return <Redirect to="/login" />;
-                }
-                
-                res.json().then(stats => {
+
+                if(res.status == 401 || !res.ok){
+                	console.log('here');
+                	this.setState({redirect:true})
+                }else{
+                	res.json().then(stats => {
                 	
                 	this.setState({
 						Audience:stats.Audience,
@@ -125,13 +125,17 @@ export class SpeechData extends React.Component {
 						sentences: stats.sentences,
 						loading: false
 	                })
-                })    	
-            }).catch(err =>
-                this.setState({
+                })  
+                }  	
+            }).catch(err => {
+            	console.log('error!')
+            	console.log(err)
+            	
+            	this.setState({
                     error: 'Could not load board',
                     loading: false
                 })
-            );
+            });
 
     }
 
@@ -152,7 +156,9 @@ export class SpeechData extends React.Component {
     // Requre logged-in via localStorage
     // Otherwise, Redirect to login
 
-    	if(localStorage.getItem('localStorageAuthToken') === null && this.state.urlSpeechID !== 'default'){
+    	if(localStorage.getItem('localStorageAuthToken') === null && 
+    		this.state.urlSpeechID !== 'default' ||
+    		this.state.redirect == true){
     	//no authToken & urlSpeechID is not-default
     		return <Redirect to="/login" />;
     	}else{
