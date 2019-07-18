@@ -7,7 +7,7 @@ import {loginAction} from './state/actions';
 import {Redirect} from 'react-router-dom';
 import Input from '../../Input'
 
-const LoginForm = (props) =>{
+const LoginForm = (props: Props) =>{
 
   let[username, setUsername] = React.useState('');
   let[password, setPassword] = React.useState('');
