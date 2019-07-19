@@ -1,3 +1,4 @@
+import type { propsType } from './flow'
 import React from 'react';
 import './RegisterForm.css';
 import {connect} from 'react-redux';
@@ -5,7 +6,11 @@ import {loginAction} from '../Login/state/actions';
 import {Redirect} from 'react-router-dom';
 import Input from '../../Input'
 
-const Register = (props) => {
+const Register = (props: propsType) => {
+
+  console.log('props')
+  console.log(props)
+  
   
   let [ firstName, setFirstname ] = React.useState('')
   let [ lastName, setLastname ] = React.useState('')
@@ -15,6 +20,16 @@ const Register = (props) => {
 
   const getResFromAPI = (ev) => {
     ev.preventDefault();
+
+    /*
+      where do I put the type for this?
+      Here?
+        let tempState : typesHere
+
+      or when it is used below?
+        props.myrunLoginKey : typesHere
+    */
+
     let tempState = {
       firstName,
       lastName,
