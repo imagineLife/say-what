@@ -5,23 +5,23 @@ import {loginAction} from '../Login/state/actions';
 import {Redirect} from 'react-router-dom';
 import Input from '../../Input'
 
-class Register extends React.Component {
+const Register = (props) => {
   
-  constructor(props){
-    super(props);
-    this.state = {
-      firstName: '',
-      lastName: '',
-      username: '',
-      password: '',
-      email: ''
-    }
-  }
+  let [ firstName, setFirstname ] = React.useState('')
+  let [ lastName, setLastname ] = React.useState('')
+  let [ username, setUsername ] = React.useState('')
+  let [ password, setPassword ] = React.useState('')
+  let [ email, setEmail ] = React.useState('')
 
-  getResFromAPI(ev){
+  const getResFromAPI = (ev) => {
     ev.preventDefault();
-    let tempState = this.state;
-    // let encodedStr = btoa(`${this.state.username}:${this.state.password}`);
+    let tempState = {
+      firstName,
+      lastName,
+      username,
+      password,
+      email
+    };
 
     return (
   //Register
@@ -33,7 +33,7 @@ class Register extends React.Component {
             body: JSON.stringify(tempState)
         })
         .then(() => {
-              this.props.myRunLoginKey(this.state);
+          props.myRunLoginKey(tempState);
         })
         .then(res => res.json())
         .catch(err => {
@@ -43,101 +43,81 @@ class Register extends React.Component {
             }
         })
     );
-
-
   }
 
-  setText(text, id) {
+  const setText = (text, id) => {
     switch(id) {
       case 'firstName' :
-        this.setState({
-          firstName: text
-        })
+        setFirstname(text)
         break;
       case 'lastName' :
-        this.setState({
-          lastName: text
-        })
+        setLastname(text)
         break;
       case 'username' :
-        this.setState({
-          username: text
-        })
+        setUsername(text)
         break; 
       case 'email' :
-        this.setState({
-          email: text
-        })
+        setEmail(text)
         break;
       default:
-        this.setState({
-          password: text
-        })
+        setPassword(text)
         break;
     }
   }
 
-  render(){
-    console.log(this.state);
-
-    if(localStorage.getItem('localStorageAuthToken')){
-      return (
-        <Redirect to="/speechPicker" />
-      );
-    }
-
-    const handleTextChange = (e) => {
-      this.setText(e.currentTarget.value, e.currentTarget.id)
-    }
-
-    let formInputArr = [
-      {
-        source: "firstName",
-        type : "text",
-        onChangeProp : handleTextChange
-        // onChangeProp : this.setText
-      },
-      {
-        source: "lastName",
-        type : "text",
-        onChangeProp : handleTextChange
-        // onChangeProp : this.setText
-      },
-      {
-        source: "email",
-        type : "email",
-        onChangeProp : handleTextChange
-        // onChangeProp : this.setText
-      },       
-      {
-        source: "username",
-        type : "text",
-        onChangeProp : handleTextChange
-        // onChangeProp : this.setText
-      },
-      {
-        source: "password",
-        type : "password",
-        minInputLength: 8,
-        onChangeProp : handleTextChange
-        // onChangeProp : this.setText
-      }
-    ];
-
-    const inputs = formInputArr.map((input, index) => {
-      return <Input key={index} {...input} onAdd={text => this.setText(text)}/>;
-    })
-
+  if(localStorage.getItem('localStorageAuthToken')){
     return (
-      <form className='register-form' onSubmit={e => this.getResFromAPI(e)}>
-        <fieldset>
-          <legend>Register</legend>
-          {inputs}
-        </fieldset>
-        <input type="submit" name="submit" value="Register" />
-      </form>
+      <Redirect to="/speechPicker" />
     );
   }
+
+  const handleTextChange = (e) => {
+    setText(e.currentTarget.value, e.currentTarget.id)
+  }
+
+  let formInputArr = [
+    {
+      source: "firstName",
+      type : "text",
+      onChangeProp : handleTextChange
+    },
+    {
+      source: "lastName",
+      type : "text",
+      onChangeProp : handleTextChange
+    },
+    {
+      source: "email",
+      type : "email",
+      onChangeProp : handleTextChange
+    },       
+    {
+      source: "username",
+      type : "text",
+      onChangeProp : handleTextChange
+    },
+    {
+      source: "password",
+      type : "password",
+      minInputLength: 8,
+      onChangeProp : handleTextChange
+    }
+  ];
+
+  const inputs = formInputArr.map((input, index) => {
+    return <Input key={index} {...input} onAdd={text => setText(text)}/>;
+  })
+
+  return (
+    <form className='register-form' onSubmit={e => getResFromAPI(e)}>
+      <fieldset>
+        <legend>Register</legend>
+        {inputs}
+      </fieldset>
+      <input type="submit" name="submit" value="Register" />
+    </form>
+  );
+
 }
 
 const mapStateToProps = (state) => {
