@@ -15,16 +15,16 @@ const LoginForm = (props: Props) =>{
   const getResFromAPI = (ev: EventType ) => {
     ev.preventDefault();
     
-    let loginObj : loginObjType = {
-      username : username,
-      password : password,
+    let loginObj: loginObjType = {
+      username: username,
+      password: password,
       loading: false
     }
 
     props.myRunLoginKey(loginObj);
   }
 
-  const setText = (text : string, id?: string) => {
+  const setText = (text: string, id?: string) => {
     switch(id) {
       case 'username' :
         setUsername(text)
@@ -90,7 +90,7 @@ const LoginForm = (props: Props) =>{
               value="Log in"
               onChange={e => setText(e.target.value, e.target.id)}
             required/>
-            <label htmlFor="register">Don't have an account?</label>
+            <label htmlFor="register">{`Don't have an account?`}</label>
             <input type="button" name="register" id="register" value="Sign up" onClick={props.toggleForm}/>
       </form>
     );
