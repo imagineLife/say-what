@@ -1,8 +1,19 @@
 {
   "plugins": [
     "react",
-    "jsx-a11y"
+    "react-hooks",
+    "flowtype"
   ],
-  "extends": ["airbnb", "eslint:all", "plugin:react/all"],
-  "parser": "babel-eslint"
+  "extends": [
+  	"plugin:react/recommended", 
+  	"plugin:flowtype/recommended"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": { 
+  	"ecmaFeatures": { 
+  		"jsx": true 
+  	}, 
+  	"ecmaVersion": 2018, 
+  	"sourceType": "module" 
+  }
 }
