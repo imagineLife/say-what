@@ -37,7 +37,6 @@ export default function ResizingSection({introInfo,
 
 		srcData.forEach(d => {
 			let thisNestedData;
-			let d.parent;
 			if([2,3,4].includes(d.size)){
 				d.parent = 'small'
 			}else if([5,6,7].includes(d.size)){
