@@ -1,3 +1,4 @@
+import type { PropsType } from './flow'
 import React from 'react';
 import './ResizingSection.css';
 import Title from '../Title';
@@ -15,12 +16,10 @@ import GaugeChart from '../d3/gauge';
 import BottomSpacer from '../BottomSpacer';
 import * as d3 from 'd3'
 
-export default function ResizingSection({
-	introInfo, 
+export default function ResizingSection({introInfo,
 	numberOfWords,
 	colSize,
 	title,
-	img, 
 	bigWords,
 	includeBeginForm,
 	includeBarChart,
@@ -32,13 +31,13 @@ export default function ResizingSection({
 	wordsBySize,
 	mostUsedWords,
 	sentences,
-	chart
-}) {
+	chart }: PropsType) {
 
 	function nestData(srcData){
 
 		srcData.forEach(d => {
 			let thisNestedData;
+			let d.parent;
 			if([2,3,4].includes(d.size)){
 				d.parent = 'small'
 			}else if([5,6,7].includes(d.size)){
@@ -120,7 +119,6 @@ export default function ResizingSection({
 	return (
 		<section className={"col-"+colSize} /*style= { setHeight() }*/>
 			<Title title={(title || introInfo.Title)}/>
-	        {img ? img : null}
 	        {bigWords ? <Ul list={bigWords} /> : null}
 	       	{numberOfWords ? <GaugeChart sectionKey='numberOfWords' dataKey={numberOfWords}/> : null}
 	        {singleStat ? singleStat : ''}
