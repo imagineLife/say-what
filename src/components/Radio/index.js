@@ -1,16 +1,21 @@
+import type { PropsType } from './flow'
 import React from 'react';
 import './radio.css';
 
-export default function Radio(props) {
+export default function Radio({
+	val, 
+	labelText, 
+	onChangeProp
+}: PropsType) {
 	
     return (
-		<label htmlFor={props.val}>{props.labelText}
+		<label htmlFor={val}>{labelText}
 			<input 
-				id={props.val} 
+				id={val} 
 				type="radio" 
 				name="requestType"
-				value={props.val} 
-				onChange={e => props.onChangeProp(e)}
+				value={val} 
+				onChange={e => onChangeProp(e)}
 			required />
 		</label>
 	);
