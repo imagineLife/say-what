@@ -1,8 +1,9 @@
+import {PropsType} from './flow';
 import React from 'react';
 import './Para.css';
 
-export default function Para(props) {
+export default function Para({compClass, text}: PropsType) {
     return (
-		<p className={props.compClass} >{props.text}</p>
+		<p className={compClass} >{text}</p>
     );
 }
