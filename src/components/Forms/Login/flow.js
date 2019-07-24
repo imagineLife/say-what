@@ -12,10 +12,15 @@ export type loginObjType = {
   password: string
 }
 
+//void because this fn doesnt explicitly return anything
 export type Props = {
-  myRunLoginKey: (loginObjType)=> void, //void because this fn doesnt explicitly return anything
+  myRunLoginKey: (loginObjType)=> void, 
   toggleForm: ()=> void
 }
 
 export type EventType = SyntheticInputEvent<HTMLInputElement>;
 
+//void because this fn doesnt explicitly return anything
+export type dispatchType = {
+  myRunLoginKey: (any) => void 
+}

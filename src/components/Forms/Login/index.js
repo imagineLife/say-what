@@ -1,4 +1,4 @@
-import type { Props, state, loginObjType, EventType} from './flow'
+import type { Props, state, loginObjType, EventType, dispatchType} from './flow'
 import React from 'react';
 import '../Forms.css';
 import './LoginForm.css';
@@ -97,21 +97,18 @@ const LoginForm = (props: Props) =>{
 
   }
 
-  console.log('RENDER LOGIN!!');
-
   return (
     <div>{body}</div>
   );
 }
 
-const mapStateToProps = (state) => {
-  return {...state};
-}
+// This SKIPS type-casting a var while using react
+// const dummyVar : $FlowReactBug
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch): dispatchType => {
   return {
     myRunLoginKey: (obj) => loginAction(obj,dispatch)
   };
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+//$FlowReduxBug
+export default connect(mapDispatchToProps)(LoginForm);
