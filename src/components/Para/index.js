@@ -1,4 +1,4 @@
-import {PropsType} from './flow';
+import type {PropsType} from './flow';
 import React from 'react';
 import './Para.css';
 

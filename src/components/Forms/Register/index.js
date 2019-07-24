@@ -7,10 +7,6 @@ import {Redirect} from 'react-router-dom';
 import Input from '../../Input'
 
 const Register = (props: propsType) => {
-
-  console.log('props')
-  console.log(props)
-  
   
   let [ firstName, setFirstname ] = React.useState('')
   let [ lastName, setLastname ] = React.useState('')
@@ -135,7 +131,7 @@ const Register = (props: propsType) => {
 
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state)=> {
   return {...state};
 }
 
