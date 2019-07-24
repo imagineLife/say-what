@@ -24,3 +24,8 @@ export type EventType = SyntheticInputEvent<HTMLInputElement>;
 export type dispatchType = {
   myRunLoginKey: (any) => void 
 }
+
+export type loginActionObjType = {
+	username: string,
+	password: string
+}

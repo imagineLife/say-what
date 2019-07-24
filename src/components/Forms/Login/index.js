@@ -105,6 +105,7 @@ const LoginForm = (props: Props) =>{
 // This SKIPS type-casting a var while using react
 // const dummyVar : $FlowReactBug
 
+//$FlowReduxBug
 const mapDispatchToProps = (dispatch): dispatchType => {
   return {
     myRunLoginKey: (obj) => loginAction(obj,dispatch)

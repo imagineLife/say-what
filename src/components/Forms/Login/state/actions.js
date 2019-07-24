@@ -1,5 +1,6 @@
+import type {loginActionObjType} from '../flow'
 import {LOGIN} from './constants';
-export const loginAction = (obj, dispatch) => {
+export const loginAction = (obj: loginActionObjType, dispatch: () => void) => {
     let encodedStr = btoa(`${obj.username}:${obj.password}`);
     fetch(`${window.backendPath}/api/auth/login`, {
         method: 'POST',
