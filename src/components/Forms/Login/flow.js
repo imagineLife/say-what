@@ -29,3 +29,17 @@ export type loginActionObjType = {
 	username: string,
 	password: string
 }
+
+export type dispatchObjectType = {
+	type: string,
+	payload: {
+		aythToken: string,
+		email: string,
+		firstName: string,
+		lastName: string,
+		password: string,
+		requests?: Array<string>,
+		username: string,
+		_id: string
+	}
+}

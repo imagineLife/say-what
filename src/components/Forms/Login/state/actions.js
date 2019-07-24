@@ -1,6 +1,6 @@
-import type {loginActionObjType} from '../flow'
+import type {loginActionObjType, dispatchObjectType} from '../flow'
 import {LOGIN} from './constants';
-export const loginAction = (obj: loginActionObjType, dispatch: () => void) => {
+export const loginAction = (obj: loginActionObjType, dispatch: (dispatchObj: dispatchObjectType) => void) => {
     let encodedStr = btoa(`${obj.username}:${obj.password}`);
     fetch(`${window.backendPath}/api/auth/login`, {
         method: 'POST',
@@ -22,9 +22,14 @@ export const loginAction = (obj: loginActionObjType, dispatch: () => void) => {
 
 const saveTokenAction = (obj, dispatch) => {
 
+    console.log('saveTokenAction obj')
+    console.log(obj)
+    
+
     // saving to LOCAL storage in order to PERSIST across sessions
     localStorage.setItem('localStorageAuthToken', obj.authToken);
 
+    // let dispatchObject: dispatchObjectType = {
     let dispatchObject = {
         type: LOGIN,
         payload: obj
