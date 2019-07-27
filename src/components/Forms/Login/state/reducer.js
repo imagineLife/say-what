@@ -2,7 +2,8 @@ import {fromJS} from 'immutable';
 import {LOGIN} from './constants';
 const initialState = fromJS({});
 
-const setAuthToken = (state, action) => {
+const setAuthToken = (state, action: actionType) => {
+	
 	switch(action.type) {		
 		case LOGIN:
 			/*
@@ -17,7 +18,8 @@ const setAuthToken = (state, action) => {
 	}
 }
 
-const loginReducer = (state = initialState, action) => {
+//state: stateType = initialState
+const loginReducer = (state = initialState, action: actionType) => {
 	return {
 		authToken: setAuthToken(state, action)
 	};

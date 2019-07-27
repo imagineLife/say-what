@@ -22,10 +22,6 @@ export const loginAction = (obj: loginActionObjType, dispatch: (dispatchObj: dis
 
 const saveTokenAction = (obj, dispatch) => {
 
-    console.log('saveTokenAction obj')
-    console.log(obj)
-    
-
     // saving to LOCAL storage in order to PERSIST across sessions
     localStorage.setItem('localStorageAuthToken', obj.authToken);
 
