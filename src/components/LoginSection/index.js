@@ -7,35 +7,32 @@ import LoginForm from '../Forms/Login';
 import RegisterForm from '../Forms/Register';
 import BottomSpacer from '../BottomSpacer';
 
-export default class Section extends React.Component {
-	constructor(props){
-		super(props);
-		this.title = props.title;
-	};
-
-	//add key/val to state PRE-Component-loading
-	componentWillMount(){
-		this.setState({loginOrRegister : 'login'});
-	}
+export default function LoginSection(props){
+	let [loginOrRegister, setLoginOrRegister] = React.useState('login')
+	let [title, setTitle] = React.useState(props.title)
 	
-	render(){
+	let toggleForm = () => {
+		console.log('toggleForm');
+		let newTitleText = (loginOrRegister === 'login') ? 'register' : 'login';
+		setTitle(newTitleText.charAt(0).toUpperCase() + newTitleText.slice(1))
+		setLoginOrRegister(newTitleText);
+	}
 
-		console.log('loginSection');
-		let toggleForm = () => {
-			let loginOrRegister = (this.state.loginOrRegister === 'login') ? 'register' : 'login';
-			this.title = loginOrRegister.charAt(0).toUpperCase() + loginOrRegister.slice(1);
-			this.setState({loginOrRegister});
-		}
-		return (
-			<section className="maxWidthWrapper">
-				<Title title={this.title}/>
-		        {this.state.loginOrRegister === 'register' ? <Para text={this.props.text} compClass="registerText"/> : null}
-		        {this.props.img ? this.props.img : null}
-		        {this.props.form ? this.props.form : null}
-		        {this.props.includeBeginForm ? <BeginForm /> : null}
-		        {this.state.loginOrRegister === 'login' ? <LoginForm toggleForm={toggleForm} /> : <RegisterForm toggleForm={toggleForm} />}
-	        	{this.props.includeBottomSpacer ? <BottomSpacer /> : null}
-		    </section>
-		)
-	};
+	return (
+		<section className="maxWidthWrapper">
+			<Title title={title}/>
+	        
+	        {loginOrRegister === 'register' ? <Para text={props.text} compClass="registerText"/> : null}
+	        
+	        {props.img ? props.img : null}
+	        
+	        {props.form ? props.form : null}
+	        
+	        {props.includeBeginForm ? <BeginForm /> : null}
+	        
+	        {loginOrRegister === 'login' ? <LoginForm toggleForm={toggleForm} /> : <RegisterForm toggleForm={toggleForm} />}
+        	
+        	{props.includeBottomSpacer ? <BottomSpacer /> : null}
+	    </section>
+	)
 }
