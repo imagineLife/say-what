@@ -14,5 +14,7 @@
 
 [options]
 all=true
+suppress_comment=\\(.\\|\n\\)*\\$FlowReduxBug
+suppress_type=$FlowReactBug
 
 [strict]
