@@ -8,10 +8,11 @@ import {Redirect} from 'react-router-dom';
 import Input from '../../Input'
 
 const LoginForm = (props: Props) =>{
-
+  
   let[username, setUsername] = React.useState('');
   let[password, setPassword] = React.useState('');
   let [loading, setLoading] = React.useState(false)
+  
   const getResFromAPI = (ev: EventType ) => {
     ev.preventDefault();
     
@@ -37,68 +38,54 @@ const LoginForm = (props: Props) =>{
 
   let body;
 
-  if(loading){
+  const handleTextChange = (e) => {
+    setText(e.currentTarget.value, e.currentTarget.id)
+  }
+
+  let formInputArr = [
+    {
+      source: "username",
+      type : "text",
+      onChangeProp : handleTextChange
+    },
+    {
+      source: "password",
+      type : "password",
+      onChangeProp : handleTextChange
+    }
+  ];
+
+  const inputs = formInputArr.map((input, index) => {
+    return <Input key={index} {...input} onAdd={text => setText(text)}/>;
+  })
+
+  /*
+    if there's an authToken,
+    redirect user to the speechPicker page
+  */
+  if(localStorage.getItem('localStorageAuthToken')){
+    console.log('IS localStorage Item In login  form');
     
-    console.log('loading props', props);
-    body = (
-        <div className="message message-default">Logging in...</div>
+    return (
+      <Redirect to="/speechPicker" />
     );
-
-  }else{
-
-    const handleTextChange = (e) => {
-      setText(e.currentTarget.value, e.currentTarget.id)
-    }
-
-    let formInputArr = [
-      {
-        source: "username",
-        type : "text",
-        onChangeProp : handleTextChange
-      },
-      {
-        source: "password",
-        type : "password",
-        onChangeProp : handleTextChange
-      }
-    ];
-
-    const inputs = formInputArr.map((input, index) => {
-      return <Input key={index} {...input} onAdd={text => setText(text)}/>;
-    })
-
-    /*
-      if there's an authToken,
-      redirect user to the speechPicker page
-    */
-    if(localStorage.getItem('localStorageAuthToken')){
-      
-      return (
-        <Redirect to="/speechPicker" />
-      );
-    }
-
-    body = (
-      <form className='login-form' onSubmit={e => getResFromAPI(e)}>
-        <fieldset>
-          <legend>Log in</legend>
-            {inputs}
-        </fieldset>
-            <input 
-              type="submit" 
-              name="submit" 
-              value="Log in"
-              onChange={e => setText(e.target.value, e.target.id)}
-            required/>
-            <label htmlFor="register">{`Don't have an account?`}</label>
-            <input type="button" name="register" id="register" value="Sign up" onClick={props.toggleForm}/>
-      </form>
-    );
-
   }
 
   return (
-    <div>{body}</div>
+    <form className='login-form' onSubmit={e => getResFromAPI(e)}>
+      <fieldset>
+        <legend>Log in</legend>
+          {inputs}
+      </fieldset>
+          <input 
+            type="submit" 
+            name="submit" 
+            value="Log in"
+            onChange={e => setText(e.target.value, e.target.id)}
+          required/>
+          <label htmlFor="register">{`Don't have an account?`}</label>
+          <input type="button" name="register" id="register" value="Sign up" onClick={props.toggleForm}/>
+    </form>
   );
 }
 
