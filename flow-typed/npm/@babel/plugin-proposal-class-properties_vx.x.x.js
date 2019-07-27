@@ -1,4 +1,4 @@
-// flow-typed signature: f0ee8520418f08b757204f7e59e5bbfe
+// flow-typed signature: 9deb46519d8dd17d136910a54bf7e919
 // flow-typed version: <<STUB>>/@babel/plugin-proposal-class-properties_v^7.0.0/flow_v0.102.0
 
 /**
@@ -22,11 +22,14 @@ declare module '@babel/plugin-proposal-class-properties' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module '@babel/plugin-proposal-class-properties/lib/index' {
+declare module '@babel/plugin-proposal-class-properties/lib' {
   declare module.exports: any;
 }
 
 // Filename aliases
+declare module '@babel/plugin-proposal-class-properties/lib/index' {
+  declare module.exports: $Exports<'@babel/plugin-proposal-class-properties/lib'>;
+}
 declare module '@babel/plugin-proposal-class-properties/lib/index.js' {
-  declare module.exports: $Exports<'@babel/plugin-proposal-class-properties/lib/index'>;
+  declare module.exports: $Exports<'@babel/plugin-proposal-class-properties/lib'>;
 }

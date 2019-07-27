@@ -1,4 +1,4 @@
-// flow-typed signature: 6111b45f44c8b44ad7841e839281e55d
+// flow-typed signature: 01b417c91227188b8ceda2dbe85bd192
 // flow-typed version: <<STUB>>/babel-eslint_v^8.2.3/flow_v0.102.0
 
 /**
@@ -38,7 +38,7 @@ declare module 'babel-eslint/lib/babylon-to-espree/convertTemplateType' {
   declare module.exports: any;
 }
 
-declare module 'babel-eslint/lib/babylon-to-espree/index' {
+declare module 'babel-eslint/lib/babylon-to-espree' {
   declare module.exports: any;
 }
 
@@ -54,7 +54,7 @@ declare module 'babel-eslint/lib/babylon-to-espree/toTokens' {
   declare module.exports: any;
 }
 
-declare module 'babel-eslint/lib/index' {
+declare module 'babel-eslint/lib' {
   declare module.exports: any;
 }
 
@@ -91,8 +91,11 @@ declare module 'babel-eslint/lib/babylon-to-espree/convertComments.js' {
 declare module 'babel-eslint/lib/babylon-to-espree/convertTemplateType.js' {
   declare module.exports: $Exports<'babel-eslint/lib/babylon-to-espree/convertTemplateType'>;
 }
+declare module 'babel-eslint/lib/babylon-to-espree/index' {
+  declare module.exports: $Exports<'babel-eslint/lib/babylon-to-espree'>;
+}
 declare module 'babel-eslint/lib/babylon-to-espree/index.js' {
-  declare module.exports: $Exports<'babel-eslint/lib/babylon-to-espree/index'>;
+  declare module.exports: $Exports<'babel-eslint/lib/babylon-to-espree'>;
 }
 declare module 'babel-eslint/lib/babylon-to-espree/toAST.js' {
   declare module.exports: $Exports<'babel-eslint/lib/babylon-to-espree/toAST'>;
@@ -103,8 +106,11 @@ declare module 'babel-eslint/lib/babylon-to-espree/toToken.js' {
 declare module 'babel-eslint/lib/babylon-to-espree/toTokens.js' {
   declare module.exports: $Exports<'babel-eslint/lib/babylon-to-espree/toTokens'>;
 }
+declare module 'babel-eslint/lib/index' {
+  declare module.exports: $Exports<'babel-eslint/lib'>;
+}
 declare module 'babel-eslint/lib/index.js' {
-  declare module.exports: $Exports<'babel-eslint/lib/index'>;
+  declare module.exports: $Exports<'babel-eslint/lib'>;
 }
 declare module 'babel-eslint/lib/parse-with-patch.js' {
   declare module.exports: $Exports<'babel-eslint/lib/parse-with-patch'>;

@@ -1,4 +1,4 @@
-// flow-typed signature: 32b3d619d61a2163c54a44ac1a92930f
+// flow-typed signature: 876b49e87f4e11d242cfd05400eadfef
 // flow-typed version: <<STUB>>/@babel/plugin-syntax-dynamic-import_v^7.0.0/flow_v0.102.0
 
 /**
@@ -22,11 +22,14 @@ declare module '@babel/plugin-syntax-dynamic-import' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module '@babel/plugin-syntax-dynamic-import/lib/index' {
+declare module '@babel/plugin-syntax-dynamic-import/lib' {
   declare module.exports: any;
 }
 
 // Filename aliases
+declare module '@babel/plugin-syntax-dynamic-import/lib/index' {
+  declare module.exports: $Exports<'@babel/plugin-syntax-dynamic-import/lib'>;
+}
 declare module '@babel/plugin-syntax-dynamic-import/lib/index.js' {
-  declare module.exports: $Exports<'@babel/plugin-syntax-dynamic-import/lib/index'>;
+  declare module.exports: $Exports<'@babel/plugin-syntax-dynamic-import/lib'>;
 }

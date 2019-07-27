@@ -1,4 +1,4 @@
-// flow-typed signature: f8dd3d10565b667da953969ae7d7c8e2
+// flow-typed signature: 31bef8d9e1f87abe88cf75c3b09e2bbe
 // flow-typed version: <<STUB>>/eslint-plugin-flowtype-errors_v^4.1.0/flow_v0.102.0
 
 /**
@@ -38,7 +38,7 @@ declare module 'eslint-plugin-flowtype-errors/dist/get-program' {
   declare module.exports: any;
 }
 
-declare module 'eslint-plugin-flowtype-errors/dist/index' {
+declare module 'eslint-plugin-flowtype-errors/dist' {
   declare module.exports: any;
 }
 
@@ -55,8 +55,11 @@ declare module 'eslint-plugin-flowtype-errors/dist/format.js' {
 declare module 'eslint-plugin-flowtype-errors/dist/get-program.js' {
   declare module.exports: $Exports<'eslint-plugin-flowtype-errors/dist/get-program'>;
 }
+declare module 'eslint-plugin-flowtype-errors/dist/index' {
+  declare module.exports: $Exports<'eslint-plugin-flowtype-errors/dist'>;
+}
 declare module 'eslint-plugin-flowtype-errors/dist/index.js' {
-  declare module.exports: $Exports<'eslint-plugin-flowtype-errors/dist/index'>;
+  declare module.exports: $Exports<'eslint-plugin-flowtype-errors/dist'>;
 }
 declare module 'eslint-plugin-flowtype-errors/index' {
   declare module.exports: $Exports<'eslint-plugin-flowtype-errors'>;

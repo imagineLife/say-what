@@ -1,4 +1,4 @@
-// flow-typed signature: 1ae1810b87b57c42d0eadaeacfef5d5d
+// flow-typed signature: ebbe1fadc0bf861b6cdcc863cacbf713
 // flow-typed version: <<STUB>>/@babel/polyfill_v^7.0.0-beta.51/flow_v0.102.0
 
 /**
@@ -34,7 +34,7 @@ declare module '@babel/polyfill/dist/polyfill.min' {
   declare module.exports: any;
 }
 
-declare module '@babel/polyfill/lib/index' {
+declare module '@babel/polyfill/lib' {
   declare module.exports: any;
 }
 
@@ -64,8 +64,11 @@ declare module '@babel/polyfill/dist/polyfill.js' {
 declare module '@babel/polyfill/dist/polyfill.min.js' {
   declare module.exports: $Exports<'@babel/polyfill/dist/polyfill.min'>;
 }
+declare module '@babel/polyfill/lib/index' {
+  declare module.exports: $Exports<'@babel/polyfill/lib'>;
+}
 declare module '@babel/polyfill/lib/index.js' {
-  declare module.exports: $Exports<'@babel/polyfill/lib/index'>;
+  declare module.exports: $Exports<'@babel/polyfill/lib'>;
 }
 declare module '@babel/polyfill/lib/noConflict.js' {
   declare module.exports: $Exports<'@babel/polyfill/lib/noConflict'>;

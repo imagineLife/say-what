@@ -1,4 +1,4 @@
-// flow-typed signature: 0c0d34f1c7e94e461d1a1f9612982f80
+// flow-typed signature: 6c9f1f624319a1f5db8b34773579174e
 // flow-typed version: <<STUB>>/file-loader_v^3.0.1/flow_v0.102.0
 
 /**
@@ -26,7 +26,7 @@ declare module 'file-loader/dist/cjs' {
   declare module.exports: any;
 }
 
-declare module 'file-loader/dist/index' {
+declare module 'file-loader/dist' {
   declare module.exports: any;
 }
 
@@ -34,6 +34,9 @@ declare module 'file-loader/dist/index' {
 declare module 'file-loader/dist/cjs.js' {
   declare module.exports: $Exports<'file-loader/dist/cjs'>;
 }
+declare module 'file-loader/dist/index' {
+  declare module.exports: $Exports<'file-loader/dist'>;
+}
 declare module 'file-loader/dist/index.js' {
-  declare module.exports: $Exports<'file-loader/dist/index'>;
+  declare module.exports: $Exports<'file-loader/dist'>;
 }

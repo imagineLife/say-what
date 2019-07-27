@@ -1,4 +1,4 @@
-// flow-typed signature: efb24a62aa7e05adf862c0b44ba494b8
+// flow-typed signature: f4f3e82ae9289ddd64232bbed20b6e87
 // flow-typed version: <<STUB>>/@babel/plugin-proposal-throw-expressions_v^7.0.0/flow_v0.102.0
 
 /**
@@ -22,11 +22,14 @@ declare module '@babel/plugin-proposal-throw-expressions' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module '@babel/plugin-proposal-throw-expressions/lib/index' {
+declare module '@babel/plugin-proposal-throw-expressions/lib' {
   declare module.exports: any;
 }
 
 // Filename aliases
+declare module '@babel/plugin-proposal-throw-expressions/lib/index' {
+  declare module.exports: $Exports<'@babel/plugin-proposal-throw-expressions/lib'>;
+}
 declare module '@babel/plugin-proposal-throw-expressions/lib/index.js' {
-  declare module.exports: $Exports<'@babel/plugin-proposal-throw-expressions/lib/index'>;
+  declare module.exports: $Exports<'@babel/plugin-proposal-throw-expressions/lib'>;
 }

@@ -1,4 +1,4 @@
-// flow-typed signature: 53de80adaecd4ecf626c87fa0ddf5ba1
+// flow-typed signature: 545bfc3721ec7b409557f4868d244be2
 // flow-typed version: <<STUB>>/babel-plugin-dynamic-import-node_v^2.2.0/flow_v0.102.0
 
 /**
@@ -22,7 +22,7 @@ declare module 'babel-plugin-dynamic-import-node' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module 'babel-plugin-dynamic-import-node/lib/index' {
+declare module 'babel-plugin-dynamic-import-node/lib' {
   declare module.exports: any;
 }
 
@@ -35,8 +35,11 @@ declare module 'babel-plugin-dynamic-import-node/utils' {
 }
 
 // Filename aliases
+declare module 'babel-plugin-dynamic-import-node/lib/index' {
+  declare module.exports: $Exports<'babel-plugin-dynamic-import-node/lib'>;
+}
 declare module 'babel-plugin-dynamic-import-node/lib/index.js' {
-  declare module.exports: $Exports<'babel-plugin-dynamic-import-node/lib/index'>;
+  declare module.exports: $Exports<'babel-plugin-dynamic-import-node/lib'>;
 }
 declare module 'babel-plugin-dynamic-import-node/lib/utils.js' {
   declare module.exports: $Exports<'babel-plugin-dynamic-import-node/lib/utils'>;

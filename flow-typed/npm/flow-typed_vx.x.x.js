@@ -1,4 +1,4 @@
-// flow-typed signature: bf52a8789212865435b877f3c758bbef
+// flow-typed signature: 1d5a878273d0f3328fef649d17cd16a5
 // flow-typed version: <<STUB>>/flow-typed_v^2.5.2/flow_v0.102.0
 
 /**
@@ -51,10 +51,6 @@ declare module 'flow-typed/dist/commands/update' {
 }
 
 declare module 'flow-typed/dist/commands/validateDefs' {
-  declare module.exports: any;
-}
-
-declare module 'flow-typed/dist/commands/version' {
   declare module.exports: any;
 }
 
@@ -142,9 +138,6 @@ declare module 'flow-typed/dist/commands/update.js' {
 }
 declare module 'flow-typed/dist/commands/validateDefs.js' {
   declare module.exports: $Exports<'flow-typed/dist/commands/validateDefs'>;
-}
-declare module 'flow-typed/dist/commands/version.js' {
-  declare module.exports: $Exports<'flow-typed/dist/commands/version'>;
 }
 declare module 'flow-typed/dist/lib/cacheRepoUtils.js' {
   declare module.exports: $Exports<'flow-typed/dist/lib/cacheRepoUtils'>;

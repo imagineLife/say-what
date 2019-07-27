@@ -1,4 +1,4 @@
-// flow-typed signature: e7affac7961d66b012fa580bd79f47ae
+// flow-typed signature: 2b4653bd6de9980996bd35135473224b
 // flow-typed version: <<STUB>>/copy-webpack-plugin_v^5.0.3/flow_v0.102.0
 
 /**
@@ -26,7 +26,7 @@ declare module 'copy-webpack-plugin/dist/cjs' {
   declare module.exports: any;
 }
 
-declare module 'copy-webpack-plugin/dist/index' {
+declare module 'copy-webpack-plugin/dist' {
   declare module.exports: any;
 }
 
@@ -62,8 +62,11 @@ declare module 'copy-webpack-plugin/dist/utils/promisify' {
 declare module 'copy-webpack-plugin/dist/cjs.js' {
   declare module.exports: $Exports<'copy-webpack-plugin/dist/cjs'>;
 }
+declare module 'copy-webpack-plugin/dist/index' {
+  declare module.exports: $Exports<'copy-webpack-plugin/dist'>;
+}
 declare module 'copy-webpack-plugin/dist/index.js' {
-  declare module.exports: $Exports<'copy-webpack-plugin/dist/index'>;
+  declare module.exports: $Exports<'copy-webpack-plugin/dist'>;
 }
 declare module 'copy-webpack-plugin/dist/postProcessPattern.js' {
   declare module.exports: $Exports<'copy-webpack-plugin/dist/postProcessPattern'>;

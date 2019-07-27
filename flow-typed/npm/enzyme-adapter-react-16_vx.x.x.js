@@ -1,4 +1,4 @@
-// flow-typed signature: 91ac49f7ce8f125070c13638f4d8b2ea
+// flow-typed signature: 5176b014b6f35fe644d7a0aec8838e76
 // flow-typed version: <<STUB>>/enzyme-adapter-react-16_v^1.13.0/flow_v0.102.0
 
 /**
@@ -30,7 +30,7 @@ declare module 'enzyme-adapter-react-16/build/findCurrentFiberUsingSlowPath' {
   declare module.exports: any;
 }
 
-declare module 'enzyme-adapter-react-16/build/index' {
+declare module 'enzyme-adapter-react-16/build' {
   declare module.exports: any;
 }
 
@@ -46,7 +46,7 @@ declare module 'enzyme-adapter-react-16/src/findCurrentFiberUsingSlowPath' {
   declare module.exports: any;
 }
 
-declare module 'enzyme-adapter-react-16/src/index' {
+declare module 'enzyme-adapter-react-16/src' {
   declare module.exports: any;
 }
 
@@ -61,8 +61,11 @@ declare module 'enzyme-adapter-react-16/build/detectFiberTags.js' {
 declare module 'enzyme-adapter-react-16/build/findCurrentFiberUsingSlowPath.js' {
   declare module.exports: $Exports<'enzyme-adapter-react-16/build/findCurrentFiberUsingSlowPath'>;
 }
+declare module 'enzyme-adapter-react-16/build/index' {
+  declare module.exports: $Exports<'enzyme-adapter-react-16/build'>;
+}
 declare module 'enzyme-adapter-react-16/build/index.js' {
-  declare module.exports: $Exports<'enzyme-adapter-react-16/build/index'>;
+  declare module.exports: $Exports<'enzyme-adapter-react-16/build'>;
 }
 declare module 'enzyme-adapter-react-16/build/ReactSixteenAdapter.js' {
   declare module.exports: $Exports<'enzyme-adapter-react-16/build/ReactSixteenAdapter'>;
@@ -73,8 +76,11 @@ declare module 'enzyme-adapter-react-16/src/detectFiberTags.js' {
 declare module 'enzyme-adapter-react-16/src/findCurrentFiberUsingSlowPath.js' {
   declare module.exports: $Exports<'enzyme-adapter-react-16/src/findCurrentFiberUsingSlowPath'>;
 }
+declare module 'enzyme-adapter-react-16/src/index' {
+  declare module.exports: $Exports<'enzyme-adapter-react-16/src'>;
+}
 declare module 'enzyme-adapter-react-16/src/index.js' {
-  declare module.exports: $Exports<'enzyme-adapter-react-16/src/index'>;
+  declare module.exports: $Exports<'enzyme-adapter-react-16/src'>;
 }
 declare module 'enzyme-adapter-react-16/src/ReactSixteenAdapter.js' {
   declare module.exports: $Exports<'enzyme-adapter-react-16/src/ReactSixteenAdapter'>;
