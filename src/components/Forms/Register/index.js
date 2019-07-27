@@ -1,4 +1,4 @@
-import type { propsType } from './flow'
+import type { propsType, TempStateType } from './flow'
 import React from 'react';
 import './RegisterForm.css';
 import {connect} from 'react-redux';
@@ -17,16 +17,7 @@ const Register = (props: propsType) => {
   const getResFromAPI = (ev) => {
     ev.preventDefault();
 
-    /*
-      where do I put the type for this?
-      Here?
-        let tempState : typesHere
-
-      or when it is used below?
-        props.myrunLoginKey : typesHere
-    */
-
-    let tempState = {
+    let tempState: TempStateType = {
       firstName,
       lastName,
       username,
@@ -140,5 +131,5 @@ const mapDispatchToProps = (dispatch) => {
     myRunLoginKey: (obj) => loginAction(obj,dispatch)
   };
 }
-
+//$FlowReduxBug
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
