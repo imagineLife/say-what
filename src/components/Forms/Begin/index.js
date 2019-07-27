@@ -2,8 +2,14 @@ import React from 'react';
 import '../Forms.css';
 import './BeginForm.css';
 import {Link} from 'react-router-dom';
+import useLS from '../../../CustomHooks/useLS'
 
 export default function BeginForm() {
+
+  let [lsval, setLsval] = useLS('localStorageAuthToken')
+
+  let buttonLinkURL = (lsval !== undefined && lsval !== null) ? `/speechPicker` : `/login`;
+  
   return (
     <div className="maxWidthWrapper">
   		<form className='begin-form'>
@@ -18,7 +24,7 @@ export default function BeginForm() {
         </div>
         <div id='pickFromListDiv'>
           <label htmlFor="pickFromList">To see more speeches</label>
-            <Link to={`/speechPicker`}>
+            <Link to={buttonLinkURL}>
               <button type='button' id ="pickFromList">
                 Sign up for an account or login!
               </button>
