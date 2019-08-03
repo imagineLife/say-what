@@ -1,3 +1,4 @@
+import type { PropsTypes} from './flow'
 import React from 'react';
 import './LoginSection.css';
 import Title from '../Title';
@@ -7,32 +8,37 @@ import LoginForm from '../Forms/Login';
 import RegisterForm from '../Forms/Register';
 import BottomSpacer from '../BottomSpacer';
 
-export default function LoginSection(props){
+export default function LoginSection({
+	title, 
+	text, 
+	img,
+	form, 
+	includeBeginForm,
+	includeBottomSpacer}: PropsTypes){
 	let [loginOrRegister, setLoginOrRegister] = React.useState('login')
-	let [title, setTitle] = React.useState(props.title)
+	let [thisTitle, setThisTitle] = React.useState(title)
 	
 	let toggleForm = () => {
-		console.log('toggleForm');
 		let newTitleText = (loginOrRegister === 'login') ? 'register' : 'login';
-		setTitle(newTitleText.charAt(0).toUpperCase() + newTitleText.slice(1))
+		setThisTitle(newTitleText.charAt(0).toUpperCase() + newTitleText.slice(1))
 		setLoginOrRegister(newTitleText);
 	}
 
 	return (
 		<section className="maxWidthWrapper">
-			<Title title={title}/>
+			<Title title={thisTitle}/>
 	        
-	        {loginOrRegister === 'register' ? <Para text={props.text} compClass="registerText"/> : null}
+	        {loginOrRegister === 'register' ? <Para text={text} compClass="registerText"/> : null}
 	        
-	        {props.img ? props.img : null}
+	        {img ? img : null}
 	        
-	        {props.form ? props.form : null}
+	        {form ? form : null}
 	        
-	        {props.includeBeginForm ? <BeginForm /> : null}
+	        {includeBeginForm ? <BeginForm /> : null}
 	        
 	        {loginOrRegister === 'login' ? <LoginForm toggleForm={toggleForm} /> : <RegisterForm toggleForm={toggleForm} />}
         	
-        	{props.includeBottomSpacer ? <BottomSpacer /> : null}
+        	{includeBottomSpacer ? <BottomSpacer /> : null}
 	    </section>
 	)
 }
