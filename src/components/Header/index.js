@@ -1,7 +1,8 @@
+import type {PropsTypes} from './flow'
 import React from 'react';
 import './Header.css';
 
-export default function Header({imageFile, title, subTitle}) {
+export default function Header({imageFile, title, subTitle}: PropsTypes) {
   
 	let sectionStyle = {
 	  background: `url(/imgs/${imageFile}) no-repeat center center`,
