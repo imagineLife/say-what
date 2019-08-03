@@ -1,6 +1,6 @@
 import React from 'react'
   
-let SentenceObj = ({text , dims, margins}) =>{
+let SentenceObj = ({text , dims, margins}: {text: {text: string}, dims: {width: number}, margins: {top: number}}) =>{
   return(
 	<text
 	  transform={`translate(${dims.width / 2}, ${margins.top})`}
