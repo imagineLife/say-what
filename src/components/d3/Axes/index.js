@@ -2,7 +2,7 @@ import React from 'react'
 import Axis from '../Axis'
 import './Axes.css';
 
-export default ({ scales, margins, svgDimensions }) => {
+const Axes = ({ scales, margins, svgDimensions }) => {
   const { height, width } = svgDimensions
 
   const xProps = {
@@ -26,3 +26,5 @@ export default ({ scales, margins, svgDimensions }) => {
     </React.Fragment>
   )
 }
+
+export default Axes;
