@@ -1,5 +1,5 @@
 export type PropsType = {
-	val: string,
+	val: number,
 	labelText: string,
 	onChangeProp: (event: SyntheticEvent<HTMLButtonElement>) => void
 }
