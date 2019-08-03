@@ -1,3 +1,4 @@
+import type { PropsTypes} from './flow'
 import React from 'react';
 import './Input.css';
 
@@ -7,7 +8,7 @@ export default function Input({
 	minInputLength,
 	placeholder,
 	onChangeProp
-}) {
+}: PropsTypes) {
 	
     return (
 	    <input 
