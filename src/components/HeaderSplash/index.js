@@ -1,16 +1,17 @@
+import type { PropsTypes } from './flow'
 import React from 'react';
 import './HeaderSplash.css';
 
-export default function HeaderSplash(props) {
+export default function HeaderSplash({imagePr, title, subTitle}: PropsTypes) {
 	let sectionStyle = {
-	  background: `url(${ props.imagePr }) no-repeat center center`,
+	  background: `url(${ imagePr }) no-repeat center center`,
 	  backgroundSize: `cover`
 	};
 
     return (
       <header style={sectionStyle} role="banner" className="pageHeader">
-        <h1 className="titleSplash">{props.title}</h1>
-        <h3 className="subTitle">{props.subTitle}</h3>
+        <h1 className="titleSplash">{title}</h1>
+        <h3 className="subTitle">{subTitle}</h3>
       </header>
     );
 }
