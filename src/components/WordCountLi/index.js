@@ -1,12 +1,12 @@
 import React from 'react';
 import './WordCountLi.css';
 
-export default function WordCountLi(props) {
+export default function WordCountLi({boldWord, word}: {boldWord: string, word: string}) {
     return (
 		<li className="WordCountLi">
-			<span className="boldWord">{props.boldWord}</span>
+			<span className="boldWord">{boldWord}</span>
 			<br />
-			<p> {props.word} </p>
+			<p> {word} </p>
 		</li>
 	);
 }

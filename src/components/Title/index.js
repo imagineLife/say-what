@@ -1,11 +1,11 @@
 import React from 'react';
 import './Title.css';
 
-export default function Title(props) {
+export default function Title({title}: {title: string}) {
 
     return (
         <header>
-            <h3>{props.title}</h3>
+            <h3>{title}</h3>
         </header>
     );
 }

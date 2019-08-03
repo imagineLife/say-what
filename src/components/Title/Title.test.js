@@ -9,6 +9,6 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('Title.js', () => {
 	
 	it('renders without crashing', () => {
-		shallow(<Title />);
+		shallow(<Title title="dummytitle"/>);
 	});	
 })
