@@ -1,16 +1,22 @@
 import React from 'react';
 import './Input.css';
 
-export default function Input(props) {
+export default function Input({
+	source,
+	type,
+	minInputLength,
+	placeholder,
+	onChangeProp
+}) {
 	
     return (
 	    <input 
-	      id = {props.source} 
-	      type = {props.type} 
-	      name = {props.source}
-	      minLength = {props.minInputLength ? props.minInputLength : null}
-	      placeholder = {props.placeholder ? props.placeholder : props.source.charAt(0).toUpperCase() + props.source.slice(1)} 
-	      onChange={e => props.onChangeProp(e)}
+	      id = {source} 
+	      type = {type} 
+	      name = {source}
+	      minLength = {minInputLength ? minInputLength : null}
+	      placeholder = {placeholder ? placeholder : source.charAt(0).toUpperCase() + source.slice(1)} 
+	      onChange={e => onChangeProp(e)}
 	    required/>
 	);
 
