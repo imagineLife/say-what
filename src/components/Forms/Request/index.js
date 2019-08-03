@@ -6,7 +6,8 @@ import {connect} from 'react-redux';
 import {requestAction} from './state/actions';
 import Input from '../../Input'
 import Radio from '../../Radio'
-class RequestForm extends React.Component {
+
+class RequestForm extends React.Component<PropsType, StateType> {
   constructor(props){
     super(props);    
     this.state = {
@@ -21,18 +22,18 @@ class RequestForm extends React.Component {
 
   }
 
-  getResFromAPI(ev){
+  getResFromAPI(ev: SyntheticInputEvent<HTMLInputElement>){
     ev.preventDefault();
     this.props.myRunRequestKey(this.state);
   }
 
-  setText(text, id) {
+  setText(text: string, id?: string) {
       this.setState({
         text: text
       })
     }
 
-  setType(typeVal){
+  setType(typeVal: string){
     this.setState({
       type: typeVal
     })
