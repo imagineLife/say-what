@@ -1,7 +1,7 @@
 export type PropsTypes = {
 	source: string,
 	type: string,
-	minInputLength: number,
+	minInputLength?: number,
 	placeholder: string,
 	onChangeProp: (event: SyntheticEvent<HTMLButtonElement>) => void
 }
