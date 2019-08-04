@@ -100,10 +100,10 @@ export default function ResizingSection({introInfo,
 		singleStat = Object.keys(numberOfWords).map(key => {
 			if(key !== 'Title'){
 				if(key === 'wordCount'){
-					return <WordCountLi key={key} boldWord='Total' word={numberOfWords[key]} />
+					return <WordCountLi key={key} boldWord='Total' word={numberOfWords[key].toString()} />
 				}
 				if(key === 'uniqueWords'){
-					return <WordCountLi key={key} boldWord='Unique Words' word={numberOfWords[key]} />
+					return <WordCountLi key={key} boldWord='Unique Words' word={numberOfWords[key].toString()} />
 				}
 			}
 			return null;
@@ -123,7 +123,7 @@ export default function ResizingSection({introInfo,
 	        {singleStat ? singleStat : ''}
 	        {includeBeginForm ? <BeginForm /> : null}
 	        {includeSpeechTextForm ? <SpeechTextForm speechID={speechID} speechTitle = {speechTitle}/> : null}
-	        {text ? <Para text={text} /> : null }
+	        {text ? <Para text={text} compClass="p"/> : null }
 	        {/*
 	        	{wordsBySize ? <BubbleChart sectionKey='wordsBySize' data={wordsBySize} radiusKey={`occurances`} categoryKey={`size`} /> : null}
 	        */}
