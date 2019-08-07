@@ -1,8 +1,9 @@
+import type { PropsTypes } from './flow'
 import React from 'react'
 import Axis from '../Axis'
 import './Axes.css';
 
-const Axes = ({ scales, margins, svgDimensions }) => {
+const Axes = ({ scales, margins, svgDimensions }: PropsTypes) => {
   const { height, width } = svgDimensions
 
   const xProps = {
