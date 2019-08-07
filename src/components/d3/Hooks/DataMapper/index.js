@@ -1,3 +1,4 @@
+import type { SrcDataItem } from './flow'
 import React from 'react';
 
 /*
@@ -5,8 +6,8 @@ import React from 'react';
   Maps data to {x, y} format object
 */
 
-function remapData(srcData, xVal, yVal){
-  
+function remapData(srcData: Array<SrcDataItem>, xVal: string, yVal: string){
+
   let [resData, setResData] = React.useState(null)
 
   React.useEffect(() => {
