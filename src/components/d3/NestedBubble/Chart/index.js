@@ -127,7 +127,7 @@ function Chart({respWrapWidth, data, radiusKey, categoryKey}) {
                   className="clipText" 
                   clipPath={`url(#clip-${c[categoryKey].toString()})`}>
                   <tspan 
-                    className={`bubbleText title ${(c.children) ? null : 'child'}`}
+                    className={`bubbleText title ${(c.children) ? '' : 'child'}`}
                     textAnchor={"middle"}
                     x={0}
                     y={-5}>
