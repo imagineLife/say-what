@@ -6,10 +6,12 @@
     svgDims ({height, width}), 
     labels ({x, y})
 */
+import type { PropsTypes } from './flow'
 
 import React from 'react';
 
-const useLabels = ({margins, svgDimensions,labels}) => {
+const useLabels = ({margins, svgDimensions,labels}: PropsTypes) => {
+  
   let [uiLabels, setUiLabels] = React.useState(null)
 
   React.useEffect(() => {
