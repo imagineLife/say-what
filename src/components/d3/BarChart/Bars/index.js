@@ -1,10 +1,11 @@
+import type { PropsTypes } from './flow'
 import React, { Component } from 'react'
 import { scaleLinear } from 'd3-scale'
 import { interpolateLab } from 'd3-interpolate'
 import './index.css'
 
-export default function Bars({ scales, margins, data, svgDimensions }){
-
+export default function Bars({ scales, margins, data, svgDimensions }: PropsTypes){
+  
   const { xScale, yScale } = scales
   const { height } = svgDimensions
 
