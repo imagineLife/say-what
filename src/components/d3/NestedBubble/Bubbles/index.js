@@ -13,7 +13,7 @@ export default class Bubbles extends Component {
 
     const bubbles = (
       data.map(dataElement =>
-        <circle key={Object.keys(dataElement)} className="bubble" r={Object.values(dataElement)}></circle>,
+        <circle key={Object.keys(dataElement)[0]} className="bubble" r={Object.values(dataElement)}></circle>,
       )
     )
 
