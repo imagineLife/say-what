@@ -1,3 +1,4 @@
+import type { PropsTypes } from './flow'
 import React, { Component } from 'react'
 import * as d3 from 'd3';
 import Axes from '../Axes'
@@ -8,7 +9,13 @@ import SentenceObj from '../../SentenceObj'
 import { makeScale } from '../../../lib'
 import './index.css'
 
-const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}) => {
+const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}: PropsTypes) => {
+  console.log('data')
+  console.log(data)
+  console.log('labels')
+  console.log(labels)
+  console.log('hoverLine')
+  console.log(hoverLine)
   
   let [showLine, setShowLine] = React.useState(false)
   let [sentenceNumber, setSentenceNumber] = React.useState(0)
