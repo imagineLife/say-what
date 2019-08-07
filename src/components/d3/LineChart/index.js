@@ -10,12 +10,6 @@ import { makeScale } from '../../../lib'
 import './index.css'
 
 const Chart = ({data, xKey, yKey, respWrapWidth, labels, hoverLine}: PropsTypes) => {
-  console.log('data')
-  console.log(data)
-  console.log('labels')
-  console.log(labels)
-  console.log('hoverLine')
-  console.log(hoverLine)
   
   let [showLine, setShowLine] = React.useState(false)
   let [sentenceNumber, setSentenceNumber] = React.useState(0)
