@@ -1,3 +1,4 @@
+import type {PropsTypes} from './flow';
 import React from 'react';
 import './Section.css';
 import Title from '../Title';
@@ -19,13 +20,13 @@ export default function Section ({title,
 	requested,
 	includeLogoutForm,
 	includeBottomSpace
-}) {
+}: PropsTypes) {
 
 	return (
 		<section>
 			<Title title={title}/>
 	        {img ? img : null}
-	        <Para text={text}/>
+	        <Para text={text} compClass="p"/>
 	        {speechPicker ? <UlLinks speechParts={speechesFromAPI} /> : null}
 	        {form ? form : null}
 	        {includeBeginForm ? <BeginForm /> : null}
