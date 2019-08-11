@@ -5,8 +5,8 @@ export type BarDataType = {
 
 export type PropsTypes = { 
   scales: {
-  	xScale: (number) => any,
-  	yScale: (number) => any
+  	xScale: any,
+  	yScale: any
   }, 
   margins: {
   	top: number,
