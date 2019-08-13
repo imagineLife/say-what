@@ -18,7 +18,7 @@ export type PropsType = { introInfo: {
 	speechID: string,
 	speechTitle: string,
 	text: string,
-	wordsBySize: Array<{size: number, occurances: number}>,
+	wordsBySize: Array<{size: number, occurances: number, parent?: string}>,
 	mostUsedWords: Array<{word: string, occurances: number}>,
 	sentences: Array<{text: string, wordCount: number}>,
 	chart: string}
