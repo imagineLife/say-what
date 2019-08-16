@@ -1,5 +1,5 @@
 export type PropsTypes = {
-	imagePr: string, 
+	?imagePr: string, 
 	title: string, 
 	subTitle: string
 }
