@@ -1,7 +1,7 @@
 import React from 'react';
 import './Title.css';
 
-export default function Title({title}: {title: string}) {
+export default function Title({title}: {title: ?string}) {
 
     return (
         <header>
