@@ -12,7 +12,6 @@ const WireFrame = ({speeches}) => {
 	const selectedSpeech = e => {
 		console.log('selected speech e.currentTarget')
 		console.log(e.currentTarget.id)
-		
 	}
 
 	let [visibleSpeeches, setVisibleSpeeches] = React.useState(speeches)

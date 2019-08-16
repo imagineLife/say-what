@@ -135,4 +135,5 @@ const mapStateToProps = (state) =>
 	...state
 })
 
+//$FlowReduxBug
 export default connect(mapStateToProps)(SpeechPicker);
