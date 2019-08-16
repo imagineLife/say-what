@@ -1,10 +1,11 @@
+import type { AxisPropsTypes } from './flow'
 import React, { Component } from 'react'
 import * as d3Axis from 'd3-axis'
 import { select as d3Select } from 'd3-selection'
 
 import './Axis.css'
 
-export default class Axis extends Component {
+export default class Axis extends Component<AxisPropsTypes> {
   componentDidMount() {
     this.renderAxis()
   }
@@ -12,6 +13,8 @@ export default class Axis extends Component {
   componentDidUpdate() {
     this.renderAxis()
   }
+
+  axisElement = {};
 
   renderAxis() {
     const axisType = `axis${this.props.orient}`
