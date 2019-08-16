@@ -137,7 +137,7 @@ export default class GaugeChart extends React.Component {
 
 		that.isRendered = isRendered;
 		
-		function render(newValue) {
+		function render(newValue: any) {
 //declare svg 			
 			svg = d3.select(container)
 				.append('svg:svg')
@@ -206,7 +206,7 @@ export default class GaugeChart extends React.Component {
 		
 		that.render = render;
 		
-		function setNeedleVal(newValue, newConfiguration) {
+		function setNeedleVal(newValue: number, newConfiguration) {
 			if ( newConfiguration  !== undefined) {
 				configure(newConfiguration);
 			}
