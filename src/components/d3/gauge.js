@@ -75,16 +75,16 @@ export default class GaugeChart extends React.Component {
 			
 			arcColorFn					: d3.interpolateHsl(d3.rgb('#e8e2ca'), d3.rgb('#3e6c0a'))
 		};
-		let range = undefined;
-		let radius = undefined;
-		let pointerHeadLength = undefined;
+		let range: any = undefined;
+		let radius: any = undefined;
+		let pointerHeadLength: any = undefined;
 		
-		let svg = undefined;
-		let arc = undefined;
-		let scale = undefined;
-		let ticks = undefined;
-		let tickData = undefined;
-		let pointer = undefined;
+		let svg: any = undefined;
+		let arc: any = undefined;
+		let scale: any = undefined;
+		let ticks: any = undefined;
+		let tickData: any = undefined;
+		let pointer: any = undefined;
 
 		
 		function deg2rad(deg) {
