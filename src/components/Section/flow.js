@@ -5,7 +5,7 @@ export type SpeechItemType = {
 export type PropsTypes = {
 	title?: string, 
 	img?: () => void, 
-	text?: string, 
+	text?: ?string, 
 	speechPicker?: boolean, 
 	speechesFromAPI?: Array<SpeechItemType>, 
 	form?: boolean, 
