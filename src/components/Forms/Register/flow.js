@@ -1,6 +1,6 @@
 export type propsType = {
   toggleForm: () => mixed,
-  myRunLoginKey: () => mixed,
+  myRunLoginKey: (any) => mixed,
 }
 
 export type TempStateType = {
