@@ -3,7 +3,7 @@ export type SpeechItemType = {
 }
 
 export type PropsTypes = {
-	title?: string, 
+	title?: ?string, 
 	img?: () => void, 
 	text?: ?string, 
 	speechPicker?: boolean, 
