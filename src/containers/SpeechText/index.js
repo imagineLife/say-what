@@ -116,4 +116,5 @@ const mapStateToProps = (state) =>
 })
 
 //$FlowReduxBug
+export { SpeechText }
 export default connect(mapStateToProps, mapDispatchToProps)(SpeechText);
