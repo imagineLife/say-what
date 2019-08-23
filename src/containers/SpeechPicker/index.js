@@ -12,12 +12,14 @@ const SpeechPicker = (props) => {
 	let [loading, setLoading] = React.useState(false);
 
 	React.useEffect(() => {
+		console.log('--USE EFFECT!--');
 		if( localStorage.getItem('localStorageAuthToken') ){
 			loadSpeeches()
 		}
 	}, [])
 	
 	const loadSpeeches = () => {
+		console.log('loadSpeeches Calld');
 		setLoading(true)
 
 		return fetch(`${window.backendPath}/api/speeches/speechList`, {
@@ -57,63 +59,64 @@ const SpeechPicker = (props) => {
     
     //if there's no authToken, redirect user to the Login page
 	if(!localStorage.getItem('localStorageAuthToken')){
+		console.log('no auth token');
 	      return (
 	        <Redirect to="/login" />
 	      );
-	}else{
-
-		//WHEN loading...
-		if (loading) {
-	    	return (
-				<main role="main" className="splashBack">
-			      <p>Processing Speech Stats...</p>
-			    </main>
-	    	);
-		        
-		//WHEN not loading
-	    } else {
-
-			const pageHeader = {
-				title: `Pick a Speech`,
-				text: ``
-			}
-			
-			const sectionsArray =[
-				{
-					title: `Choose from a list of options`,
-					text: ``,
-					speechPicker: true,
-					speechesFromAPI: speeches
-				},
-				{
-					title: `Make A Request`,
-					text: ``,
-					includeRequestForm: true,
-					requested: props.mappedUserRequest
-				},
-				{
-					title: 'Logout',
-					includeLogoutForm: true,
-					includeBottomSpace: true
-				}
-			];
-
-			const sections = sectionsArray.map((sec,ind) => {
-		      	return <Section key={ind} {...sec}/>;
-			})
-
-
-		    return (
-				<main role="main" className="splashBack">
-				  <Header title={pageHeader.title}/>
-			      
-			      <div className="row">
-			      	{sections}
-			      </div>
-			    </main>
-		    );
-		}
 	}
+
+	//WHEN loading...
+	if (loading) {
+		console.log('LOADING');
+    	return (
+			<main role="main" className="splashBack">
+		      <p id="loading-text">Processing Speech Stats...</p>
+		    </main>
+    	);
+	        
+	//WHEN not loading
+    }
+
+    console.log('not loading && auth token');
+	const pageHeader = {
+		title: `Pick a Speech`,
+		text: ``
+	}
+	
+	const sectionsArray =[
+		{
+			title: `Choose from a list of options`,
+			text: ``,
+			speechPicker: true,
+			speechesFromAPI: speeches
+		},
+		{
+			title: `Make A Request`,
+			text: ``,
+			includeRequestForm: true,
+			requested: props.mappedUserRequest
+		},
+		{
+			title: 'Logout',
+			includeLogoutForm: true,
+			includeBottomSpace: true
+		}
+	];
+
+	const sections = sectionsArray.map((sec,ind) => {
+      	return <Section key={ind} {...sec}/>;
+	})
+
+
+    return (
+		<main role="main" className="splashBack">
+		  <Header title={pageHeader.title}/>
+	      
+	      <div className="row">
+	      	{sections}
+	      </div>
+	    </main>
+    );
 }
 
 const mapStateToProps = (state) =>
@@ -124,4 +127,5 @@ const mapStateToProps = (state) =>
 })
 
 //$FlowReduxBug
+export { SpeechPicker }
 export default connect(mapStateToProps)(SpeechPicker);
