@@ -3,26 +3,24 @@ import './SpeechText.css';
 import Section from '../../components/Section';
 import {getSpeechTextAxn} from './state/actions';
 import {connect} from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-export class SpeechText extends React.Component{
-	constructor(props){
-		super(props)
-		this.state = {
-			error: null,
-			loading : false
-		};
-	}
+const SpeechText = (props) => {
+	let [error, setError] = React.useState(null);
+	let [loading, setLoading] = React.useState(false);
+	let [speechText, setSpeechText] = React.useState(null);
+	let [speechTitle, setSpeechTitle] = React.useState(null);
+	let [redirect, setRedirect] = React.useState(false)
 
-	componentDidMount(){
-		this.loadSpeechText();
-	}
+	React.useEffect(() => {
+		loadSpeechText();
+	}, [])
 
-	loadSpeechText(){
-		this.setState({
-			error: null,
-			loading: true
-			// speechText : this.props.runSpeechTextAction(this.props.speechID)
-		});
+	const loadSpeechText = () => {
+		console.log('Loading speech text...');
+		setError(null),
+		setLoading(true)
+		// speechText : this.props.runSpeechTextAction(this.props.speechID)
 
     //	Parsing the speechID from URL
     
@@ -45,62 +43,65 @@ export class SpeechText extends React.Component{
 		        }
 		    })
             .then(res => {
+            	if(res.status == 401){
+            		console.log('redirecting...');
+            		setRedirect(true)
+            	}
+            	
                 if (!res.ok) {
                     return Promise.reject(res.statusText);
                 }
                 return res.json();
             })
-            .then(resText =>
-                this.setState({
-					speechText: resText.text,
-					speechTitle: resText.title,
-					loading: false
-                })
-            )
+            .then(resText => {
+				setSpeechText(resText.text),
+				setSpeechTitle(resText.title),
+				setLoading(false)
+            })
             .catch(err =>
-                this.setState({
-                    error: 'Could not load SpeechText',
-                    loading: false
-                })
+                setError('Could not load SpeechText'),
+                setLoading(false)
             );
 	}
 
-	render(){
     
     //WHEN loading...
-		if (this.state.loading) {
-	    	return (
-				<main role="main" className="splashBack">
-			      <p>Processing Speech Text...</p>
-			    </main>
-	    	);
+	if (loading) {
+    	return (
+			<main role="main" className="splashBack">
+		      <p>Processing Speech Text...</p>
+		    </main>
+    	);
         
 	//WHEN not loading
-        } else {
+    } else {
 
-        	const sectionsArray =[
-				{
-					title: this.state.speechTitle,
-					sectionSpeechID: this.state.speechID,
-					// img: `[ Image of Orator behind Title ]`,
-					text: this.state.speechText,
-					includeBottomSpace:true
+    	if(redirect === true){
+    		return <Redirect to="/login" />
+    	}
 
-				}
-			];
+    	const sectionsArray =[
+			{
+				title: speechTitle,
+				sectionSpeechID: props.speechID,
+				// img: `[ Image of Orator behind Title ]`,
+				text: speechText,
+				includeBottomSpace:true
 
-			const sections = sectionsArray.map((sec,ind) => {
-		      	return <Section key={ind} {...sec}/>;
-			})
+			}
+		];
 
-		    return (
-				<main role="main" className="splashBack">
-			      
-			      {sections}
+		const sections = sectionsArray.map((sec,ind) => {
+	      	return <Section key={ind} {...sec}/>;
+		})
 
-			    </main>
-		    );
-		}
+	    return (
+			<main role="main" className="splashBack">
+		      
+		      {sections}
+
+		    </main>
+	    );
 	}
 }
 
