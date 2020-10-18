@@ -5,6 +5,8 @@
 .*/git/.*
 .*/node_modules/.*
 .babel.*
+.*/**/*.test.js
+
 
 [include]
 
@@ -15,6 +17,12 @@
 [options]
 all=true
 suppress_comment=\\(.\\|\n\\)*\\$FlowReduxBug
+suppress_comment=\\(.\\|\n\\)*\\$FlowSVGBug
 suppress_type=$FlowReactBug
+suppress_type=$FlowSVGBug
+suppress_type=$D3Bug
+💩module.file_ext=.ico
+💩module.name_mapper='.*\(png|svg|jpe?g|gif|ico\)$' -> 'empty/object'
+module.name_mapper='.*\(png|svg|jpe?g|gif|ico\)$' -> '<PROJECT_ROOT>/flow-typed/stubs/npm/file-loader_vx.x.x.js'
 
 [strict]
