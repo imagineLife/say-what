@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../float-grid.css";
 import "./SpeechData.css";
 import Header from "../../components/Header";
@@ -7,44 +7,34 @@ import ResizingSection from "../../components/ResizingSection";
 import { Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-export class SpeechData extends React.Component {
-  constructor(props) {
-    super(props);
+const SpeechData = props => {
+  let urlSplit = window.location.href.split("/");
+  const [loading, setLoading] = useState(true);
+  const [urlSpeechID, setUrlSpeechID] = useState(urlSplit[urlSplit.length - 1]);
+  const [sectionHeight, setSectionHeight] = useState(0);
+  const [error, setError] = useState(false);
+  const [redirect, setRedirect] = useState(null);
+  const [state, setState] = useState({});
 
-    let urlSpeechID = window.location.href.split("/");
-    urlSpeechID = urlSpeechID[urlSpeechID.length - 1];
-
-    this.state = {
-      loading: true,
-      urlSpeechID: urlSpeechID,
-      sectionHeight: 0
-    };
-  }
-
-  componentDidMount() {
-    this.loadStats();
+  useEffect(() => {
+    loadStats();
 
     let myH = 0;
     document.querySelectorAll('section[ class *= "col-" ]').forEach(itm => {
       myH = Math.max(myH, itm.offsetHeight);
     });
 
-    this.setState({
-      sectionHeight: myH
-    });
-  }
+    setSectionHeight(myH);
+  }, []);
 
-  loadStats() {
-    this.setState({
-      error: null,
-      loading: true
-    });
+  const loadStats = () => {
+    setLoading(true);
 
     //	send & return speechstats
     //	set speechstats to containers state
     return fetch(
       `${window.backendPath}/api/speeches/${
-        this.state.urlSpeechID !== "default" ? this.state.urlSpeechID : ""
+        urlSpeechID !== "default" ? urlSpeechID : ""
       }`,
       {
         method: "GET",
@@ -58,10 +48,10 @@ export class SpeechData extends React.Component {
       .then(res => {
         if (res.status == 401 || !res.ok) {
           console.log("here");
-          this.setState({ redirect: true });
+          setRedirect(true);
         } else {
           res.json().then(stats => {
-            this.setState({
+            setState({
               Audience: stats.Audience,
               Date: stats.Date,
               Orator: stats.Orator,
@@ -74,24 +64,20 @@ export class SpeechData extends React.Component {
               eventOverview: stats.eventOverview,
               title: stats.title,
               wordsBySize: stats.wordsBySize,
-              sentences: stats.sentences,
-              loading: false
+              sentences: stats.sentences
             });
+            setLoading(false);
           });
         }
       })
       .catch(err => {
         console.log("error!");
         console.log(err);
-
-        this.setState({
-          error: "Could not load board",
-          loading: false
-        });
+        setError("Could not load board"), setLoading(false);
       });
-  }
+  };
 
-  parseDate(dateToParse) {
+  const parseDate = dateToParse => {
     let usableDate = new Date(dateToParse);
 
     var monthNames = [
@@ -122,123 +108,116 @@ export class SpeechData extends React.Component {
         ? "0" + usableDate.getFullYear()
         : usableDate.getFullYear();
     return month + " " + day + ", " + year;
-  }
+  };
+  if (
+    (localStorage.getItem("localStorageAuthToken") === null &&
+      urlSpeechID !== "default") ||
+    redirect == true
+  ) {
+    //no authToken & urlSpeechID is not-default
+    return <Redirect to="/login" />;
+  } else {
+    //WHEN loading...
+    if (loading) {
+      return (
+        <main role="main" className="splashBack">
+          <p>Processing Speech Stats...</p>
+        </main>
+      );
 
-  render() {
-    // IF Non-default speech,
-    // Requre logged-in via localStorage
-    // Otherwise, Redirect to login
-
-    if (
-      (localStorage.getItem("localStorageAuthToken") === null &&
-        this.state.urlSpeechID !== "default") ||
-      this.state.redirect == true
-    ) {
-      //no authToken & urlSpeechID is not-default
-      return <Redirect to="/login" />;
+      //WHEN not loading
     } else {
-      //WHEN loading...
-      if (this.state.loading) {
-        return (
-          <main role="main" className="splashBack">
-            <p>Processing Speech Stats...</p>
-          </main>
-        );
+      const pageHeader = {
+        Title: state.title,
+        image: Image,
+        imageFile: state.imageFile
+      };
 
-        //WHEN not loading
-      } else {
-        const pageHeader = {
-          Title: this.state.title,
-          image: Image,
-          imageFile: this.state.imageFile
-        };
-
-        const sectionsArray = [
-          {
-            introInfo: {
-              Title: "Quick Stats",
-              Orator: this.state.Orator,
-              Date: this.parseDate(this.state.Date),
-              Audience: this.state.Audience,
-              "Event Overview": this.state.eventOverview
-            },
-            colSize: 4
+      const sectionsArray = [
+        {
+          introInfo: {
+            Title: "Quick Stats",
+            Orator: state.Orator,
+            Date: parseDate(state.Date),
+            Audience: state.Audience,
+            "Event Overview": state.eventOverview
           },
-          {
-            title: `Words By Size`,
-            wordsBySize: this.state.wordsBySize,
-            includeWordBubble: true,
-            colSize: 8
-          },
-          {
-            title: "How Many Words",
-            numberOfWords: this.state.numberOfWords,
-            colSize: 8
-          },
-          {
-            title: `12 Longest Words`,
-            bigWords: this.state.bigWords,
-            colSize: 4
-          },
-          {
-            title: `Speech Text`,
-            includeSpeechTextForm: true,
-            includeBottomSpace: true,
-            speechID: this.state.id,
-            speechTitle: this.state.title,
-            colSize: 3
-          },
-          {
-            title: `Common Words`,
-            mostUsedWords: this.state.mostUsedWords,
-            includeBarChart: true,
-            colSize: 9
-          },
-          {
-            title: `Words Per Sentence`,
-            sentences: this.state.sentences,
-            chart: "line",
-            colSize: 12
-          }
-        ];
+          colSize: 4
+        },
+        {
+          title: `Words By Size`,
+          wordsBySize: state.wordsBySize,
+          includeWordBubble: true,
+          colSize: 8
+        },
+        {
+          title: "How Many Words",
+          numberOfWords: state.numberOfWords,
+          colSize: 8
+        },
+        {
+          title: `12 Longest Words`,
+          bigWords: state.bigWords,
+          colSize: 4
+        },
+        {
+          title: `Speech Text`,
+          includeSpeechTextForm: true,
+          includeBottomSpace: true,
+          speechID: state.id,
+          speechTitle: state.title,
+          colSize: 3
+        },
+        {
+          title: `Common Words`,
+          mostUsedWords: state.mostUsedWords,
+          includeBarChart: true,
+          colSize: 9
+        },
+        {
+          title: `Words Per Sentence`,
+          sentences: state.sentences,
+          chart: "line",
+          colSize: 12
+        }
+      ];
 
-        //converts the above sectionsArray into a 'sections' var for returning
-        const sections = sectionsArray.map((sec, ind) => {
-          sec.calcHeight = this.state.sectionHeight;
-          // sec.canLoadHeight = this.state.canLoadHeight;
-          return <ResizingSection key={ind} {...sec} />;
-        });
+      //converts the above sectionsArray into a 'sections' var for returning
+      const sections = sectionsArray.map((sec, ind) => {
+        sec.calcHeight = state.sectionHeight;
+        // sec.canLoadHeight = state.canLoadHeight;
+        return <ResizingSection key={ind} {...sec} />;
+      });
 
-        return (
-          <main role="main" className="splashBack">
-            <Header
-              title={pageHeader.Title}
-              subTitle={pageHeader.text}
-              imageFile={pageHeader.imageFile}
-            />
+      return (
+        <main role="main" className="splashBack">
+          <Header
+            title={pageHeader.Title}
+            subTitle={pageHeader.text}
+            imageFile={pageHeader.imageFile}
+          />
 
-            <div className="row">
-              {sections[0]}
-              {sections[1]}
-            </div>
+          <div className="row">
+            {sections[0]}
+            {sections[1]}
+          </div>
 
-            <div className="row">
-              {sections[2]}
-              {sections[3]}
-            </div>
+          <div className="row">
+            {sections[2]}
+            {sections[3]}
+          </div>
 
-            <div className="row">
-              {sections[4]}
-              {sections[5]}
-            </div>
+          <div className="row">
+            {sections[4]}
+            {sections[5]}
+          </div>
 
-            <div className="row">{sections[6]}</div>
-          </main>
-        );
-      }
+          <div className="row">{sections[6]}</div>
+        </main>
+      );
     }
   }
-}
+};
 
 const mapStateToProps = state => ({
   mappedSpeechID: state._root.entries["0"][1]
