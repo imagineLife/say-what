@@ -23,7 +23,7 @@ export default function Section ({title,
 }: PropsTypes) {
 
 	return (
-		<section>
+		<section className="section">
 			<Title title={title}/>
 	        {img ? img : null}
 	        <Para text={text} compClass="p"/>
