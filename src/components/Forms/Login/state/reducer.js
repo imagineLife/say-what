@@ -3,16 +3,10 @@ import {LOGIN} from './constants';
 const initialState = fromJS({});
 
 const setAuthToken = (state, action: actionType) => {
-	
+
 	switch(action.type) {		
 		case LOGIN:
-			/*
-				for future use...
-				THIS is where transformations of
-				data that is going into the state goes
-			*/
-			return action.payload.authToken;
-		
+			return {...state, authToken: action.payload.authToken, loggedIn: true};
 		default: 
 			return state;
 	}
