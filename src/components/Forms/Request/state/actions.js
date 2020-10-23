@@ -1,10 +1,13 @@
 import {REQUEST} from './constants';
 export const requestAction = (obj, dispatch) => {
+
+    const authString = localStorage.getItem('localStorageAuthToken') || '';
+    
     fetch(`${window.backendPath}/api/requests`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('localStorageAuthToken')
+            'Authorization': 'Bearer ' + authString
         },
         body: JSON.stringify(obj)
     })
